@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <title>Page Not Found :(</title>
-        <%@include file="/error/includes/head.jsp" %>
+        <%@include file="WEB-INF/jspf/error/head.jspf" %>
     </head>
     <body>
-        <%@include file="/error/includes/container_end.jsp" %>
+        <%@include file="WEB-INF/jspf/error/container_end.jspf" %>
 
             <h1>Not found <span>:(</span></h1>
 
@@ -17,6 +17,6 @@
                 <li>an out-of-date link</li>
             </ul>
 
-        <%@include file="/error/includes/container_end.jsp" %>
+        <%@include file="WEB-INF/jspf/error/container_end.jspf" %>
     </body>
 </html>

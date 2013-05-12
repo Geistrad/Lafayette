@@ -2,15 +2,15 @@
 <html lang="en">
     <head>
         <title>Bad Request :(</title>
-        <%@include file="/error/includes/head.jsp" %>
+        <%@include file="WEB-INF/jspf/error/head.jspf" %>
     </head>
     <body>
-        <%@include file="/error/includes/container_end.jsp" %>
+        <%@include file="WEB-INF/jspf/error/container_end.jspf" %>
 
             <h1>Bad Request <span>:(</span></h1>
 
             <p>Sorry, but the request you sent does not make any sense to me.</p>
 
-        <%@include file="/error/includes/container_end.jsp" %>
+        <%@include file="WEB-INF/jspf/error/container_end.jspf" %>
     </body>
 </html>
