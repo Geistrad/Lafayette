@@ -26,16 +26,11 @@ import javax.servlet.ServletContextListener;
  */
 public class ServerContextListener implements ServletContextListener {
 
-    private static final String TEMPLATE_PREFIX = "/org/lafayette/server/resources";
+//    private static final String TEMPLATE_PREFIX = "/org/lafayette/server/resources";
 
     public ServerContextListener() {
         super();
     }
-
-    /**
-     * File where to store the database.
-     */
-    private static final String DB_FILE = "citer.db";
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

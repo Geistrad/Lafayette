@@ -40,7 +40,7 @@
             <artifactId>guava</artifactId>
             <version>14.0.1</version>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>2.1</version>
@@ -281,6 +281,19 @@
                 <version>2.6</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <server>${tomcat-server}</server>
+                    <url>${tomcat-url}</url>
+                    <port>${tomcat-port}}</port>
+                    <path>/</path>
+                    <addContextWarDependencies>true</addContextWarDependencies>
+                    <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
                 </configuration>
             </plugin>
         </plugins>
