@@ -13,8 +13,18 @@
     </welcome-file-list>
 
     <error-page>
+        <error-code>400</error-code>
+        <location>/error/400.jsp</location>
+        <error-code>401</error-code>
+        <location>/error/401.jsp</location>
+        <error-code>403</error-code>
+        <location>/error/403.jsp</location>
         <error-code>404</error-code>
-        <location>/404.jsp</location>
+        <location>/error/404.jsp</location>
+        <error-code>410</error-code>
+        <location>/error/410.jsp</location>
+        <error-code>500</error-code>
+        <location>/error/500.jsp</location>
     </error-page>
 
     <listener>
