@@ -39,6 +39,7 @@ public class ServerContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
+        log.debug("Context initialized. Execute listener...");
         final Registry reg = new Registry();
 
         try {
@@ -56,7 +57,7 @@ public class ServerContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
-        // nothing to do here yet
+        log.debug("Context destroyed. Execute listener...");
     }
 
     public static enum Key {
