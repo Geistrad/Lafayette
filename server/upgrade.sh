@@ -1,4 +1,3 @@
 #!/bin/bash
 
-git pull origin master && mvn clean package && mvn tomcat7:redeploy
-
+git pull origin master && mvn clean package tomcat7:redeploy
