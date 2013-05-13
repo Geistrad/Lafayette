@@ -14,8 +14,13 @@ package org.lafayette.server;
 //import de.weltraumschaf.citer.tpl.SiteLayout;
 //import freemarker.template.Configuration;
 //import freemarker.template.ObjectWrapper;
+import de.weltraumschaf.commons.Version;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import org.lafayette.server.Registry.Item;
 
 /**
  * Implements a servlet context listener.
@@ -33,13 +38,26 @@ public class ServerContextListener implements ServletContextListener {
     }
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
-//        sce.getServletContext().setAttribute(CiterRegistry.KEY, registry);
+    public void contextInitialized(final ServletContextEvent sce) {
+        final Registry reg = new Registry();
+
+        try {
+            final Version version = new Version("/org/lafayette/server/version.properties");
+            version.load();
+            reg.setItem(Registry.Key.VERSION, new Item<Version>(version));
+        } catch (IOException ex) {
+            Logger.getLogger(ServerContextListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        sce.getServletContext().setAttribute(Key.REGISRTY.toString(), reg);
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
-
+        // nothing to do here yet
     }
 
+    public static enum Key {
+        REGISRTY;
+    }
 }
