@@ -49,6 +49,7 @@ public class ServerContextListener implements ServletContextListener {
             Logger.getLogger(ServerContextListener.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        reg.setItem(Registry.Key.STAGE, new Item<Stage>(new Stage()));
         sce.getServletContext().setAttribute(Key.REGISRTY.toString(), reg);
     }
 

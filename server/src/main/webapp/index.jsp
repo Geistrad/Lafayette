@@ -16,6 +16,8 @@
 
         <p>Hello World!</p>
 
+        <small>Version: ${applicationScope['REGISRTY'].version} &ndash; Stage:
+            ${applicationScope['REGISRTY'].stage} </small>
         <%@include file="WEB-INF/jspf/footer_Scripts.jspf" %>
     </body>
 </html>

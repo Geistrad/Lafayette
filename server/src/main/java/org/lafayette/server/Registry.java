@@ -39,6 +39,19 @@ public final class Registry {
         return store.get(key);
     }
 
+    public Item<?> getVersion() {
+        return getItem(Key.VERSION);
+    }
+
+    public Item<?> getStage() {
+        return getItem(Key.STAGE);
+    }
+
+    @Override
+    public String toString() {
+        return  store.toString();
+    }
+
     public static enum Key {
         STAGE, VERSION;
     }
@@ -52,6 +65,11 @@ public final class Registry {
 
         public T getItem() {
             return item;
+        }
+
+        @Override
+        public String toString() {
+            return item.toString();
         }
 
     }
