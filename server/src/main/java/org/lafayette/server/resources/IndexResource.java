@@ -11,10 +11,17 @@
  */
 package org.lafayette.server.resources;
 
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import org.apache.log4j.Logger;
+import org.lafayette.server.Log;
 
 /**
  *
@@ -23,9 +30,42 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 public class IndexResource {
 
+    private final Logger log = Log.getLogger(this);
+
     @Produces(MediaType.TEXT_PLAIN)
-    @GET public String indexAsHtml() {
-        return "Lafayette Server\n\nHello World!\n";
+    @GET
+    public String indexAsHtml() {
+        final StringBuilder buffer = new StringBuilder("Lafayette Server\n\nHello World!\n\n");
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
+
+            final Statement stmt = con.createStatement();
+            final ResultSet rs = stmt.executeQuery("select * from user");
+            String dbtime;
+            while (rs.next()) {
+                dbtime = rs.getString(1);
+                buffer.append(rs.getString(1))
+                      .append(' ')
+                      .append(rs.getString(2))
+                        .append(' ')
+                      .append(rs.getString(3))
+                        .append(' ')
+                      .append(rs.getString(4))
+                      .append('\n');
+            }
+
+            con.close();
+
+        } catch (SQLException ex) {
+            log.fatal(ex.toString());
+        } catch (ClassNotFoundException ex) {
+            log.fatal(ex.toString());
+        }
+
+        return buffer.toString();
     }
 
 }
