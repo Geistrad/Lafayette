@@ -12,19 +12,33 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
-    <error-page>
+-    <error-page>
         <error-code>400</error-code>
         <location>/error/400.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>401</error-code>
         <location>/error/401.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>403</error-code>
-        <location>/error/403.jsp</location>
+        <location>/http_error_403.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>404</error-code>
-        <location>/error/404.jsp</location>
+        <location>/http_error_404.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>410</error-code>
-        <location>/error/410.jsp</location>
+        <location>/http_error_.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>500</error-code>
-        <location>/error/500.jsp</location>
+        <location>/http_error_500.jsp</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/http_error_500.jsp</location>
     </error-page>
 
     <listener>
