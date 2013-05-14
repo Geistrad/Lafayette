@@ -45,12 +45,20 @@ class UnixStrategy implements LoaderStrategie {
     }
 
     public static String createHomeConfigFileName(final String home) {
+        if (null == home) {
+            throw new IllegalArgumentException("Argument must not be null!");
+        }
+
+        if (home.length() == 0) {
+            throw new IllegalArgumentException("Argument must not be empty!");
+        }
+
         return home + "/." + VENDOR + "/" + FILE;
     }
 
     public static String createSystemConfigFileName(final String prefix) {
         if (null != prefix && prefix.length() > 0) {
-            return prefix + "/" + SYSTEM_CONFIG_DIR + "/" + VENDOR + "/" + FILE;
+            return prefix + SYSTEM_CONFIG_DIR + "/" + VENDOR + "/" + FILE;
         }
         return SYSTEM_CONFIG_DIR + "/" + VENDOR + "/" + FILE;
     }

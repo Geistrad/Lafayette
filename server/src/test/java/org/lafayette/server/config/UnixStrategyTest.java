@@ -19,6 +19,8 @@ import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import org.junit.Ignore;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -29,7 +31,48 @@ public class UnixStrategyTest {
     @Rule
     public final TemporaryFolder tempFolder = new TemporaryFolder();
 
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+
     @Test
+    public void createHomeConfigFileName_throwExceptionIfNullArgument() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Argument must not be null!");
+        UnixStrategy.createHomeConfigFileName(null);
+    }
+
+    @Test
+    public void createHomeConfigFileName_throwExcpetionIfEmptyArgument() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Argument must not be empty!");
+        UnixStrategy.createHomeConfigFileName("");
+    }
+
+    @Test
+    public void createHomeConfigFileName() {
+        assertThat(UnixStrategy.createHomeConfigFileName("foobar"),
+                   is("foobar/.lafayette/server.properties"));
+    }
+
+    @Test
+    public void createSystemConfigFileName_nullArguemnt() {
+        assertThat(UnixStrategy.createSystemConfigFileName(null),
+                   is("/etc/lafayette/server.properties"));
+    }
+
+    @Test
+    public void createSystemConfigFileName_emptyArguemnt() {
+        assertThat(UnixStrategy.createSystemConfigFileName(""),
+                   is("/etc/lafayette/server.properties"));
+    }
+
+    @Test
+    public void createSystemConfigFileName() {
+        assertThat(UnixStrategy.createSystemConfigFileName("foobar"),
+                   is("foobar/etc/lafayette/server.properties"));
+    }
+
+    @Test @Ignore
     public void testHasFoundConfigWithNothingToFind() throws IOException {
         final File home = tempFolder.newFolder();
         final File prefix = tempFolder.newFolder();
@@ -38,21 +81,18 @@ public class UnixStrategyTest {
         assertThat(sut.hasFoundConfig(), is(false));
         assertThat(sut.getFoundConfig(), is(nullValue()));
         assertThat(sut.getFileList(), hasSize(2));
-
         // TODO test for strings in list
         sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFileList(), is(emptyCollectionOf(String.class)));
         assertThat(sut.hasFoundConfig(), is(false));
         assertThat(sut.getFoundConfig(), is(nullValue()));
         assertThat(sut.getFileList(), hasSize(2));
     }
 
-    @Test
+    @Test @Ignore
     public void testGetFoundConfig() {
     }
 
-    @Test
+    @Test @Ignore
     public void testFindConfig() {
     }
 
