@@ -17,29 +17,18 @@ import com.google.common.base.Objects;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class User implements DomainObject {
+public class User extends BaseDomainObject {
 
-    private Long id;
+
     private String loginName;
     private String hashedPassword;
     private String salt;
 
     public User(final Long id, final String loginName, final String hashedPassword, final String salt) {
-        super();
-        this.id = id;
+        super(id);
         this.loginName = loginName;
         this.hashedPassword = hashedPassword;
         this.salt = salt;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(final Long id) {
-        this.id = id;
     }
 
     public void setLoginName(String loginName) {
@@ -68,7 +57,7 @@ public class User implements DomainObject {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, loginName, hashedPassword, salt);
+        return Objects.hashCode(super.hashCode(), loginName, hashedPassword, salt);
     }
 
     @Override
@@ -79,9 +68,18 @@ public class User implements DomainObject {
 
         final User other = (User) obj;
 
-        return Objects.equal(id, other.id)
+        return super.equals(other)
                 && Objects.equal(loginName, other.loginName)
                 && Objects.equal(hashedPassword, other.hashedPassword)
                 && Objects.equal(salt, other.salt);
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .addValue(super.toString())
+                .add("loginName", loginName)
+                .add("hashedPassword", hashedPassword)
+                .add("salt", salt).toString();
     }
 }
