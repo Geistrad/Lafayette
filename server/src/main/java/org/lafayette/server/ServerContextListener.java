@@ -16,9 +16,11 @@ package org.lafayette.server;
 //import freemarker.template.ObjectWrapper;
 import de.weltraumschaf.commons.Version;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import org.lafayette.server.Registry.Item;
 import org.apache.log4j.Logger;
 
 /**
@@ -30,6 +32,7 @@ import org.apache.log4j.Logger;
  */
 public class ServerContextListener implements ServletContextListener {
 
+    public static String REGISRTY = "registry";
     private final Logger log = Log.getLogger(this);
 //    private static final String TEMPLATE_PREFIX = "/org/lafayette/server/resources";
 
@@ -45,23 +48,36 @@ public class ServerContextListener implements ServletContextListener {
         try {
             final Version version = new Version("/org/lafayette/server/version.properties");
             version.load();
-            reg.setItem(Registry.Key.VERSION, new Item<Version>(version));
+            reg.setVersion(version);
         } catch (IOException ex) {
             log.fatal(ex.toString());
         }
 
-        reg.setItem(Registry.Key.STAGE, new Item<Stage>(new Stage()));
-        sce.getServletContext().setAttribute(Key.REGISRTY.toString(), reg);
+        reg.setStage(new Stage());
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
+            reg.setDatabase(con);
+        } catch (SQLException ex) {
+            log.fatal(ex.toString());
+        } catch (ClassNotFoundException ex) {
+            log.fatal(ex.toString());
+        }
+
+        sce.getServletContext().setAttribute(REGISRTY, reg);
 
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
         log.debug("Context destroyed. Execute listener...");
+        final Registry reg = (Registry) sce.getServletContext().getAttribute(REGISRTY);
+        try {
+            reg.getDatabase().close();
+        } catch (SQLException ex) {
+            log.fatal(ex.toString());
+        }
     }
 
-    public static enum Key {
-
-        REGISRTY;
-    }
 }
