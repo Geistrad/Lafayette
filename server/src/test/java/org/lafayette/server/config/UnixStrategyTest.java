@@ -72,8 +72,8 @@ public class UnixStrategyTest {
                    is("foobar/etc/lafayette/server.properties"));
     }
 
-    @Test @Ignore
-    public void testHasFoundConfigWithNothingToFind() throws IOException {
+    @Test
+    public void testFoundConfig_WithNothingToFind() throws IOException {
         final File home = tempFolder.newFolder();
         final File prefix = tempFolder.newFolder();
         new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
@@ -81,7 +81,10 @@ public class UnixStrategyTest {
         assertThat(sut.hasFoundConfig(), is(false));
         assertThat(sut.getFoundConfig(), is(nullValue()));
         assertThat(sut.getFileList(), hasSize(2));
-        // TODO test for strings in list
+        assertThat(sut.getFileList(), contains(
+            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
+            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
+        ));
         sut.findConfig();
         assertThat(sut.hasFoundConfig(), is(false));
         assertThat(sut.getFoundConfig(), is(nullValue()));
@@ -89,11 +92,24 @@ public class UnixStrategyTest {
     }
 
     @Test @Ignore
-    public void testGetFoundConfig() {
+    public void testFoundConfig_homeConfigAvailable() throws IOException {
+        final File home = tempFolder.newFolder();
+        final File prefix = tempFolder.newFolder();
+        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
     }
 
     @Test @Ignore
-    public void testFindConfig() {
+    public void testFoundConfig_systemConfigAvailable() throws IOException {
+        final File home = tempFolder.newFolder();
+        final File prefix = tempFolder.newFolder();
+        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
+    }
+
+    @Test @Ignore
+    public void testFoundConfig_homeAndSystemConfigAvailable() throws IOException {
+        final File home = tempFolder.newFolder();
+        final File prefix = tempFolder.newFolder();
+        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
     }
 
 }
