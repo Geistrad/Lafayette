@@ -12,8 +12,8 @@
 
 package org.lafayette.server;
 
-import com.google.common.collect.Maps;
-import java.util.Map;
+import de.weltraumschaf.commons.Version;
+import java.sql.Connection;
 
 /**
  *
@@ -21,56 +21,36 @@ import java.util.Map;
  */
 public final class Registry {
 
-    private final Map<Key, Item<?>> store = Maps.newHashMap();
+    private Version version;
+    private Stage stage;
+    private Connection database;
 
     public Registry() {
         super();
     }
 
-    public void setItem(final Key key, final Item<?> item) {
-        store.put(key, item);
+    public Version getVersion() {
+        return version;
     }
 
-    public boolean hasKey(final Key key) {
-        return store.containsKey(key);
+    public void setVersion(Version version) {
+        this.version = version;
     }
 
-    public Item<?> getItem(final Key key) {
-        return store.get(key);
+    public Stage getStage() {
+        return stage;
     }
 
-    public Item<?> getVersion() {
-        return getItem(Key.VERSION);
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
-    public Item<?> getStage() {
-        return getItem(Key.STAGE);
+    public Connection getDatabase() {
+        return database;
     }
 
-    @Override
-    public String toString() {
-        return  store.toString();
+    public void setDatabase(Connection database) {
+        this.database = database;
     }
 
-    public static enum Key {
-        STAGE, VERSION;
-    }
-
-    public static final class Item<T> {
-        private final T item;
-
-        public Item(final T item) {
-            this.item = item;
-        }
-
-        public T getItem() {
-            return item;
-        }
-
-        @Override
-        public String toString() {
-            return item.toString();
-        }
-
-    }
 }
