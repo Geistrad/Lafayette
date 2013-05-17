@@ -56,7 +56,7 @@ public class UserMapperTest {
     }
 
     private void createDatabaseConnection() throws SQLException, ClassNotFoundException {
-        Class.forName(JdbcDriver.HSQLDB.toString());
+        JdbcDriver.HSQLDB.load();
         db = DriverManager.getConnection(JDBC_URI, DB_USER, DB_PASSWORD);
     }
 

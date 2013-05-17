@@ -57,7 +57,7 @@ public class ServerContextListener implements ServletContextListener {
         reg.setStage(new Stage());
 
         try {
-            Class.forName(JdbcDriver.MYSQL.toString());
+            JdbcDriver.MYSQL.load();
             final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
             reg.setDatabase(con);
         } catch (SQLException ex) {

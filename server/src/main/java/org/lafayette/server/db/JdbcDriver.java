@@ -13,17 +13,42 @@
 package org.lafayette.server.db;
 
 /**
+ * Full qualified names of JDBC driver classes.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public enum JdbcDriver {
 
-    MYSQL("com.mysql.jdbc.Driver"), HSQLDB("org.hsqldb.jdbc.JDBCDriver");
+    /**
+     * JDBC driver class for MySQL.
+     */
+    MYSQL("com.mysql.jdbc.Driver"),
+    /**
+     * JDBC driver class for HSQLDB.
+     */
+    HSQLDB("org.hsqldb.jdbc.JDBCDriver");
 
+    /**
+     * Full qualified class name.
+     */
     private final String driverClassName;
 
+    /**
+     * Dedicated constructor
+     *
+     * @param driverClassName full qualified class name
+     */
     private JdbcDriver(final String driverClassName) {
         this.driverClassName = driverClassName;
+    }
+
+    /**
+     * Load the driver class.
+     *
+     * @throws ClassNotFoundException if class was not found
+     */
+    public void load() throws ClassNotFoundException {
+        Class.forName(driverClassName);
     }
 
     @Override
