@@ -13,15 +13,33 @@
 package org.lafayette.server.mapper;
 
 import org.lafayette.server.domain.DomainObject;
-import org.lafayette.server.domain.User;
 
 /**
+ * Interface for mapper which maps {@link DomainObject domain objects} to the database.
  *
+ * @param <T> concrete type of domain object
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface Mapper<T extends DomainObject> {
 
-    public Long insert(T subject);
-    public void update(final User subject);
-    
+    /**
+     * Insert domain object into database.
+     *
+     * @param subject domain object to insert
+     * @return primary key id of inserted record set
+     */
+    Long insert(T subject);
+    /**
+     * updates domain object from database.
+     *
+     * @param subject domain object to update
+     */
+    void update(final T subject);
+    /**
+     * Deletes domain object from database.
+     *
+     * @param subject domain object to delete
+     */
+    void delete(final T subject);
+
 }

@@ -15,21 +15,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
 
 /**
+ * Maps {@link User user domain objects} to the database.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class UserMapper extends BaseMapper<User> implements UserFinder {
+public final class UserMapper extends BaseMapper<User> implements UserFinder {
 
+    /**
+     * Name of database table.
+     */
     private static final String TABLE_NAME = "user";
-    private static final String PRIMARY_KEY_FIELD_NAME = "id";
-    private static final String COLUMNS = PRIMARY_KEY_FIELD_NAME + ", loginName, hashedPassword, salt";
+    /**
+     * Name of primary key field.
+     */
+    private static final String PK_FIELD_NAME = "id";
+    /**
+     * Field of database table.
+     */
+    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
 
     public UserMapper(final Connection db) {
         super(db);
@@ -37,7 +45,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findStatement() {
-        return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PRIMARY_KEY_FIELD_NAME);
+        return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
@@ -47,7 +55,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return String.format("select max(%s) from %s", PRIMARY_KEY_FIELD_NAME, TABLE_NAME);
+        return String.format("select max(%s) from %s", PK_FIELD_NAME, TABLE_NAME);
     }
 
     private String findLoginNameStatement() {
@@ -55,7 +63,13 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     }
 
     private String updateStatement() {
-        return String.format("update %s set loginName = ?, hashedPassword = ?, salt = ? where id = ?", TABLE_NAME);
+        return String.format("update %s set loginName = ?, hashedPassword = ?, salt = ? where %s = ?",
+                TABLE_NAME, PK_FIELD_NAME);
+    }
+
+    @Override
+    protected String deleteStatement() {
+        return String.format("delete from %s where %s = ?", TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
@@ -105,10 +119,8 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     public void update(final User subject) {
-        PreparedStatement updateStatement = null;
-
         try {
-            updateStatement = db.prepareStatement(updateStatement());
+            final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
             updateStatement.setString(1, subject.getLoginName());
             updateStatement.setString(2, subject.getHashedPassword());
             updateStatement.setString(3, subject.getSalt());

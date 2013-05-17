@@ -27,6 +27,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.*;
 import org.junit.Ignore;
+import org.lafayette.server.ApplicationException;
 
 /**
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
@@ -177,6 +178,12 @@ public class UserMapperTest {
         user.setSalt("snafusalt");
         sut.update(user);
 
+        user = sut.find(2); // get from cache
+        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getLoginName(), is("snafu"));
+        assertThat(user.getHashedPassword(), is("snafupw"));
+        assertThat(user.getSalt(), is("snafusalt"));
+
         sut = new UserMapper(db);
         user = sut.find(2);
         assertThat(user.getId(), is(Long.valueOf(2)));
@@ -186,7 +193,21 @@ public class UserMapperTest {
     }
 
     @Test
-    @Ignore
     public void delete() {
+        final UserMapper sut = new UserMapper(db);
+        final User user = sut.find(2);
+        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getLoginName(), is("Bar"));
+        assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
+        assertThat(user.getSalt(), is("AiZuur1Y"));
+
+        sut.delete(user);
+
+        try {
+            sut.find(2);
+            fail("Expected exception not thrown!");
+        } catch (ApplicationException ex) {
+            assertThat(ex.getMessage(), is("There is no record set whith primary key '2'!"));
+        }
     }
 }

@@ -18,12 +18,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import org.joda.time.chrono.LimitChronology;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
-import org.lafayette.server.domain.User;
 
 /**
  *
@@ -31,10 +28,19 @@ import org.lafayette.server.domain.User;
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
+    /**
+     * Caches domain object loaded from database in memory.
+     *
+     * Key is the {@link DomainObject#getId() primary key} of the domain object.
+     */
     private final Map<Long, T> loadedMap = Maps.newHashMap();
+    /**
+     * Used JDBC database connection.
+     */
     protected final Connection db;
 
     public BaseMapper(final Connection db) {
+        super();
         this.db = db;
     }
 
@@ -45,6 +51,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     protected abstract String findMaxPrimaryKeyStatement();
 
     protected abstract String insertStatement();
+    protected abstract String deleteStatement();
 
     protected abstract T doLoad(final Long id, final ResultSet result) throws SQLException;
 
@@ -59,7 +66,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             final PreparedStatement findStatement = db.prepareStatement(findStatement());
             findStatement.setLong(1, id.longValue());
             final ResultSet rs = findStatement.executeQuery();
-            rs.next();
+
+            if (!rs.next()) {
+                throw new ApplicationException(String.format("There is no record set whith primary key '%d'!", id));
+            }
+
             final T result = load(rs);
             findStatement.close();
             return result;
@@ -136,6 +147,19 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             loadedMap.put(subject.getId(), subject);
             insertStatement.close();
             return subject.getId();
+        } catch (SQLException ex) {
+            throw new ApplicationException(ex);
+        }
+    }
+
+    @Override
+    public void delete(final T subject) {
+        try {
+            final PreparedStatement updateStatement = db.prepareStatement(deleteStatement());
+            updateStatement.setLong(1, subject.getId());
+            updateStatement.execute();
+            loadedMap.remove(subject.getId());
+            updateStatement.close();
         } catch (SQLException ex) {
             throw new ApplicationException(ex);
         }
