@@ -12,6 +12,10 @@
 
 package org.lafayette.server.config;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
+
 /**
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
@@ -38,4 +42,9 @@ public final class ConfigLoader {
     public static ConfigLoader create(final LoaderStrategie loaderStrategy) {
         return new ConfigLoader(loaderStrategy);
     }
+
+    public File getFile() {
+        return loaderStrategy.getFoundConfig();
+    }
+    
 }

@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -66,7 +67,7 @@ public class ServerConfigTest {
         assertThat(sut.getDbDriver(), is("mysql"));
     }
 
-    @Test
+    @Test @Ignore
     public void generateJdbcUri() {
     }
 }

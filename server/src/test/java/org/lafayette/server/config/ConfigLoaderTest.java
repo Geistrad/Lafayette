@@ -12,8 +12,13 @@
 
 package org.lafayette.server.config;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -22,7 +27,20 @@ import static org.junit.Assert.*;
 public class ConfigLoaderTest {
 
     @Test
-    public void testSomeMethod() {
+    public void testSomeMethod() throws IOException {
+        final ConfigLoader sut = ConfigLoader.create(new TestStrategy());
+        final Properties prop = new Properties();
+        final InputStream input = new FileInputStream(sut.getFile());
+        prop.load(input);
+        input.close();
+
+        final ServerConfig config = new ServerConfig(prop);
+        assertThat(config.getDbHost(), is("localhost"));
+        assertThat(config.getDbPort(), is(3306));
+        assertThat(config.getDbName(), is("lafayette"));
+        assertThat(config.getDbUser(), is("root"));
+        assertThat(config.getDbPassword(), is("lkwe23r"));
+        assertThat(config.getDbDriver(), is("mysql"));
     }
 
 }
