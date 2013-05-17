@@ -19,9 +19,9 @@ import java.sql.SQLException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 import org.lafayette.server.Log;
+import org.lafayette.server.http.MediaType;
 
 /**
  *
@@ -30,12 +30,30 @@ import org.lafayette.server.Log;
 @Path("/")
 public class IndexResource {
 
+    private static final String NL = "\r\n";
     private final Logger log = Log.getLogger(this);
 
     @Produces(MediaType.TEXT_PLAIN)
     @GET
-    public String indexAsHtml() {
-        final StringBuilder buffer = new StringBuilder("Lafayette Server\n\nHello World!\n\n");
+    public String indexAsText() {
+        final StringBuilder buffer = new StringBuilder("Lafayette Server");
+        buffer.append(NL).append(NL).append("Hello World!");
+        return buffer.toString();
+    }
+
+    @Produces(MediaType.TEXT_UR_ILIST)
+    @GET
+    public String indexAsUriList() {
+        final StringBuilder buffer = new StringBuilder();
+        buffer.append("# Available URIs:").append(NL)
+                .append("/users").append(NL);
+        return buffer.toString();
+    }
+
+    @Produces(MediaType.TEXT_PLAIN)
+    @GET @Path("users")
+    public String usersAsText() {
+        final StringBuilder buffer = new StringBuilder();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -48,13 +66,13 @@ public class IndexResource {
             while (rs.next()) {
                 dbtime = rs.getString(1);
                 buffer.append(rs.getString(1))
-                      .append(' ')
-                      .append(rs.getString(2))
                         .append(' ')
-                      .append(rs.getString(3))
+                        .append(rs.getString(2))
                         .append(' ')
-                      .append(rs.getString(4))
-                      .append('\n');
+                        .append(rs.getString(3))
+                        .append(' ')
+                        .append(rs.getString(4))
+                        .append(NL);
             }
 
             con.close();
@@ -67,5 +85,4 @@ public class IndexResource {
 
         return buffer.toString();
     }
-
 }

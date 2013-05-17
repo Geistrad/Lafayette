@@ -10,24 +10,20 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server;
+package org.lafayette.server.http;
 
 /**
+ * Extends {@link javax.ws.rs.core.MediaType MediaType from WS Core}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class ApplicationException extends RuntimeException {
+public class MediaType extends javax.ws.rs.core.MediaType {
 
-    public ApplicationException(final Throwable cause) {
-        super(cause);
-    }
-
-    public ApplicationException(final String message) {
-        super(message);
-    }
-
-    public ApplicationException(final String message, final Throwable cause) {
-        super(message, cause);
-    }
+    /**
+     * Media type for plain text URI lists.
+     *
+     * See http://amundsen.com/hypermedia/urilist/
+     */
+    public static final String TEXT_UR_ILIST = "text/uri-list";
 
 }
