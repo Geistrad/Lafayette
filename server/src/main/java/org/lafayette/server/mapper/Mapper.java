@@ -28,7 +28,7 @@ public interface Mapper<T extends DomainObject> {
      * @param subject domain object to insert
      * @return primary key id of inserted record set
      */
-    Long insert(T subject);
+    int insert(T subject);
     /**
      * updates domain object from database.
      *

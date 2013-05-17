@@ -24,7 +24,7 @@ public interface DomainObject {
      *
      * @return unique id
      */
-    Long getId();
+    int getId();
     /**
      * Set the unique id.
      *
@@ -32,6 +32,6 @@ public interface DomainObject {
      *
      * @param id unique id
      */
-    void setId(Long id);
+    void setId(int id);
 
 }

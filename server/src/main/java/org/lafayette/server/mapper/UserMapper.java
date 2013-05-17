@@ -78,7 +78,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     }
 
     @Override
-    protected User doLoad(final Long id, final ResultSet result) throws SQLException {
+    protected User doLoad(final int id, final ResultSet result) throws SQLException {
         final String loginName = result.getString(2);
         final String hashedPassword = result.getString(3);
         final String salt = result.getString(4);
@@ -93,13 +93,13 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     }
 
     @Override
-    public User find(final Long id) {
+    public User find(final int id) {
         return (User) abstractFind(id);
     }
 
     @Override
-    public User find(final long id) {
-        return find(Long.valueOf(id));
+    public User find(final Integer id) {
+        return find(id.intValue());
     }
 
     @Override
@@ -124,7 +124,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
             updateStatement.setString(1, subject.getLoginName());
             updateStatement.setString(2, subject.getHashedPassword());
             updateStatement.setString(3, subject.getSalt());
-            updateStatement.setLong(4, subject.getId().longValue());
+            updateStatement.setInt(4, subject.getId());
             updateStatement.execute();
             updateStatement.close();
         } catch (SQLException ex) {

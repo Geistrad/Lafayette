@@ -33,7 +33,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      *
      * Key is the {@link DomainObject#getId() primary key} of the domain object.
      */
-    private final Map<Long, T> loadedMap = Maps.newHashMap();
+    private final Map<Integer, T> loadedMap = Maps.newHashMap();
     /**
      * Used JDBC database connection.
      */
@@ -53,18 +53,18 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     protected abstract String insertStatement();
     protected abstract String deleteStatement();
 
-    protected abstract T doLoad(final Long id, final ResultSet result) throws SQLException;
+    protected abstract T doLoad(final int id, final ResultSet result) throws SQLException;
 
     protected abstract void doInsert(final T subject, final PreparedStatement insertStatement) throws SQLException;
 
-    protected T abstractFind(final Long id) {
+    protected T abstractFind(final int id) {
         if (loadedMap.containsKey(id)) {
             return loadedMap.get(id);
         }
 
         try {
             final PreparedStatement findStatement = db.prepareStatement(findStatement());
-            findStatement.setLong(1, id.longValue());
+            findStatement.setInt(1, id);
             final ResultSet rs = findStatement.executeQuery();
 
             if (!rs.next()) {
@@ -80,7 +80,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     protected T load(final ResultSet rs) throws SQLException {
-        final Long id = new Long(rs.getLong(1));
+        final Integer id = Integer.valueOf(rs.getInt(1));
 
         if (loadedMap.containsKey(id)) {
             return loadedMap.get(id);
@@ -137,11 +137,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     @Override
-    public Long insert(final T subject) {
+    public int insert(final T subject) {
         try {
             final PreparedStatement insertStatement = db.prepareStatement(insertStatement());
             subject.setId(findNextDatabaseId());
-            insertStatement.setLong(1, subject.getId().longValue());
+            insertStatement.setInt(1, subject.getId());
             doInsert(subject, insertStatement);
             insertStatement.execute();
             loadedMap.put(subject.getId(), subject);
@@ -156,7 +156,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     public void delete(final T subject) {
         try {
             final PreparedStatement updateStatement = db.prepareStatement(deleteStatement());
-            updateStatement.setLong(1, subject.getId());
+            updateStatement.setInt(1, subject.getId());
             updateStatement.execute();
             loadedMap.remove(subject.getId());
             updateStatement.close();
@@ -165,13 +165,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
     }
 
-    private Long findNextDatabaseId() {
+    private int findNextDatabaseId() {
         try {
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
             final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
             findMaxPrimaryKeyStatement.close();
             rs.next();
-            return rs.getLong(1) + 1;
+            return rs.getInt(1) + 1;
         } catch (SQLException ex) {
             throw new ApplicationException(ex);
         }

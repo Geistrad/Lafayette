@@ -83,13 +83,13 @@ public class UserMapperTest {
     public void findUserById() {
         final UserMapper sut = new UserMapper(db);
         User user = sut.find(1);
-        assertThat(user.getId(), is(Long.valueOf(1)));
+        assertThat(user.getId(), is(1));
         assertThat(user.getLoginName(), is("Foo"));
         assertThat(user.getHashedPassword(), is("b9f46238b289f23ba807973840655032"));
         assertThat(user.getSalt(), is("Oih0mei7"));
 
-        user = sut.find(Long.valueOf(2));
-        assertThat(user.getId(), is(Long.valueOf(2)));
+        user = sut.find(2);
+        assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
         assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
         assertThat(user.getSalt(), is("AiZuur1Y"));
@@ -106,7 +106,7 @@ public class UserMapperTest {
     public void findByLoginName() {
         final UserMapper sut = new UserMapper(db);
         final User user = sut.findByLoginName("Baz");
-        assertThat(user.getId(), is(Long.valueOf(3)));
+        assertThat(user.getId(), is(3));
         assertThat(user.getLoginName(), is("Baz"));
         assertThat(user.getHashedPassword(), is("aa82cc74b4a932c06d4ea5a9ac38cf5e"));
         assertThat(user.getSalt(), is("Eng7ovej"));
@@ -124,7 +124,7 @@ public class UserMapperTest {
         final UserMapper sut = new UserMapper(db);
 
         for (final User user : sut.findAll(10, 0)) {
-            final int userId = user.getId().intValue();
+            final int userId = user.getId();
 
             switch (userId) {
                 case 1:
@@ -154,8 +154,8 @@ public class UserMapperTest {
         final String loginName = "snafu";
         final String hashedPassword = "snafupw";
         final String salt = "snafusalt";
-        User user = new User(Long.MIN_VALUE, loginName, hashedPassword, salt);
-        final Long id = sut.insert(user);
+        User user = new User(loginName, hashedPassword, salt);
+        final int id = sut.insert(user);
 
         sut = new UserMapper(db);
         user = sut.find(id);
@@ -168,7 +168,7 @@ public class UserMapperTest {
     public void update() {
         UserMapper sut = new UserMapper(db);
         User user = sut.find(2);
-        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
         assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
         assertThat(user.getSalt(), is("AiZuur1Y"));
@@ -179,14 +179,14 @@ public class UserMapperTest {
         sut.update(user);
 
         user = sut.find(2); // get from cache
-        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("snafu"));
         assertThat(user.getHashedPassword(), is("snafupw"));
         assertThat(user.getSalt(), is("snafusalt"));
 
         sut = new UserMapper(db);
         user = sut.find(2);
-        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("snafu"));
         assertThat(user.getHashedPassword(), is("snafupw"));
         assertThat(user.getSalt(), is("snafusalt"));
@@ -196,7 +196,7 @@ public class UserMapperTest {
     public void delete() {
         final UserMapper sut = new UserMapper(db);
         final User user = sut.find(2);
-        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
         assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
         assertThat(user.getSalt(), is("AiZuur1Y"));

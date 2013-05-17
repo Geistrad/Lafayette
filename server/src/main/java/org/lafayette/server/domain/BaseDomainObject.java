@@ -24,25 +24,29 @@ class BaseDomainObject implements DomainObject {
     /**
      * Default value used to signal that {@link #id} is not initialized yet.
      */
-    final static Long UNINITIALIZED_ID = Long.valueOf(-1);
+    final static int UNINITIALIZED_ID = -1;
 
     /**
      * Unique id.
      */
-    private Long id;
+    private int id = UNINITIALIZED_ID;
+
+    public BaseDomainObject() {
+        this(UNINITIALIZED_ID);
+    }
 
     /**
      * Dedicated constructor.
      *
      * @param id unique id
      */
-    public BaseDomainObject(final Long id) {
+    public BaseDomainObject(final int id) {
         super();
         setId(id);
     }
 
     @Override
-    public final Long getId() {
+    public final int getId() {
         return id;
     }
 
@@ -55,7 +59,7 @@ class BaseDomainObject implements DomainObject {
      * CHECKSTYLE:ON
      */
     @Override
-    public final void setId(final Long id) {
+    public final void setId(final int id) {
         if (UNINITIALIZED_ID != getId()) {
             throw new IllegalStateException(String.format("Id already initalized with value '%d'!", getId()));
         }
@@ -65,7 +69,7 @@ class BaseDomainObject implements DomainObject {
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id;
     }
 
     @Override
