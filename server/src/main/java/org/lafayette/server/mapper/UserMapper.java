@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.User;
@@ -37,6 +38,10 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     protected String findStatement() {
         return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PRIMARY_KEY_FIELD_NAME);
+    }
+
+    protected String findAllStatement(final int limit, final int offset) {
+        return String.format("select %s from %s limit %d offset %s", COLUMNS, TABLE_NAME, limit, offset);
     }
 
     private String findLoginNameStatement() {
@@ -80,7 +85,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     public User findByLoginName(final String loginName) {
         try {
-            final PreparedStatement findStatement = db.prepareStatement(findStatement());
+            final PreparedStatement findStatement = db.prepareStatement(findLoginNameStatement());
             findStatement.setString(1, loginName);
             final ResultSet rs = findStatement.executeQuery();
             rs.next();
@@ -107,11 +112,6 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
         } catch (SQLException ex) {
             throw new ApplicationException(ex);
         }
-    }
-
-    @Override
-    public List<User> findAll(int limit, int offset) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

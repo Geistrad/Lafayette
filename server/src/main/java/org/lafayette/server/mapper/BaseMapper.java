@@ -17,10 +17,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import org.joda.time.chrono.LimitChronology;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
+import org.lafayette.server.domain.User;
 
 /**
  *
@@ -36,8 +39,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     protected abstract String findStatement();
+
+    protected abstract String findAllStatement(final int limit, final int offset);
+
     protected abstract String insertStatement();
+
     protected abstract T doLoad(final Long id, final ResultSet result) throws SQLException;
+
     protected abstract void doInsert(final T subject, final PreparedStatement insertStatement) throws SQLException;
 
     protected T abstractFind(final Long id) {
@@ -50,7 +58,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             findStatement.setLong(1, id.longValue());
             final ResultSet rs = findStatement.executeQuery();
             rs.next();
-            final T result =  load(rs);
+            final T result = load(rs);
             findStatement.close();
             return result;
         } catch (SQLException ex) {
@@ -70,8 +78,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return result;
     }
 
-    protected List<T> loadAll(final ResultSet rs) throws SQLException {
-        List<T> result = Lists.newArrayList();
+    protected Collection<T> loadAll(final ResultSet rs) throws SQLException {
+        final Collection<T> result = Lists.newArrayList();
 
         while (rs.next()) {
             result.add(load(rs));
@@ -80,24 +88,38 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return result;
     }
 
-    protected List<T> findMany(final StatementSource source) {
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+    public Collection<T> findAll(final int limit, final int offset) {
+        return findMany(new StatementSource() {
+            @Override
+            public String sql() {
+                return findAllStatement(limit, offset);
+            }
+
+            @Override
+            public Object[] parameters() {
+                return new Object[]{};
+            }
+        });
+    }
+
+    protected Collection<T> findMany(final StatementSource source) {
+        final PreparedStatement stmt;
 
         try {
-            stmt = db.prepareStatement(source.sql());
+            final String sql = source.sql();
+            stmt = db.prepareStatement(sql);
 
             for (int i = 0; i < source.parameters().length; ++i) {
                 stmt.setObject(i + 1, source.parameters()[i]);
             }
 
-            rs = stmt.executeQuery();
-            List<T> result = loadAll(rs);
+            final ResultSet rs = stmt.executeQuery();
+            final Collection<T> result = loadAll(rs);
             stmt.close();
 
             return result;
         } catch (SQLException ex) {
-            throw new ApplicationException(ex);
+            throw new ApplicationException(ex.getMessage() + " " + ex.getErrorCode() + " " + ex.getSQLState(), ex);
         }
     }
 
@@ -122,5 +144,4 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     private Long findNextDatabaseId() {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
-
 }

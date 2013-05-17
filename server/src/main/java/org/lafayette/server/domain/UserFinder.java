@@ -12,6 +12,7 @@
 
 package org.lafayette.server.domain;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,6 +24,6 @@ public interface UserFinder {
     User find(final Long id);
     User find(final long id);
     User findByLoginName(String loginName);
-    List<User> findAll(int limit, int offset);
+    Collection<User> findAll(int limit, int offset);
 
 }
