@@ -9,4 +9,8 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
+
+/**
+ * Main package of Lafayette Server.
+ */
 package org.lafayette.server;

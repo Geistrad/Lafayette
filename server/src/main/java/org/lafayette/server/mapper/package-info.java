@@ -9,4 +9,8 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
+
+/**
+ * Package for domain model objects to database mapping.
+ */
 package org.lafayette.server.mapper;

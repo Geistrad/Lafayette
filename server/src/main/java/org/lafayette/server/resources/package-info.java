@@ -9,4 +9,8 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
+
+/**
+ * Package for REST resources.
+ */
 package org.lafayette.server.resources;
