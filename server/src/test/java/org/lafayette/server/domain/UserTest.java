@@ -12,26 +12,25 @@
 
 package org.lafayette.server.domain;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
- * Interface for domain object.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public interface DomainObject {
+public class UserTest {
 
-    /**
-     * Get the unique id.
-     *
-     * @return unique id
-     */
-    Long getId();
-    /**
-     * Set the unique id.
-     *
-     * Implementors must guaranty that the id is set only one time.
-     *
-     * @param id unique id
-     */
-    void setId(Long id);
+    @Test
+    public void testHashCode() {
+    }
+
+    @Test
+    public void testEquals() {
+    }
+
+    @Test
+    public void testToString() {
+    }
 
 }

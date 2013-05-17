@@ -15,24 +15,51 @@ package org.lafayette.server.domain;
 import com.google.common.base.Objects;
 
 /**
+ * Base implementation for domain objects.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class BaseDomainObject implements DomainObject {
 
+    /**
+     * Default value used to signal that {@link #id} is not initialized yet.
+     */
+    final static Long UNINITIALIZED_ID = Long.valueOf(-1);
+
+    /**
+     * Unique id.
+     */
     private Long id;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param id unique id
+     */
     public BaseDomainObject(final Long id) {
-        this.id = id;
+        super();
+        setId(id);
     }
 
     @Override
-    public Long getId() {
+    public final Long getId() {
         return id;
     }
 
+    /**
+     * Set the unique id.
+     *
+     * @param id unique id
+     * CHECKSTYLE:OFF
+     * @throws IllegalStateException if {@link #getId()} != {@value #UNINITIALIZED_ID}
+     * CHECKSTYLE:ON
+     */
     @Override
-    public void setId(final Long id) {
+    public final void setId(final Long id) {
+        if (UNINITIALIZED_ID != getId()) {
+            throw new IllegalStateException(String.format("Id already initalized with value '%d'!", getId()));
+        }
+
         this.id = id;
     }
 
@@ -49,7 +76,7 @@ class BaseDomainObject implements DomainObject {
 
         final BaseDomainObject other = (BaseDomainObject) obj;
 
-        return id == other.id;
+        return Objects.equal(id, other.id);
     }
 
     @Override

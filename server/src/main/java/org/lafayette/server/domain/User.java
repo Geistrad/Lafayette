@@ -25,7 +25,7 @@ public class User extends BaseDomainObject {
     private String salt;
 
     public User(final String loginName, final String hashedPassword, final String salt) {
-        this(Long.valueOf(0), loginName, hashedPassword, salt);
+        this(UNINITIALIZED_ID, loginName, hashedPassword, salt);
     }
 
     public User(final Long id, final String loginName, final String hashedPassword, final String salt) {
