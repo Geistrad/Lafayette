@@ -16,11 +16,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import org.apache.log4j.Logger;
 import org.lafayette.server.Log;
+import org.lafayette.server.Registry;
+import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.http.MediaType;
 
 /**
@@ -30,6 +34,8 @@ import org.lafayette.server.http.MediaType;
 @Path("/")
 public class IndexResource {
 
+    @Context
+    private ServletContext context;
     private static final String NL = "\r\n";
     private final Logger log = Log.getLogger(this);
 
@@ -54,11 +60,10 @@ public class IndexResource {
     @GET @Path("users")
     public String usersAsText() {
         final StringBuilder buffer = new StringBuilder();
+        final Registry registry = (Registry) context.getAttribute(ServerContextListener.REGISRTY);
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
+            final Connection con = registry.getDatabase();
 
             final Statement stmt = con.createStatement();
             final ResultSet rs = stmt.executeQuery("select * from user");
@@ -75,11 +80,7 @@ public class IndexResource {
                         .append(NL);
             }
 
-            con.close();
-
         } catch (SQLException ex) {
-            log.fatal(ex.toString());
-        } catch (ClassNotFoundException ex) {
             log.fatal(ex.toString());
         }
 
