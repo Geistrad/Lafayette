@@ -147,14 +147,14 @@ public class UserMapperTest {
         }
     }
 
-    @Test @Ignore
+    @Test
     public void insert() {
         UserMapper sut = new UserMapper(db);
         final String loginName = "snafu";
         final String hashedPassword = "snafupw";
         final String salt = "snafusalt";
         User user = new User(Long.MIN_VALUE, loginName, hashedPassword, salt);
-        Long id = sut.insert(user);
+        final Long id = sut.insert(user);
 
         sut = new UserMapper(db);
         user = sut.find(id);

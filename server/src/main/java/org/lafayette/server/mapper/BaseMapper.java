@@ -42,6 +42,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
     protected abstract String findAllStatement(final int limit, final int offset);
 
+    protected abstract String findMaxPrimaryKeyStatement();
+
     protected abstract String insertStatement();
 
     protected abstract T doLoad(final Long id, final ResultSet result) throws SQLException;
@@ -125,10 +127,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
     @Override
     public Long insert(final T subject) {
-        PreparedStatement insertStatement = null;
-
         try {
-            insertStatement = db.prepareStatement(insertStatement());
+            final PreparedStatement insertStatement = db.prepareStatement(insertStatement());
             subject.setId(findNextDatabaseId());
             insertStatement.setLong(1, subject.getId().longValue());
             doInsert(subject, insertStatement);
@@ -142,6 +142,14 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     private Long findNextDatabaseId() {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        try {
+            final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
+            final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
+            findMaxPrimaryKeyStatement.close();
+            rs.next();
+            return rs.getLong(1) + 1;
+        } catch (SQLException ex) {
+            throw new ApplicationException(ex);
+        }
     }
 }

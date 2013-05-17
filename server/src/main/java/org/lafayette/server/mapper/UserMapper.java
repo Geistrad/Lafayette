@@ -40,8 +40,14 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
         return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PRIMARY_KEY_FIELD_NAME);
     }
 
+    @Override
     protected String findAllStatement(final int limit, final int offset) {
         return String.format("select %s from %s limit %d offset %s", COLUMNS, TABLE_NAME, limit, offset);
+    }
+
+    @Override
+    protected String findMaxPrimaryKeyStatement() {
+        return String.format("select max(%s) from %s", PRIMARY_KEY_FIELD_NAME, TABLE_NAME);
     }
 
     private String findLoginNameStatement() {
