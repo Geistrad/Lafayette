@@ -31,11 +31,10 @@ import org.lafayette.server.db.JdbcDriver;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class ServerContextListener implements ServletContextListener {
+public final class ServerContextListener implements ServletContextListener {
 
     public static String REGISRTY = "registry";
     private final Logger log = Log.getLogger(this);
-//    private static final String TEMPLATE_PREFIX = "/org/lafayette/server/resources";
 
     public ServerContextListener() {
         super();
@@ -57,7 +56,7 @@ public class ServerContextListener implements ServletContextListener {
         reg.setStage(new Stage());
 
         try {
-            JdbcDriver.MYSQL.load();
+            JdbcDriver.MYSQL.load(); // FIXME USe configuration.
             final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
             reg.setDatabase(con);
         } catch (SQLException ex) {
