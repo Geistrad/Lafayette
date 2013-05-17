@@ -164,8 +164,25 @@ public class UserMapperTest {
     }
 
     @Test
-    @Ignore
     public void update() {
+        UserMapper sut = new UserMapper(db);
+        User user = sut.find(2);
+        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getLoginName(), is("Bar"));
+        assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
+        assertThat(user.getSalt(), is("AiZuur1Y"));
+
+        user.setLoginName("snafu");
+        user.setHashedPassword("snafupw");
+        user.setSalt("snafusalt");
+        sut.update(user);
+
+        sut = new UserMapper(db);
+        user = sut.find(2);
+        assertThat(user.getId(), is(Long.valueOf(2)));
+        assertThat(user.getLoginName(), is("snafu"));
+        assertThat(user.getHashedPassword(), is("snafupw"));
+        assertThat(user.getSalt(), is("snafusalt"));
     }
 
     @Test
