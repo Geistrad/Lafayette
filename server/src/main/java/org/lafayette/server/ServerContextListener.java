@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import org.apache.log4j.Logger;
+import org.lafayette.server.db.JdbcDriver;
 
 /**
  * Implements a servlet context listener.
@@ -56,7 +57,7 @@ public class ServerContextListener implements ServletContextListener {
         reg.setStage(new Stage());
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(JdbcDriver.MYSQL.toString());
             final Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lafayette", "root", "");
             reg.setDatabase(con);
         } catch (SQLException ex) {
