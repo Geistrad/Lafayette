@@ -11,20 +11,19 @@
  */
 package org.lafayette.server.resources;
 
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.lafayette.server.Log;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
+import org.lafayette.server.domain.Finders;
+import org.lafayette.server.domain.User;
+import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.MediaType;
 
 /**
@@ -33,6 +32,9 @@ import org.lafayette.server.http.MediaType;
  */
 @Path("/")
 public class IndexResource {
+    private static final int PAD_ID = 5;
+    private static final int PAD_LOGIN_NAME = 16;
+    private static final int PAD_HASHED_PASSWORD = 34;
 
     @Context
     private ServletContext context;
@@ -61,27 +63,18 @@ public class IndexResource {
     public String usersAsText() {
         final StringBuilder buffer = new StringBuilder();
         final Registry registry = (Registry) context.getAttribute(ServerContextListener.REGISRTY);
+        final UserFinder finder = Finders.forUsers(registry.getDatabase());
+        buffer.append(StringUtils.rightPad("id", PAD_ID))
+              .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
+              .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
+              .append("salt")
+              .append(NL);
 
-        try {
-            final Connection con = registry.getDatabase();
-
-            final Statement stmt = con.createStatement();
-            final ResultSet rs = stmt.executeQuery("select * from user");
-            String dbtime;
-            while (rs.next()) {
-                dbtime = rs.getString(1);
-                buffer.append(rs.getString(1))
-                        .append(' ')
-                        .append(rs.getString(2))
-                        .append(' ')
-                        .append(rs.getString(3))
-                        .append(' ')
-                        .append(rs.getString(4))
-                        .append(NL);
-            }
-
-        } catch (SQLException ex) {
-            log.fatal(ex.toString());
+        for (final User user : finder.findAll(25, 0)) {
+            buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
+                  .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
+                  .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
+                  .append(user.getSalt()).append(NL);
         }
 
         return buffer.toString();
