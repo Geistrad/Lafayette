@@ -67,7 +67,8 @@ public class ServerConfigTest {
         assertThat(sut.getDbDriver(), is("mysql"));
     }
 
-    @Test @Ignore
+    @Test
     public void generateJdbcUri() {
+        assertThat(sut.generateJdbcUri(), is("jdbc:mysql://localhost:3306/lafayette"));
     }
 }

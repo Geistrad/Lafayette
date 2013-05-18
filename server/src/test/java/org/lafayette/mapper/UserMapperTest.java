@@ -7,7 +7,6 @@
  * you can buy me a non alcohol-free beer in return.
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.mapper;
 
 import java.io.File;
@@ -22,38 +21,37 @@ import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.lafayette.server.db.JdbcDriver;
 
 /**
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class UserMapperTest {
 
-  private Connection db;
+    private Connection db;
 
-  @Before
-  public void createDatabaseConnection() throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
-    Class.forName("org.hsqldb.jdbcDriver");
-    db = DriverManager.getConnection("jdbc:hsqldb:mem:testdb", "sa", "");
-    Statement createTableStatement = db.createStatement();
-    final String tableSql = FileUtils.readFileToString(new File(getClass()
-      .getResource("/org/lafayette/server/sql/table_user.sql").toURI()));
-    createTableStatement.execute(tableSql);
-    final String dataSql = FileUtils.readFileToString(new File(getClass()
-      .getResource("/org/lafayette/server/sql/data_user.sql").toURI()));
-    Statement insertDataStatement = db.createStatement();
-    insertDataStatement.execute(dataSql);
-  }
+    @Before
+    public void createDatabaseConnection() throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
+        JdbcDriver.getFor("hsqldb");
+        db = DriverManager.getConnection("jdbc:hsqldb:mem:testdb", "sa", "");
+        Statement createTableStatement = db.createStatement();
+        final String tableSql = FileUtils.readFileToString(new File(getClass()
+                .getResource("/org/lafayette/server/sql/table_user.sql").toURI()));
+        createTableStatement.execute(tableSql);
+        final String dataSql = FileUtils.readFileToString(new File(getClass()
+                .getResource("/org/lafayette/server/sql/data_user.sql").toURI()));
+        Statement insertDataStatement = db.createStatement();
+        insertDataStatement.execute(dataSql);
+    }
 
-  @After
-  public void closeDatabaseConnection() throws SQLException {
-    Statement shutdownStatement = db.createStatement();
-    shutdownStatement.execute("shutdown");
-    db.close();
-  }
+    @After
+    public void closeDatabaseConnection() throws SQLException {
+        Statement shutdownStatement = db.createStatement();
+        shutdownStatement.execute("shutdown");
+        db.close();
+    }
 
-  @Test
-  public void doSomething() {
-
-  }
-
+    @Test
+    public void doSomething() {
+    }
 }

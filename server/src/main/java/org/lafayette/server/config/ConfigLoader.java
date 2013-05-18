@@ -13,8 +13,6 @@
 package org.lafayette.server.config;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
 
 /**
  *
@@ -44,7 +42,8 @@ public final class ConfigLoader {
     }
 
     public File getFile() {
+        loaderStrategy.findConfig();
         return loaderStrategy.getFoundConfig();
     }
-    
+
 }

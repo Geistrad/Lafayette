@@ -22,24 +22,26 @@ public enum JdbcDriver {
     /**
      * JDBC driver class for MySQL.
      */
-    MYSQL("com.mysql.jdbc.Driver"),
+    MYSQL("com.mysql.jdbc.Driver", "mysql"),
     /**
      * JDBC driver class for HSQLDB.
      */
-    HSQLDB("org.hsqldb.jdbc.JDBCDriver");
+    HSQLDB("org.hsqldb.jdbc.JDBCDriver", "hsqldb");
 
     /**
      * Full qualified class name.
      */
     private final String driverClassName;
+    private final String name;
 
     /**
      * Dedicated constructor
      *
      * @param driverClassName full qualified class name
      */
-    private JdbcDriver(final String driverClassName) {
+    private JdbcDriver(final String driverClassName, final String name) {
         this.driverClassName = driverClassName;
+        this.name = name;
     }
 
     /**
@@ -54,6 +56,16 @@ public enum JdbcDriver {
     @Override
     public String toString() {
         return driverClassName;
+    }
+
+    public static JdbcDriver getFor(final String name) {
+        if (MYSQL.name.equalsIgnoreCase(name)) {
+            return MYSQL;
+        } else if (HSQLDB.name.equalsIgnoreCase(name)) {
+            return HSQLDB;
+        } else {
+            throw new IllegalArgumentException(String.format("Can not find driver for '%s'!", name));
+        }
     }
 
 }

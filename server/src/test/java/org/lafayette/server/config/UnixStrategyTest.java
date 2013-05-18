@@ -76,7 +76,8 @@ public class UnixStrategyTest {
     public void testFoundConfig_WithNothingToFind() throws IOException {
         final File home = tempFolder.newFolder();
         final File prefix = tempFolder.newFolder();
-        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
+        assertThat(new File(prefix, "etc").mkdirs(), is(true));
+
         final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
         assertThat(sut.hasFoundConfig(), is(false));
         assertThat(sut.getFoundConfig(), is(nullValue()));
@@ -91,25 +92,80 @@ public class UnixStrategyTest {
         assertThat(sut.getFileList(), hasSize(2));
     }
 
-    @Test @Ignore
+    @Test
     public void testFoundConfig_homeConfigAvailable() throws IOException {
         final File home = tempFolder.newFolder();
+        final File homeConfigDir = new File(home, ".lafayette");
+        assertThat(homeConfigDir.mkdirs(), is(true));
+        final File homeConfig = new File(homeConfigDir, "server.properties");
+        assertThat(homeConfig.createNewFile(), is(true));
         final File prefix = tempFolder.newFolder();
-        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
+
+        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
+        assertThat(sut.hasFoundConfig(), is(false));
+        assertThat(sut.getFoundConfig(), is(nullValue()));
+        assertThat(sut.getFileList(), hasSize(2));
+        assertThat(sut.getFileList(), contains(
+            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
+            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
+        ));
+
+        sut.findConfig();
+        assertThat(sut.hasFoundConfig(), is(true));
+        assertThat(sut.getFoundConfig().getAbsolutePath(), is(homeConfig.getAbsolutePath()));
+        assertThat(sut.getFileList(), hasSize(2));
     }
 
-    @Test @Ignore
+    @Test
     public void testFoundConfig_systemConfigAvailable() throws IOException {
         final File home = tempFolder.newFolder();
         final File prefix = tempFolder.newFolder();
-        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
+        final File systemConfigDir = new File(prefix, "etc/lafayette");
+        assertThat(systemConfigDir.mkdirs(), is(true));
+        final File systemConfig = new File(systemConfigDir, "server.properties");
+        assertThat(systemConfig.createNewFile(), is(true));
+
+        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
+        assertThat(sut.hasFoundConfig(), is(false));
+        assertThat(sut.getFoundConfig(), is(nullValue()));
+        assertThat(sut.getFileList(), hasSize(2));
+        assertThat(sut.getFileList(), contains(
+            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
+            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
+        ));
+
+        sut.findConfig();
+        assertThat(sut.hasFoundConfig(), is(true));
+        assertThat(sut.getFoundConfig().getAbsolutePath(), is(systemConfig.getAbsolutePath()));
+        assertThat(sut.getFileList(), hasSize(2));
     }
 
-    @Test @Ignore
+    @Test
     public void testFoundConfig_homeAndSystemConfigAvailable() throws IOException {
         final File home = tempFolder.newFolder();
+        final File homeConfigDir = new File(home, ".lafayette");
+        assertThat(homeConfigDir.mkdirs(), is(true));
+        final File homeConfig = new File(homeConfigDir, "server.properties");
+        assertThat(homeConfig.createNewFile(), is(true));
         final File prefix = tempFolder.newFolder();
-        new File(prefix, UnixStrategy.SYSTEM_CONFIG_DIR).mkdirs();
+        final File systemConfigDir = new File(prefix, "etc/lafayette");
+        assertThat(systemConfigDir.mkdirs(), is(true));
+        final File systemConfig = new File(systemConfigDir, "server.properties");
+        assertThat(systemConfig.createNewFile(), is(true));
+
+        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
+        assertThat(sut.hasFoundConfig(), is(false));
+        assertThat(sut.getFoundConfig(), is(nullValue()));
+        assertThat(sut.getFileList(), hasSize(2));
+        assertThat(sut.getFileList(), contains(
+            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
+            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
+        ));
+
+        sut.findConfig();
+        assertThat(sut.hasFoundConfig(), is(true));
+        assertThat(sut.getFoundConfig().getAbsolutePath(), is(homeConfig.getAbsolutePath()));
+        assertThat(sut.getFileList(), hasSize(2));
     }
 
 }

@@ -10,9 +10,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server;
-
-import org.apache.log4j.Logger;
+package org.lafayette.server.log;
 
 /**
  * Get Log4J loggers.
@@ -42,7 +40,7 @@ public final class Log {
     }
 
     public static Logger getLogger(final Class<?> clazz) {
-        return Logger.getLogger(clazz);
+        return new Logger(org.apache.log4j.Logger.getLogger(clazz));
     }
 
 }

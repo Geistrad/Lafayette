@@ -9,7 +9,6 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.config;
 
 import com.google.common.collect.Lists;
@@ -20,17 +19,16 @@ import java.util.List;
 /**
  * Strategy to find configuration file.
  *
- * 1. look for $HOME/.lafayette/server.properties
- * 2. look for /etc/lafayette/server.properties
+ * 1. look for $HOME/.lafayette/server.properties 2. look for /etc/lafayette/server.properties
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class UnixStrategy implements LoaderStrategie {
 
-    static final String VENDOR = "lafayette";
-    static final String FILE = "server.properties";
-    static final String SYSTEM_CONFIG_DIR = "/etc";
-
+    private static final String VENDOR = "lafayette";
+    private static final String FILE = "server.properties";
+    private static final String SYSTEM_CONFIG_DIR = "etc";
+    private static final String DIR_SEP = "/";
     private final List<String> fileList = Lists.newArrayList();
     private File foundConfig;
 
@@ -53,14 +51,14 @@ class UnixStrategy implements LoaderStrategie {
             throw new IllegalArgumentException("Argument must not be empty!");
         }
 
-        return home + "/." + VENDOR + "/" + FILE;
+        return home + "/." + VENDOR + DIR_SEP + FILE;
     }
 
     public static String createSystemConfigFileName(final String prefix) {
         if (null != prefix && prefix.length() > 0) {
-            return prefix + SYSTEM_CONFIG_DIR + "/" + VENDOR + "/" + FILE;
+            return prefix + DIR_SEP + SYSTEM_CONFIG_DIR + DIR_SEP + VENDOR + DIR_SEP + FILE;
         }
-        return SYSTEM_CONFIG_DIR + "/" + VENDOR + "/" + FILE;
+        return DIR_SEP + SYSTEM_CONFIG_DIR + DIR_SEP + VENDOR + DIR_SEP + FILE;
     }
 
     @Override
@@ -82,10 +80,20 @@ class UnixStrategy implements LoaderStrategie {
         for (final String fileName : fileList) {
             final File file = new File(fileName);
 
-            if (file.exists() && file.isFile() && file.canRead()) {
-                foundConfig = file;
-                return;
+            if (!file.exists()) {
+                continue;
             }
+
+            if (!file.isFile()) {
+                continue;
+            }
+
+            if (!file.canRead()) {
+                continue;
+            }
+
+            foundConfig = file;
+            return;
         }
     }
 
