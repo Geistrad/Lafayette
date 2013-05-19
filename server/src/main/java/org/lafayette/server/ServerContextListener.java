@@ -36,67 +36,98 @@ import org.lafayette.server.log.Logger;
  */
 public final class ServerContextListener implements ServletContextListener {
 
+    /**
+     * Key for a {@link Registry registry object} servlet context attribute.
+     */
     public static String REGISRTY = "registry";
+    /**
+     * PAth to version file.
+     */
     private static final String VERSION_FILE = "/org/lafayette/server/version.properties";
-    private final Logger log = Log.getLogger(this);
+    /**
+     * Logging facility.
+     */
+    private final static Logger LOG = Log.getLogger(ServerContextListener.class);
+    /**
+     * Registry shared over the whole web application.
+     */
     private final Registry reg = new Registry();
 
+    /**
+     * Dedicated constructor.
+     */
     public ServerContextListener() {
         super();
     }
 
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
-        log.debug("Context initialized. Execute listener...");
+        LOG.debug("Context initialized. Execute listener...");
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
-//        openDatabaseConnection(config);
+        openDatabaseConnection(config);
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
-        log.debug("Context destroyed. Execute listener...");
+        LOG.debug("Context destroyed. Execute listener...");
         closeDatabaseConnection();
     }
 
+    /**
+     * Add version information to the {@link Registry registry}.
+     */
     private void loadVersion() {
         try {
-            log.info("Load version from file %s.", VERSION_FILE);
+            LOG.info("Load version from file %s.", VERSION_FILE);
             final Version version = new Version(VERSION_FILE);
             version.load();
-            log.info("Loaded version %s.", version.getVersion());
+            LOG.info("Loaded version %s.", version.getVersion());
             reg.setVersion(version);
         } catch (IOException ex) {
-            log.fatal("Error loading version: %s", ex.toString());
+            LOG.fatal("Error loading version: %s", ex.toString());
         }
     }
 
+    /**
+     * Add stage information to the {@link Registry registry}.
+     */
     private void loadStage() {
         final Stage stage = new Stage();
-        log.info("Loaded stage %s.", stage.toString());
+        LOG.info("Loaded stage %s.", stage.toString());
         reg.setStage(stage);
     }
 
+    /**
+     * Open and add database connection to the {@link Registry registry}.
+     *
+     * @param config server configuration
+     */
     private void openDatabaseConnection(final ServerConfig config) {
         try {
-            log.info("Load JDBC driver class for '%s'.", config.getDbDriver());
+            LOG.debug("Load JDBC driver class for '%s'.", config.getDbDriver());
             JdbcDriver.getFor(config.getDbDriver()).load();
-            log.info("Open database connection to %s.", config.generateJdbcUri());
+            LOG.info("Open database connection to %s.", config.generateJdbcUri());
             final Connection con = DriverManager.getConnection(
                     config.generateJdbcUri(),
                     config.getDbUser(),
                     config.getDbPassword());
-            log.info("Database connection to %s established.", config.generateJdbcUri());
+            LOG.info("Database connection to %s established.", config.generateJdbcUri());
             reg.setDatabase(con);
         } catch (SQLException ex) {
-            log.fatal("Error opening database connection: %s", ex.toString());
+            LOG.fatal("Error opening database connection: %s", ex.toString());
         } catch (ClassNotFoundException ex) {
-            log.fatal("Error loading JDBC driver: %s", ex.toString());
+            LOG.fatal("Error loading JDBC driver: %s", ex.toString());
         }
     }
 
+    /**
+     * Add server configuration to the {@link Registry registry}.
+     *
+     * @return loaded server configuration
+     */
     private ServerConfig loadConfig() {
         final Properties configProperties = new Properties();
         final ServerConfig serverConfig = new ServerConfig(configProperties);
@@ -109,33 +140,36 @@ public final class ServerContextListener implements ServletContextListener {
 
             if (loader.hasConfig()) {
                 final File configFile = loader.getFile();
-                log.info("Read server config from file '%s'!", configFile.getAbsolutePath());
+                LOG.info("Read server config from file '%s'!", configFile.getAbsolutePath());
                 input = new FileInputStream(configFile);
                 configProperties.load(input);
             } else {
-                log.warn("No server config found!");
+                LOG.warn("No server config found!");
             }
         } catch (IOException ex) {
-            log.fatal("Error reading server config: %s", ex.toString());
+            LOG.fatal("Error reading server config: %s", ex.toString());
         } finally {
             try {
                 if (input != null) {
                     input.close();
                 }
             } catch (IOException ex) {
-                log.fatal("Error closing config file: %s", ex.toString());
+                LOG.fatal("Error closing config file: %s", ex.toString());
             }
         }
 
         return serverConfig;
     }
 
+    /**
+     * Close database connection.
+     */
     private void closeDatabaseConnection() {
         try {
-            log.info("Close database connection.");
+            LOG.info("Close database connection.");
             reg.getDatabase().close();
         } catch (SQLException ex) {
-            log.fatal("Error closing database connection: %s", ex.toString());
+            LOG.fatal("Error closing database connection: %s", ex.toString());
         }
     }
 }

@@ -24,7 +24,7 @@ import org.lafayette.server.log.Logger;
  * <ol>
  * <li>look for $HOME/.lafayette/server.properties
  * <li>look for /etc/lafayette/server.properties
- * </ul>
+ * </ol>
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -43,14 +43,14 @@ class UnixStrategy implements LoaderStrategie {
      */
     private static final String SYSTEM_CONFIG_DIR = "etc";
     /**
-     * Direcotry separator on Unix systems.
+     * Directory separator on Unix systems.
      */
     private static final String DIR_SEP = "/";
 
     /**
      * Logging facility.
      */
-    private final Logger log = Log.getLogger(this);
+    private static final Logger LOG = Log.getLogger(UnixStrategy.class);
     /**
      * List of files to search for a configuration.
      *
@@ -136,31 +136,31 @@ class UnixStrategy implements LoaderStrategie {
     @Override
     public void findConfig() {
         if (hasFoundConfig()) {
-            log.debug("Already found configuration '%s'.", foundConfig.getAbsolutePath());
+            LOG.debug("Already found configuration '%s'.", foundConfig.getAbsolutePath());
             return;
         }
 
         for (final String fileName : getFileList()) {
-            log.debug("Look if configuration '%s' is present.", fileName);
+            LOG.debug("Look if configuration '%s' is present.", fileName);
             final File file = new File(fileName);
 
             if (!file.exists()) {
-                log.debug("File '%s' does not exists.", fileName);
+                LOG.debug("File '%s' does not exists.", fileName);
                 continue;
             }
 
             if (!file.isFile()) {
-                log.debug("File '%s' is not a regular file.", fileName);
+                LOG.debug("File '%s' is not a regular file.", fileName);
                 continue;
             }
 
             if (!file.canRead()) {
-                log.debug("File '%s' is not readable.", fileName);
+                LOG.debug("File '%s' is not readable.", fileName);
                 continue;
             }
 
             foundConfig = file;
-            log.debug("Configuration file found in '%s'.", fileName);
+            LOG.debug("Configuration file found in '%s'.", fileName);
             return;
         }
     }
