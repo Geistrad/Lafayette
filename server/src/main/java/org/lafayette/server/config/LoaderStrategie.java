@@ -15,15 +15,29 @@ package org.lafayette.server.config;
 import java.io.File;
 
 /**
+ * Defines a strategy to find the server configuration file.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 interface LoaderStrategie {
 
+    /**
+     * Whether the loader has found a configuration file or not.
+     *
+     * Call this method after {@link #findConfig()} to check if there is a file available.
+     *
+     * @return
+     */
     public boolean hasFoundConfig();
-
+    /**
+     * Get the found configuration file.
+     *
+     * @return may return {@code null}
+     */
     public File getFoundConfig();
-
+    /**
+     * Starts the search strategy to find a configuration file.
+     */
     public void findConfig();
 
 }

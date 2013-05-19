@@ -41,8 +41,15 @@ public final class ConfigLoader {
         return new ConfigLoader(loaderStrategy);
     }
 
-    public File getFile() {
+    public void load() {
         loaderStrategy.findConfig();
+    }
+
+    public boolean hasConfig() {
+        return loaderStrategy.hasFoundConfig();
+    }
+
+    public File getFile() {
         return loaderStrategy.getFoundConfig();
     }
 

@@ -16,7 +16,6 @@ import de.weltraumschaf.commons.Version;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -51,7 +50,7 @@ public final class ServerContextListener implements ServletContextListener {
         log.debug("Context initialized. Execute listener...");
         loadVersion();
         loadStage();
-//        final ServerConfig config = loadConfig();
+        final ServerConfig config = loadConfig();
 //        openDatabaseConnection(config);
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
@@ -106,10 +105,16 @@ public final class ServerContextListener implements ServletContextListener {
 
         try {
             final ConfigLoader loader = ConfigLoader.create();
-            final File configFile = loader.getFile();
-            log.info("Read server config from file '%s'!", configFile.getAbsolutePath());
-            input = new FileInputStream(configFile);
-            configProperties.load(input);
+            loader.load();
+
+            if (loader.hasConfig()) {
+                final File configFile = loader.getFile();
+                log.info("Read server config from file '%s'!", configFile.getAbsolutePath());
+                input = new FileInputStream(configFile);
+                configProperties.load(input);
+            } else {
+                log.warn("No server config found!");
+            }
         } catch (IOException ex) {
             log.fatal("Error reading server config: %s", ex.toString());
         } finally {
