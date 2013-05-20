@@ -95,7 +95,9 @@ public final class ServerContextListener implements ServletContextListener {
      * Add stage information to the {@link Registry registry}.
      */
     private void loadStage() {
-        final Stage stage = new Stage();
+        final String envStage = EnvVars.STAGE.getFromSystem();
+        LOG.debug("Use $STAGE=%s as stage.", envStage);
+        final Stage stage = new Stage(envStage);
         LOG.info("Loaded stage %s.", stage.toString());
         reg.setStage(stage);
     }

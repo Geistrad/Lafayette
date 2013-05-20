@@ -14,6 +14,7 @@ package org.lafayette.server.config;
 
 import de.weltraumschaf.commons.system.OperatingSystem;
 import java.io.File;
+import org.lafayette.server.EnvVars;
 import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
 
@@ -69,9 +70,9 @@ public final class ConfigLoader {
             LOG.debug("Determined windows strategy.");
             return new WindowsStrategy();
         } else if (OperatingSystem.LINUX == os || OperatingSystem.MACOSX == os) {
-            String home = System.getenv(ENV_HOME);
+            String home = EnvVars.HOME.getFromSystem();
 
-            if (home == null || home.length() == 0) {
+            if (home.length() == 0) {
                 home = ".";
             }
 
@@ -81,6 +82,7 @@ public final class ConfigLoader {
             throw new IllegalArgumentException(String.format("Unsupported os '%s'! No strategy found.", osName));
         }
     }
+
     public static ConfigLoader create() {
         return create(determineStrategy());
     }
