@@ -28,16 +28,16 @@ interface LoaderStrategie {
      *
      * @return
      */
-    public boolean hasFoundConfig();
+    boolean hasFoundConfig();
     /**
      * Get the found configuration file.
      *
      * @return may return {@code null}
      */
-    public File getFoundConfig();
+    File getFoundConfig();
     /**
      * Starts the search strategy to find a configuration file.
      */
-    public void findConfig();
+    void findConfig();
 
 }

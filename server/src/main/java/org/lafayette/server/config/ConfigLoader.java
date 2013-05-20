@@ -29,7 +29,6 @@ public final class ConfigLoader {
      * Logging facility.
      */
     private static final Logger LOG = Log.getLogger(ConfigLoader.class);
-    private static final String ENV_HOME = "HOME";
     /**
      * Algorithm to find config file.
      */
