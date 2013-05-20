@@ -41,3 +41,8 @@ Build
 Deploy
 
     $ mvn tomcat7:deploy
+
+## Todo
+
+- Add identity map into mapper.
+- Add factory for providing finder with same shared mapper.
