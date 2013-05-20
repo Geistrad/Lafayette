@@ -21,17 +21,45 @@ import org.apache.log4j.Level;
  */
 public class Logger {
 
+    /**
+     * Decorated logger.
+     */
     private final org.apache.log4j.Logger delegate;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param delegate decorated logger
+     */
     public Logger(final org.apache.log4j.Logger delegate) {
         super();
         this.delegate = delegate;
     }
 
-    public void setLevel(Level level) {
+    /**
+     * Creates new formatter.
+     *
+     * @see java.util.Formatter#format(java.lang.String, java.lang.Object[])
+     * @param format format string
+     * @param args variable number of arguments used in format
+     * @return the new formatter
+     */
+    Formatter format(final String format, final Object... args) {
+        return new Formatter().format(format, args);
+    }
+
+    /**
+     * @see org.apache.log4j.Logger#setLevel(org.apache.log4j.Level)
+     * @param level
+     */
+    public void setLevel(final Level level) {
         delegate.setLevel(level);
     }
 
+    /**
+     * @see org.apache.log4j.Logger#getLevel()
+     * @return
+     */
     public final Level getLevel() {
         return delegate.getLevel();
     }
@@ -40,71 +68,125 @@ public class Logger {
         debug(new Formatter().format(format, args).toString());
     }
 
-    public void debug(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#debug(java.lang.Object)
+     * @param message
+     */
+    public void debug(final Object message) {
         delegate.debug(message);
     }
 
-    public void debug(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#debug(java.lang.Object, java.lang.Throwable)
+     * @param message
+     * @param t
+     */
+    public void debug(final Object message, final Throwable t) {
         delegate.debug(message, t);
     }
 
     public void trace(final String format, final Object... args) {
-        trace(new Formatter().format(format, args).toString());
+        trace(format(format, args).toString());
     }
 
-    public void trace(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#trace(java.lang.Object)
+     * @param message
+     */
+    public void trace(final Object message) {
         delegate.trace(message);
     }
 
-    public void trace(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#trace(java.lang.Object, java.lang.Throwable)
+     * @param message
+     * @param t
+     */
+    public void trace(final Object message, final Throwable t) {
         delegate.trace(message, t);
     }
 
     public void info(final String format, final Object... args) {
-        info(new Formatter().format(format, args).toString());
+        info(format(format, args).toString());
     }
 
-    public void info(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#info(java.lang.Object)
+     * @param message
+     */
+    public void info(final Object message) {
         delegate.info(message);
     }
 
-    public void info(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#info(java.lang.Object, java.lang.Throwable)
+     * @param message
+     * @param t
+     */
+    public void info(final Object message, final Throwable t) {
         delegate.info(message, t);
     }
 
     public void warn(final String format, final Object... args) {
-        warn(new Formatter().format(format, args).toString());
+        warn(format(format, args).toString());
     }
 
-    public void warn(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#warn(java.lang.Object)
+     * @param message
+     */
+    public void warn(final Object message) {
         delegate.warn(message);
     }
 
-    public void warn(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#warn(java.lang.Object, java.lang.Throwable)
+     * @param message
+     * @param t
+     */
+    public void warn(final Object message, final Throwable t) {
         delegate.warn(message, t);
     }
 
     public void error(final String format, final Object... args) {
-        error(new Formatter().format(format, args).toString());
+        error(format(format, args).toString());
     }
 
-    public void error(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#error(java.lang.Object)
+     * @param message
+     */
+    public void error(final Object message) {
         delegate.error(message);
     }
 
-    public void error(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#error(java.lang.Object, java.lang.Throwable)
+     * @param message
+     * @param t
+     */
+    public void error(final Object message, final Throwable t) {
         delegate.error(message, t);
     }
 
     public void fatal(final String format, final Object... args) {
-        fatal(new Formatter().format(format, args).toString());
+        fatal(format(format, args).toString());
     }
 
-    public void fatal(Object message) {
+    /**
+     * @see org.apache.log4j.Logger#fatal(java.lang.Object)
+     * @param message
+     */
+    public void fatal(final Object message) {
         delegate.fatal(message);
     }
 
-    public void fatal(Object message, Throwable t) {
+    /**
+     * @see org.apache.log4j.Logger#fatal(java.lang.Object, java.lang.Throwable) 
+     * @param message
+     * @param t
+     */
+    public void fatal(final Object message, final Throwable t) {
         delegate.fatal(message, t);
     }
 
