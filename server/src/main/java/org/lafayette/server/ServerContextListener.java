@@ -122,6 +122,8 @@ public final class ServerContextListener implements ServletContextListener {
             LOG.fatal("Error opening database connection: %s", ex.toString());
         } catch (ClassNotFoundException ex) {
             LOG.fatal("Error loading JDBC driver: %s", ex.toString());
+        } catch (IllegalArgumentException ex) {
+            LOG.fatal("Error loading JDBC driver: %s", ex.toString());
         }
     }
 
