@@ -260,30 +260,6 @@ public class NullConnection implements Connection {
     }
 
     @Override
-    public void setSchema(String schema) throws SQLException {
-    }
-
-    @Override
-    public String getSchema() throws SQLException {
-        return "";
-    }
-
-    @Override
-    public void abort(Executor executor) throws SQLException {
-
-    }
-
-    @Override
-    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-
-    }
-
-    @Override
-    public int getNetworkTimeout() throws SQLException {
-        return 0;
-    }
-
-    @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
         return null;
     }
