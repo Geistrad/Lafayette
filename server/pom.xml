@@ -173,7 +173,7 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                    <linkXRef>true</linkXRef>
+                    <linkXRef>false</linkXRef>
                     <includeTests>false</includeTests>
                     <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
@@ -187,6 +187,7 @@
                         </goals>
                         <configuration>
                             <excludeFromFailureFile>${basedir}/src/main/conf/exclude-pmd.properties</excludeFromFailureFile>
+                            <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
                     <execution>
@@ -196,6 +197,7 @@
                         </goals>
                         <configuration>
                             <excludeFromFailureFile>${basedir}/src/main/conf/exclude-cpd.properties</excludeFromFailureFile>
+                            <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
                 </executions>
