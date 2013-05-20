@@ -44,7 +44,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     }
 
     @Override
-    protected String findStatement() {
+    protected String findByIdStatement() {
         return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PK_FIELD_NAME);
     }
 

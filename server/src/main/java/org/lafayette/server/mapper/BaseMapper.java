@@ -18,39 +18,79 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
+import org.lafayette.server.log.Log;
+import org.lafayette.server.log.Logger;
 
 /**
+ * Base implementation for database mappers.
  *
+ * @param <T> type of mapped {@link DomainObject domain object}
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
+    /**
+     * Logging facility.
+     */
+    private static final Logger LOG = Log.getLogger(BaseMapper.class);
+    /**
+     * Used JDBC database connection.
+     */
+    protected final Connection db;
     /**
      * Caches domain object loaded from database in memory.
      *
      * Key is the {@link DomainObject#getId() primary key} of the domain object.
      */
     private final Map<Integer, T> loadedMap = Maps.newHashMap();
-    /**
-     * Used JDBC database connection.
-     */
-    protected final Connection db;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param db used database connection
+     */
     public BaseMapper(final Connection db) {
         super();
         this.db = db;
     }
 
-    protected abstract String findStatement();
+    /**
+     * SQL statement to find a {@link DomainObject domain object} by it's ID.
+     *
+     * @return SQL prepared statement string
+     */
+    protected abstract String findByIdStatement();
 
+    /**
+     * SQL statement to find all {@link DomainObject domain object}.
+     *
+     * @param limit limit of result record sets
+     * @param offset offset of result record sets
+     * @return SQL prepared statement string
+     */
     protected abstract String findAllStatement(final int limit, final int offset);
 
+    /**
+     * SQL statement to find the max ID.
+     *
+     * @return SQL prepared statement string
+     */
     protected abstract String findMaxPrimaryKeyStatement();
 
+    /**
+     *
+     * @return SQL prepared statement string
+     */
     protected abstract String insertStatement();
+
+    /**
+     *
+     * @return SQL prepared statement string
+     */
     protected abstract String deleteStatement();
 
     protected abstract T doLoad(final int id, final ResultSet result) throws SQLException;
@@ -63,7 +103,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
 
         try {
-            final PreparedStatement findStatement = db.prepareStatement(findStatement());
+            final PreparedStatement findStatement = db.prepareStatement(findByIdStatement());
             findStatement.setInt(1, id);
             final ResultSet rs = findStatement.executeQuery();
 
@@ -121,6 +161,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         try {
             final String sql = source.sql();
             stmt = db.prepareStatement(sql);
+
+            if (null == stmt) {
+                LOG.error("Can't prepare statement for SQL '%s'!", sql);
+                return Collections.emptyList();
+            }
 
             for (int i = 0; i < source.parameters().length; ++i) {
                 stmt.setObject(i + 1, source.parameters()[i]);

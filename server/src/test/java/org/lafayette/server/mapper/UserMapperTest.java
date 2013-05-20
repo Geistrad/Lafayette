@@ -15,7 +15,9 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
 import java.sql.Statement;
+import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
@@ -26,7 +28,6 @@ import org.lafayette.server.domain.User;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.*;
-import org.junit.Ignore;
 import org.lafayette.server.ApplicationException;
 
 /**
@@ -42,17 +43,28 @@ public class UserMapperTest {
 
     @Before
     public void startTestDatabase() throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
+        startTestDatabase(true);
+    }
+
+    public void startTestDatabase(final boolean withData) throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
         createDatabaseConnection();
         createTable();
-        insertTestData();
+
+        if (withData) {
+            insertTestData();
+        }
     }
 
     @After
     public void destroyTestDatabase() throws SQLException {
-        final Statement shutdownStatement = db.createStatement();
-        shutdownStatement.execute("shutdown");
-        shutdownStatement.close();
-        db.close();
+        try {
+            final Statement shutdownStatement = db.createStatement();
+            shutdownStatement.execute("shutdown");
+            shutdownStatement.close();
+            db.close();
+        } catch (SQLNonTransientConnectionException ex) {
+            // Ignore if database already removed.
+        }
     }
 
     private void createDatabaseConnection() throws SQLException, ClassNotFoundException {
@@ -146,6 +158,15 @@ public class UserMapperTest {
                     fail("Unexpected user id: " + userId);
             }
         }
+    }
+
+    @Test
+    public void findAll_emptyTable() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
+        destroyTestDatabase();
+        startTestDatabase(false);
+        final UserMapper sut = new UserMapper(db);
+        final Collection<User> users = sut.findAll(10, 0);
+        assertThat(users, is(empty()));
     }
 
     @Test
