@@ -101,6 +101,12 @@
             <artifactId>jackson-jaxrs</artifactId>
             <version>1.9.11</version>
         </dependency>
+        <!-- MySQL JDBC Connector. -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.25</version>
+        </dependency>
         <!-- JSP tag libraries. -->
         <dependency>
             <groupId>taglibs</groupId>
@@ -142,12 +148,6 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <!-- MySQL JDBC Connector. -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.25</version>
         </dependency>
         <!-- HSQLDB JDBC Connector for tests. -->
         <dependency>
