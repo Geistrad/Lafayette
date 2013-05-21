@@ -38,4 +38,11 @@ apt-get -y install \
 echo "Update apt-file..."
 apt-file update
 
+echo "Udpate /etc/environment"
+echo "JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64" >> /etc/environment
+echo "M2_HOME=/usr/local/apache-maven/" >> /etc/environment
+echo "MAVEN_HOME=/usr/local/apache-maven" >> /etc/environment
+echo "M2=/usr/local/apache-maven/bin" >> /etc/environment
+echo "STAGE=development" >> /etc/environment
+
 echo "Done :)"
