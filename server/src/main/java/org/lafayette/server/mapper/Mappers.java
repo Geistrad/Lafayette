@@ -10,22 +10,26 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.domain;
+package org.lafayette.server.mapper;
 
-import org.lafayette.server.mapper.Mappers;
+import java.sql.Connection;
+import org.lafayette.server.domain.User;
+import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class Finders {
+public final class Mappers {
 
-    private Finders() {
-        super();
+    private final Connection db;
+    private final IntegerIdentityMap<User> userIdMap = new IntegerIdentityMap<User>();
+
+    public Mappers(final Connection db) {
+        this.db = db;
     }
 
-    public static UserFinder forUsers(final Mappers m) {
-        return m.createUserMapper();
+    public UserMapper createUserMapper() {
+        return new UserMapper(db, userIdMap);
     }
-
 }

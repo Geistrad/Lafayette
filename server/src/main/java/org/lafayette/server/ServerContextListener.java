@@ -25,7 +25,9 @@ import javax.servlet.ServletContextListener;
 import org.lafayette.server.config.ConfigLoader;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.JdbcDriver;
+import org.lafayette.server.db.NullConnection;
 import org.lafayette.server.log.Logger;
+import org.lafayette.server.mapper.Mappers;
 
 /**
  * Implements a servlet context listener.
@@ -66,7 +68,8 @@ public final class ServerContextListener implements ServletContextListener {
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
-        openDatabaseConnection(config);
+        final Connection con = openDatabaseConnection(config);
+        createMappersFactory(con);
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
 
@@ -107,7 +110,7 @@ public final class ServerContextListener implements ServletContextListener {
      *
      * @param config server configuration
      */
-    private void openDatabaseConnection(final ServerConfig config) {
+    private Connection openDatabaseConnection(final ServerConfig config) {
         try {
             LOG.debug("Load JDBC driver class for '%s'.", config.getDbDriver());
             JdbcDriver.getFor(config.getDbDriver()).load();
@@ -118,6 +121,7 @@ public final class ServerContextListener implements ServletContextListener {
                     config.getDbPassword());
             LOG.info("Database connection to %s established.", config.generateJdbcUri());
             reg.setDatabase(con);
+            return con;
         } catch (SQLException ex) {
             LOG.fatal("Error opening database connection: %s", ex.toString());
         } catch (ClassNotFoundException ex) {
@@ -125,6 +129,8 @@ public final class ServerContextListener implements ServletContextListener {
         } catch (IllegalArgumentException ex) {
             LOG.fatal("Error loading JDBC driver: %s", ex.toString());
         }
+
+        return new NullConnection();
     }
 
     /**
@@ -176,4 +182,9 @@ public final class ServerContextListener implements ServletContextListener {
             LOG.fatal("Error closing database connection: %s", ex.toString());
         }
     }
+
+    private void createMappersFactory(final Connection con) {
+        reg.setMappers(new Mappers(con));
+    }
+
 }

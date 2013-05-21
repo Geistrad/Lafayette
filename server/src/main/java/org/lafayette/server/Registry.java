@@ -18,6 +18,7 @@ import java.util.Properties;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.mapper.Mappers;
 
 /**
  * Registers shared core resources.
@@ -52,6 +53,7 @@ public final class Registry {
      * Service configuration.
      */
     private ServerConfig serverConfig = new ServerConfig(new Properties());
+    private Mappers mappers;
 
     /**
      * Dedicated constructor.
@@ -134,6 +136,15 @@ public final class Registry {
     public void setServerConfig(final ServerConfig sc) {
         Validate.notNull(sc, "Server configuration must not be null!");
         this.serverConfig = sc;
+    }
+
+    public Mappers getMappers() {
+        return mappers;
+    }
+
+    public void setMappers(final Mappers m) {
+        Validate.notNull(m, "Mappers must not be null!");
+        this.mappers = m;
     }
 
 }

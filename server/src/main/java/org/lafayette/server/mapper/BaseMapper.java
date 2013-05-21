@@ -24,6 +24,7 @@ import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
+import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
  * Base implementation for database mappers.
@@ -46,16 +47,29 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      *
      * Key is the {@link DomainObject#getId() primary key} of the domain object.
      */
+    @Deprecated
     private final Map<Integer, T> loadedMap = Maps.newHashMap();
+    private final IntegerIdentityMap<T> idMap;
 
     /**
      * Dedicated constructor.
      *
      * @param db used database connection
      */
+    @Deprecated
     public BaseMapper(final Connection db) {
+        this(db, null);
+    }
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param db used database connection
+     */
+    public BaseMapper(final Connection db, final IntegerIdentityMap<T> idMap) {
         super();
         this.db = db;
+        this.idMap = idMap;
     }
 
     /**

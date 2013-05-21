@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
+import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
  * Maps {@link User user domain objects} to the database.
@@ -39,8 +40,13 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
 
+    @Deprecated
     public UserMapper(final Connection db) {
         super(db);
+    }
+
+    UserMapper(final Connection db, final IntegerIdentityMap<User> idMap) {
+        super(db, idMap);
     }
 
     @Override

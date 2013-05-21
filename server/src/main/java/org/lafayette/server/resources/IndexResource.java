@@ -63,7 +63,7 @@ public class IndexResource {
     public String usersAsText() {
         final StringBuilder buffer = new StringBuilder();
         final Registry registry = (Registry) context.getAttribute(ServerContextListener.REGISRTY);
-        final UserFinder finder = Finders.forUsers(registry.getDatabase());
+        final UserFinder finder = Finders.forUsers(registry.getMappers());
         buffer.append(StringUtils.rightPad("id", PAD_ID))
               .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
               .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
