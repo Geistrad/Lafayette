@@ -44,5 +44,7 @@ Deploy
 
 ## Todo
 
+- Fix MysQL driver loading in appliance.
+- Debian install script.
 - Add identity map into mapper.
 - Add factory for providing finder with same shared mapper.
