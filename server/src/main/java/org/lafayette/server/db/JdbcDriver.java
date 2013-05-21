@@ -32,12 +32,16 @@ public enum JdbcDriver {
      * Full qualified class name.
      */
     private final String driverClassName;
+    /**
+     * Typical JDBC name.
+     */
     private final String name;
 
     /**
      * Dedicated constructor
      *
      * @param driverClassName full qualified class name
+     * @param name typical JDBC name
      */
     private JdbcDriver(final String driverClassName, final String name) {
         this.driverClassName = driverClassName;
@@ -58,6 +62,12 @@ public enum JdbcDriver {
         return driverClassName;
     }
 
+    /**
+     * Get driver for a JDBC name such as 'mysql' or 'hsqldb'.
+     *
+     * @param name case does not matter, throws {@link IllegalArgumentException exception} if no driver for name exist
+     * @return never {@code null}
+     */
     public static JdbcDriver getFor(final String name) {
         if (MYSQL.name.equalsIgnoreCase(name)) {
             return MYSQL;
