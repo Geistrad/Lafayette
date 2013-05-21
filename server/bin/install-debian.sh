@@ -5,7 +5,7 @@
 #
 
 # Add Jenkins (http://pkg.jenkins-ci.org/debian/)
-wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
 echo "" > /etc/apt/sources.list
 echo "# Jenkins source" > /etc/apt/sources.list
 echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list
