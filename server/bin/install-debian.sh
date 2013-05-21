@@ -25,6 +25,7 @@ apt-get -y install \
     git \
     htop \
     jenkins \
+    maven \
     mysql-server-5.5 \
     openjdk-6-jdk \
     screen \
