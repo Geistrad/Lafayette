@@ -5,20 +5,29 @@
 #
 
 # Add Jenkins (http://pkg.jenkins-ci.org/debian/)
-
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-
+echo "" > /etc/apt/sources.list
 echo "# Jenkins source" > /etc/apt/sources.list
 echo "deb http://pkg.jenkins-ci.org/debian binary/" > /etc/apt/sources.list
 
-sudo apt-get update
-sudo apt-get install \
-    jenkins \
-    screen \
-    tree \
-    htop \
-    java \
-    tomcat \
-    mysql \
+# Update sources
+apt-get update
+
+# Install packages.
+apt-get install \
+    apt-file \
     etckeeper \
-    sudo
+    git \
+    htop \
+    jenkins \
+    mysql-server-5.5 \
+    openjdk-6-jdk \
+    screen \
+    sudo \
+    tomcat7 \
+    tomcat7-admin \
+    tree \
+    unzip \
+
+# Update apt files.
+apt-file update
