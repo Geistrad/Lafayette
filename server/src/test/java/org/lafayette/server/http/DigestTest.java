@@ -37,11 +37,22 @@ public class DigestTest {
                    is("435c145e5ba6c34b4ef332e7bab538d1"));
     }
 
-    @Test @Ignore
+    @Test
     public void testDigest_3args() {
+        assertThat(Digest.digest("b1925214b7e20b0fc95cae9f1d6de985", "nonce", "435c145e5ba6c34b4ef332e7bab538d1"), 
+                   is("b9140c5927e712419cdb9666f0866c31"));
     }
 
-    @Test @Ignore
-    public void testDigest_DigestValues() {
+    @Test
+    public void testDigest_DigestValues() throws URISyntaxException {
+        final Digest.Values values = new Digest.Values();
+        values.setUsername("foo");
+        values.setPassword("bar");
+        values.setRealm("baz");
+        values.setNonce("nonce");
+        values.setHttpMethod(Digest.HttpMethod.GET);
+        values.setRequestedUri(new URI("/foo"));
+        assertThat(Digest.digest(values), is("b9140c5927e712419cdb9666f0866c31"));
     }
+    
 }

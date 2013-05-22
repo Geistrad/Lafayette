@@ -73,10 +73,15 @@ public class Digest {
         private String realm = "";
         private String nonce = "";
         private HttpMethod httpMethod = HttpMethod.GET;
-        private URI requestedUri = new URI("/");
+        private URI requestedUri;
 
-        public Values() throws URISyntaxException {
+        public Values() {
             super();
+            try {
+                requestedUri = new URI("/");
+            } catch (URISyntaxException ex) {
+                // Does never happen for URI "/".
+            }
         }
         
         public String getUsername() {
