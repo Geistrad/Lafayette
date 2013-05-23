@@ -80,10 +80,4 @@ public class IndexResource {
         return buffer.toString();
     }
 
-    @Produces(MediaType.TEXT_PLAIN)
-    @GET @Path("test")
-    public String test() throws ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-        return "test";
-    }
 }
