@@ -26,7 +26,11 @@ public enum JdbcDriver {
     /**
      * JDBC driver class for HSQLDB.
      */
-    HSQLDB("org.hsqldb.jdbc.JDBCDriver", "hsqldb");
+    HSQLDB("org.hsqldb.jdbc.JDBCDriver", "hsqldb"),
+    /**
+     * JDBC driver class for PostgreSQL.
+     */
+    POSTGRES("org.postgresql.Driver", "postgresql");
 
     /**
      * Full qualified class name.
