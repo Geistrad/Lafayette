@@ -24,6 +24,6 @@ public class MediaType extends javax.ws.rs.core.MediaType {
      *
      * See http://amundsen.com/hypermedia/urilist/
      */
-    public static final String TEXT_UR_ILIST = "text/uri-list";
+    public static final String TEXT_URI_LIST = "text/uri-list";
 
 }

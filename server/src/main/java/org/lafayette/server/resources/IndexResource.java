@@ -49,7 +49,7 @@ public class IndexResource {
         return buffer.toString();
     }
 
-    @Produces(MediaType.TEXT_UR_ILIST)
+    @Produces(MediaType.TEXT_URI_LIST)
     @GET
     public String indexAsUriList() {
         final StringBuilder buffer = new StringBuilder();
