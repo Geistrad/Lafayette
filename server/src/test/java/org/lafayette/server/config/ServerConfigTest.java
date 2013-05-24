@@ -18,7 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -67,8 +66,46 @@ public class ServerConfigTest {
         assertThat(sut.getDbDriver(), is("mysql"));
     }
 
-    @Test
-    public void generateJdbcUri() {
-        assertThat(sut.generateJdbcUri(), is("jdbc:mysql://localhost:3306/lafayette"));
+    @Test public void getEmptyStringsOrZeroByDefault() {
+        final Properties prop = new Properties();
+        final ServerConfig config = new ServerConfig(prop);
+        assertThat(config.getDbDriver(), is(""));
+        assertThat(config.getDbHost(), is(""));
+        assertThat(config.getDbName(), is(""));
+        assertThat(config.getDbPassword(), is(""));
+        assertThat(config.getDbUser(), is(""));
+        assertThat(config.getDbPort(), is(0));
     }
+
+    @Test
+    public void generateJdbcUri_withHost() {
+        final Properties prop = new Properties();
+        prop.setProperty(ServerConfig.DB_DRIVER, "mysql");
+        prop.setProperty(ServerConfig.DB_HOST, "//localhost");
+        prop.setProperty(ServerConfig.DB_NAME, "lafayette");
+        final ServerConfig config = new ServerConfig(prop);
+        assertThat(config.generateJdbcUri(), is("jdbc:mysql://localhost/lafayette"));
+    }
+
+    @Test
+    public void generateJdbcUri_withHostAndPort() {
+        final Properties prop = new Properties();
+        prop.setProperty(ServerConfig.DB_DRIVER, "mysql");
+        prop.setProperty(ServerConfig.DB_HOST, "//localhost");
+        prop.setProperty(ServerConfig.DB_PORT, "3306");
+        prop.setProperty(ServerConfig.DB_NAME, "lafayette");
+        final ServerConfig config = new ServerConfig(prop);
+        assertThat(config.generateJdbcUri(), is("jdbc:mysql://localhost:3306/lafayette"));
+    }
+
+    @Test
+    public void generateJdbcUri_withFile() {
+        final Properties prop = new Properties();
+        prop.setProperty(ServerConfig.DB_DRIVER, "hsqldb");
+        prop.setProperty(ServerConfig.DB_HOST, "file:/opt/db");
+        prop.setProperty(ServerConfig.DB_NAME, "lafayette");
+        final ServerConfig config = new ServerConfig(prop);
+        assertThat(config.generateJdbcUri(), is("jdbc:hsqldb:file:/opt/db/lafayette"));
+    }
+
 }

@@ -15,50 +15,126 @@ package org.lafayette.server.config;
 import java.util.Properties;
 
 /**
+ * Central configuration for the web application.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class ServerConfig {
+public final class ServerConfig {
 
-    private static final String JDBC_URI_FORMAT = "jdbc:%s://%s:%d/%s";
-    private static final String DB_DRIVER = "db.driver";
-    private static final String DB_PASSWORD = "db.passwprd";
-    private static final String DB_USER = "db.user";
-    private static final String DB_NAME = "db.name";
-    private static final String DB_PORT = "db.port";
-    private static final String DB_HOST = "db.host";
+    /**
+     * Format of JDBC URIs.
+     */
+    static final String JDBC_URI_FORMAT = "jdbc:%s://%s:%d/%s";
+    /**
+     * Property name for database driver.
+     */
+    static final String DB_DRIVER = "db.driver";
+    /**
+     * Property name for database password.
+     */
+    static final String DB_PASSWORD = "db.passwprd";
+    /**
+     * Property name for database user.
+     */
+    static final String DB_USER = "db.user";
+    /**
+     * Property name for database name.
+     */
+    static final String DB_NAME = "db.name";
+    /**
+     * Property name for database port.
+     */
+    static final String DB_PORT = "db.port";
+    /**
+     * Property name for database host.
+     */
+    static final String DB_HOST = "db.host";
+    /**
+     * Holds the properties from configuration file.
+     */
     private final Properties serverProperties;
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param serverProperties properties loaded from file
+     */
     public ServerConfig(final Properties serverProperties) {
+        super();
         this.serverProperties = serverProperties;
     }
 
+    /**
+     * Get the database host.
+     *
+     * @return never {@code null}
+     */
     public String getDbHost() {
-        return serverProperties.getProperty(DB_HOST);
+        return serverProperties.getProperty(DB_HOST, "");
     }
 
+    /**
+     * Get the database port.
+     *
+     * @return integer greater equal 0
+     */
     public int getDbPort() {
-        return Integer.valueOf(serverProperties.getProperty(DB_PORT));
+        try {
+            final Integer port = Integer.valueOf(serverProperties.getProperty(DB_PORT, ""));
+            return port < 0 ? 0 : port;
+        } catch (final NumberFormatException ex) {
+            return 0;
+        }
     }
 
+    /**
+     * Get the database name.
+     *
+     * @return never {@code null}
+     */
     public String getDbName() {
-        return serverProperties.getProperty(DB_NAME);
+        return serverProperties.getProperty(DB_NAME, "");
     }
 
+    /**
+     * Get the database user.
+     *
+     * @return never {@code null}
+     */
     public String getDbUser() {
-        return serverProperties.getProperty(DB_USER);
+        return serverProperties.getProperty(DB_USER, "");
     }
 
+    /**
+     * Get the database  password.
+     *
+     * @return never {@code null}
+     */
     public String getDbPassword() {
-        return serverProperties.getProperty(DB_PASSWORD);
+        return serverProperties.getProperty(DB_PASSWORD, "");
     }
 
+    /**
+     * Get the database driver.
+     *
+     * @return never {@code null}
+     */
     public String getDbDriver() {
-        return serverProperties.getProperty(DB_DRIVER);
+        return serverProperties.getProperty(DB_DRIVER, "");
     }
 
     public String generateJdbcUri() {
-        return String.format(JDBC_URI_FORMAT, getDbDriver(), getDbHost(), getDbPort(), getDbName());
+        final StringBuilder buffer = new StringBuilder("jdbc:");
+        buffer.append(getDbDriver())
+              .append(':')
+              .append(getDbHost());
+
+        if (getDbPort() > 0) {
+            buffer.append(':').append(getDbPort());
+        }
+
+        buffer.append('/').append(getDbName());
+        return buffer.toString();
     }
 
 }
