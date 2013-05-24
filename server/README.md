@@ -42,7 +42,7 @@ Deploy
 
     $ mvn tomcat7:deploy
 
-## Response MEdia Types
+## Response Media Types
 
     /r              text/uri-list, text/plain, text/html
         /user
@@ -50,6 +50,12 @@ Deploy
         /service    text/uri-list, text/plain, text/html, application/json, application/xml, application/x-msgpack
             /{name} text/plain, text/html, application/json, application/xml, application/x-msgpack
 
+## Classes
+
+### org.lafayette.server.http
+
+    UriList > Set<URI>
+    
 ## Todo
 
 - Fix MysQL driver loading in appliance.

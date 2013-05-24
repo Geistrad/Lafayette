@@ -24,6 +24,7 @@ import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.Finders;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
+import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 
 /**
@@ -38,14 +39,14 @@ public class IndexResource {
 
     @Context
     private ServletContext context;
-    private static final String NL = "\r\n";
+    
     private final Logger log = Log.getLogger(this);
 
     @Produces(MediaType.TEXT_PLAIN)
     @GET
     public String indexAsText() {
         final StringBuilder buffer = new StringBuilder("Lafayette Server");
-        buffer.append(NL).append(NL).append("Hello World!");
+        buffer.append(Constants.NL).append(Constants.NL).append("Hello World!");
         return buffer.toString();
     }
 
@@ -53,8 +54,8 @@ public class IndexResource {
     @GET
     public String indexAsUriList() {
         final StringBuilder buffer = new StringBuilder();
-        buffer.append("# Available URIs:").append(NL)
-                .append("/users").append(NL);
+        buffer.append("# Available URIs:").append(Constants.NL)
+                .append("/users").append(Constants.NL);
         return buffer.toString();
     }
 
@@ -68,13 +69,13 @@ public class IndexResource {
               .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
               .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
               .append("salt")
-              .append(NL);
+              .append(Constants.NL);
 
         for (final User user : finder.findAll(25, 0)) {
             buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
                   .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
                   .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
-                  .append(user.getSalt()).append(NL);
+                  .append(user.getSalt()).append(Constants.NL);
         }
 
         return buffer.toString();
