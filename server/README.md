@@ -58,8 +58,6 @@ Deploy
 
 ## Todo
 
-- Let Jenkins auto deploy to Tomcat.
-- Fix URI to Jenkins from start site.
 - Configure site plugin in POM.
 - Add identity map into mapper.
 - Add factory for providing finder with same shared mapper.

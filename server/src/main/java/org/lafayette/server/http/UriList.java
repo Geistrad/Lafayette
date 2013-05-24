@@ -12,14 +12,32 @@
 package org.lafayette.server.http;
 
 import java.net.URI;
-import java.util.HashSet;
+import java.util.TreeSet;
+import org.apache.commons.lang3.Validate;
 
 /**
- * Represents a set of URIs used for repsonses of {@link MediaType#TEXT_UR_ILIST type URI-list}.
- * 
+ * Represents a set of URIs used for responses of {@link MediaType#TEXT_UR_ILIST type URI-list}.
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class UriList extends HashSet<URI> implements Typeable {
+public class UriList extends TreeSet<URI> implements Typeable {
+
+    /**
+     * Optional comment.
+     */
+    private String comment = "";
+
+    /**
+     * Set optional comment.
+     *
+     * Will be placed before the URI list preceeded with "# ".
+     *
+     * @param comment must not be {@code null}.
+     */
+    public void setComment(final String comment) {
+        Validate.notNull(comment, "Comment must not be null!");
+        this.comment = comment;
+    }
 
     @Override
     public String getMediaType() {
@@ -29,12 +47,16 @@ public class UriList extends HashSet<URI> implements Typeable {
     @Override
     public String toString() {
         final StringBuilder buffer = new StringBuilder();
-        
+
+        if (!comment.isEmpty()) {
+            buffer.append("# ").append(comment).append(Constants.NL);
+        }
+
         for (final URI uri : this) {
             buffer.append(uri).append(Constants.NL);
         }
-        
+
         return buffer.toString();
     }
-    
+
 }

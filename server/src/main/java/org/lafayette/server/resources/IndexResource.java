@@ -11,6 +11,8 @@
  */
 package org.lafayette.server.resources;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,21 +28,33 @@ import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
+import org.lafayette.server.http.UriList;
 
 /**
+ * Serves the index resource.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/")
 public class IndexResource {
+
     private static final int PAD_ID = 5;
     private static final int PAD_LOGIN_NAME = 16;
     private static final int PAD_HASHED_PASSWORD = 34;
 
+    private final UriList indexUriList = new UriList();
+    private final Logger log = Log.getLogger(this);
+
     @Context
     private ServletContext context;
-    
-    private final Logger log = Log.getLogger(this);
+
+
+
+    public IndexResource() throws URISyntaxException {
+        super();
+        indexUriList.add(new URI("/user"));
+        indexUriList.add(new URI("/service"));
+    }
 
     @Produces(MediaType.TEXT_PLAIN)
     @GET
