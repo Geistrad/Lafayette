@@ -8,7 +8,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-create table user (
+create table if not exists user (
     id int not null,
     loginName varchar(255) not null,
     hashedPassword varchar(255) not null,

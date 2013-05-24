@@ -177,7 +177,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             stmt = db.prepareStatement(sql);
 
             if (null == stmt) {
-                LOG.error("Can't prepare statement for SQL '%s'!", sql);
+                LOG.error("Can't prepare statement for SQL '%s'! Warnings: %s", sql, db.getWarnings());
                 return Collections.emptyList();
             }
 

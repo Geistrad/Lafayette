@@ -9,7 +9,6 @@
  */
 package org.lafayette.server.mapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -19,7 +18,6 @@ import java.sql.SQLNonTransientConnectionException;
 import java.sql.Statement;
 import java.util.Collection;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,13 +27,13 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.*;
 import org.lafayette.server.ApplicationException;
+import org.lafayette.server.db.SqlLoader;
 
 /**
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class UserMapperTest {
 
-    private static final String FIXTURE_BASE = "/org/lafayette/server";
     private static final String JDBC_URI = "jdbc:hsqldb:mem:lafayette";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
@@ -73,22 +71,17 @@ public class UserMapperTest {
     }
 
     private void createTable() throws SQLException, IOException, URISyntaxException {
-        final String tableSql = loadSql("table_user.sql");
+        final String tableSql = SqlLoader.loadSql("table_user.sql");
         final Statement createTableStatement = db.createStatement();
         createTableStatement.execute(tableSql);
         createTableStatement.close();
     }
 
     private void insertTestData() throws SQLException, URISyntaxException, IOException {
-        final String dataSql = loadSql("data_user.sql");
+        final String dataSql = SqlLoader.loadSql("data_user.sql");
         final Statement insertDataStatement = db.createStatement();
         insertDataStatement.execute(dataSql);
         insertDataStatement.close();
-    }
-
-    private String loadSql(final String fileName) throws URISyntaxException, IOException {
-        return FileUtils.readFileToString(new File(getClass()
-                .getResource(FIXTURE_BASE + "/sql/" + fileName).toURI()));
     }
 
     @Test

@@ -16,16 +16,21 @@ import de.weltraumschaf.commons.Version;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import org.lafayette.server.Stage.Stages;
 import org.lafayette.server.config.ConfigLoader;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.JdbcDriver;
 import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.db.SqlLoader;
 import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.Mappers;
 
@@ -69,6 +74,7 @@ public final class ServerContextListener implements ServletContextListener {
         loadStage();
         final ServerConfig config = loadConfig();
         final Connection con = openDatabaseConnection(config);
+        createTables(con);
         createMappersFactory(con);
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
@@ -185,6 +191,21 @@ public final class ServerContextListener implements ServletContextListener {
 
     private void createMappersFactory(final Connection con) {
         reg.setMappers(new Mappers(con));
+    }
+
+    private void createTables(final Connection con) {
+        try {
+            final String tableSql = SqlLoader.loadSql("table_user.sql");
+            final Statement createTableStatement = reg.getDatabase().createStatement();
+            createTableStatement.execute(tableSql);
+            createTableStatement.close();
+        } catch (URISyntaxException ex) {
+            LOG.error("Can't load sql file! Exception: %s", ex);
+        } catch (IOException ex) {
+            LOG.error("Can't load sql file! Exception: %s", ex);
+        } catch (SQLException ex) {
+            LOG.error("Can't execute SQL! Exception: %s", ex);
+        }
     }
 
 }
