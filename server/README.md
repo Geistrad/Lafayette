@@ -42,9 +42,16 @@ Deploy
 
     $ mvn tomcat7:deploy
 
+## Response MEdia Types
+
+    /r              text/uri-list, text/plain, text/html
+        /user
+            /{id}   text/plain, text/html, application/json, application/xml, application/x-msgpack
+        /service    text/uri-list, text/plain, text/html, application/json, application/xml, application/x-msgpack
+            /{name} text/plain, text/html, application/json, application/xml, application/x-msgpack
+
 ## Todo
 
 - Fix MysQL driver loading in appliance.
-- Debian install script.
 - Add identity map into mapper.
 - Add factory for providing finder with same shared mapper.
