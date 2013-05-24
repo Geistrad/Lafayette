@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -22,7 +23,7 @@
             Version: ${applicationScope['registry'].version} &ndash;
             Stage: ${applicationScope['registry'].stage}
             <c:if test="${applicationScope.registry.stage=='DEVELOPMENT'}">
-                 &ndash; <a href="http://localhost:8080/"/>Jenkins CI</a>
+                 &ndash; <a href="http://${pageContext.request.serverName}:8080/">Jenkins CI</a>
             </c:if>
         </small>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
