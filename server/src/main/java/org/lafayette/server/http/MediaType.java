@@ -26,4 +26,11 @@ public class MediaType extends javax.ws.rs.core.MediaType {
      */
     public static final String TEXT_URI_LIST = "text/uri-list";
 
+    /**
+     * Media type for MessagePack.
+     *
+     * See http://msgpack.org/
+     */
+    public static final String APPLICATION_X_MSGPACK = "application/x-msgpack";
+
 }
