@@ -15,7 +15,7 @@ echo "deb http://pkg.jenkins-ci.org/debian binary/" >> /etc/apt/sources.list
 echo "Update apt sources..."
 apt-get update
 echo "Upgrade packages..."
-apt-get -y upgrade 
+apt-get -y upgrade
 
 # Install packages.
 echo "Install packages..."
@@ -46,5 +46,8 @@ echo "M2_HOME=/usr/local/apache-maven/" >> /etc/environment
 echo "MAVEN_HOME=/usr/local/apache-maven" >> /etc/environment
 echo "M2=/usr/local/apache-maven/bin" >> /etc/environment
 echo "STAGE=development" >> /etc/environment
+
+echo "Link MySQL JDBC connector..."
+ln -s /usr/share/java/mysql.jar /usr/share/tomcat7/lib/mysql.jar
 
 echo "Done :)"
