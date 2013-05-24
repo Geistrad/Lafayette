@@ -77,6 +77,8 @@ public enum JdbcDriver {
             return MYSQL;
         } else if (HSQLDB.name.equalsIgnoreCase(name)) {
             return HSQLDB;
+        } else if (POSTGRES.name.equalsIgnoreCase(name)) {
+            return POSTGRES;
         } else {
             throw new IllegalArgumentException(String.format("Can not find driver for '%s'!", name));
         }
