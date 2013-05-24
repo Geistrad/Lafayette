@@ -38,8 +38,8 @@ public class IndexResource extends BaseResurce {
 
     @Override
     protected void addUrisToIndexList(UriList indexUriList) throws URISyntaxException {
-        indexUriList.add(new URI(context.getRealPath("/user")));
-        indexUriList.add(new URI(context.getRealPath("/service")));
+        indexUriList.add(new URI(context().getRealPath("/user")));
+        indexUriList.add(new URI(context().getRealPath("/service")));
     }
 
 }
