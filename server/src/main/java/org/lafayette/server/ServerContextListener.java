@@ -196,7 +196,7 @@ public final class ServerContextListener implements ServletContextListener {
     private void createTables(final Connection con) {
         try {
             final String tableSql = SqlLoader.loadSql("table_user.sql");
-            final Statement createTableStatement = reg.getDatabase().createStatement();
+            final Statement createTableStatement = con.createStatement();
             createTableStatement.execute(tableSql);
             createTableStatement.close();
         } catch (URISyntaxException ex) {
