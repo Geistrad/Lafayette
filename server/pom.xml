@@ -4,7 +4,7 @@
 
     <groupId>org.lafayette</groupId>
     <artifactId>server</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>war</packaging>
 
     <name>Lafayette Server</name>
@@ -106,17 +106,6 @@
             <artifactId>jackson-jaxrs</artifactId>
             <version>1.9.11</version>
         </dependency>
-<!--        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.25</version>
-        </dependency>-->
-        <!-- HSQLDB JDBC Connector for tests. -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.2.9</version>
-        </dependency>
         <!-- JSP tag libraries. -->
         <dependency>
             <groupId>taglibs</groupId>
@@ -158,6 +147,13 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!-- HSQLDB JDBC Connector for tests. -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.2.9</version>
+            <scope>test</scope>
         </dependency>
         <!-- Dependnecies provided by JEE Web Container. -->
         <dependency>
