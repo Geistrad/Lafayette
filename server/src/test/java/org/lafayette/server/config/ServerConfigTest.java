@@ -38,7 +38,7 @@ public class ServerConfigTest {
 
     @Test
     public void getDbHost() {
-        assertThat(sut.getDbHost(), is("localhost"));
+        assertThat(sut.getDbHost(), is("//localhost"));
     }
 
     @Test

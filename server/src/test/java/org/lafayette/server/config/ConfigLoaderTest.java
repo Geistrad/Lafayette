@@ -27,7 +27,7 @@ import org.junit.Test;
 public class ConfigLoaderTest {
 
     @Test
-    public void testSomeMethod() throws IOException {
+    public void loadConfig() throws IOException {
         final ConfigLoader sut = ConfigLoader.create(new TestStrategy());
         final Properties prop = new Properties();
         final InputStream input = new FileInputStream(sut.getFile());
@@ -35,7 +35,7 @@ public class ConfigLoaderTest {
         input.close();
 
         final ServerConfig config = new ServerConfig(prop);
-        assertThat(config.getDbHost(), is("localhost"));
+        assertThat(config.getDbHost(), is("//localhost"));
         assertThat(config.getDbPort(), is(3306));
         assertThat(config.getDbName(), is("lafayette"));
         assertThat(config.getDbUser(), is("root"));

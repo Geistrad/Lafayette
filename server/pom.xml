@@ -106,10 +106,16 @@
             <artifactId>jackson-jaxrs</artifactId>
             <version>1.9.11</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.25</version>
+        </dependency>-->
+        <!-- HSQLDB JDBC Connector for tests. -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.2.9</version>
         </dependency>
         <!-- JSP tag libraries. -->
         <dependency>
@@ -152,13 +158,6 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <!-- HSQLDB JDBC Connector for tests. -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.2.9</version>
-            <scope>test</scope>
         </dependency>
         <!-- Dependnecies provided by JEE Web Container. -->
         <dependency>
