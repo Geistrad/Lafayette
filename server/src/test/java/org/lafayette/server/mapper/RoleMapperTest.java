@@ -29,7 +29,6 @@ import org.lafayette.server.ApplicationException;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-@Ignore
 public class RoleMapperTest extends DbTestCase {
 
     @Override
@@ -75,8 +74,8 @@ public class RoleMapperTest extends DbTestCase {
     @Test
     public void findByName_caches() {
         final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
-        final Role user = sut.findByName("user");
-        assertThat(user, is(sameInstance(sut.findByName("Baz"))));
+        final Role role = sut.findByName("user");
+        assertThat(role, is(sameInstance(sut.findByName("user"))));
     }
 
     @Test
@@ -135,7 +134,7 @@ public class RoleMapperTest extends DbTestCase {
         assertThat(role.getName(), is("user"));
         assertThat(role.getDescription(), is("Standart user with limited privileges."));
 
-        role.setName("fpp");
+        role.setName("foo");
         role.setDescription("bar");
         sut.update(role);
 

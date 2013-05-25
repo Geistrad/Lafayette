@@ -11,7 +11,7 @@
 create table if not exists role (
     id int not null,
     name varchar(255) not null,
-    descripion varchar(255) not null,
+    description varchar(255) not null,
     primary key(id),
     unique(name)
 );

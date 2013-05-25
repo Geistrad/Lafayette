@@ -82,15 +82,15 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected Role doLoad(int id, ResultSet result) throws SQLException {
-        final String name = result.getString(1);
-        final String description = result.getString(2);
+        final String name = result.getString(2);
+        final String description = result.getString(3);
         return new Role(id, name, description);
     }
 
     @Override
     protected void doInsert(final Role subject, final PreparedStatement insertStatement) throws SQLException {
-        insertStatement.setString(1, subject.getName());
-        insertStatement.setString(2, subject.getDescription());
+        insertStatement.setString(2, subject.getName());
+        insertStatement.setString(3, subject.getDescription());
     }
 
     @Override
