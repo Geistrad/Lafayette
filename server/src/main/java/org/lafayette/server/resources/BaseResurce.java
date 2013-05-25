@@ -12,11 +12,14 @@
 
 package org.lafayette.server.resources;
 
+import com.sun.jersey.api.NotFoundException;
 import java.net.URISyntaxException;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
@@ -54,6 +57,22 @@ public abstract class BaseResurce {
 
     protected UriInfo uriInfo() {
         return uriInfo;
+    }
+
+    protected Response createErrorResponse(String message) {
+        return Response.serverError()
+                .entity(message)
+                .build();
+    }
+
+    protected void raiseIdNotFoundError(String resource, String id) throws WebApplicationException {
+        final String message = String.format("Can't find '%s' with id '%s'!", resource, id);
+        throw new NotFoundException(message);
+    }
+
+    protected void raiseMissingPropertyError(String name) throws WebApplicationException {
+        final String message = String.format("Property '%s' missing!", name);
+        throw new WebApplicationException(createErrorResponse(message));
     }
 
     @GET

@@ -24,5 +24,24 @@ public interface UserFinder {
     User find(final Integer id);
     User findByLoginName(String loginName);
     Collection<User> findAll(int limit, int offset);
+    /**
+     * Insert {@link User} into database.
+     *
+     * @param subject domain object to insert
+     * @return primary key id of inserted record set
+     */
+    int insert(User subject);
+    /**
+     * updates {@link User} from database.
+     *
+     * @param subject domain object to update
+     */
+    void update(User subject);
+    /**
+     * Deletes {@link User} from database.
+     *
+     * @param subject domain object to delete
+     */
+    void delete(User subject);
 
 }

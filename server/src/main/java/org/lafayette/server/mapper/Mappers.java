@@ -17,19 +17,41 @@ import org.lafayette.server.domain.User;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
+ * Factory to retrieve domain object mappers from.
+ *
+ * This factory guaranty that all mappers for the same domain object type share the
+ * same identity map, if the mappers are created by the same factory instance.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class Mappers {
 
+    /**
+     * Used database connection.
+     */
     private final Connection db;
+    /**
+     * Identity map for {@link User user ovjects}.
+     */
     private final IntegerIdentityMap<User> userIdMap = new IntegerIdentityMap<User>();
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param db used database connection
+     */
     public Mappers(final Connection db) {
+        super();
         this.db = db;
     }
 
+    /**
+     * Create a new user mapper.
+     *
+     * @return always new instance, but w/ shared identity map
+     */
     public UserMapper createUserMapper() {
         return new UserMapper(db, userIdMap);
     }
+
 }

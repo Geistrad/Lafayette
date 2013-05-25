@@ -12,22 +12,61 @@
 package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Represents an user.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+@XmlRootElement
 public class User extends BaseDomainObject {
 
-
+    /**
+     * Unique login name of the user.
+     */
     private String loginName;
+    /**
+     * Hashed password.
+     *
+     * hash = PBKDF2( password + salt)
+     *
+     * see http://stackoverflow.com/questions/8674018/pbkdf2-with-bouncycastle-in-java
+     */
     private String hashedPassword;
+    /**
+     * Unique salt for password hash.
+     */
     private String salt;
 
+    /**
+     * No argument constructor for necessary for Jackson XML generation.
+     */
+    public User() {
+        this("", "", "");
+    }
+
+    /**
+     * Initializes the {@link BaseDomainObject#id} with {@link BaseDomainObject#UNINITIALIZED_ID}.
+     *
+     * This constructor should be used for user objects which were not yet saved in the database.
+     *
+     * @param loginName the login name
+     * @param hashedPassword the hashed password
+     * @param salt the password hash salt
+     */
     public User(final String loginName, final String hashedPassword, final String salt) {
         this(UNINITIALIZED_ID, loginName, hashedPassword, salt);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param id the primary key
+     * @param loginName the login name
+     * @param hashedPassword the hashed password
+     * @param salt the password hash salt
+     */
     public User(final int id, final String loginName, final String hashedPassword, final String salt) {
         super(id);
         this.loginName = loginName;

@@ -14,8 +14,11 @@ package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
 
+
 /**
  * Base implementation for domain objects.
+ *
+ * This class guaranty that the {@link #setId(int) ID} is only set one time after creation.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -24,13 +27,16 @@ class BaseDomainObject implements DomainObject {
     /**
      * Default value used to signal that {@link #id} is not initialized yet.
      */
-    final static int UNINITIALIZED_ID = -1;
+    static final int UNINITIALIZED_ID = -1;
 
     /**
      * Unique id.
      */
     private int id = UNINITIALIZED_ID;
 
+    /**
+     * Initializes {@link #id} with {@value #UNINITIALIZED_ID}.
+     */
     public BaseDomainObject() {
         this(UNINITIALIZED_ID);
     }

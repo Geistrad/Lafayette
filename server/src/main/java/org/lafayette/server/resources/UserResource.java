@@ -9,19 +9,21 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.resources;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.lang3.StringUtils;
-import org.lafayette.server.Registry;
-import org.lafayette.server.ServerContextListener;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.domain.Finders;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
@@ -55,29 +57,58 @@ public class UserResource extends BaseResurce {
         final StringBuilder buffer = new StringBuilder();
         final UserFinder finder = Finders.forUsers(registry().getMappers());
         buffer.append(StringUtils.rightPad("id", PAD_ID))
-              .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
-              .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
-              .append("salt")
-              .append(Constants.NL);
+                .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
+                .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
+                .append("salt")
+                .append(Constants.NL);
 
         for (final User user : finder.findAll(LIMIT, 0)) {
             buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
-                  .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
-                  .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
-                  .append(user.getSalt()).append(Constants.NL);
+                    .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
+                    .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
+                    .append(user.getSalt()).append(Constants.NL);
         }
 
         return buffer.toString();
     }
 
-
     @GET
     @Path("/{id}")
     @Produces(MediaType.TEXT_PLAIN)
     public String userAsTest(@PathParam("id") String id) {
-        final UserFinder finder = Finders.forUsers(registry().getMappers());
-        final User user = finder.find(Integer.parseInt(id));
+        User user = findUSerById(id);
         return user.toString();
     }
 
+    @GET
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public User userAsJson(@PathParam("id") String id) {
+        return findUSerById(id);
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(JSONObject jsonEntity) throws JSONException, Exception {
+        if (!jsonEntity.has("loginName")) {
+            raiseMissingPropertyError("loginName");
+        }
+
+        final String loginName = jsonEntity.getString("loginName");
+        final User newUser = new User(loginName, "", "");
+        registry().getMappers().createUserMapper().insert(newUser);
+        final URI uri = uriInfo().getAbsolutePathBuilder()
+                .path(String.valueOf(newUser.getId()))
+                .build();
+
+        return Response.created(uri)
+                .entity(newUser)
+                .build();
+    }
+
+    private User findUSerById(String id) throws NumberFormatException {
+        final UserFinder finder = Finders.forUsers(registry().getMappers());
+        final User user = finder.find(Integer.parseInt(id));
+        return user;
+    }
 }
