@@ -8,12 +8,4 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-create table if not exists `user` (
-    `id` int not null,
-    `loginName` varchar(255) not null,
-    `hashedPassword` varchar(255) not null,
-    `salt` varchar(255) not null,
-    `role_id` int not null,
-    primary key(`id`),
-    unique(`loginName`)
-);
+insert into `user` values (1, 'root', 'b9f46238b289f23ba807973840655032', 'Oih0mei7', 2);
