@@ -11,6 +11,7 @@
  */
 package org.lafayette.server.resources;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.ws.rs.Consumes;
@@ -75,16 +76,40 @@ public class UserResource extends BaseResurce {
     @GET
     @Path("/{id}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String userAsTest(@PathParam("id") String id) {
-        User user = findUSerById(id);
+    public String userAsPlainText(@PathParam("id") String id) {
+        final User user = findUSerById(id);
+
+        if (null == user) {
+            raiseIdNotFoundError("user", id);
+        }
+
         return user.toString();
     }
 
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public User userAsJson(@PathParam("id") String id) {
-        return findUSerById(id);
+    public User userAsJsonOrXml(@PathParam("id") String id) {
+        final User user = findUSerById(id);
+
+        if (null == user) {
+            raiseIdNotFoundError("user", id);
+        }
+
+        return user;
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_X_MSGPACK})
+    public Response userAsMessagePack(@PathParam("id") String id) throws IOException {
+        final User user = findUSerById(id);
+
+        if (null == user) {
+            raiseIdNotFoundError("user", id);
+        }
+
+        return Response.ok(formatMessagePack(user), MediaType.APPLICATION_X_MSGPACK).build();
     }
 
     @PUT
@@ -108,7 +133,6 @@ public class UserResource extends BaseResurce {
 
     private User findUSerById(String id) throws NumberFormatException {
         final UserFinder finder = Finders.forUsers(registry().getMappers());
-        final User user = finder.find(Integer.parseInt(id));
-        return user;
+        return finder.find(Integer.parseInt(id));
     }
 }

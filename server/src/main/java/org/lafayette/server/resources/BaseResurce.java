@@ -13,6 +13,7 @@
 package org.lafayette.server.resources;
 
 import com.sun.jersey.api.NotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
@@ -23,10 +24,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
+import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
+import org.msgpack.MessagePack;
 
 /**
  *
@@ -37,6 +40,7 @@ public abstract class BaseResurce {
     protected final Logger log = Log.getLogger(this);
 
     private final UriList indexUriList;
+    private final MessagePack msgpack = new MessagePack();
     @Context private ServletContext context;
     @Context private UriInfo uriInfo;
 
@@ -73,6 +77,10 @@ public abstract class BaseResurce {
     protected void raiseMissingPropertyError(String name) throws WebApplicationException {
         final String message = String.format("Property '%s' missing!", name);
         throw new WebApplicationException(createErrorResponse(message));
+    }
+
+    protected String formatMessagePack(final DomainObject object) throws IOException {
+        return new String(msgpack.write(object));
     }
 
     @GET

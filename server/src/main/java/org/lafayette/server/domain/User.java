@@ -13,13 +13,14 @@ package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.msgpack.annotation.Message;
 
 /**
  * Represents an user.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-@XmlRootElement
+@XmlRootElement @Message
 public class User extends BaseDomainObject {
 
     /**
