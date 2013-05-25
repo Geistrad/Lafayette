@@ -35,7 +35,7 @@ import org.msgpack.MessagePack;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public abstract class BaseResurce {
+public abstract class BaseResource {
 
     protected final Logger log = Log.getLogger(this);
     private final UriList indexUriList;
@@ -45,7 +45,7 @@ public abstract class BaseResurce {
     @Context
     private UriInfo uriInfo;
 
-    public BaseResurce() {
+    public BaseResource() {
         indexUriList = new UriList();
         indexUriList.setComment("# Available URIs:");
     }

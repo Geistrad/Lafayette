@@ -38,7 +38,7 @@ import org.lafayette.server.http.UriList;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/user")
-public class UserResource extends BaseResurce {
+public class UserResource extends BaseResource {
 
     private static final int PAD_ID = 5;
     private static final int PAD_LOGIN_NAME = 16;

@@ -26,7 +26,7 @@ import org.lafayette.server.http.UriList;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/")
-public class IndexResource extends BaseResurce {
+public class IndexResource extends BaseResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

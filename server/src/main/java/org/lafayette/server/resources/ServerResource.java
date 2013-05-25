@@ -23,7 +23,7 @@ import org.lafayette.server.http.UriList;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/service")
-public class ServerResource extends BaseResurce {
+public class ServerResource extends BaseResource {
 
     @Override
     protected void addUrisToIndexList(final UriList indexUriList) throws URISyntaxException {
