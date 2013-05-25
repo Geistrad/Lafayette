@@ -1,12 +1,20 @@
 # Lafayette-Dev
 
-Install Script:
-
-    wget https://raw.github.com/Weltraumschaf/Lafayette/master/server/bin/install-debian.sh
-
 - OS: Debian Wheezy
 - Java: OpenJDK 1.6.0_27 (`/usr/lib/jvm/java-6-openjdk-amd64`)
 - Maven: 3.0.4 (``)
+
+Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/server/bin/install-debian.sh`
+
+## Import into Virtual Box
+
+1. Download and install [Virtual Box][1]. 
+2. Import appliance: `Menu -> File -> Import Aplliance
+3. Change network from NAT to bridged
+    1. Open virtual machne settings
+    2. Navigate to network
+    3. Change `Attached to:` from `NAT` to `Bridged Adapter`
+4. Start virtual machine
 
 ## Users
 
@@ -45,3 +53,5 @@ in `/etc/defaults/tomcat`
     -XX:+UseParNewGC \
     -XX:MaxPermSize=${MAX_PERM_SIZE} \
     -Xms${HEAP_SPACE_START} -Xmx${HEAP_SPACE_MAX}"
+
+[1]: https://www.virtualbox.org/wiki/Downloads
