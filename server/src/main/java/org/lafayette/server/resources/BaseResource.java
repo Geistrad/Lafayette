@@ -20,6 +20,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
@@ -40,10 +41,9 @@ public abstract class BaseResource {
     protected final Logger log = Log.getLogger(this);
     private final UriList indexUriList;
     private final MessagePack msgpack = new MessagePack();
-    @Context
-    private ServletContext context;
-    @Context
-    private UriInfo uriInfo;
+    @Context private ServletContext context;
+    @Context private UriInfo uriInfo;
+    @Context private SecurityContext security;
 
     public BaseResource() {
         indexUriList = new UriList();
@@ -56,8 +56,12 @@ public abstract class BaseResource {
         return (Registry) context.getAttribute(ServerContextListener.REGISRTY);
     }
 
-    protected ServletContext context() {
+    protected ServletContext servlet() {
         return context;
+    }
+
+    protected SecurityContext security() {
+        return security;
     }
 
     protected UriInfo uriInfo() {

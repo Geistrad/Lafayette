@@ -12,6 +12,8 @@
 package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
+import java.util.Collection;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.msgpack.annotation.Message;
 
@@ -39,6 +41,7 @@ public class User extends BaseDomainObject {
      * Unique salt for password hash.
      */
     private String salt;
+    private final Collection<Role> roles = Sets.newHashSet();
 
     /**
      * No argument constructor for necessary for Jackson XML generation.
@@ -124,6 +127,7 @@ public class User extends BaseDomainObject {
                 .addValue(super.toString())
                 .add("loginName", loginName)
                 .add("hashedPassword", hashedPassword)
-                .add("salt", salt).toString();
+                .add("salt", salt)
+                .toString();
     }
 }

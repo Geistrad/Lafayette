@@ -64,6 +64,11 @@
             <version>1.8</version>
         </dependency>
         <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.msgpack</groupId>
             <artifactId>msgpack</artifactId>
             <version>0.6.7</version>
@@ -78,7 +83,7 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <!-- Jersey dependencies -->
+        <!-- Jersey dependencies (https://jersey.java.net/nonav/documentation/latest/user-guide.html) -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
@@ -110,7 +115,7 @@
             <version>${dependnecy.jackson.version}</version>
         </dependency>
         <!-- Spring security framework. -->
-<!--        <dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${dependnecy.spring-security.version}</version>
@@ -124,7 +129,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${dependnecy.spring-security.version}</version>
-        </dependency>-->
+        </dependency>
         <!-- JSP tag libraries. -->
         <dependency>
             <groupId>taglibs</groupId>

@@ -26,6 +26,7 @@ import org.lafayette.server.domain.User;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.*;
+import org.junit.Ignore;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.db.SqlLoader;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -33,6 +34,7 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
 /**
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+@Ignore
 public class UserMapperTest {
 
     private static final String JDBC_URI = "jdbc:hsqldb:mem:lafayette";

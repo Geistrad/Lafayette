@@ -31,6 +31,8 @@ public class IndexResource extends BaseResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String indexAsText() {
+        String username = security().getUserPrincipal().getName();
+        log.info("userame: %s", username);
         final StringBuilder buffer = new StringBuilder("Lafayette Server");
         buffer.append(Constants.NL).append(Constants.NL).append("Hello World!");
         return buffer.toString();
@@ -38,8 +40,8 @@ public class IndexResource extends BaseResource {
 
     @Override
     protected void addUrisToIndexList(UriList indexUriList) throws URISyntaxException {
-        indexUriList.add(new URI(context().getRealPath("/user")));
-        indexUriList.add(new URI(context().getRealPath("/service")));
+        indexUriList.add(new URI(servlet().getRealPath("/user")));
+        indexUriList.add(new URI(servlet().getRealPath("/service")));
     }
 
 }
