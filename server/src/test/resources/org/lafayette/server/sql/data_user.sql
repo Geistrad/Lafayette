@@ -8,6 +8,6 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-insert into `user` values (1, 'Foo', 'b9f46238b289f23ba807973840655032', 'Oih0mei7');
-insert into `user` values (2, 'Bar', '043bd227eaa879d438e7c1dfea568bc9', 'AiZuur1Y');
-insert into `user` values (3, 'Baz', 'aa82cc74b4a932c06d4ea5a9ac38cf5e', 'Eng7ovej');
+insert into user values (1, 'Foo', 'b9f46238b289f23ba807973840655032', 'Oih0mei7');
+insert into user values (2, 'Bar', '043bd227eaa879d438e7c1dfea568bc9', 'AiZuur1Y');
+insert into user values (3, 'Baz', 'aa82cc74b4a932c06d4ea5a9ac38cf5e', 'Eng7ovej');

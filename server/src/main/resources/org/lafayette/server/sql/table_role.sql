@@ -8,10 +8,10 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-create table if not exists `role` (
-    `id` int not null,
-    `name` varchar(255) not null,
-    `descripion` varchar(255) not null,
-    primary key(`id`),
-    unique(`name`)
+create table if not exists role (
+    id int not null,
+    name varchar(255) not null,
+    descripion varchar(255) not null,
+    primary key(id),
+    unique(name)
 );

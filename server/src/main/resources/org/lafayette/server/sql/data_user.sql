@@ -8,4 +8,4 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-insert into `user` values (1, 'root', 'b9f46238b289f23ba807973840655032', 'Oih0mei7');
+insert into user values (1, 'root', 'b9f46238b289f23ba807973840655032', 'Oih0mei7');
