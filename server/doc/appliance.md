@@ -1,8 +1,10 @@
 # Lafayette-Dev
 
+Documentation for Lafayete Server Development appliance.
+
 - OS: Debian Wheezy
 - Java: OpenJDK 1.6.0_27 (`/usr/lib/jvm/java-6-openjdk-amd64`)
-- Maven: 3.0.4 (``)
+- Maven: 3.0.4 (`/usr/share/maven`)
 
 Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/server/bin/install-debian.sh`
 
