@@ -39,6 +39,9 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
      * Field of database table.
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
+    private static final String SQL_INSERT = "insert into %s values (?, ?, ?, ?)";
+    private static final String SQL_FIND_BY_LOGIN_NAME = "select %s from %s where loginName like ?";
+    private static final String SQL_UPDATE = "update %s set loginName = ?, hashedPassword = ?, salt = ? where %s = ?";
 
     /**
      * Created by {@link Mappers factory}.
@@ -52,36 +55,35 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findByIdStatement() {
-        return String.format("select %s from %s where %s = ?", COLUMNS, TABLE_NAME, PK_FIELD_NAME);
+        return findByIdStatement(COLUMNS, TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected String findAllStatement(final int limit, final int offset) {
-        return String.format("select %s from %s limit %d offset %s", COLUMNS, TABLE_NAME, limit, offset);
+        return findAllStatement(COLUMNS, TABLE_NAME, limit, offset);
     }
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return String.format("select max(%s) from %s", PK_FIELD_NAME, TABLE_NAME);
+        return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
     }
 
-    private String findLoginNameStatement() {
-        return String.format("select %s from %s where loginName like ?", COLUMNS, TABLE_NAME);
+    private String findByLoginNameStatement() {
+        return String.format(SQL_FIND_BY_LOGIN_NAME, COLUMNS, TABLE_NAME);
     }
 
     private String updateStatement() {
-        return String.format("update %s set loginName = ?, hashedPassword = ?, salt = ? where %s = ?",
-                TABLE_NAME, PK_FIELD_NAME);
+        return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected String deleteStatement() {
-        return String.format("delete from %s where %s = ?", TABLE_NAME, PK_FIELD_NAME);
+        return deleteStatement(TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected String insertStatement() {
-        return String.format("insert into %s values (?, ?, ?, ?)", TABLE_NAME);
+        return String.format(SQL_INSERT, TABLE_NAME);
     }
 
     @Override
@@ -112,7 +114,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     public User findByLoginName(final String loginName) {
         try {
-            final PreparedStatement findStatement = db.prepareStatement(findLoginNameStatement());
+            final PreparedStatement findStatement = db.prepareStatement(findByLoginNameStatement());
             findStatement.setString(1, loginName);
             final ResultSet rs = findStatement.executeQuery();
             rs.next();
@@ -138,5 +140,4 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
             throw new ApplicationException(ex);
         }
     }
-
 }

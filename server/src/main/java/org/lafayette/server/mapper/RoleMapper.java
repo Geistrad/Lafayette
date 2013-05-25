@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.RoleFinder;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -38,6 +39,9 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * Field of database table.
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", name, description";
+    private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
+    private static final String SQL_FIND_BY_NAME = "select %s from %s where name like ?";
+    private static final String SQL_UPDATE = "update %s set name = ?, description = ? where %s = ?";
 
     RoleMapper(final Connection db, final IntegerIdentityMap<Role> idMap) {
         super(db, idMap);
@@ -45,57 +49,87 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected String findByIdStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return findByIdStatement(COLUMNS, TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected String findAllStatement(int limit, int offset) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return findAllStatement(COLUMNS, TABLE_NAME, limit, offset);
     }
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
+    }
+
+    private String findByNameStatement() {
+        return String.format(SQL_FIND_BY_NAME, COLUMNS, TABLE_NAME);
+    }
+
+    private String updateStatement() {
+        return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected String insertStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format(SQL_INSERT, TABLE_NAME);
     }
 
     @Override
     protected String deleteStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return deleteStatement(TABLE_NAME, PK_FIELD_NAME);
     }
 
     @Override
     protected Role doLoad(int id, ResultSet result) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String name = result.getString(1);
+        final String description = result.getString(2);
+        return new Role(id, name, description);
     }
 
     @Override
-    protected void doInsert(Role subject, PreparedStatement insertStatement) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void doInsert(final Role subject, final PreparedStatement insertStatement) throws SQLException {
+        insertStatement.setString(1, subject.getName());
+        insertStatement.setString(2, subject.getDescription());
     }
 
     @Override
     public void update(Role subject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
+            updateStatement.setString(1, subject.getName());
+            updateStatement.setString(2, subject.getDescription());
+            updateStatement.setInt(3, subject.getId());
+            updateStatement.execute();
+            updateStatement.close();
+        } catch (SQLException ex) {
+            throw new ApplicationException(ex);
+        }
     }
 
     @Override
-    public Role find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Role find(final int id) {
+        return (Role) abstractFind(id);
     }
 
     @Override
-    public Role find(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Role find(final Integer id) {
+        return find(id.intValue());
     }
 
     @Override
-    public Role findByName(String loginName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Role findByName(final String name) {
+        try {
+            final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
+            findStatement.setString(1, name);
+            final ResultSet rs = findStatement.executeQuery();
+            rs.next();
+            final Role result = load(rs);
+            findStatement.close();
+            return result;
+        } catch (SQLException ex) {
+            throw new ApplicationException(ex);
+        }
     }
 
 }
