@@ -27,7 +27,7 @@ public final class SqlLoader {
     /**
      * Base package where SQL files are stored in resources.
      */
-    private static final String FIXTURE_BASE = "/org/lafayette/server/sql/";
+    private static final String RESOURCE_BASE = "/org/lafayette/server/sql/";
 
     /**
      * Hidden for pure static class.
@@ -39,13 +39,13 @@ public final class SqlLoader {
     /**
      * Load a SQL file and returns content as string.
      *
-     * @param fileName relative to {@value #FIXTURE_BASE}
+     * @param fileName relative to {@value #RESOURCE_BASE}
      * @return file content
      * @throws URISyntaxException if file name is not valid resource URI
      * @throws IOException if I/O errors happened
      */
     public static String loadSql(final String fileName) throws URISyntaxException, IOException {
-        final File file = new File(SqlLoader.class.getResource(FIXTURE_BASE + fileName).toURI());
+        final File file = new File(SqlLoader.class.getResource(RESOURCE_BASE + fileName).toURI());
         return FileUtils.readFileToString(file);
     }
 
