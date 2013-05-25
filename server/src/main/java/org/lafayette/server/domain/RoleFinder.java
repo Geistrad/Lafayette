@@ -22,7 +22,7 @@ public interface RoleFinder {
 
     Role find(final int id);
     Role find(final Integer id);
-    Role findByLoginName(String loginName);
+    Role findByName(String loginName);
     Collection<Role> findAll(int limit, int offset);
     /**
      * Insert {@link Role} into database.

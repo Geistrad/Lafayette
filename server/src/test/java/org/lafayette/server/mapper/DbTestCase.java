@@ -44,14 +44,14 @@ public abstract class DbTestCase {
      */
     private static final String DB_PASSWORD = "";
     /**
-     * Connectio nto the test database.
+     * Connection to the test database.
      */
     private Connection db;
 
     /**
      * Getter for the connection.
      *
-     * @return
+     * @return same instance
      */
     public Connection db() {
         return db;

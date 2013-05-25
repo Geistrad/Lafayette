@@ -94,7 +94,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     }
 
     @Override
-    public Role findByLoginName(String loginName) {
+    public Role findByName(String loginName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
