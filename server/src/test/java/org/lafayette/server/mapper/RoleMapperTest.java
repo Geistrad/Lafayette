@@ -21,7 +21,6 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import org.junit.Ignore;
 import org.lafayette.server.ApplicationException;
 
 /**
