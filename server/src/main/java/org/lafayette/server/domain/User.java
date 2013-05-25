@@ -41,6 +41,9 @@ public class User extends BaseDomainObject {
      * Unique salt for password hash.
      */
     private String salt;
+    /**
+     * Roles a user has.
+     */
     private final Collection<Role> roles = Sets.newHashSet();
 
     /**
@@ -102,9 +105,25 @@ public class User extends BaseDomainObject {
         return salt;
     }
 
+    public Collection<Role> getRoles() {
+        return Sets.newHashSet(roles);
+    }
+
+    public boolean hasRole(final Role r) {
+        return roles.contains(r);
+    }
+
+    public void removeRole(final Role r) {
+        roles.remove(r);
+    }
+
+    public void addRole(final Role r) {
+        roles.add(r);
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), loginName, hashedPassword, salt);
+        return Objects.hashCode(super.hashCode(), loginName, hashedPassword, salt, roles);
     }
 
     @Override
@@ -118,7 +137,8 @@ public class User extends BaseDomainObject {
         return super.equals(other)
                 && Objects.equal(loginName, other.loginName)
                 && Objects.equal(hashedPassword, other.hashedPassword)
-                && Objects.equal(salt, other.salt);
+                && Objects.equal(salt, other.salt)
+                && Objects.equal(roles, other.roles);
     }
 
     @Override
@@ -128,6 +148,7 @@ public class User extends BaseDomainObject {
                 .add("loginName", loginName)
                 .add("hashedPassword", hashedPassword)
                 .add("salt", salt)
+                .add("roles", roles)
                 .toString();
     }
 }

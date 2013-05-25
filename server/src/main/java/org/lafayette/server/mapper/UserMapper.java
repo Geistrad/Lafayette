@@ -38,7 +38,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     /**
      * Field of database table.
      */
-    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
+    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt, role_id";
 
     /**
      * Created by {@link Mappers factory}.

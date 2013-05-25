@@ -21,6 +21,9 @@ import org.lafayette.server.mapper.Mappers;
  */
 public final class Finders {
 
+    /**
+     * Shares the mappers for all finders.
+     */
     private final Mappers mappers;
 
     /**
@@ -40,6 +43,15 @@ public final class Finders {
      */
     public UserFinder forUsers() {
         return mappers.createUserMapper();
+    }
+
+    /**
+     * Crete a new role finder.
+     *
+     * @return new instance
+     */
+    public RoleFinder forRoles() {
+        return mappers.createRoleMapper();
     }
 
 }
