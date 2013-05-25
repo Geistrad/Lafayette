@@ -24,6 +24,7 @@
         <project.build.version.target>1.6</project.build.version.target>
         <dependnecy.jersey.version>1.17.1</dependnecy.jersey.version>
         <dependnecy.jackson.version>1.9.12</dependnecy.jackson.version>
+        <dependnecy.spring-security.version>3.1.4.RELEASE</dependnecy.spring-security.version>
     </properties>
 
     <dependencies>
@@ -108,6 +109,22 @@
             <artifactId>jackson-jaxrs</artifactId>
             <version>${dependnecy.jackson.version}</version>
         </dependency>
+        <!-- Spring security framework. -->
+<!--        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${dependnecy.spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${dependnecy.spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${dependnecy.spring-security.version}</version>
+        </dependency>-->
         <!-- JSP tag libraries. -->
         <dependency>
             <groupId>taglibs</groupId>

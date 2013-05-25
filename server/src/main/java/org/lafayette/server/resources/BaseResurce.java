@@ -9,7 +9,6 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.resources;
 
 import com.sun.jersey.api.NotFoundException;
@@ -25,6 +24,7 @@ import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.DomainObject;
+import org.lafayette.server.domain.Finders;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.log.Log;
@@ -38,11 +38,12 @@ import org.msgpack.MessagePack;
 public abstract class BaseResurce {
 
     protected final Logger log = Log.getLogger(this);
-
     private final UriList indexUriList;
     private final MessagePack msgpack = new MessagePack();
-    @Context private ServletContext context;
-    @Context private UriInfo uriInfo;
+    @Context
+    private ServletContext context;
+    @Context
+    private UriInfo uriInfo;
 
     public BaseResurce() {
         indexUriList = new UriList();
@@ -61,6 +62,15 @@ public abstract class BaseResurce {
 
     protected UriInfo uriInfo() {
         return uriInfo;
+    }
+    private Finders finders = null;
+
+    protected synchronized Finders finders() {
+        if (null == finders) {
+            finders = new Finders(registry().getMappers());
+        }
+
+        return finders;
     }
 
     protected Response createErrorResponse(String message) {
@@ -90,5 +100,4 @@ public abstract class BaseResurce {
         addUrisToIndexList(indexUriList);
         return indexUriList.toString();
     }
-
 }

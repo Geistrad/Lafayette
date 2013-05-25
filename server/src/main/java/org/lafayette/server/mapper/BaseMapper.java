@@ -47,19 +47,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      *
      * Key is the {@link DomainObject#getId() primary key} of the domain object.
      */
-    @Deprecated
-    private final Map<Integer, T> loadedMap = Maps.newHashMap();
     private final IntegerIdentityMap<T> idMap;
-
-    /**
-     * Dedicated constructor.
-     *
-     * @param db used database connection
-     */
-    @Deprecated
-    public BaseMapper(final Connection db) {
-        this(db, null);
-    }
 
     /**
      * Dedicated constructor.
@@ -112,8 +100,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     protected abstract void doInsert(final T subject, final PreparedStatement insertStatement) throws SQLException;
 
     protected T abstractFind(final int id) {
-        if (loadedMap.containsKey(id)) {
-            return loadedMap.get(id);
+        if (idMap.containsIdentity(id)) {
+            return idMap.get(id);
         }
 
         try {
@@ -136,12 +124,12 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     protected T load(final ResultSet rs) throws SQLException {
         final Integer id = Integer.valueOf(rs.getInt(1));
 
-        if (loadedMap.containsKey(id)) {
-            return loadedMap.get(id);
+        if (idMap.containsIdentity(id)) {
+            return idMap.get(id);
         }
 
         final T result = doLoad(id, rs);
-        loadedMap.put(id, result);
+        idMap.put(id, result);
         return result;
     }
 
@@ -203,7 +191,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             insertStatement.setInt(1, subject.getId());
             doInsert(subject, insertStatement);
             insertStatement.execute();
-            loadedMap.put(subject.getId(), subject);
+            idMap.put(subject.getId(), subject);
             insertStatement.close();
             return subject.getId();
         } catch (SQLException ex) {
@@ -217,7 +205,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             final PreparedStatement updateStatement = db.prepareStatement(deleteStatement());
             updateStatement.setInt(1, subject.getId());
             updateStatement.execute();
-            loadedMap.remove(subject.getId());
+            idMap.remove(subject.getId());
             updateStatement.close();
         } catch (SQLException ex) {
             throw new ApplicationException(ex);

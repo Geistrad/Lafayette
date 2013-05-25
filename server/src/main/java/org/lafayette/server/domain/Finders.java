@@ -15,17 +15,31 @@ package org.lafayette.server.domain;
 import org.lafayette.server.mapper.Mappers;
 
 /**
+ * Create finder objects with shared identity map.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class Finders {
 
-    private Finders() {
+    private final Mappers mappers;
+
+    /**
+     * Dedicated constructor.
+     *
+     * @param m mapper factory shared for all finders.
+     */
+    public Finders(final Mappers m) {
         super();
+        mappers = m;
     }
 
-    public static UserFinder forUsers(final Mappers m) {
-        return m.createUserMapper();
+    /**
+     * Crete a new user finder.
+     *
+     * @return new instance
+     */
+    public UserFinder forUsers() {
+        return mappers.createUserMapper();
     }
 
 }

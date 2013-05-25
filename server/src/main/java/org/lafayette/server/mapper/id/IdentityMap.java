@@ -63,6 +63,8 @@ public interface IdentityMap<I, D extends DomainObject> {
      */
     D put(final I id, final D domainObject);
 
+    D remove(final I id);
+
     /**
      * Return how many identities are in the map.
      *

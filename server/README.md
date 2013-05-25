@@ -58,6 +58,5 @@ Deploy
 
 ## Todo
 
+- Add security http://stackoverflow.com/questions/2902427/user-authentication-on-a-jersey-rest-service
 - Configure site plugin in POM.
-- Add identity map into mapper.
-- Add factory for providing finder with same shared mapper.

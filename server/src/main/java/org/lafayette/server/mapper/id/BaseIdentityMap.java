@@ -62,4 +62,9 @@ class BaseIdentityMap<I, D extends DomainObject> implements IdentityMap<I, D> {
         return map.put(id, domainObject);
     }
 
+    @Override
+    public D remove(final I id) {
+        return map.remove(id);
+    }
+
 }

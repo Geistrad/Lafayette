@@ -56,7 +56,7 @@ public class UserResource extends BaseResurce {
     @Produces(MediaType.TEXT_PLAIN)
     public String usersAsText() {
         final StringBuilder buffer = new StringBuilder();
-        final UserFinder finder = Finders.forUsers(registry().getMappers());
+        final UserFinder finder = finders().forUsers();
         buffer.append(StringUtils.rightPad("id", PAD_ID))
                 .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
                 .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
@@ -132,7 +132,7 @@ public class UserResource extends BaseResurce {
     }
 
     private User findUSerById(String id) throws NumberFormatException {
-        final UserFinder finder = Finders.forUsers(registry().getMappers());
+        final UserFinder finder = finders().forUsers();
         return finder.find(Integer.parseInt(id));
     }
 }

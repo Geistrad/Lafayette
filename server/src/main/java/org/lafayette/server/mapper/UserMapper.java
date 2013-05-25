@@ -40,11 +40,12 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
 
-    @Deprecated
-    public UserMapper(final Connection db) {
-        super(db);
-    }
-
+    /**
+     * Created by {@link Mappers factory}.
+     *
+     * @param db database connection
+     * @param idMap all mappers must share same identity map
+     */
     UserMapper(final Connection db, final IntegerIdentityMap<User> idMap) {
         super(db, idMap);
     }
