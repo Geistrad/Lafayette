@@ -21,17 +21,16 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import org.junit.Ignore;
 import org.lafayette.server.ApplicationException;
-import org.lafayette.server.domain.User;
 
 /**
  * Tests for {@link RoleMapper}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+@Ignore
 public class RoleMapperTest extends DbTestCase {
-
-    private RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
 
     @Override
     protected String tableSql() {
@@ -45,6 +44,7 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void findRoleById() {
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         Role role = sut.find(1);
         assertThat(role.getId(), is(1));
         assertThat(role.getName(), is("admin"));
@@ -58,12 +58,14 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void findRoleById_caches() {
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final Role role = sut.find(1);
         assertThat(role, is(sameInstance(sut.find(1))));
     }
 
     @Test
     public void findByName() {
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final Role role = sut.findByName("user");
         assertThat(role.getId(), is(2));
         assertThat(role.getName(), is("user"));
@@ -72,12 +74,15 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void findByName_caches() {
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final Role user = sut.findByName("user");
         assertThat(user, is(sameInstance(sut.findByName("Baz"))));
     }
 
     @Test
     public void findAll() {
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+
         for (final Role role : sut.findAll(10, 0)) {
             final int roleId = role.getId();
 
@@ -101,6 +106,7 @@ public class RoleMapperTest extends DbTestCase {
     public void findAll_emptyTable() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         destroyTestDatabase();
         startTestDatabase(false);
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final Collection<Role> roles = sut.findAll(10, 0);
         assertThat(roles, is(empty()));
     }
@@ -111,6 +117,7 @@ public class RoleMapperTest extends DbTestCase {
         final String desc = "snafupw";
         final String salt = "snafusalt";
         Role user = new Role(name, desc);
+        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final int id = sut.insert(user);
 
         // avoid cache
@@ -122,6 +129,7 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void update() {
+        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getName(), is("user"));
@@ -145,12 +153,23 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void delete() {
+        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getName(), is("user"));
         assertThat(role.getDescription(), is("Standart user with limited privileges."));
 
         sut.delete(role);
+
+        try {
+            sut.find(2);
+            fail("Expected exception not thrown!");
+        } catch (ApplicationException ex) {
+            assertThat(ex.getMessage(), is("There is no record set whith primary key '2'!"));
+        }
+
+        // avoid cache
+        sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
 
         try {
             sut.find(2);

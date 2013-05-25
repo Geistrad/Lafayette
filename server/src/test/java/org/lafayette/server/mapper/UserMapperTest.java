@@ -29,8 +29,6 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  */
 public class UserMapperTest extends DbTestCase {
 
-    private UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
-
     @Override
     protected String tableSql() {
         return "table_user.sql";
@@ -43,6 +41,7 @@ public class UserMapperTest extends DbTestCase {
 
     @Test
     public void findUserById() {
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         User user = sut.find(1);
         assertThat(user.getId(), is(1));
         assertThat(user.getLoginName(), is("Foo"));
@@ -58,12 +57,14 @@ public class UserMapperTest extends DbTestCase {
 
     @Test
     public void findUserById_caches() {
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final User user = sut.find(1);
         assertThat(user, is(sameInstance(sut.find(1))));
     }
 
     @Test
     public void findByLoginName() {
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final User user = sut.findByLoginName("Baz");
         assertThat(user.getId(), is(3));
         assertThat(user.getLoginName(), is("Baz"));
@@ -73,12 +74,15 @@ public class UserMapperTest extends DbTestCase {
 
     @Test
     public void findByLoginName_caches() {
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final User user = sut.findByLoginName("Baz");
         assertThat(user, is(sameInstance(sut.findByLoginName("Baz"))));
     }
 
     @Test
     public void findAll() {
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
+
         for (final User user : sut.findAll(10, 0)) {
             final int userId = user.getId();
 
@@ -108,6 +112,7 @@ public class UserMapperTest extends DbTestCase {
     public void findAll_emptyTable() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         destroyTestDatabase();
         startTestDatabase(false);
+        final UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final Collection<User> users = sut.findAll(10, 0);
         assertThat(users, is(empty()));
     }
@@ -118,6 +123,7 @@ public class UserMapperTest extends DbTestCase {
         final String hashedPassword = "snafupw";
         final String salt = "snafusalt";
         User user = new User(loginName, hashedPassword, salt);
+        UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final int id = sut.insert(user);
 
         // avoid cache
@@ -130,6 +136,7 @@ public class UserMapperTest extends DbTestCase {
 
     @Test
     public void update() {
+        UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         User user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
@@ -157,6 +164,7 @@ public class UserMapperTest extends DbTestCase {
 
     @Test
     public void delete() {
+        UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final User user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
@@ -164,6 +172,16 @@ public class UserMapperTest extends DbTestCase {
         assertThat(user.getSalt(), is("AiZuur1Y"));
 
         sut.delete(user);
+
+        try {
+            sut.find(2);
+            fail("Expected exception not thrown!");
+        } catch (ApplicationException ex) {
+            assertThat(ex.getMessage(), is("There is no record set whith primary key '2'!"));
+        }
+
+        // avoid cache
+        sut = new UserMapper(db(), new IntegerIdentityMap<User>());
 
         try {
             sut.find(2);
