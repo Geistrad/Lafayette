@@ -413,7 +413,7 @@
                     <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
                     <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
                     <!-- Optional directory to put findbugs xdoc xml report -->
-                    <!--<xmlOutputDirectory>target/site</xmlOutputDirectory> -->
+                    <xmlOutputDirectory>target/site</xmlOutputDirectory>
                     <xmlOutput>true</xmlOutput>
                     <threshold>Low</threshold>
                     <effort>Max</effort>
