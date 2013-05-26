@@ -16,11 +16,9 @@ import de.weltraumschaf.commons.Version;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -28,7 +26,6 @@ import org.lafayette.server.config.ConfigLoader;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.JdbcDriver;
 import org.lafayette.server.db.NullConnection;
-import org.lafayette.server.db.SqlLoader;
 import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.Mappers;
 
@@ -44,7 +41,7 @@ public final class ServerContextListener implements ServletContextListener {
     /**
      * Key for a {@link Registry registry object} servlet context attribute.
      */
-    public static String REGISRTY = "registry";
+    public static final String REGISRTY = "registry";
     /**
      * PAth to version file.
      */
@@ -52,7 +49,7 @@ public final class ServerContextListener implements ServletContextListener {
     /**
      * Logging facility.
      */
-    private final static Logger LOG = Log.getLogger(ServerContextListener.class);
+    private static final Logger LOG = Log.getLogger(ServerContextListener.class);
     /**
      * Registry shared over the whole web application.
      */

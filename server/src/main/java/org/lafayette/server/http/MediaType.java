@@ -9,14 +9,16 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.http;
+
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
 /**
  * Extends {@link javax.ws.rs.core.MediaType MediaType from WS Core}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+@SuppressWarnings("NM_SAME_SIMPLE_NAME_AS_SUPERCLASS")
 public class MediaType extends javax.ws.rs.core.MediaType {
 
     /**
@@ -25,12 +27,10 @@ public class MediaType extends javax.ws.rs.core.MediaType {
      * See http://amundsen.com/hypermedia/urilist/
      */
     public static final String TEXT_URI_LIST = "text/uri-list";
-
     /**
      * Media type for MessagePack.
      *
      * See http://msgpack.org/
      */
     public static final String APPLICATION_X_MSGPACK = "application/x-msgpack";
-
 }

@@ -33,17 +33,36 @@ import org.lafayette.server.log.Logger;
 import org.msgpack.MessagePack;
 
 /**
+ * Common functionality for all resource classes.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public abstract class BaseResource {
 
+    /**
+     * Logger facility.
+     */
     protected final Logger log = Log.getLogger(this);
+    /**
+     * List of URIs available from a resource's index.
+     */
     private final UriList indexUriList;
+    /**
+     * Used to format message pack format.
+     */
     private final MessagePack msgpack = new MessagePack();
+    /**
+     * Servlet context injected by Jersey.
+     */
     @Context private ServletContext context;
-    @Context private UriInfo uriInfo;
+    /**
+     * Security context injected by Jersey.
+     */
     @Context private SecurityContext security;
+    /**
+     * URI info injected by Jersey.
+     */
+    @Context private UriInfo uriInfo;
 
     public BaseResource() {
         indexUriList = new UriList();

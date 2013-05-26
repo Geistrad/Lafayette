@@ -12,6 +12,7 @@
 
 package org.lafayette.server.mapper;
 
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -82,6 +83,7 @@ public abstract class DbTestCase {
     }
 
     @After
+    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void destroyTestDatabase() throws SQLException {
         try {
             final Statement shutdownStatement = db.createStatement();
@@ -93,11 +95,13 @@ public abstract class DbTestCase {
         }
     }
 
+    @SuppressWarnings("DMI_EMPTY_DB_PASSWORD")
     private void createDatabaseConnection() throws SQLException, ClassNotFoundException {
         JdbcDriver.HSQLDB.load();
         db = DriverManager.getConnection(JDBC_URI, DB_USER, DB_PASSWORD);
     }
 
+    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void createTable() throws SQLException, IOException, URISyntaxException {
         final String tableSql = SqlLoader.loadSql(tableSql());
         final Statement createTableStatement = db.createStatement();
@@ -112,6 +116,7 @@ public abstract class DbTestCase {
      */
     protected abstract String tableSql();
 
+    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void insertTestData() throws SQLException, URISyntaxException, IOException {
         final String dataSql = SqlLoader.loadSql(testDataSql());
         final Statement insertDataStatement = db.createStatement();

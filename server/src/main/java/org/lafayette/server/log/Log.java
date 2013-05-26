@@ -31,14 +31,29 @@ package org.lafayette.server.log;
  */
 public final class Log {
 
+    /**
+     * Hidden for pure static class.
+     */
     private Log() {
         super();
     }
 
+    /**
+     * Get logger for class type of an object.
+     *
+     * @param object to create logger for
+     * @return new logger
+     */
     public static Logger getLogger(final Object object) {
         return getLogger(object.getClass());
     }
 
+    /**
+     * Get logger for class type.
+     *
+     * @param clazz to create logger for
+     * @return new logger
+     */
     public static Logger getLogger(final Class<?> clazz) {
         return new Logger(org.apache.log4j.Logger.getLogger(clazz));
     }

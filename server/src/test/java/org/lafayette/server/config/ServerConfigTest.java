@@ -11,6 +11,7 @@
  */
 package org.lafayette.server.config;
 
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -28,6 +29,7 @@ public class ServerConfigTest {
     private ServerConfig sut;
 
     @Before
+    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void initSubject() throws IOException {
         final Properties prop = new Properties();
         final InputStream input = getClass().getResourceAsStream("/org/lafayette/server/config/server.properties");

@@ -53,7 +53,10 @@ public final class Registry {
      * Service configuration.
      */
     private ServerConfig serverConfig = new ServerConfig(new Properties());
-    private Mappers mappers;
+    /**
+     * Mapper factory.
+     */
+    private Mappers mappers = new Mappers(database);
 
     /**
      * Dedicated constructor.

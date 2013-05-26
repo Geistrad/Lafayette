@@ -21,6 +21,7 @@ import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.mapper.Mappers;
 
 /**
  * Tests for {@link Registry}.
@@ -29,8 +30,9 @@ import org.lafayette.server.db.NullConnection;
  */
 public class RegistryTest {
 
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:OFF
+    @Rule public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:ON
     private final Registry sut = new Registry();
 
     @Test
@@ -39,6 +41,7 @@ public class RegistryTest {
         assertThat(sut.getServerConfig(), is(notNullValue()));
         assertThat(sut.getStage(), is(notNullValue()));
         assertThat(sut.getVersion(), is(notNullValue()));
+        assertThat(sut.getMappers(), is(notNullValue()));
     }
 
     @Test
@@ -63,6 +66,12 @@ public class RegistryTest {
     public void setVersion_throwsExceptionIfParameterIsNull() {
         thrown.expect(NullPointerException.class);
         sut.setVersion(null);
+    }
+
+    @Test
+    public void setMappers_throwsExceptionIfParameterIsNull() {
+        thrown.expect(NullPointerException.class);
+        sut.setMappers(null);
     }
 
     @Test
@@ -91,6 +100,13 @@ public class RegistryTest {
         final Version version = new Version("");
         sut.setVersion(version);
         assertThat(sut.getVersion(), is(sameInstance(version)));
+    }
+
+    @Test
+    public void setMappers() {
+        final Mappers mappers = new Mappers(new NullConnection());
+        sut.setMappers(mappers);
+        assertThat(sut.getMappers(), is(sameInstance(mappers)));
     }
 
 }
