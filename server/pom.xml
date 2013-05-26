@@ -8,6 +8,8 @@
     <packaging>war</packaging>
 
     <name>Lafayette Server</name>
+    <description>Lafayette Server Application</description>
+    <url>http://weltraumschaf.github.com/Lafayette/</url>
 
     <developers>
         <developer>
@@ -16,6 +18,46 @@
             <email>ich@weltraumschaf.de</email>
         </developer>
     </developers>
+
+    <licenses>
+        <license>
+            <name>THE BEER-WARE LICENSE</name>
+            <url>http://www.weltraumschaf.de/the-beer-ware-license.txt</url>
+            <distribution>repo</distribution>
+            <comments>
+                LICENSE
+
+                "THE BEER-WARE LICENSE" (Revision 42):
+                "Sven Strittmatter" &lt;weltraumschaf(at)googlemail(dot)com&gt; wrote this file.
+                As long as you retain this notice you can do whatever you want with
+                this stuff. If we meet some day, and you think this stuff is worth it,
+                you can buy me a beer in return.
+            </comments>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Weltraumschaf/Lafayette/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/Weltraumschaf/Lafayette.git</connection>
+        <developerConnection>scm:git:git@github.com:Weltraumschaf/Lafayette.git</developerConnection>
+        <url>https://github.com/Weltraumschaf/Lafayette.git</url>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>github-project-site</id>
+            <url>gitsite:git@github.com/Weltraumschaf/Lafayette.git</url>
+        </site>
+    </distributionManagement>
+
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://www.weltraumschaf.de:8080/job/Lafayette-Server/</url>
+    </ciManagement>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -201,12 +243,32 @@
     </dependencies>
 
     <build>
+        <defaultGoal>package</defaultGoal>
+
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-provider-gitexe</artifactId>
+                <version>1.7</version>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-manager-plexus</artifactId>
+                <version>1.7</version>
+            </extension>
+            <extension>
+                <groupId>org.kathrynhuxtable.maven.wagon</groupId>
+                <artifactId>wagon-gitsite</artifactId>
+                <version>0.3.1</version>
+            </extension>
+        </extensions>
 
         <plugins>
             <plugin>
