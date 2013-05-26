@@ -115,6 +115,11 @@ public class UserTest {
         assertThat(u1.hasRole(r2), is(equalTo(true)));
         assertThat(u1.getRoles(), hasSize(2));
         assertThat(u1.getRoles(), containsInAnyOrder(r1, r2));
+
+        u1.removeRole(r1);
+        assertThat(u1.hasRole(r1), is(equalTo(false)));
+        assertThat(u1.getRoles(), hasSize(1));
+        assertThat(u1.getRoles(), contains(r2));
     }
 
 }

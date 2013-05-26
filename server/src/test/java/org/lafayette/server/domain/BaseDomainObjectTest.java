@@ -57,6 +57,54 @@ public class BaseDomainObjectTest {
         assertThat(sut.isIdInitialized(), is(equalTo(true)));
     }
 
+    @Test
+    public void testToString() {
+        sut.setId(42);
+        assertThat(sut.toString(), is(equalTo("id=42")));
+    }
+
+    @Test
+    public void testHashCode() {
+        final BaseDomainObject sut1 = new BaseDomainObjectStub();
+        sut1.setId(42);
+        final BaseDomainObject sut2 = new BaseDomainObjectStub();
+        sut2.setId(42);
+        final BaseDomainObject sut3 = new BaseDomainObjectStub();
+        sut3.setId(23);
+
+        assertThat(sut1.hashCode(), is(equalTo(sut1.hashCode())));
+        assertThat(sut1.hashCode(), is(equalTo(sut2.hashCode())));
+        assertThat(sut2.hashCode(), is(equalTo(sut1.hashCode())));
+        assertThat(sut2.hashCode(), is(equalTo(sut2.hashCode())));
+
+        assertThat(sut1.hashCode(), is(not(equalTo(sut3.hashCode()))));
+        assertThat(sut2.hashCode(), is(not(equalTo(sut3.hashCode()))));
+    }
+
+    @Test
+    @SuppressWarnings("IncompatibleEquals")
+    public void testEquals() {
+        final BaseDomainObject sut1 = new BaseDomainObjectStub();
+        sut1.setId(42);
+        final BaseDomainObject sut2 = new BaseDomainObjectStub();
+        sut2.setId(42);
+        final BaseDomainObject sut3 = new BaseDomainObjectStub();
+        sut3.setId(23);
+
+        //CHECKSTYLE:OFF
+        assertThat(sut1.equals(null), is(equalTo(false)));
+        assertThat(sut1.equals(""), is(equalTo(false)));
+        //CHECKSTYLE:ON
+
+        assertThat(sut1.equals(sut1), is(equalTo(true)));
+        assertThat(sut1.equals(sut2), is(equalTo(true)));
+        assertThat(sut2.equals(sut1), is(equalTo(true)));
+        assertThat(sut2.equals(sut2), is(equalTo(true)));
+
+        assertThat(sut1.equals(sut3), is(equalTo(false)));
+        assertThat(sut2.equals(sut3), is(equalTo(false)));
+    }
+
     private static final class BaseDomainObjectStub extends BaseDomainObject {
     }
 }

@@ -47,6 +47,7 @@ public class RoleTest {
     }
 
     @Test
+    @SuppressWarnings("IncompatibleEquals")
     public void testEquals() {
         final Role r1 = new Role(1, "foo", "bar");
         final Role r2 = new Role(1, "foo", "bar");

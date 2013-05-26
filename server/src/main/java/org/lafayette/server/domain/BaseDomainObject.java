@@ -13,8 +13,6 @@
 package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
-import org.apache.commons.lang3.Validate;
-
 
 /**
  * Base implementation for domain objects.
