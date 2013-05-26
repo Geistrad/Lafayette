@@ -28,6 +28,7 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 * MySQL 5.5.31 (User: root - Password: mo3Shoo7)
 * Apache Tomcat 7 (User: root - Password: mo3Shoo7)
 * Jenkins (User: root - Password: mo3Shoo7)
+* Sonar (User: root - Password: mo3Shoo7, DB: sonar - Quizook1) in `/usr/local/sonar`
 
 ### Tomcat
 
