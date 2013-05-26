@@ -61,5 +61,11 @@ Deploy
 ## Todo
 
 - Add security http://stackoverflow.com/questions/2902427/user-authentication-on-a-jersey-rest-service
+	- http://www.oracle.com/technetwork/java/filters-137243.html
+	- https://weblogs.java.net/blog/2008/03/07/authentication-jersey
+	- http://static.springsource.org/spring-security/site/tutorial.html
+	- http://static.springsource.org/spring-security/site/faq/faq.html
+	- http://javarevisited.blogspot.de/2012/02/orgapachecommonslogginglogfactory-error.html
+	- http://www.unicon.net/node/838
 
 [1]: http://weltraumschaf.github.io/Lafayette/
