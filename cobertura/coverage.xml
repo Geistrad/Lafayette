@@ -1,0 +1,3391 @@
+<?xml version="1.0"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+
+<coverage line-rate="0.5997171145685997" branch-rate="0.5865384615384616" lines-covered="424" lines-valid="707" branches-covered="61" branches-valid="104" complexity="1.361904761904762" version="1.9.4.1" timestamp="1369562917951">
+	<sources>
+		<source>--source</source>
+		<source>/Users/sxs/Projects/Lafayette/server/src/main/java</source>
+	</sources>
+	<packages>
+		<package name="org.lafayette.server" line-rate="0.3656716417910448" branch-rate="0.4" complexity="1.4838709677419355">
+			<classes>
+				<class name="org.lafayette.server.ApplicationException" filename="org/lafayette/server/ApplicationException.java" line-rate="0.3333333333333333" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="26" hits="4" branch="false"/>
+								<line number="27" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/Throwable;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="0" branch="false"/>
+								<line number="31" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/Throwable;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="22" hits="0" branch="false"/>
+								<line number="23" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="22" hits="0" branch="false"/>
+						<line number="23" hits="0" branch="false"/>
+						<line number="26" hits="4" branch="false"/>
+						<line number="27" hits="4" branch="false"/>
+						<line number="30" hits="0" branch="false"/>
+						<line number="31" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.EnvVars" filename="org/lafayette/server/EnvVars.java" line-rate="0.0" branch-rate="0.0" complexity="2.0">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="20" hits="0" branch="false"/>
+								<line number="25" hits="0" branch="false"/>
+								<line number="29" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;I)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="getFromSystem" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="37" hits="0" branch="false"/>
+								<line number="38" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lorg/lafayette/server/EnvVars;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lorg/lafayette/server/EnvVars;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="20" hits="0" branch="false"/>
+						<line number="25" hits="0" branch="false"/>
+						<line number="29" hits="0" branch="false"/>
+						<line number="37" hits="0" branch="false"/>
+						<line number="38" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.Registry" filename="org/lafayette/server/Registry.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="43" hits="11" branch="false"/>
+								<line number="47" hits="11" branch="false"/>
+								<line number="51" hits="11" branch="false"/>
+								<line number="55" hits="11" branch="false"/>
+								<line number="59" hits="11" branch="false"/>
+								<line number="65" hits="11" branch="false"/>
+								<line number="66" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDatabase" signature="()Ljava/sql/Connection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="112" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getMappers" signature="()Lorg/lafayette/server/mapper/Mappers;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="145" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getServerConfig" signature="()Lorg/lafayette/server/config/ServerConfig;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="131" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getStage" signature="()Lorg/lafayette/server/Stage;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="93" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="getVersion" signature="()Lde/weltraumschaf/commons/Version;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="74" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="setDatabase" signature="(Ljava/sql/Connection;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="121" hits="2" branch="false"/>
+								<line number="122" hits="1" branch="false"/>
+								<line number="123" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setMappers" signature="(Lorg/lafayette/server/mapper/Mappers;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="149" hits="2" branch="false"/>
+								<line number="150" hits="1" branch="false"/>
+								<line number="151" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setServerConfig" signature="(Lorg/lafayette/server/config/ServerConfig;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="140" hits="2" branch="false"/>
+								<line number="141" hits="1" branch="false"/>
+								<line number="142" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setStage" signature="(Lorg/lafayette/server/Stage;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="102" hits="2" branch="false"/>
+								<line number="103" hits="1" branch="false"/>
+								<line number="104" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setVersion" signature="(Lde/weltraumschaf/commons/Version;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="83" hits="2" branch="false"/>
+								<line number="84" hits="1" branch="false"/>
+								<line number="85" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="43" hits="11" branch="false"/>
+						<line number="47" hits="11" branch="false"/>
+						<line number="51" hits="11" branch="false"/>
+						<line number="55" hits="11" branch="false"/>
+						<line number="59" hits="11" branch="false"/>
+						<line number="65" hits="11" branch="false"/>
+						<line number="66" hits="11" branch="false"/>
+						<line number="74" hits="2" branch="false"/>
+						<line number="83" hits="2" branch="false"/>
+						<line number="84" hits="1" branch="false"/>
+						<line number="85" hits="1" branch="false"/>
+						<line number="93" hits="2" branch="false"/>
+						<line number="102" hits="2" branch="false"/>
+						<line number="103" hits="1" branch="false"/>
+						<line number="104" hits="1" branch="false"/>
+						<line number="112" hits="2" branch="false"/>
+						<line number="121" hits="2" branch="false"/>
+						<line number="122" hits="1" branch="false"/>
+						<line number="123" hits="1" branch="false"/>
+						<line number="131" hits="2" branch="false"/>
+						<line number="140" hits="2" branch="false"/>
+						<line number="141" hits="1" branch="false"/>
+						<line number="142" hits="1" branch="false"/>
+						<line number="145" hits="2" branch="false"/>
+						<line number="149" hits="2" branch="false"/>
+						<line number="150" hits="1" branch="false"/>
+						<line number="151" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.ServerContextListener" filename="org/lafayette/server/ServerContextListener.java" line-rate="0.0" branch-rate="0.0" complexity="2.111111111111111">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="56" hits="0" branch="false"/>
+								<line number="62" hits="0" branch="false"/>
+								<line number="63" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="closeDatabaseConnection" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="179" hits="0" branch="false"/>
+								<line number="180" hits="0" branch="false"/>
+								<line number="181" hits="0" branch="false"/>
+								<line number="182" hits="0" branch="false"/>
+								<line number="183" hits="0" branch="false"/>
+								<line number="184" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="contextDestroyed" signature="(Ljavax/servlet/ServletContextEvent;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="78" hits="0" branch="false"/>
+								<line number="79" hits="0" branch="false"/>
+								<line number="80" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="contextInitialized" signature="(Ljavax/servlet/ServletContextEvent;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="67" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="false"/>
+								<line number="69" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
+								<line number="71" hits="0" branch="false"/>
+								<line number="72" hits="0" branch="false"/>
+								<line number="73" hits="0" branch="false"/>
+								<line number="74" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createMappersFactory" signature="(Ljava/sql/Connection;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="187" hits="0" branch="false"/>
+								<line number="188" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadConfig" signature="()Lorg/lafayette/server/config/ServerConfig;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="142" hits="0" branch="false"/>
+								<line number="143" hits="0" branch="false"/>
+								<line number="144" hits="0" branch="false"/>
+								<line number="145" hits="0" branch="false"/>
+								<line number="148" hits="0" branch="false"/>
+								<line number="149" hits="0" branch="false"/>
+								<line number="151" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="152" hits="0" branch="false"/>
+								<line number="153" hits="0" branch="false"/>
+								<line number="154" hits="0" branch="false"/>
+								<line number="155" hits="0" branch="false"/>
+								<line number="156" hits="0" branch="false"/>
+								<line number="157" hits="0" branch="false"/>
+								<line number="159" hits="0" branch="false"/>
+								<line number="160" hits="0" branch="false"/>
+								<line number="162" hits="0" branch="false"/>
+								<line number="163" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="164" hits="0" branch="false"/>
+								<line number="166" hits="0" branch="false"/>
+								<line number="167" hits="0" branch="false"/>
+								<line number="168" hits="0" branch="false"/>
+								<line number="169" hits="0" branch="false"/>
+								<line number="171" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadStage" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="101" hits="0" branch="false"/>
+								<line number="102" hits="0" branch="false"/>
+								<line number="103" hits="0" branch="false"/>
+								<line number="104" hits="0" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="106" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadVersion" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="87" hits="0" branch="false"/>
+								<line number="88" hits="0" branch="false"/>
+								<line number="89" hits="0" branch="false"/>
+								<line number="90" hits="0" branch="false"/>
+								<line number="91" hits="0" branch="false"/>
+								<line number="92" hits="0" branch="false"/>
+								<line number="93" hits="0" branch="false"/>
+								<line number="94" hits="0" branch="false"/>
+								<line number="95" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="openDatabaseConnection" signature="(Lorg/lafayette/server/config/ServerConfig;)Ljava/sql/Connection;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="115" hits="0" branch="false"/>
+								<line number="116" hits="0" branch="false"/>
+								<line number="117" hits="0" branch="false"/>
+								<line number="118" hits="0" branch="false"/>
+								<line number="122" hits="0" branch="false"/>
+								<line number="123" hits="0" branch="false"/>
+								<line number="124" hits="0" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+								<line number="126" hits="0" branch="false"/>
+								<line number="127" hits="0" branch="false"/>
+								<line number="128" hits="0" branch="false"/>
+								<line number="129" hits="0" branch="false"/>
+								<line number="130" hits="0" branch="false"/>
+								<line number="131" hits="0" branch="false"/>
+								<line number="133" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="52" hits="0" branch="false"/>
+						<line number="56" hits="0" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="63" hits="0" branch="false"/>
+						<line number="67" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
+						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
+						<line number="71" hits="0" branch="false"/>
+						<line number="72" hits="0" branch="false"/>
+						<line number="73" hits="0" branch="false"/>
+						<line number="74" hits="0" branch="false"/>
+						<line number="78" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="false"/>
+						<line number="80" hits="0" branch="false"/>
+						<line number="87" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="89" hits="0" branch="false"/>
+						<line number="90" hits="0" branch="false"/>
+						<line number="91" hits="0" branch="false"/>
+						<line number="92" hits="0" branch="false"/>
+						<line number="93" hits="0" branch="false"/>
+						<line number="94" hits="0" branch="false"/>
+						<line number="95" hits="0" branch="false"/>
+						<line number="101" hits="0" branch="false"/>
+						<line number="102" hits="0" branch="false"/>
+						<line number="103" hits="0" branch="false"/>
+						<line number="104" hits="0" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="115" hits="0" branch="false"/>
+						<line number="116" hits="0" branch="false"/>
+						<line number="117" hits="0" branch="false"/>
+						<line number="118" hits="0" branch="false"/>
+						<line number="122" hits="0" branch="false"/>
+						<line number="123" hits="0" branch="false"/>
+						<line number="124" hits="0" branch="false"/>
+						<line number="125" hits="0" branch="false"/>
+						<line number="126" hits="0" branch="false"/>
+						<line number="127" hits="0" branch="false"/>
+						<line number="128" hits="0" branch="false"/>
+						<line number="129" hits="0" branch="false"/>
+						<line number="130" hits="0" branch="false"/>
+						<line number="131" hits="0" branch="false"/>
+						<line number="133" hits="0" branch="false"/>
+						<line number="142" hits="0" branch="false"/>
+						<line number="143" hits="0" branch="false"/>
+						<line number="144" hits="0" branch="false"/>
+						<line number="145" hits="0" branch="false"/>
+						<line number="148" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="151" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="152" hits="0" branch="false"/>
+						<line number="153" hits="0" branch="false"/>
+						<line number="154" hits="0" branch="false"/>
+						<line number="155" hits="0" branch="false"/>
+						<line number="156" hits="0" branch="false"/>
+						<line number="157" hits="0" branch="false"/>
+						<line number="159" hits="0" branch="false"/>
+						<line number="160" hits="0" branch="false"/>
+						<line number="162" hits="0" branch="false"/>
+						<line number="163" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="164" hits="0" branch="false"/>
+						<line number="166" hits="0" branch="false"/>
+						<line number="167" hits="0" branch="false"/>
+						<line number="168" hits="0" branch="false"/>
+						<line number="169" hits="0" branch="false"/>
+						<line number="171" hits="0" branch="false"/>
+						<line number="179" hits="0" branch="false"/>
+						<line number="180" hits="0" branch="false"/>
+						<line number="181" hits="0" branch="false"/>
+						<line number="182" hits="0" branch="false"/>
+						<line number="183" hits="0" branch="false"/>
+						<line number="184" hits="0" branch="false"/>
+						<line number="187" hits="0" branch="false"/>
+						<line number="188" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.Stage" filename="org/lafayette/server/Stage.java" line-rate="1.0" branch-rate="1.0" complexity="1.5714285714285714">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="40" hits="13" branch="false"/>
+								<line number="41" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="50" hits="6" branch="false"/>
+								<line number="51" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Lorg/lafayette/server/Stage$Stages;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="59" hits="19" branch="false"/>
+								<line number="60" hits="19" branch="false"/>
+								<line number="61" hits="19" branch="false"/>
+							</lines>
+						</method>
+						<method name="access$000" signature="()Lorg/lafayette/server/Stage$Stages;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="25" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="getStage" signature="()Lorg/lafayette/server/Stage$Stages;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="69" hits="5" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="74" hits="2" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="25" hits="4" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="40" hits="13" branch="false"/>
+						<line number="41" hits="13" branch="false"/>
+						<line number="50" hits="6" branch="false"/>
+						<line number="51" hits="6" branch="false"/>
+						<line number="59" hits="19" branch="false"/>
+						<line number="60" hits="19" branch="false"/>
+						<line number="61" hits="19" branch="false"/>
+						<line number="69" hits="5" branch="false"/>
+						<line number="74" hits="2" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.Stage$Stages" filename="org/lafayette/server/Stage.java" line-rate="1.0" branch-rate="1.0" complexity="1.5714285714285714">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="80" hits="3" branch="false"/>
+								<line number="85" hits="1" branch="false"/>
+								<line number="89" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;I)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="map" signature="(Ljava/lang/String;)Lorg/lafayette/server/Stage$Stages;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="110" hits="10" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="111" hits="3" branch="false"/>
+								<line number="112" hits="7" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="113" hits="3" branch="false"/>
+								<line number="116" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="93" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lorg/lafayette/server/Stage$Stages;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lorg/lafayette/server/Stage$Stages;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="80" hits="3" branch="false"/>
+						<line number="85" hits="1" branch="false"/>
+						<line number="89" hits="1" branch="false"/>
+						<line number="93" hits="2" branch="false"/>
+						<line number="110" hits="10" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="111" hits="3" branch="false"/>
+						<line number="112" hits="7" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="113" hits="3" branch="false"/>
+						<line number="116" hits="4" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.config" line-rate="0.6363636363636364" branch-rate="0.625" complexity="1.9090909090909092">
+			<classes>
+				<class name="org.lafayette.server.config.ConfigLoader" filename="org/lafayette/server/config/ConfigLoader.java" line-rate="0.2727272727272727" branch-rate="0.0" complexity="1.875">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="31" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Lorg/lafayette/server/config/LoaderStrategie;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="43" hits="1" branch="false"/>
+								<line number="44" hits="1" branch="false"/>
+								<line number="45" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="create" signature="()Lorg/lafayette/server/config/ConfigLoader;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="86" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="create" signature="(Lorg/lafayette/server/config/LoaderStrategie;)Lorg/lafayette/server/config/ConfigLoader;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="96" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="determineStrategy" signature="()Lorg/lafayette/server/config/LoaderStrategie;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="54" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="determineStrategy" signature="(Ljava/lang/String;)Lorg/lafayette/server/config/LoaderStrategie;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="66" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="69" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
+								<line number="71" hits="0" branch="true" condition-coverage="0% (0/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+										<condition number="1" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="72" hits="0" branch="false"/>
+								<line number="74" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="75" hits="0" branch="false"/>
+								<line number="78" hits="0" branch="false"/>
+								<line number="79" hits="0" branch="false"/>
+								<line number="81" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFile" signature="()Ljava/io/File;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="125" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="hasConfig" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="114" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="load" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="103" hits="0" branch="false"/>
+								<line number="104" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="31" hits="1" branch="false"/>
+						<line number="43" hits="1" branch="false"/>
+						<line number="44" hits="1" branch="false"/>
+						<line number="45" hits="1" branch="false"/>
+						<line number="54" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
+						<line number="71" hits="0" branch="true" condition-coverage="0% (0/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+								<condition number="1" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="72" hits="0" branch="false"/>
+						<line number="74" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="75" hits="0" branch="false"/>
+						<line number="78" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="false"/>
+						<line number="81" hits="0" branch="false"/>
+						<line number="86" hits="0" branch="false"/>
+						<line number="96" hits="1" branch="false"/>
+						<line number="103" hits="0" branch="false"/>
+						<line number="104" hits="0" branch="false"/>
+						<line number="114" hits="0" branch="false"/>
+						<line number="125" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.config.LoaderStrategie" filename="org/lafayette/server/config/LoaderStrategie.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.config.ServerConfig" filename="org/lafayette/server/config/ServerConfig.java" line-rate="1.0" branch-rate="0.75" complexity="1.5">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/util/Properties;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="63" hits="27" branch="false"/>
+								<line number="64" hits="27" branch="false"/>
+								<line number="65" hits="27" branch="false"/>
+							</lines>
+						</method>
+						<method name="generateJdbcUri" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="127" hits="3" branch="false"/>
+								<line number="128" hits="3" branch="false"/>
+								<line number="132" hits="3" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="133" hits="1" branch="false"/>
+								<line number="136" hits="3" branch="false"/>
+								<line number="137" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbDriver" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="123" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbHost" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="73" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="96" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbPassword" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="114" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbPort" signature="()I" line-rate="1.0" branch-rate="0.5">
+							<lines>
+								<line number="83" hits="7" branch="false"/>
+								<line number="84" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="85" hits="3" branch="false"/>
+								<line number="86" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getDbUser" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="105" hits="3" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="63" hits="27" branch="false"/>
+						<line number="64" hits="27" branch="false"/>
+						<line number="65" hits="27" branch="false"/>
+						<line number="73" hits="6" branch="false"/>
+						<line number="83" hits="7" branch="false"/>
+						<line number="84" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="85" hits="3" branch="false"/>
+						<line number="86" hits="3" branch="false"/>
+						<line number="96" hits="6" branch="false"/>
+						<line number="105" hits="3" branch="false"/>
+						<line number="114" hits="3" branch="false"/>
+						<line number="123" hits="6" branch="false"/>
+						<line number="127" hits="3" branch="false"/>
+						<line number="128" hits="3" branch="false"/>
+						<line number="132" hits="3" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="133" hits="1" branch="false"/>
+						<line number="136" hits="3" branch="false"/>
+						<line number="137" hits="3" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.config.TestStrategy" filename="org/lafayette/server/config/TestStrategy.java" line-rate="0.3333333333333333" branch-rate="1.0" complexity="2.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="22" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="findConfig" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="42" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFoundConfig" signature="()Ljava/io/File;" line-rate="0.3333333333333333" branch-rate="1.0">
+							<lines>
+								<line number="33" hits="1" branch="false"/>
+								<line number="34" hits="0" branch="false"/>
+								<line number="35" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="hasFoundConfig" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="27" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="22" hits="1" branch="false"/>
+						<line number="27" hits="0" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="34" hits="0" branch="false"/>
+						<line number="35" hits="0" branch="false"/>
+						<line number="42" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.config.UnixStrategy" filename="org/lafayette/server/config/UnixStrategy.java" line-rate="0.7894736842105263" branch-rate="0.85" complexity="2.625">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="53" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="72" hits="0" branch="false"/>
+								<line number="73" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="60" hits="4" branch="false"/>
+								<line number="85" hits="4" branch="false"/>
+								<line number="86" hits="4" branch="false"/>
+								<line number="87" hits="4" branch="false"/>
+								<line number="88" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="createHomeConfigFileName" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="100" hits="11" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="101" hits="1" branch="false"/>
+								<line number="104" hits="10" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="105" hits="1" branch="false"/>
+								<line number="108" hits="9" branch="false"/>
+							</lines>
+						</method>
+						<method name="createSystemConfigFileName" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="120" hits="11" branch="true" condition-coverage="100% (4/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="121" hits="9" branch="false"/>
+								<line number="123" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="findConfig" signature="()V" line-rate="0.6842105263157895" branch-rate="0.7">
+							<lines>
+								<line number="138" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="139" hits="0" branch="false"/>
+								<line number="140" hits="0" branch="false"/>
+								<line number="143" hits="4" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="144" hits="6" branch="false"/>
+								<line number="145" hits="6" branch="false"/>
+								<line number="147" hits="6" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="148" hits="3" branch="false"/>
+								<line number="149" hits="3" branch="false"/>
+								<line number="152" hits="3" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="153" hits="0" branch="false"/>
+								<line number="154" hits="0" branch="false"/>
+								<line number="157" hits="3" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="158" hits="0" branch="false"/>
+								<line number="159" hits="0" branch="false"/>
+								<line number="162" hits="3" branch="false"/>
+								<line number="163" hits="3" branch="false"/>
+								<line number="164" hits="3" branch="false"/>
+								<line number="166" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFileList" signature="()Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="174" hits="16" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFoundConfig" signature="()Ljava/io/File;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="133" hits="8" branch="false"/>
+							</lines>
+						</method>
+						<method name="hasFoundConfig" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="128" hits="12" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="53" hits="1" branch="false"/>
+						<line number="60" hits="4" branch="false"/>
+						<line number="72" hits="0" branch="false"/>
+						<line number="73" hits="0" branch="false"/>
+						<line number="85" hits="4" branch="false"/>
+						<line number="86" hits="4" branch="false"/>
+						<line number="87" hits="4" branch="false"/>
+						<line number="88" hits="4" branch="false"/>
+						<line number="100" hits="11" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="101" hits="1" branch="false"/>
+						<line number="104" hits="10" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="105" hits="1" branch="false"/>
+						<line number="108" hits="9" branch="false"/>
+						<line number="120" hits="11" branch="true" condition-coverage="100% (4/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="121" hits="9" branch="false"/>
+						<line number="123" hits="2" branch="false"/>
+						<line number="128" hits="12" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="133" hits="8" branch="false"/>
+						<line number="138" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="139" hits="0" branch="false"/>
+						<line number="140" hits="0" branch="false"/>
+						<line number="143" hits="4" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="144" hits="6" branch="false"/>
+						<line number="145" hits="6" branch="false"/>
+						<line number="147" hits="6" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="148" hits="3" branch="false"/>
+						<line number="149" hits="3" branch="false"/>
+						<line number="152" hits="3" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="153" hits="0" branch="false"/>
+						<line number="154" hits="0" branch="false"/>
+						<line number="157" hits="3" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="158" hits="0" branch="false"/>
+						<line number="159" hits="0" branch="false"/>
+						<line number="162" hits="3" branch="false"/>
+						<line number="163" hits="3" branch="false"/>
+						<line number="164" hits="3" branch="false"/>
+						<line number="166" hits="4" branch="false"/>
+						<line number="174" hits="16" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.config.WindowsStrategy" filename="org/lafayette/server/config/WindowsStrategy.java" line-rate="0.0" branch-rate="1.0" complexity="2.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="21" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findConfig" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFoundConfig" signature="()Ljava/io/File;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="hasFoundConfig" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="25" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="21" hits="0" branch="false"/>
+						<line number="25" hits="0" branch="false"/>
+						<line number="30" hits="0" branch="false"/>
+						<line number="35" hits="0" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.db" line-rate="0.18055555555555555" branch-rate="0.0" complexity="1.1454545454545455">
+			<classes>
+				<class name="org.lafayette.server.db.JdbcDriver" filename="org/lafayette/server/db/JdbcDriver.java" line-rate="0.5555555555555556" branch-rate="0.0" complexity="2.75">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="20" hits="1" branch="false"/>
+								<line number="25" hits="1" branch="false"/>
+								<line number="29" hits="1" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="50" hits="3" branch="false"/>
+								<line number="51" hits="3" branch="false"/>
+								<line number="52" hits="3" branch="false"/>
+								<line number="53" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getFor" signature="(Ljava/lang/String;)Lorg/lafayette/server/db/JdbcDriver;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="76" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="77" hits="0" branch="false"/>
+								<line number="78" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="79" hits="0" branch="false"/>
+								<line number="80" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="81" hits="0" branch="false"/>
+								<line number="83" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="load" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="61" hits="20" branch="false"/>
+								<line number="62" hits="20" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lorg/lafayette/server/db/JdbcDriver;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lorg/lafayette/server/db/JdbcDriver;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="20" hits="1" branch="false"/>
+						<line number="25" hits="1" branch="false"/>
+						<line number="29" hits="1" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="50" hits="3" branch="false"/>
+						<line number="51" hits="3" branch="false"/>
+						<line number="52" hits="3" branch="false"/>
+						<line number="53" hits="3" branch="false"/>
+						<line number="61" hits="20" branch="false"/>
+						<line number="62" hits="20" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="76" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="77" hits="0" branch="false"/>
+						<line number="78" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="79" hits="0" branch="false"/>
+						<line number="80" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="81" hits="0" branch="false"/>
+						<line number="83" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.db.NullConnection" filename="org/lafayette/server/db/NullConnection.java" line-rate="0.02" branch-rate="1.0" complexity="1.0204081632653061">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="38" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="clearWarnings" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="125" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="close" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="79" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="commit" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="71" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createArrayOf" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/sql/Array;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="254" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createBlob" signature="()Ljava/sql/Blob;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="216" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createClob" signature="()Ljava/sql/Clob;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="211" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createNClob" signature="()Ljava/sql/NClob;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="221" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createSQLXML" signature="()Ljava/sql/SQLXML;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="226" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createStatement" signature="()Ljava/sql/Statement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="42" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createStatement" signature="(II)Ljava/sql/Statement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="129" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createStatement" signature="(III)Ljava/sql/Statement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="181" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createStruct" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/sql/Struct;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="259" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getAutoCommit" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getCatalog" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="106" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getClientInfo" signature="()Ljava/util/Properties;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="249" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getClientInfo" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="244" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getHoldability" signature="()I" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="158" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getMetaData" signature="()Ljava/sql/DatabaseMetaData;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="88" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getTransactionIsolation" signature="()I" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="115" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getTypeMap" signature="()Ljava/util/Map;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="144" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getWarnings" signature="()Ljava/sql/SQLWarning;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="120" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="isClosed" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="83" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="isReadOnly" signature="()Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="97" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="isValid" signature="(I)Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="231" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="isWrapperFor" signature="(Ljava/lang/Class;)Z" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="269" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="nativeSQL" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareCall" signature="(Ljava/lang/String;)Ljava/sql/CallableStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareCall" signature="(Ljava/lang/String;II)Ljava/sql/CallableStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="139" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareCall" signature="(Ljava/lang/String;III)Ljava/sql/CallableStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="191" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="47" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;I)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="196" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;II)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="134" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;III)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="186" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;[I)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="201" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="prepareStatement" signature="(Ljava/lang/String;[Ljava/lang/String;)Ljava/sql/PreparedStatement;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="206" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="releaseSavepoint" signature="(Ljava/sql/Savepoint;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="177" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="rollback" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="75" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="rollback" signature="(Ljava/sql/Savepoint;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="173" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setAutoCommit" signature="(Z)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="62" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setCatalog" signature="(Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="102" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setClientInfo" signature="(Ljava/lang/String;Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="236" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setClientInfo" signature="(Ljava/util/Properties;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="240" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setHoldability" signature="(I)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="154" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setReadOnly" signature="(Z)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="93" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setSavepoint" signature="()Ljava/sql/Savepoint;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="163" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setSavepoint" signature="(Ljava/lang/String;)Ljava/sql/Savepoint;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="168" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setTransactionIsolation" signature="(I)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="111" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="setTypeMap" signature="(Ljava/util/Map;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="149" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="unwrap" signature="(Ljava/lang/Class;)Ljava/lang/Object;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="264" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="38" hits="13" branch="false"/>
+						<line number="42" hits="0" branch="false"/>
+						<line number="47" hits="0" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
+						<line number="57" hits="0" branch="false"/>
+						<line number="62" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="71" hits="0" branch="false"/>
+						<line number="75" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="false"/>
+						<line number="83" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="93" hits="0" branch="false"/>
+						<line number="97" hits="0" branch="false"/>
+						<line number="102" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="111" hits="0" branch="false"/>
+						<line number="115" hits="0" branch="false"/>
+						<line number="120" hits="0" branch="false"/>
+						<line number="125" hits="0" branch="false"/>
+						<line number="129" hits="0" branch="false"/>
+						<line number="134" hits="0" branch="false"/>
+						<line number="139" hits="0" branch="false"/>
+						<line number="144" hits="0" branch="false"/>
+						<line number="149" hits="0" branch="false"/>
+						<line number="154" hits="0" branch="false"/>
+						<line number="158" hits="0" branch="false"/>
+						<line number="163" hits="0" branch="false"/>
+						<line number="168" hits="0" branch="false"/>
+						<line number="173" hits="0" branch="false"/>
+						<line number="177" hits="0" branch="false"/>
+						<line number="181" hits="0" branch="false"/>
+						<line number="186" hits="0" branch="false"/>
+						<line number="191" hits="0" branch="false"/>
+						<line number="196" hits="0" branch="false"/>
+						<line number="201" hits="0" branch="false"/>
+						<line number="206" hits="0" branch="false"/>
+						<line number="211" hits="0" branch="false"/>
+						<line number="216" hits="0" branch="false"/>
+						<line number="221" hits="0" branch="false"/>
+						<line number="226" hits="0" branch="false"/>
+						<line number="231" hits="0" branch="false"/>
+						<line number="236" hits="0" branch="false"/>
+						<line number="240" hits="0" branch="false"/>
+						<line number="244" hits="0" branch="false"/>
+						<line number="249" hits="0" branch="false"/>
+						<line number="254" hits="0" branch="false"/>
+						<line number="259" hits="0" branch="false"/>
+						<line number="264" hits="0" branch="false"/>
+						<line number="269" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.db.SqlLoader" filename="org/lafayette/server/db/SqlLoader.java" line-rate="0.5" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="36" hits="0" branch="false"/>
+								<line number="37" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadSql" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="48" hits="38" branch="false"/>
+								<line number="49" hits="38" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="36" hits="0" branch="false"/>
+						<line number="37" hits="0" branch="false"/>
+						<line number="48" hits="38" branch="false"/>
+						<line number="49" hits="38" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.domain" line-rate="0.9342105263157895" branch-rate="0.8214285714285714" complexity="1.3018867924528301">
+			<classes>
+				<class name="org.lafayette.server.domain.BaseDomainObject" filename="org/lafayette/server/domain/BaseDomainObject.java" line-rate="1.0" branch-rate="1.0" complexity="1.75">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="40" hits="13" branch="false"/>
+								<line number="41" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(I)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="34" hits="61" branch="false"/>
+								<line number="49" hits="61" branch="false"/>
+								<line number="50" hits="61" branch="false"/>
+								<line number="51" hits="61" branch="false"/>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="87" hits="29" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="88" hits="2" branch="false"/>
+								<line number="91" hits="27" branch="false"/>
+								<line number="93" hits="27" branch="false"/>
+							</lines>
+						</method>
+						<method name="getId" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="55" hits="50" branch="false"/>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="82" hits="67" branch="false"/>
+							</lines>
+						</method>
+						<method name="isIdInitialized" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="109" hits="14" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="setId" signature="(I)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="69" hits="14" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="70" hits="2" branch="false"/>
+								<line number="73" hits="12" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="74" hits="1" branch="false"/>
+								<line number="77" hits="11" branch="false"/>
+								<line number="78" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="98" hits="8" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="34" hits="61" branch="false"/>
+						<line number="40" hits="13" branch="false"/>
+						<line number="41" hits="13" branch="false"/>
+						<line number="49" hits="61" branch="false"/>
+						<line number="50" hits="61" branch="false"/>
+						<line number="51" hits="61" branch="false"/>
+						<line number="55" hits="50" branch="false"/>
+						<line number="69" hits="14" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="70" hits="2" branch="false"/>
+						<line number="73" hits="12" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="74" hits="1" branch="false"/>
+						<line number="77" hits="11" branch="false"/>
+						<line number="78" hits="11" branch="false"/>
+						<line number="82" hits="67" branch="false"/>
+						<line number="87" hits="29" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="88" hits="2" branch="false"/>
+						<line number="91" hits="27" branch="false"/>
+						<line number="93" hits="27" branch="false"/>
+						<line number="98" hits="8" branch="false"/>
+						<line number="109" hits="14" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.DomainObject" filename="org/lafayette/server/domain/DomainObject.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.Finders" filename="org/lafayette/server/domain/Finders.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/lafayette/server/mapper/Mappers;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="0" branch="false"/>
+								<line number="36" hits="0" branch="false"/>
+								<line number="37" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="forRoles" signature="()Lorg/lafayette/server/domain/RoleFinder;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="54" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="forUsers" signature="()Lorg/lafayette/server/domain/UserFinder;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="45" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="35" hits="0" branch="false"/>
+						<line number="36" hits="0" branch="false"/>
+						<line number="37" hits="0" branch="false"/>
+						<line number="45" hits="0" branch="false"/>
+						<line number="54" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.Role" filename="org/lafayette/server/domain/Role.java" line-rate="1.0" branch-rate="0.75" complexity="1.4">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="31" hits="1" branch="false"/>
+								<line number="32" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(ILjava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="39" hits="26" branch="false"/>
+								<line number="40" hits="26" branch="false"/>
+								<line number="41" hits="26" branch="false"/>
+								<line number="42" hits="26" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="2" branch="false"/>
+								<line number="36" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="0.75">
+							<lines>
+								<line number="67" hits="15" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="68" hits="2" branch="false"/>
+								<line number="71" hits="13" branch="false"/>
+								<line number="73" hits="13" branch="true" condition-coverage="66% (4/6)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+										<condition number="2" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="getDescription" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="53" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="45" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="62" hits="39" branch="false"/>
+							</lines>
+						</method>
+						<method name="setDescription" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="1" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setName" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="49" hits="1" branch="false"/>
+								<line number="50" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="80" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="31" hits="1" branch="false"/>
+						<line number="32" hits="1" branch="false"/>
+						<line number="35" hits="2" branch="false"/>
+						<line number="36" hits="2" branch="false"/>
+						<line number="39" hits="26" branch="false"/>
+						<line number="40" hits="26" branch="false"/>
+						<line number="41" hits="26" branch="false"/>
+						<line number="42" hits="26" branch="false"/>
+						<line number="45" hits="13" branch="false"/>
+						<line number="49" hits="1" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
+						<line number="53" hits="13" branch="false"/>
+						<line number="57" hits="1" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="62" hits="39" branch="false"/>
+						<line number="67" hits="15" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="68" hits="2" branch="false"/>
+						<line number="71" hits="13" branch="false"/>
+						<line number="73" hits="13" branch="true" condition-coverage="66% (4/6)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+								<condition number="2" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="80" hits="4" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.RoleFinder" filename="org/lafayette/server/domain/RoleFinder.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.User" filename="org/lafayette/server/domain/User.java" line-rate="1.0" branch-rate="0.75" complexity="1.375">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="53" hits="1" branch="false"/>
+								<line number="54" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="47" hits="22" branch="false"/>
+								<line number="78" hits="22" branch="false"/>
+								<line number="79" hits="22" branch="false"/>
+								<line number="80" hits="22" branch="false"/>
+								<line number="81" hits="22" branch="false"/>
+								<line number="82" hits="22" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="2" branch="false"/>
+								<line number="67" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="addRole" signature="(Lorg/lafayette/server/domain/Role;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="121" hits="8" branch="false"/>
+								<line number="122" hits="8" branch="false"/>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="0.75">
+							<lines>
+								<line number="131" hits="10" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="132" hits="2" branch="false"/>
+								<line number="135" hits="8" branch="false"/>
+								<line number="137" hits="8" branch="true" condition-coverage="70% (7/10)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="50%"/>
+										<condition number="2" type="jump" coverage="50%"/>
+										<condition number="3" type="jump" coverage="50%"/>
+										<condition number="4" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="getHashedPassword" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="101" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="getLoginName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="97" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="getRoles" signature="()Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="109" hits="7" branch="false"/>
+							</lines>
+						</method>
+						<method name="getSalt" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="105" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="hasRole" signature="(Lorg/lafayette/server/domain/Role;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="113" hits="6" branch="false"/>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="126" hits="16" branch="false"/>
+							</lines>
+						</method>
+						<method name="removeRole" signature="(Lorg/lafayette/server/domain/Role;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="117" hits="1" branch="false"/>
+								<line number="118" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setHashedPassword" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="89" hits="1" branch="false"/>
+								<line number="90" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setLoginName" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="85" hits="1" branch="false"/>
+								<line number="86" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setSalt" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="93" hits="1" branch="false"/>
+								<line number="94" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="146" hits="3" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="47" hits="22" branch="false"/>
+						<line number="53" hits="1" branch="false"/>
+						<line number="54" hits="1" branch="false"/>
+						<line number="66" hits="2" branch="false"/>
+						<line number="67" hits="2" branch="false"/>
+						<line number="78" hits="22" branch="false"/>
+						<line number="79" hits="22" branch="false"/>
+						<line number="80" hits="22" branch="false"/>
+						<line number="81" hits="22" branch="false"/>
+						<line number="82" hits="22" branch="false"/>
+						<line number="85" hits="1" branch="false"/>
+						<line number="86" hits="1" branch="false"/>
+						<line number="89" hits="1" branch="false"/>
+						<line number="90" hits="1" branch="false"/>
+						<line number="93" hits="1" branch="false"/>
+						<line number="94" hits="1" branch="false"/>
+						<line number="97" hits="13" branch="false"/>
+						<line number="101" hits="13" branch="false"/>
+						<line number="105" hits="13" branch="false"/>
+						<line number="109" hits="7" branch="false"/>
+						<line number="113" hits="6" branch="false"/>
+						<line number="117" hits="1" branch="false"/>
+						<line number="118" hits="1" branch="false"/>
+						<line number="121" hits="8" branch="false"/>
+						<line number="122" hits="8" branch="false"/>
+						<line number="126" hits="16" branch="false"/>
+						<line number="131" hits="10" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="132" hits="2" branch="false"/>
+						<line number="135" hits="8" branch="false"/>
+						<line number="137" hits="8" branch="true" condition-coverage="70% (7/10)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="50%"/>
+								<condition number="2" type="jump" coverage="50%"/>
+								<condition number="3" type="jump" coverage="50%"/>
+								<condition number="4" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="146" hits="3" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.domain.UserFinder" filename="org/lafayette/server/domain/UserFinder.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.http" line-rate="0.92" branch-rate="1.0" complexity="1.1428571428571428">
+			<classes>
+				<class name="org.lafayette.server.http.Constants" filename="org/lafayette/server/http/Constants.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.Digest" filename="org/lafayette/server/http/Digest.java" line-rate="0.75" branch-rate="1.0" complexity="1.0588235294117647">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="50" hits="0" branch="false"/>
+								<line number="137" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="digest" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="61" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="digest" signature="(Lorg/lafayette/server/http/Digest$Values;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="65" hits="1" branch="false"/>
+								<line number="66" hits="1" branch="false"/>
+								<line number="67" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="digestRequestData" signature="(Lorg/lafayette/server/http/Digest$HttpMethod;Ljava/net/URI;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="digestUserData" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="53" hits="2" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="50" hits="0" branch="false"/>
+						<line number="53" hits="2" branch="false"/>
+						<line number="57" hits="2" branch="false"/>
+						<line number="61" hits="2" branch="false"/>
+						<line number="65" hits="1" branch="false"/>
+						<line number="66" hits="1" branch="false"/>
+						<line number="67" hits="1" branch="false"/>
+						<line number="137" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.Digest$HttpMethod" filename="org/lafayette/server/http/Digest.java" line-rate="1.0" branch-rate="1.0" complexity="1.0588235294117647">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="137" hits="7" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;I)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="valueOf" signature="(Ljava/lang/String;)Lorg/lafayette/server/http/Digest$HttpMethod;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="values" signature="()[Lorg/lafayette/server/http/Digest$HttpMethod;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="137" hits="7" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.Digest$Values" filename="org/lafayette/server/http/Digest.java" line-rate="0.9642857142857143" branch-rate="1.0" complexity="1.0588235294117647">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.9" branch-rate="1.0">
+							<lines>
+								<line number="71" hits="1" branch="false"/>
+								<line number="72" hits="1" branch="false"/>
+								<line number="73" hits="1" branch="false"/>
+								<line number="74" hits="1" branch="false"/>
+								<line number="75" hits="1" branch="false"/>
+								<line number="79" hits="1" branch="false"/>
+								<line number="81" hits="1" branch="false"/>
+								<line number="82" hits="0" branch="false"/>
+								<line number="84" hits="1" branch="false"/>
+								<line number="85" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getHttpMethod" signature="()Lorg/lafayette/server/http/Digest$HttpMethod;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="120" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getNonce" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="112" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getPassword" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="96" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getRealm" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="104" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getRequestedUri" signature="()Ljava/net/URI;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="128" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="getUsername" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="88" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setHttpMethod" signature="(Lorg/lafayette/server/http/Digest$HttpMethod;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="124" hits="1" branch="false"/>
+								<line number="125" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setNonce" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="116" hits="1" branch="false"/>
+								<line number="117" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setPassword" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="100" hits="1" branch="false"/>
+								<line number="101" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setRealm" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="108" hits="1" branch="false"/>
+								<line number="109" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setRequestedUri" signature="(Ljava/net/URI;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="132" hits="1" branch="false"/>
+								<line number="133" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setUsername" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="92" hits="1" branch="false"/>
+								<line number="93" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="71" hits="1" branch="false"/>
+						<line number="72" hits="1" branch="false"/>
+						<line number="73" hits="1" branch="false"/>
+						<line number="74" hits="1" branch="false"/>
+						<line number="75" hits="1" branch="false"/>
+						<line number="79" hits="1" branch="false"/>
+						<line number="81" hits="1" branch="false"/>
+						<line number="82" hits="0" branch="false"/>
+						<line number="84" hits="1" branch="false"/>
+						<line number="85" hits="1" branch="false"/>
+						<line number="88" hits="1" branch="false"/>
+						<line number="92" hits="1" branch="false"/>
+						<line number="93" hits="1" branch="false"/>
+						<line number="96" hits="1" branch="false"/>
+						<line number="100" hits="1" branch="false"/>
+						<line number="101" hits="1" branch="false"/>
+						<line number="104" hits="1" branch="false"/>
+						<line number="108" hits="1" branch="false"/>
+						<line number="109" hits="1" branch="false"/>
+						<line number="112" hits="1" branch="false"/>
+						<line number="116" hits="1" branch="false"/>
+						<line number="117" hits="1" branch="false"/>
+						<line number="120" hits="1" branch="false"/>
+						<line number="124" hits="1" branch="false"/>
+						<line number="125" hits="1" branch="false"/>
+						<line number="128" hits="1" branch="false"/>
+						<line number="132" hits="1" branch="false"/>
+						<line number="133" hits="1" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.MediaType" filename="org/lafayette/server/http/MediaType.java" line-rate="0.0" branch-rate="1.0" complexity="0.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="22" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="22" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.Typeable" filename="org/lafayette/server/http/Typeable.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.http.UriList" filename="org/lafayette/server/http/UriList.java" line-rate="1.0" branch-rate="1.0" complexity="1.6666666666666667">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="23" hits="3" branch="false"/>
+								<line number="28" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getMediaType" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="44" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setComment" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="38" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
+								<line number="40" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="49" hits="2" branch="false"/>
+								<line number="51" hits="2" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="52" hits="1" branch="false"/>
+								<line number="55" hits="2" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="56" hits="4" branch="false"/>
+								<line number="59" hits="2" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="23" hits="3" branch="false"/>
+						<line number="28" hits="3" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
+						<line number="40" hits="1" branch="false"/>
+						<line number="44" hits="1" branch="false"/>
+						<line number="49" hits="2" branch="false"/>
+						<line number="51" hits="2" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="52" hits="1" branch="false"/>
+						<line number="55" hits="2" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="56" hits="4" branch="false"/>
+						<line number="59" hits="2" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.log" line-rate="0.9148936170212766" branch-rate="1.0" complexity="1.0">
+			<classes>
+				<class name="org.lafayette.server.log.Log" filename="org/lafayette/server/log/Log.java" line-rate="0.25" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="38" hits="0" branch="false"/>
+								<line number="39" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="getLogger" signature="(Ljava/lang/Class;)Lorg/lafayette/server/log/Logger;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="58" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="getLogger" signature="(Ljava/lang/Object;)Lorg/lafayette/server/log/Logger;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="48" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="38" hits="0" branch="false"/>
+						<line number="39" hits="0" branch="false"/>
+						<line number="48" hits="0" branch="false"/>
+						<line number="58" hits="3" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.log.Logger" filename="org/lafayette/server/log/Logger.java" line-rate="0.9767441860465116" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/apache/log4j/Logger;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="23" branch="false"/>
+								<line number="36" hits="23" branch="false"/>
+								<line number="37" hits="23" branch="false"/>
+							</lines>
+						</method>
+						<method name="debug" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="86" hits="14" branch="false"/>
+								<line number="87" hits="14" branch="false"/>
+							</lines>
+						</method>
+						<method name="debug" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="95" hits="1" branch="false"/>
+								<line number="96" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="debug" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="78" hits="13" branch="false"/>
+								<line number="79" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="error" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="202" hits="2" branch="false"/>
+								<line number="203" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="error" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="211" hits="1" branch="false"/>
+								<line number="212" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="error" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="194" hits="1" branch="false"/>
+								<line number="195" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="fatal" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="231" hits="2" branch="false"/>
+								<line number="232" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="fatal" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="240" hits="1" branch="false"/>
+								<line number="241" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="fatal" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="223" hits="1" branch="false"/>
+								<line number="224" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="format" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/Formatter;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="48" hits="14" branch="false"/>
+							</lines>
+						</method>
+						<method name="getLevel" signature="()Lorg/apache/log4j/Level;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="info" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="144" hits="2" branch="false"/>
+								<line number="145" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="info" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="153" hits="1" branch="false"/>
+								<line number="154" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="info" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="136" hits="1" branch="false"/>
+								<line number="137" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="setLevel" signature="(Lorg/apache/log4j/Level;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="1" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="trace" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="115" hits="2" branch="false"/>
+								<line number="116" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="trace" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="124" hits="1" branch="false"/>
+								<line number="125" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="trace" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="107" hits="1" branch="false"/>
+								<line number="108" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="warn" signature="(Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="173" hits="2" branch="false"/>
+								<line number="174" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="warn" signature="(Ljava/lang/Object;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="182" hits="1" branch="false"/>
+								<line number="183" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="warn" signature="(Ljava/lang/String;[Ljava/lang/Object;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="165" hits="1" branch="false"/>
+								<line number="166" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="35" hits="23" branch="false"/>
+						<line number="36" hits="23" branch="false"/>
+						<line number="37" hits="23" branch="false"/>
+						<line number="48" hits="14" branch="false"/>
+						<line number="57" hits="1" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="78" hits="13" branch="false"/>
+						<line number="79" hits="13" branch="false"/>
+						<line number="86" hits="14" branch="false"/>
+						<line number="87" hits="14" branch="false"/>
+						<line number="95" hits="1" branch="false"/>
+						<line number="96" hits="1" branch="false"/>
+						<line number="107" hits="1" branch="false"/>
+						<line number="108" hits="1" branch="false"/>
+						<line number="115" hits="2" branch="false"/>
+						<line number="116" hits="2" branch="false"/>
+						<line number="124" hits="1" branch="false"/>
+						<line number="125" hits="1" branch="false"/>
+						<line number="136" hits="1" branch="false"/>
+						<line number="137" hits="1" branch="false"/>
+						<line number="144" hits="2" branch="false"/>
+						<line number="145" hits="2" branch="false"/>
+						<line number="153" hits="1" branch="false"/>
+						<line number="154" hits="1" branch="false"/>
+						<line number="165" hits="1" branch="false"/>
+						<line number="166" hits="1" branch="false"/>
+						<line number="173" hits="2" branch="false"/>
+						<line number="174" hits="2" branch="false"/>
+						<line number="182" hits="1" branch="false"/>
+						<line number="183" hits="1" branch="false"/>
+						<line number="194" hits="1" branch="false"/>
+						<line number="195" hits="1" branch="false"/>
+						<line number="202" hits="2" branch="false"/>
+						<line number="203" hits="2" branch="false"/>
+						<line number="211" hits="1" branch="false"/>
+						<line number="212" hits="1" branch="false"/>
+						<line number="223" hits="1" branch="false"/>
+						<line number="224" hits="1" branch="false"/>
+						<line number="231" hits="2" branch="false"/>
+						<line number="232" hits="2" branch="false"/>
+						<line number="240" hits="1" branch="false"/>
+						<line number="241" hits="1" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.mapper" line-rate="0.8417721518987342" branch-rate="0.8333333333333334" complexity="1.5862068965517242">
+			<classes>
+				<class name="org.lafayette.server.mapper.BaseMapper" filename="org/lafayette/server/mapper/BaseMapper.java" line-rate="0.8169014084507042" branch-rate="0.8333333333333334" complexity="2.090909090909091">
+					<methods>
+						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="44" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="&lt;init&gt;" signature="(Ljava/sql/Connection;Lorg/lafayette/server/mapper/id/IntegerIdentityMap;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="62" hits="24" branch="false"/>
+								<line number="63" hits="24" branch="false"/>
+								<line number="64" hits="24" branch="false"/>
+								<line number="65" hits="24" branch="false"/>
+							</lines>
+						</method>
+						<method name="abstractFind" signature="(I)Lorg/lafayette/server/domain/DomainObject;" line-rate="0.8333333333333334" branch-rate="1.0">
+							<lines>
+								<line number="122" hits="22" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="123" hits="4" branch="false"/>
+								<line number="127" hits="18" branch="false"/>
+								<line number="128" hits="18" branch="false"/>
+								<line number="129" hits="18" branch="false"/>
+								<line number="131" hits="18" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="132" hits="4" branch="false"/>
+								<line number="135" hits="14" branch="false"/>
+								<line number="136" hits="14" branch="false"/>
+								<line number="137" hits="14" branch="false"/>
+								<line number="138" hits="0" branch="false"/>
+								<line number="139" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="delete" signature="(Lorg/lafayette/server/domain/DomainObject;)V" line-rate="0.7777777777777778" branch-rate="1.0">
+							<lines>
+								<line number="224" hits="2" branch="false"/>
+								<line number="225" hits="2" branch="false"/>
+								<line number="226" hits="2" branch="false"/>
+								<line number="227" hits="2" branch="false"/>
+								<line number="228" hits="2" branch="false"/>
+								<line number="229" hits="0" branch="false"/>
+								<line number="230" hits="0" branch="false"/>
+								<line number="231" hits="2" branch="false"/>
+								<line number="232" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="deleteStatement" signature="(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="114" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="findAll" signature="(II)Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="166" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="findAllStatement" signature="(Ljava/lang/String;Ljava/lang/String;II)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="88" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByIdStatement" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="75" hits="18" branch="false"/>
+							</lines>
+						</method>
+						<method name="findMany" signature="(Lorg/lafayette/server/mapper/StatementSource;)Ljava/util/Collection;" line-rate="0.6153846153846154" branch-rate="0.5">
+							<lines>
+								<line number="183" hits="4" branch="false"/>
+								<line number="184" hits="4" branch="false"/>
+								<line number="186" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="187" hits="0" branch="false"/>
+								<line number="188" hits="0" branch="false"/>
+								<line number="191" hits="4" branch="true" condition-coverage="50% (1/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="50%"/>
+									</conditions>
+								</line>
+								<line number="192" hits="0" branch="false"/>
+								<line number="195" hits="4" branch="false"/>
+								<line number="196" hits="4" branch="false"/>
+								<line number="197" hits="4" branch="false"/>
+								<line number="199" hits="4" branch="false"/>
+								<line number="200" hits="0" branch="false"/>
+								<line number="201" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findNextDatabaseId" signature="()I" line-rate="0.7142857142857143" branch-rate="1.0">
+							<lines>
+								<line number="236" hits="2" branch="false"/>
+								<line number="237" hits="2" branch="false"/>
+								<line number="238" hits="2" branch="false"/>
+								<line number="239" hits="2" branch="false"/>
+								<line number="240" hits="2" branch="false"/>
+								<line number="241" hits="0" branch="false"/>
+								<line number="242" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findfindMaxPrimaryKeyStatement" signature="(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="98" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="insert" signature="(Lorg/lafayette/server/domain/DomainObject;)I" line-rate="0.8" branch-rate="1.0">
+							<lines>
+								<line number="208" hits="2" branch="false"/>
+								<line number="209" hits="2" branch="false"/>
+								<line number="210" hits="2" branch="false"/>
+								<line number="211" hits="2" branch="false"/>
+								<line number="212" hits="2" branch="false"/>
+								<line number="213" hits="2" branch="false"/>
+								<line number="214" hits="2" branch="false"/>
+								<line number="215" hits="2" branch="false"/>
+								<line number="216" hits="0" branch="false"/>
+								<line number="217" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="load" signature="(Ljava/sql/ResultSet;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="144" hits="25" branch="false"/>
+								<line number="146" hits="25" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="147" hits="2" branch="false"/>
+								<line number="150" hits="23" branch="false"/>
+								<line number="151" hits="23" branch="false"/>
+								<line number="152" hits="23" branch="false"/>
+							</lines>
+						</method>
+						<method name="loadAll" signature="(Ljava/sql/ResultSet;)Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="156" hits="4" branch="false"/>
+								<line number="158" hits="9" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="159" hits="5" branch="false"/>
+								<line number="162" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="44" hits="1" branch="false"/>
+						<line number="62" hits="24" branch="false"/>
+						<line number="63" hits="24" branch="false"/>
+						<line number="64" hits="24" branch="false"/>
+						<line number="65" hits="24" branch="false"/>
+						<line number="75" hits="18" branch="false"/>
+						<line number="88" hits="4" branch="false"/>
+						<line number="98" hits="2" branch="false"/>
+						<line number="114" hits="2" branch="false"/>
+						<line number="122" hits="22" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="123" hits="4" branch="false"/>
+						<line number="127" hits="18" branch="false"/>
+						<line number="128" hits="18" branch="false"/>
+						<line number="129" hits="18" branch="false"/>
+						<line number="131" hits="18" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="132" hits="4" branch="false"/>
+						<line number="135" hits="14" branch="false"/>
+						<line number="136" hits="14" branch="false"/>
+						<line number="137" hits="14" branch="false"/>
+						<line number="138" hits="0" branch="false"/>
+						<line number="139" hits="0" branch="false"/>
+						<line number="144" hits="25" branch="false"/>
+						<line number="146" hits="25" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="147" hits="2" branch="false"/>
+						<line number="150" hits="23" branch="false"/>
+						<line number="151" hits="23" branch="false"/>
+						<line number="152" hits="23" branch="false"/>
+						<line number="156" hits="4" branch="false"/>
+						<line number="158" hits="9" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="159" hits="5" branch="false"/>
+						<line number="162" hits="4" branch="false"/>
+						<line number="166" hits="4" branch="false"/>
+						<line number="183" hits="4" branch="false"/>
+						<line number="184" hits="4" branch="false"/>
+						<line number="186" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="187" hits="0" branch="false"/>
+						<line number="188" hits="0" branch="false"/>
+						<line number="191" hits="4" branch="true" condition-coverage="50% (1/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="50%"/>
+							</conditions>
+						</line>
+						<line number="192" hits="0" branch="false"/>
+						<line number="195" hits="4" branch="false"/>
+						<line number="196" hits="4" branch="false"/>
+						<line number="197" hits="4" branch="false"/>
+						<line number="199" hits="4" branch="false"/>
+						<line number="200" hits="0" branch="false"/>
+						<line number="201" hits="0" branch="false"/>
+						<line number="208" hits="2" branch="false"/>
+						<line number="209" hits="2" branch="false"/>
+						<line number="210" hits="2" branch="false"/>
+						<line number="211" hits="2" branch="false"/>
+						<line number="212" hits="2" branch="false"/>
+						<line number="213" hits="2" branch="false"/>
+						<line number="214" hits="2" branch="false"/>
+						<line number="215" hits="2" branch="false"/>
+						<line number="216" hits="0" branch="false"/>
+						<line number="217" hits="0" branch="false"/>
+						<line number="224" hits="2" branch="false"/>
+						<line number="225" hits="2" branch="false"/>
+						<line number="226" hits="2" branch="false"/>
+						<line number="227" hits="2" branch="false"/>
+						<line number="228" hits="2" branch="false"/>
+						<line number="229" hits="0" branch="false"/>
+						<line number="230" hits="0" branch="false"/>
+						<line number="231" hits="2" branch="false"/>
+						<line number="232" hits="2" branch="false"/>
+						<line number="236" hits="2" branch="false"/>
+						<line number="237" hits="2" branch="false"/>
+						<line number="238" hits="2" branch="false"/>
+						<line number="239" hits="2" branch="false"/>
+						<line number="240" hits="2" branch="false"/>
+						<line number="241" hits="0" branch="false"/>
+						<line number="242" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.BaseMapper$1" filename="org/lafayette/server/mapper/BaseMapper.java" line-rate="1.0" branch-rate="1.0" complexity="2.090909090909091">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Lorg/lafayette/server/mapper/BaseMapper;II)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="166" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="parameters" signature="()[Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="174" hits="4" branch="false"/>
+							</lines>
+						</method>
+						<method name="sql" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="169" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="166" hits="4" branch="false"/>
+						<line number="169" hits="4" branch="false"/>
+						<line number="174" hits="4" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.Mapper" filename="org/lafayette/server/mapper/Mapper.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.Mappers" filename="org/lafayette/server/mapper/Mappers.java" line-rate="0.7142857142857143" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/sql/Connection;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="37" hits="12" branch="false"/>
+								<line number="41" hits="12" branch="false"/>
+								<line number="49" hits="12" branch="false"/>
+								<line number="50" hits="12" branch="false"/>
+								<line number="51" hits="12" branch="false"/>
+							</lines>
+						</method>
+						<method name="createRoleMapper" signature="()Lorg/lafayette/server/mapper/RoleMapper;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="68" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createUserMapper" signature="()Lorg/lafayette/server/mapper/UserMapper;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="59" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="37" hits="12" branch="false"/>
+						<line number="41" hits="12" branch="false"/>
+						<line number="49" hits="12" branch="false"/>
+						<line number="50" hits="12" branch="false"/>
+						<line number="51" hits="12" branch="false"/>
+						<line number="59" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.RoleMapper" filename="org/lafayette/server/mapper/RoleMapper.java" line-rate="0.8648648648648649" branch-rate="1.0" complexity="1.3571428571428572">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/sql/Connection;Lorg/lafayette/server/mapper/id/IntegerIdentityMap;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="47" hits="12" branch="false"/>
+								<line number="48" hits="12" branch="false"/>
+							</lines>
+						</method>
+						<method name="delete" signature="(Lorg/lafayette/server/domain/Role;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="deleteStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="80" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="doInsert" signature="(Lorg/lafayette/server/domain/DomainObject;Ljava/sql/PreparedStatement;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="doInsert" signature="(Lorg/lafayette/server/domain/Role;Ljava/sql/PreparedStatement;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="92" hits="1" branch="false"/>
+								<line number="93" hits="1" branch="false"/>
+								<line number="94" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="doLoad" signature="(ILjava/sql/ResultSet;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="doLoad" signature="(ILjava/sql/ResultSet;)Lorg/lafayette/server/domain/Role;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="85" hits="11" branch="false"/>
+								<line number="86" hits="11" branch="false"/>
+								<line number="87" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="find" signature="(I)Lorg/lafayette/server/domain/Role;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="112" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="find" signature="(Ljava/lang/Integer;)Lorg/lafayette/server/domain/Role;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="117" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findAll" signature="(II)Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="findAllStatement" signature="(II)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByIdStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="9" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByName" signature="(Ljava/lang/String;)Lorg/lafayette/server/domain/Role;" line-rate="0.7777777777777778" branch-rate="1.0">
+							<lines>
+								<line number="123" hits="3" branch="false"/>
+								<line number="124" hits="3" branch="false"/>
+								<line number="125" hits="3" branch="false"/>
+								<line number="126" hits="3" branch="false"/>
+								<line number="127" hits="3" branch="false"/>
+								<line number="128" hits="3" branch="false"/>
+								<line number="129" hits="3" branch="false"/>
+								<line number="130" hits="0" branch="false"/>
+								<line number="131" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByNameStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="66" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="findMaxPrimaryKeyStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="62" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="insert" signature="(Lorg/lafayette/server/domain/Role;)I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="28" hits="14" branch="false"/>
+							</lines>
+						</method>
+						<method name="insertStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="75" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="update" signature="(Lorg/lafayette/server/domain/DomainObject;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="update" signature="(Lorg/lafayette/server/domain/Role;)V" line-rate="0.8" branch-rate="1.0">
+							<lines>
+								<line number="99" hits="1" branch="false"/>
+								<line number="100" hits="1" branch="false"/>
+								<line number="101" hits="1" branch="false"/>
+								<line number="102" hits="1" branch="false"/>
+								<line number="103" hits="1" branch="false"/>
+								<line number="104" hits="1" branch="false"/>
+								<line number="105" hits="0" branch="false"/>
+								<line number="106" hits="0" branch="false"/>
+								<line number="107" hits="1" branch="false"/>
+								<line number="108" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="updateStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="70" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="28" hits="14" branch="false"/>
+						<line number="47" hits="12" branch="false"/>
+						<line number="48" hits="12" branch="false"/>
+						<line number="52" hits="9" branch="false"/>
+						<line number="57" hits="2" branch="false"/>
+						<line number="62" hits="1" branch="false"/>
+						<line number="66" hits="3" branch="false"/>
+						<line number="70" hits="1" branch="false"/>
+						<line number="75" hits="1" branch="false"/>
+						<line number="80" hits="1" branch="false"/>
+						<line number="85" hits="11" branch="false"/>
+						<line number="86" hits="11" branch="false"/>
+						<line number="87" hits="11" branch="false"/>
+						<line number="92" hits="1" branch="false"/>
+						<line number="93" hits="1" branch="false"/>
+						<line number="94" hits="1" branch="false"/>
+						<line number="99" hits="1" branch="false"/>
+						<line number="100" hits="1" branch="false"/>
+						<line number="101" hits="1" branch="false"/>
+						<line number="102" hits="1" branch="false"/>
+						<line number="103" hits="1" branch="false"/>
+						<line number="104" hits="1" branch="false"/>
+						<line number="105" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="107" hits="1" branch="false"/>
+						<line number="108" hits="1" branch="false"/>
+						<line number="112" hits="11" branch="false"/>
+						<line number="117" hits="0" branch="false"/>
+						<line number="123" hits="3" branch="false"/>
+						<line number="124" hits="3" branch="false"/>
+						<line number="125" hits="3" branch="false"/>
+						<line number="126" hits="3" branch="false"/>
+						<line number="127" hits="3" branch="false"/>
+						<line number="128" hits="3" branch="false"/>
+						<line number="129" hits="3" branch="false"/>
+						<line number="130" hits="0" branch="false"/>
+						<line number="131" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.StatementSource" filename="org/lafayette/server/mapper/StatementSource.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.UserMapper" filename="org/lafayette/server/mapper/UserMapper.java" line-rate="0.875" branch-rate="1.0" complexity="1.3571428571428572">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/sql/Connection;Lorg/lafayette/server/mapper/id/IntegerIdentityMap;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="53" hits="12" branch="false"/>
+								<line number="54" hits="12" branch="false"/>
+							</lines>
+						</method>
+						<method name="delete" signature="(Lorg/lafayette/server/domain/User;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="deleteStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="81" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="doInsert" signature="(Lorg/lafayette/server/domain/DomainObject;Ljava/sql/PreparedStatement;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="doInsert" signature="(Lorg/lafayette/server/domain/User;Ljava/sql/PreparedStatement;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="99" hits="1" branch="false"/>
+								<line number="100" hits="1" branch="false"/>
+								<line number="101" hits="1" branch="false"/>
+								<line number="102" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="doLoad" signature="(ILjava/sql/ResultSet;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="doLoad" signature="(ILjava/sql/ResultSet;)Lorg/lafayette/server/domain/User;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="91" hits="12" branch="false"/>
+								<line number="92" hits="12" branch="false"/>
+								<line number="93" hits="12" branch="false"/>
+								<line number="94" hits="12" branch="false"/>
+							</lines>
+						</method>
+						<method name="find" signature="(I)Lorg/lafayette/server/domain/User;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="106" hits="11" branch="false"/>
+							</lines>
+						</method>
+						<method name="find" signature="(Ljava/lang/Integer;)Lorg/lafayette/server/domain/User;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="111" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findAll" signature="(II)Ljava/util/Collection;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="findAllStatement" signature="(II)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="63" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByIdStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="58" hits="9" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByLoginName" signature="(Ljava/lang/String;)Lorg/lafayette/server/domain/User;" line-rate="0.7777777777777778" branch-rate="1.0">
+							<lines>
+								<line number="117" hits="3" branch="false"/>
+								<line number="118" hits="3" branch="false"/>
+								<line number="119" hits="3" branch="false"/>
+								<line number="120" hits="3" branch="false"/>
+								<line number="121" hits="3" branch="false"/>
+								<line number="122" hits="3" branch="false"/>
+								<line number="123" hits="3" branch="false"/>
+								<line number="124" hits="0" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findByLoginNameStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="72" hits="3" branch="false"/>
+							</lines>
+						</method>
+						<method name="findMaxPrimaryKeyStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="68" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="insert" signature="(Lorg/lafayette/server/domain/User;)I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="28" hits="15" branch="false"/>
+							</lines>
+						</method>
+						<method name="insertStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="86" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="update" signature="(Lorg/lafayette/server/domain/DomainObject;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="update" signature="(Lorg/lafayette/server/domain/User;)V" line-rate="0.8181818181818182" branch-rate="1.0">
+							<lines>
+								<line number="132" hits="1" branch="false"/>
+								<line number="133" hits="1" branch="false"/>
+								<line number="134" hits="1" branch="false"/>
+								<line number="135" hits="1" branch="false"/>
+								<line number="136" hits="1" branch="false"/>
+								<line number="137" hits="1" branch="false"/>
+								<line number="138" hits="1" branch="false"/>
+								<line number="139" hits="0" branch="false"/>
+								<line number="140" hits="0" branch="false"/>
+								<line number="141" hits="1" branch="false"/>
+								<line number="142" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="updateStatement" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="76" hits="1" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="28" hits="15" branch="false"/>
+						<line number="53" hits="12" branch="false"/>
+						<line number="54" hits="12" branch="false"/>
+						<line number="58" hits="9" branch="false"/>
+						<line number="63" hits="2" branch="false"/>
+						<line number="68" hits="1" branch="false"/>
+						<line number="72" hits="3" branch="false"/>
+						<line number="76" hits="1" branch="false"/>
+						<line number="81" hits="1" branch="false"/>
+						<line number="86" hits="1" branch="false"/>
+						<line number="91" hits="12" branch="false"/>
+						<line number="92" hits="12" branch="false"/>
+						<line number="93" hits="12" branch="false"/>
+						<line number="94" hits="12" branch="false"/>
+						<line number="99" hits="1" branch="false"/>
+						<line number="100" hits="1" branch="false"/>
+						<line number="101" hits="1" branch="false"/>
+						<line number="102" hits="1" branch="false"/>
+						<line number="106" hits="11" branch="false"/>
+						<line number="111" hits="0" branch="false"/>
+						<line number="117" hits="3" branch="false"/>
+						<line number="118" hits="3" branch="false"/>
+						<line number="119" hits="3" branch="false"/>
+						<line number="120" hits="3" branch="false"/>
+						<line number="121" hits="3" branch="false"/>
+						<line number="122" hits="3" branch="false"/>
+						<line number="123" hits="3" branch="false"/>
+						<line number="124" hits="0" branch="false"/>
+						<line number="125" hits="0" branch="false"/>
+						<line number="132" hits="1" branch="false"/>
+						<line number="133" hits="1" branch="false"/>
+						<line number="134" hits="1" branch="false"/>
+						<line number="135" hits="1" branch="false"/>
+						<line number="136" hits="1" branch="false"/>
+						<line number="137" hits="1" branch="false"/>
+						<line number="138" hits="1" branch="false"/>
+						<line number="139" hits="0" branch="false"/>
+						<line number="140" hits="0" branch="false"/>
+						<line number="141" hits="1" branch="false"/>
+						<line number="142" hits="1" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.mapper.id" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+			<classes>
+				<class name="org.lafayette.server.mapper.id.BaseIdentityMap" filename="org/lafayette/server/mapper/id/BaseIdentityMap.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="28" hits="57" branch="false"/>
+								<line number="33" hits="57" branch="false"/>
+							</lines>
+						</method>
+						<method name="containsDomainObject" signature="(Lorg/lafayette/server/domain/DomainObject;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="8" branch="false"/>
+							</lines>
+						</method>
+						<method name="containsIdentity" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="47" hits="59" branch="false"/>
+							</lines>
+						</method>
+						<method name="get" signature="(Ljava/lang/Object;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="57" hits="24" branch="false"/>
+							</lines>
+						</method>
+						<method name="isEmpty" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="42" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="put" signature="(Ljava/lang/Object;Lorg/lafayette/server/domain/DomainObject;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="62" hits="44" branch="false"/>
+							</lines>
+						</method>
+						<method name="remove" signature="(Ljava/lang/Object;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="67" hits="2" branch="false"/>
+							</lines>
+						</method>
+						<method name="size" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="37" hits="4" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="28" hits="57" branch="false"/>
+						<line number="33" hits="57" branch="false"/>
+						<line number="37" hits="4" branch="false"/>
+						<line number="42" hits="2" branch="false"/>
+						<line number="47" hits="59" branch="false"/>
+						<line number="52" hits="8" branch="false"/>
+						<line number="57" hits="24" branch="false"/>
+						<line number="62" hits="44" branch="false"/>
+						<line number="67" hits="2" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.id.IdentityMap" filename="org/lafayette/server/mapper/id/IdentityMap.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+					</methods>
+					<lines>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.mapper.id.IntegerIdentityMap" filename="org/lafayette/server/mapper/id/IntegerIdentityMap.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="containsDomainObject" signature="(Lorg/lafayette/server/domain/DomainObject;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="containsIdentity" signature="(I)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="26" hits="28" branch="false"/>
+							</lines>
+						</method>
+						<method name="get" signature="(I)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="13" branch="false"/>
+							</lines>
+						</method>
+						<method name="isEmpty" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+							</lines>
+						</method>
+						<method name="put" signature="(ILorg/lafayette/server/domain/DomainObject;)Lorg/lafayette/server/domain/DomainObject;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="34" hits="17" branch="false"/>
+							</lines>
+						</method>
+						<method name="size" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="23" hits="71" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="23" hits="71" branch="false"/>
+						<line number="26" hits="28" branch="false"/>
+						<line number="30" hits="13" branch="false"/>
+						<line number="34" hits="17" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+		<package name="org.lafayette.server.resources" line-rate="0.0" branch-rate="0.0" complexity="1.3636363636363635">
+			<classes>
+				<class name="org.lafayette.server.resources.BaseResource" filename="org/lafayette/server/resources/BaseResource.java" line-rate="0.0" branch-rate="0.0" complexity="1.25">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="45" hits="0" branch="false"/>
+								<line number="53" hits="0" branch="false"/>
+								<line number="67" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="false"/>
+								<line number="69" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
+								<line number="89" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createErrorResponse" signature="(Ljava/lang/String;)Ljavax/ws/rs/core/Response;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="100" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="finders" signature="()Lorg/lafayette/server/domain/Finders;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="92" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="93" hits="0" branch="false"/>
+								<line number="96" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="formatMessagePack" signature="(Lorg/lafayette/server/domain/DomainObject;)Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="116" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="indexAsUriList" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="122" hits="0" branch="false"/>
+								<line number="123" hits="0" branch="false"/>
+								<line number="124" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="raiseIdNotFoundError" signature="(Ljava/lang/String;Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="106" hits="0" branch="false"/>
+								<line number="107" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="raiseMissingPropertyError" signature="(Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="111" hits="0" branch="false"/>
+								<line number="112" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="registry" signature="()Lorg/lafayette/server/Registry;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="75" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="security" signature="()Ljavax/ws/rs/core/SecurityContext;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="83" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="servlet" signature="()Ljavax/servlet/ServletContext;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="79" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="uriInfo" signature="()Ljavax/ws/rs/core/UriInfo;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="87" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="45" hits="0" branch="false"/>
+						<line number="53" hits="0" branch="false"/>
+						<line number="67" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
+						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
+						<line number="75" hits="0" branch="false"/>
+						<line number="79" hits="0" branch="false"/>
+						<line number="83" hits="0" branch="false"/>
+						<line number="87" hits="0" branch="false"/>
+						<line number="89" hits="0" branch="false"/>
+						<line number="92" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="93" hits="0" branch="false"/>
+						<line number="96" hits="0" branch="false"/>
+						<line number="100" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="107" hits="0" branch="false"/>
+						<line number="111" hits="0" branch="false"/>
+						<line number="112" hits="0" branch="false"/>
+						<line number="116" hits="0" branch="false"/>
+						<line number="122" hits="0" branch="false"/>
+						<line number="123" hits="0" branch="false"/>
+						<line number="124" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.resources.IndexResource" filename="org/lafayette/server/resources/IndexResource.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="29" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="addUrisToIndexList" signature="(Lorg/lafayette/server/http/UriList;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="43" hits="0" branch="false"/>
+								<line number="44" hits="0" branch="false"/>
+								<line number="45" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="indexAsText" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="34" hits="0" branch="false"/>
+								<line number="35" hits="0" branch="false"/>
+								<line number="36" hits="0" branch="false"/>
+								<line number="37" hits="0" branch="false"/>
+								<line number="38" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="29" hits="0" branch="false"/>
+						<line number="34" hits="0" branch="false"/>
+						<line number="35" hits="0" branch="false"/>
+						<line number="36" hits="0" branch="false"/>
+						<line number="37" hits="0" branch="false"/>
+						<line number="38" hits="0" branch="false"/>
+						<line number="43" hits="0" branch="false"/>
+						<line number="44" hits="0" branch="false"/>
+						<line number="45" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.resources.ServerResource" filename="org/lafayette/server/resources/ServerResource.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="26" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="addUrisToIndexList" signature="(Lorg/lafayette/server/http/UriList;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="30" hits="0" branch="false"/>
+								<line number="31" hits="0" branch="false"/>
+								<line number="32" hits="0" branch="false"/>
+								<line number="33" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="26" hits="0" branch="false"/>
+						<line number="30" hits="0" branch="false"/>
+						<line number="31" hits="0" branch="false"/>
+						<line number="32" hits="0" branch="false"/>
+						<line number="33" hits="0" branch="false"/>
+					</lines>
+				</class>
+				<class name="org.lafayette.server.resources.UserResource" filename="org/lafayette/server/resources/UserResource.java" line-rate="0.0" branch-rate="0.0" complexity="1.7142857142857142">
+					<methods>
+						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="41" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="addUrisToIndexList" signature="(Lorg/lafayette/server/http/UriList;)V" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="50" hits="0" branch="false"/>
+								<line number="51" hits="0" branch="false"/>
+								<line number="52" hits="0" branch="false"/>
+								<line number="53" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="createUser" signature="(Lorg/codehaus/jettison/json/JSONObject;)Ljavax/ws/rs/core/Response;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="118" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="119" hits="0" branch="false"/>
+								<line number="122" hits="0" branch="false"/>
+								<line number="123" hits="0" branch="false"/>
+								<line number="124" hits="0" branch="false"/>
+								<line number="125" hits="0" branch="false"/>
+								<line number="129" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="findUSerById" signature="(Ljava/lang/String;)Lorg/lafayette/server/domain/User;" line-rate="0.0" branch-rate="1.0">
+							<lines>
+								<line number="135" hits="0" branch="false"/>
+								<line number="136" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="userAsJsonOrXml" signature="(Ljava/lang/String;)Lorg/lafayette/server/domain/User;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="93" hits="0" branch="false"/>
+								<line number="95" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="96" hits="0" branch="false"/>
+								<line number="99" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="userAsMessagePack" signature="(Ljava/lang/String;)Ljavax/ws/rs/core/Response;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="106" hits="0" branch="false"/>
+								<line number="108" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="109" hits="0" branch="false"/>
+								<line number="112" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="userAsPlainText" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="80" hits="0" branch="false"/>
+								<line number="82" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="83" hits="0" branch="false"/>
+								<line number="86" hits="0" branch="false"/>
+							</lines>
+						</method>
+						<method name="usersAsText" signature="()Ljava/lang/String;" line-rate="0.0" branch-rate="0.0">
+							<lines>
+								<line number="58" hits="0" branch="false"/>
+								<line number="59" hits="0" branch="false"/>
+								<line number="60" hits="0" branch="false"/>
+								<line number="66" hits="0" branch="true" condition-coverage="0% (0/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="0%"/>
+									</conditions>
+								</line>
+								<line number="67" hits="0" branch="false"/>
+								<line number="73" hits="0" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="41" hits="0" branch="false"/>
+						<line number="50" hits="0" branch="false"/>
+						<line number="51" hits="0" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
+						<line number="53" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
+						<line number="59" hits="0" branch="false"/>
+						<line number="60" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="67" hits="0" branch="false"/>
+						<line number="73" hits="0" branch="false"/>
+						<line number="80" hits="0" branch="false"/>
+						<line number="82" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="83" hits="0" branch="false"/>
+						<line number="86" hits="0" branch="false"/>
+						<line number="93" hits="0" branch="false"/>
+						<line number="95" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="96" hits="0" branch="false"/>
+						<line number="99" hits="0" branch="false"/>
+						<line number="106" hits="0" branch="false"/>
+						<line number="108" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="109" hits="0" branch="false"/>
+						<line number="112" hits="0" branch="false"/>
+						<line number="118" hits="0" branch="true" condition-coverage="0% (0/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="0%"/>
+							</conditions>
+						</line>
+						<line number="119" hits="0" branch="false"/>
+						<line number="122" hits="0" branch="false"/>
+						<line number="123" hits="0" branch="false"/>
+						<line number="124" hits="0" branch="false"/>
+						<line number="125" hits="0" branch="false"/>
+						<line number="129" hits="0" branch="false"/>
+						<line number="135" hits="0" branch="false"/>
+						<line number="136" hits="0" branch="false"/>
+					</lines>
+				</class>
+			</classes>
+		</package>
+	</packages>
+</coverage>
