@@ -1,5 +1,7 @@
 # Lafaiette Java Web Application
 
+Maven project site is [here][1].
+
 ## Installation
 
 Add to `.m2/settings.xml`
@@ -59,3 +61,5 @@ Deploy
 ## Todo
 
 - Add security http://stackoverflow.com/questions/2902427/user-authentication-on-a-jersey-rest-service
+
+[1]: http://weltraumschaf.github.io/Lafayette/
