@@ -9,7 +9,6 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.domain;
 
 import org.junit.Rule;
@@ -24,11 +23,14 @@ import static org.hamcrest.Matchers.*;
  */
 public class BaseDomainObjectTest {
 
-    @Rule public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:OFF
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:ON
+    private final BaseDomainObject sut = new BaseDomainObjectStub();
 
     @Test
     public void throwExceptionOnResettingId() {
-        final BaseDomainObject sut = new BaseDomainObjectStub();
         assertThat(sut.getId(), is(BaseDomainObject.UNINITIALIZED_ID));
         sut.setId(23);
         assertThat(sut.getId(), is(23));
@@ -36,7 +38,25 @@ public class BaseDomainObjectTest {
         sut.setId(42);
     }
 
-    private static final class BaseDomainObjectStub extends BaseDomainObject {
+    @Test
+    public void throwExceptionIfIdIsZero() {
+        thrown.expect(IllegalArgumentException.class);
+        sut.setId(0);
+    }
 
+    @Test
+    public void throwExceptionIfIdIsLessThanZero() {
+        thrown.expect(IllegalArgumentException.class);
+        sut.setId(-3);
+    }
+
+    @Test
+    public void isIdInitialized() {
+        assertThat(sut.isIdInitialized(), is(equalTo(false)));
+        sut.setId(42);
+        assertThat(sut.isIdInitialized(), is(equalTo(true)));
+    }
+
+    private static final class BaseDomainObjectStub extends BaseDomainObject {
     }
 }

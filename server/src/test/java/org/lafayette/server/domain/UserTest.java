@@ -24,6 +24,12 @@ import static org.junit.Assert.assertThat;
 public class UserTest {
 
     @Test
+    public void defaultConstructor() {
+        final User u1 = new User();
+        assertThat(u1.getId(), is(equalTo(BaseDomainObject.UNINITIALIZED_ID)));
+    }
+
+    @Test
     public void testHashCode() {
         final User u1 = new User(1, "foo", "bar", "baz");
         final User u2 = new User(1, "foo", "bar", "baz");

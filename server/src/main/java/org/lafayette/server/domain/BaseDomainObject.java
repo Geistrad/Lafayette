@@ -13,6 +13,7 @@
 package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
+import org.apache.commons.lang3.Validate;
 
 
 /**
@@ -48,7 +49,7 @@ class BaseDomainObject implements DomainObject {
      */
     public BaseDomainObject(final int id) {
         super();
-        setId(id);
+        this.id = id;
     }
 
     @Override
@@ -59,14 +60,19 @@ class BaseDomainObject implements DomainObject {
     /**
      * Set the unique id.
      *
-     * @param id unique id
+     * @param id unique id greater 0
      * CHECKSTYLE:OFF
-     * @throws IllegalStateException if {@link #getId()} != {@value #UNINITIALIZED_ID}
+     * @throws IllegalStateException if {@link #isIdInitialized()} is {@code true}
+     * @throws IllegalArgumentException if passed in id is less than 1
      * CHECKSTYLE:ON
      */
     @Override
     public final void setId(final int id) {
-        if (UNINITIALIZED_ID != getId()) {
+        if (id < 1) {
+            throw new IllegalArgumentException("Id must not be less than 1!");
+        }
+
+        if (isIdInitialized()) {
             throw new IllegalStateException(String.format("Id already initalized with value '%d'!", getId()));
         }
 
@@ -92,6 +98,17 @@ class BaseDomainObject implements DomainObject {
     @Override
     public String toString() {
         return "id=" + id;
+    }
+
+    /**
+     * Whether the id was set one time.
+     *
+     * The {@link #id} is initialized if it is not {@link #UNINITIALIZED_ID}.
+     *
+     * @return {@code true} if the id was set once, else {@code false}
+     */
+    boolean isIdInitialized() {
+        return UNINITIALIZED_ID != getId();
     }
 
 }

@@ -24,6 +24,14 @@ import static org.junit.Assert.assertThat;
 public class RoleTest {
 
     @Test
+    public void defaultConstructor() {
+        final Role r1 = new Role();
+        assertThat(r1.getId(), is(equalTo(BaseDomainObject.UNINITIALIZED_ID)));
+        assertThat(r1.getName(), is(equalTo("")));
+        assertThat(r1.getDescription(), is(equalTo("")));
+    }
+
+    @Test
     public void testHashCode() {
         final Role r1 = new Role(1, "foo", "bar");
         final Role r2 = new Role(1, "foo", "bar");
@@ -48,7 +56,7 @@ public class RoleTest {
         assertThat(r1.equals(null), is(equalTo(false)));
         assertThat(r1.equals("foobar"), is(equalTo(false)));
         //CHECKSTYLE:ON
-        
+
         assertThat(r1.equals(r1), is(equalTo(true)));
         assertThat(r1.equals(r2), is(equalTo(true)));
         assertThat(r2.equals(r1), is(equalTo(true)));
