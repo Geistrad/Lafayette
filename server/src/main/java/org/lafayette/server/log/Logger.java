@@ -50,7 +50,8 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#setLevel(org.apache.log4j.Level)
-     * @param level
+     *
+     * @param level Null values are admitted
      */
     public void setLevel(final Level level) {
         delegate.setLevel(level);
@@ -58,19 +59,28 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#getLevel()
-     * @return
+     *
+     * @return may be {@code null}
      */
     public final Level getLevel() {
         return delegate.getLevel();
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#debug(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void debug(final String format, final Object... args) {
         debug(new Formatter().format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#debug(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void debug(final Object message) {
         delegate.debug(message);
@@ -78,20 +88,28 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#debug(java.lang.Object, java.lang.Throwable)
-     * @param message
-     * @param t
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void debug(final Object message, final Throwable t) {
         delegate.debug(message, t);
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#trace(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void trace(final String format, final Object... args) {
         trace(format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#trace(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void trace(final Object message) {
         delegate.trace(message);
@@ -99,20 +117,28 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#trace(java.lang.Object, java.lang.Throwable)
-     * @param message
-     * @param t
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void trace(final Object message, final Throwable t) {
         delegate.trace(message, t);
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#info(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void info(final String format, final Object... args) {
         info(format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#info(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void info(final Object message) {
         delegate.info(message);
@@ -120,20 +146,28 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#info(java.lang.Object, java.lang.Throwable)
-     * @param message
-     * @param t
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void info(final Object message, final Throwable t) {
         delegate.info(message, t);
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#warn(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void warn(final String format, final Object... args) {
         warn(format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#warn(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void warn(final Object message) {
         delegate.warn(message);
@@ -141,20 +175,28 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#warn(java.lang.Object, java.lang.Throwable)
-     * @param message
-     * @param t
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void warn(final Object message, final Throwable t) {
         delegate.warn(message, t);
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#error(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void error(final String format, final Object... args) {
         error(format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#error(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void error(final Object message) {
         delegate.error(message);
@@ -162,29 +204,37 @@ public class Logger {
 
     /**
      * @see org.apache.log4j.Logger#error(java.lang.Object, java.lang.Throwable)
-     * @param message
-     * @param t
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void error(final Object message, final Throwable t) {
         delegate.error(message, t);
     }
 
+    /**
+     * Handle Message in format string style.
+     *
+     * @see org.apache.log4j.Logger#fatal(java.lang.Object)
+     *
+     * @param format message as format string
+     * @param args format string arguments
+     */
     public void fatal(final String format, final Object... args) {
         fatal(format(format, args).toString());
     }
 
     /**
      * @see org.apache.log4j.Logger#fatal(java.lang.Object)
-     * @param message
+     * @param message the message object to log
      */
     public void fatal(final Object message) {
         delegate.fatal(message);
     }
 
     /**
-     * @see org.apache.log4j.Logger#fatal(java.lang.Object, java.lang.Throwable) 
-     * @param message
-     * @param t
+     * @see org.apache.log4j.Logger#fatal(java.lang.Object, java.lang.Throwable)
+     * @param message the message object to log
+     * @param t the exception to log, including its stack trace
      */
     public void fatal(final Object message, final Throwable t) {
         delegate.fatal(message, t);

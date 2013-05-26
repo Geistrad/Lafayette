@@ -26,7 +26,7 @@ interface LoaderStrategie {
      *
      * Call this method after {@link #findConfig()} to check if there is a file available.
      *
-     * @return
+     * @return {@code true} if the strategy has found a configuration, else {@code false}
      */
     boolean hasFoundConfig();
     /**

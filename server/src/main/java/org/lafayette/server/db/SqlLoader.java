@@ -39,7 +39,7 @@ public final class SqlLoader {
     /**
      * Load a SQL file and returns content as string.
      *
-     * @param fileName relative to {@value #RESOURCE_BASE}
+     * @param fileName relative to {@link #RESOURCE_BASE}
      * @return file content
      * @throws URISyntaxException if file name is not valid resource URI
      * @throws IOException if I/O errors happened
