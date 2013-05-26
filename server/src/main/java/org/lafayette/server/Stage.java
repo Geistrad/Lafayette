@@ -34,7 +34,7 @@ public class Stage {
     private final Stages stage;
 
     /**
-     * Convenience constructor which initializes the current stage with {@value #DEFUALT_STAGE}.
+     * Convenience constructor which initializes the current stage with {@link #DEFUALT_STAGE}.
      */
     public Stage() {
         this(DEFUALT_STAGE);

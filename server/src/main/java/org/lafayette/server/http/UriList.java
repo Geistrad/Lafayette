@@ -16,7 +16,7 @@ import java.util.TreeSet;
 import org.apache.commons.lang3.Validate;
 
 /**
- * Represents a set of URIs used for responses of {@link MediaType#TEXT_UR_ILIST type URI-list}.
+ * Represents a set of URIs used for responses of {@link MediaType#TEXT_URI_LIST type URI-list}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
