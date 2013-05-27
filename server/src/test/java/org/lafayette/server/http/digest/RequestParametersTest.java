@@ -9,7 +9,6 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.http.digest;
 
 import org.junit.Test;
@@ -27,7 +26,8 @@ import org.junit.rules.ExpectedException;
 public class RequestParametersTest {
 
     //CHECKSTYLE:OFF
-    @Rule public final ExpectedException thrown = ExpectedException.none();
+    @Rule
+    public final ExpectedException thrown = ExpectedException.none();
     //CHECKSTYLE:ON
     private final RequestParameters sut = new RequestParameters();
 
@@ -47,13 +47,47 @@ public class RequestParametersTest {
         sut.setResponse(null);
     }
 
-    @Test @Ignore
-    public void testToString() {}
+    @Test
+    public void isValid_defultIsInvalid() {
+        assertThat(AuthorizationHeaderParser.DEFAULT_DIGEST_PARAMAS.isValid(), is(false));
+    }
 
-    @Test @Ignore
-    public void testHashCode() {}
+    @Test
+    public void isValid_trueIfAllParamsNotEmpty() {
+        final RequestParameters sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(true));
+    }
 
-    @Test @Ignore
-    public void testEquals() {}
+    @Test
+    public void isValid_falseIfAtLeastOneParamIsEmpty() {
+        RequestParameters sut = new RequestParameters("", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new RequestParameters("name", "", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new RequestParameters("name", "realm", "", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new RequestParameters("name", "realm", "nonce", "", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new RequestParameters("name", "realm", "nonce", "GET", "", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "");
+        assertThat(sut.isValid(), is(false));
+    }
 
+    @Test
+    public void testToString() {
+        final RequestParameters sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.toString(), is(equalTo("RequestParameters{username=name, realm=realm, nonce=nonce, httpMethod=GET, "
+                + "requestedUri=uri, response=response}")));
+    }
+
+    @Test
+    @Ignore
+    public void testHashCode() {
+    }
+
+    @Test
+    @Ignore
+    public void testEquals() {
+    }
 }

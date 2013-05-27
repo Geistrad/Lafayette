@@ -137,10 +137,10 @@ abstract class BaseParameters {
         public String toString() {
             return new StringBuilder()
                     .append("username=").append(username)
-                    .append("realm=").append(realm)
-                    .append("nonce=").append(nonce)
-                    .append("httpMethod=").append(httpMethod)
-                    .append("requestedUri=").append(requestedUri)
+                    .append(", realm=").append(realm)
+                    .append(", nonce=").append(nonce)
+                    .append(", httpMethod=").append(httpMethod)
+                    .append(", requestedUri=").append(requestedUri)
                     .toString();
         }
 

@@ -32,14 +32,14 @@ import org.lafayette.server.log.Logger;
  */
 public final class AuthorizationHeaderParser {
 
-    static final DigestParams DEFAULT_DIGEST_PARAMAS = new DigestParams("", "", "", "", "", "");
+    static final RequestParameters DEFAULT_DIGEST_PARAMAS = new RequestParameters("", "", "", "", "", "");
     private static final Logger LOG = Log.getLogger(AuthorizationHeaderParser.class);
 
     private AuthorizationHeaderParser() {
         super();
     }
 
-    public static DigestParams parseDigestHeaderValue(final String headerValue) {
+    public static RequestParameters parseDigestHeaderValue(final String headerValue) {
         Validate.notNull(headerValue, "Header value must not be null!");
         final String trimmedValue = headerValue.trim();
 
@@ -83,120 +83,7 @@ public final class AuthorizationHeaderParser {
             }
         }
 
-        return new DigestParams(username, realm, nonce, httpMethod, requestedUri, response);
+        return new RequestParameters(username, realm, nonce, httpMethod, requestedUri, response);
     }
 
-    /**
-     * Encapsulates the parameters from a client's authentication header.
-     */
-    public static class DigestParams {
-
-        /**
-         * Users login name.
-         */
-        private final String username;
-        /**
-         * Parameter from server retrieved from previous 401 response.
-         */
-        private final String realm;
-        /**
-         * Parameter from server retrieved from previous 401 response.
-         */
-        private final String nonce;
-        /**
-         * Used HTTP method.
-         */
-        private final String httpMethod;
-        /**
-         * Uri to resource which want to be accessed.
-         */
-        private final String requestedUri;
-        /**
-         * Response calculated by client.
-         *
-         * @see Digest#digest(org.lafayette.server.http.Digest.Values)
-         */
-        private final String response;
-
-        DigestParams(final String username, final String realm, final String nonce, final String httpMethod, final String uri, final String response) {
-            super();
-            this.username = username;
-            this.realm = realm;
-            this.nonce = nonce;
-            this.httpMethod = httpMethod;
-            this.requestedUri = uri;
-            this.response = response;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public String getRealm() {
-            return realm;
-        }
-
-        public String getNonce() {
-            return nonce;
-        }
-
-        public String getRequestedUri() {
-            return requestedUri;
-        }
-
-        public String getResponse() {
-            return response;
-        }
-
-        public String getHttpMethod() {
-            return httpMethod;
-        }
-
-        /**
-         * The parameter object is only valid if all parameters are not empty strings
-         * because all parameters are required for digest authentication.
-         *
-         * @return {@code true} if and only if all properties are not empty
-         */
-        public boolean isValid() {
-            return !(username.isEmpty()
-                    || realm.isEmpty()
-                    || nonce.isEmpty()
-                    || httpMethod.isEmpty()
-                    || requestedUri.isEmpty()
-                    || response.isEmpty());
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(username, realm, nonce, httpMethod, requestedUri, response);
-        }
-
-        @Override
-        public boolean equals(final Object obj) {
-            if (!(obj instanceof DigestParams)) {
-                return false;
-            }
-
-            final DigestParams other = (DigestParams) obj;
-            return Objects.equal(username, other.username)
-                    && Objects.equal(realm, other.realm)
-                    && Objects.equal(nonce, other.nonce)
-                    && Objects.equal(httpMethod, other.httpMethod)
-                    && Objects.equal(requestedUri, other.requestedUri)
-                    && Objects.equal(response, other.response);
-        }
-
-        @Override
-        public String toString() {
-            return Objects.toStringHelper(this)
-                    .add("username", username)
-                    .add("realm", realm)
-                    .add("nonce", nonce)
-                    .add("httpMethod", httpMethod)
-                    .add("requestedUri", requestedUri)
-                    .add("response", response)
-                    .toString();
-        }
-    }
 }

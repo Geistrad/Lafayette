@@ -13,7 +13,6 @@
 package org.lafayette.server.http.digest;
 
 import org.junit.Test;
-import org.lafayette.server.http.digest.AuthorizationHeaderParser.DigestParams;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 import org.junit.Rule;
@@ -36,7 +35,7 @@ public class AuthorizationHeaderParserTest {
     public void parseDigestHeaderValue_returnDefualtIfNotDigest() {
         final String header = "Foobar username=\"Foo\", realm=\"Private Area\", nonce=«\"IrTfjizEdXmIdlwHwkDJx0\", "
                 + "uri=\"/\", response=\"$RESPONSE\"";
-        final DigestParams params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
+        final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
         assertThat(params.getUsername(), is(equalTo("")));
         assertThat(params.getRealm(), is(equalTo("")));
         assertThat(params.getNonce(), is(equalTo("")));
@@ -48,7 +47,7 @@ public class AuthorizationHeaderParserTest {
     public void parseDigestHeaderValue() {
         final String header = "Digest username=\"Foo\", realm=\"Private Area\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
                 + "uri=\"/\", response=\"$RESPONSE\"";
-        final DigestParams params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
+        final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
         assertThat(params.getUsername(), is(equalTo("Foo")));
         assertThat(params.getRealm(), is(equalTo("Private Area")));
         assertThat(params.getNonce(), is(equalTo("IrTfjizEdXmIdlwHwkDJx0")));
@@ -64,7 +63,7 @@ public class AuthorizationHeaderParserTest {
 
     @Test
     public void parseDigestHeaderValue_returnDefualtIfEmpty() {
-        final DigestParams params = AuthorizationHeaderParser.parseDigestHeaderValue("");
+        final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue("");
         assertThat(params.getUsername(), is(equalTo("")));
         assertThat(params.getRealm(), is(equalTo("")));
         assertThat(params.getNonce(), is(equalTo("")));
