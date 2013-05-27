@@ -21,6 +21,8 @@ import static org.hamcrest.Matchers.*;
 /**
  * Tests for {@link AuthorizationHeaderParser.DigestParams}.
  *
+ * TODO Move into RequestParameters
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class DigestParamsTest {

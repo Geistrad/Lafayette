@@ -20,16 +20,16 @@ import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
 /**
- * Tests for {@link BaseParameters}.
+ * Tests for {@link RequestParameters}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class BaseParametersTest {
+public class RequestParametersTest {
 
     //CHECKSTYLE:OFF
     @Rule public final ExpectedException thrown = ExpectedException.none();
     //CHECKSTYLE:ON
-    private final BaseParameters sut = new BaseParametersStung();
+    private final RequestParameters sut = new RequestParameters();
 
     @Test
     public void byDefaultAllPropertiesAreEmpty() {
@@ -38,36 +38,13 @@ public class BaseParametersTest {
         assertThat(sut.getRealm(), is(equalTo("")));
         assertThat(sut.getRequestedUri(), is(equalTo("")));
         assertThat(sut.getUsername(), is(equalTo("")));
+        assertThat(sut.getResponse(), is(equalTo("")));
     }
 
     @Test
-    public void setHttpMethod_throwsExcpetionIfPassedNullIn() {
+    public void setResponse_throwsExcpetionIfPassedNullIn() {
         thrown.expect(NullPointerException.class);
-        sut.setHttpMethod(null);
-    }
-
-    @Test
-    public void setNonce_throwsExcpetionIfPassedNullIn() {
-        thrown.expect(NullPointerException.class);
-        sut.setNonce(null);
-    }
-
-    @Test
-    public void setRealm_throwsExcpetionIfPassedNullIn() {
-        thrown.expect(NullPointerException.class);
-        sut.setRealm(null);
-    }
-
-    @Test
-    public void setRequestedUri_throwsExcpetionIfPassedNullIn() {
-        thrown.expect(NullPointerException.class);
-        sut.setRequestedUri(null);
-    }
-
-    @Test
-    public void setUsername_throwsExcpetionIfPassedNullIn() {
-        thrown.expect(NullPointerException.class);
-        sut.setUsername(null);
+        sut.setResponse(null);
     }
 
     @Test @Ignore
@@ -79,7 +56,4 @@ public class BaseParametersTest {
     @Test @Ignore
     public void testEquals() {}
 
-    private final class BaseParametersStung extends BaseParameters {
-
-    }
 }
