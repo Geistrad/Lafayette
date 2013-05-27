@@ -10,10 +10,10 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.http;
+package org.lafayette.server.http.digest;
 
 import org.junit.Test;
-import org.lafayette.server.http.AuthorizationHeaderParser.DigestParams;
+import org.lafayette.server.http.digest.AuthorizationHeaderParser.DigestParams;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 import org.junit.Rule;
