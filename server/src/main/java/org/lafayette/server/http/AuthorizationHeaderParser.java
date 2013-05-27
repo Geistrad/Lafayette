@@ -32,7 +32,7 @@ import org.lafayette.server.log.Logger;
  */
 public final class AuthorizationHeaderParser {
 
-    private static final DigestParams DEFAULT_DIGEST_PARAMAS = new DigestParams("", "", "", "", "");
+    static final DigestParams DEFAULT_DIGEST_PARAMAS = new DigestParams("", "", "", "", "", "");
     private static final Logger LOG = Log.getLogger(AuthorizationHeaderParser.class);
 
     private AuthorizationHeaderParser() {
@@ -59,7 +59,8 @@ public final class AuthorizationHeaderParser {
         String username = "";
         String realm = "";
         String nonce = "";
-        String uri = "";
+        String httpMethod = "";
+        String requestedUri = "";
         String response = "";
 
         for (final String keyValuePair : trimmedValue.substring(firstWhiteSpace).split(",")) {
@@ -73,30 +74,37 @@ public final class AuthorizationHeaderParser {
                 realm = value;
             } else if ("nonce".equalsIgnoreCase(key)) {
                 nonce = value;
+            } else if ("httpMethod".equalsIgnoreCase(key)) {
+                httpMethod = value;
             } else if ("uri".equalsIgnoreCase(key)) {
-                uri = value;
+                requestedUri = value;
             } else if ("response".equalsIgnoreCase(key)) {
                 response = value;
             }
         }
 
-        return new DigestParams(username, realm, nonce, uri, response);
+        return new DigestParams(username, realm, nonce, httpMethod, requestedUri, response);
     }
 
+    /**
+     * Encapsulates the parameters from a client's authentication header.
+     */
     public static class DigestParams {
 
         private final String username;
         private final String realm;
         private final String nonce;
-        private final String uri;
+        private final String httpMethod;
+        private final String requestedUri;
         private final String response;
 
-        DigestParams(final String username, final String realm, final String nonce, final String uri, final String response) {
+        DigestParams(final String username, final String realm, final String nonce, final String httpMethod, final String uri, final String response) {
             super();
             this.username = username;
             this.realm = realm;
             this.nonce = nonce;
-            this.uri = uri;
+            this.httpMethod = httpMethod;
+            this.requestedUri = uri;
             this.response = response;
         }
 
@@ -112,17 +120,36 @@ public final class AuthorizationHeaderParser {
             return nonce;
         }
 
-        public String getUri() {
-            return uri;
+        public String getRequestedUri() {
+            return requestedUri;
         }
 
         public String getResponse() {
             return response;
         }
 
+        public String getHttpMethod() {
+            return httpMethod;
+        }
+
         @Override
         public int hashCode() {
-            return Objects.hashCode(username, realm, nonce, uri, response);
+            return Objects.hashCode(username, realm, nonce, httpMethod, requestedUri, response);
+        }
+
+        /**
+         * The parameter object is only valid if all parameters are not empty strings
+         * because all parameters are required for digest authentication.
+         *
+         * @return {@code true} if and only if all properties are not empty
+         */
+        public boolean isValid() {
+            return !(username.isEmpty()
+                    || realm.isEmpty()
+                    || nonce.isEmpty()
+                    || httpMethod.isEmpty()
+                    || requestedUri.isEmpty()
+                    || response.isEmpty());
         }
 
         @Override
@@ -135,7 +162,8 @@ public final class AuthorizationHeaderParser {
             return Objects.equal(username, other.username)
                     && Objects.equal(realm, other.realm)
                     && Objects.equal(nonce, other.nonce)
-                    && Objects.equal(uri, other.uri)
+                    && Objects.equal(httpMethod, other.httpMethod)
+                    && Objects.equal(requestedUri, other.requestedUri)
                     && Objects.equal(response, other.response);
         }
 
@@ -145,7 +173,8 @@ public final class AuthorizationHeaderParser {
                     .add("username", username)
                     .add("realm", realm)
                     .add("nonce", nonce)
-                    .add("uri", uri)
+                    .add("httpMethod", httpMethod)
+                    .add("requestedUri", requestedUri)
                     .add("response", response)
                     .toString();
         }

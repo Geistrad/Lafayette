@@ -14,6 +14,7 @@ package org.lafayette.server.http;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.lafayette.server.http.AuthorizationHeaderParser.DigestParams;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -24,9 +25,11 @@ import static org.hamcrest.Matchers.*;
  */
 public class DigestParamsTest {
 
-    @Test @Ignore
+    @Test
     public void testToString() {
-
+        final DigestParams sut = new DigestParams("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.toString(), is(equalTo("DigestParams{username=name, realm=realm, nonce=nonce, httpMethod=GET, "
+                + "requestedUri=uri, response=response}")));
     }
 
     @Test @Ignore
@@ -39,18 +42,30 @@ public class DigestParamsTest {
 
     }
 
-    @Test @Ignore
+    @Test
     public void isValid_defultIsInvalid() {
-
+        assertThat(AuthorizationHeaderParser.DEFAULT_DIGEST_PARAMAS.isValid(), is(false));
     }
 
-    @Test @Ignore
+    @Test
     public void isValid_trueIfAllParamsNotEmpty() {
-
+        final DigestParams sut = new DigestParams("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(true));
     }
 
-    @Test @Ignore
+    @Test
     public void isValid_falseIfAtLeastOneParamIsEmpty() {
-
+        DigestParams sut = new DigestParams("", "realm", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new DigestParams("name", "", "nonce", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new DigestParams("name", "realm", "", "GET", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new DigestParams("name", "realm", "nonce", "", "uri", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new DigestParams("name", "realm", "nonce", "GET", "", "response");
+        assertThat(sut.isValid(), is(false));
+        sut = new DigestParams("name", "realm", "nonce", "GET", "uri", "");
+        assertThat(sut.isValid(), is(false));
     }
 }

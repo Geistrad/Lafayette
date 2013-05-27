@@ -38,7 +38,7 @@ public class AuthorizationHeaderParserTest {
         assertThat(params.getUsername(), is(equalTo("")));
         assertThat(params.getRealm(), is(equalTo("")));
         assertThat(params.getNonce(), is(equalTo("")));
-        assertThat(params.getUri(), is(equalTo("")));
+        assertThat(params.getRequestedUri(), is(equalTo("")));
         assertThat(params.getResponse(), is(equalTo("")));
     }
 
@@ -50,7 +50,7 @@ public class AuthorizationHeaderParserTest {
         assertThat(params.getUsername(), is(equalTo("Foo")));
         assertThat(params.getRealm(), is(equalTo("Private Area")));
         assertThat(params.getNonce(), is(equalTo("IrTfjizEdXmIdlwHwkDJx0")));
-        assertThat(params.getUri(), is(equalTo("/")));
+        assertThat(params.getRequestedUri(), is(equalTo("/")));
         assertThat(params.getResponse(), is(equalTo("$RESPONSE")));
     }
 
@@ -66,7 +66,7 @@ public class AuthorizationHeaderParserTest {
         assertThat(params.getUsername(), is(equalTo("")));
         assertThat(params.getRealm(), is(equalTo("")));
         assertThat(params.getNonce(), is(equalTo("")));
-        assertThat(params.getUri(), is(equalTo("")));
+        assertThat(params.getRequestedUri(), is(equalTo("")));
         assertThat(params.getResponse(), is(equalTo("")));
     }
     
