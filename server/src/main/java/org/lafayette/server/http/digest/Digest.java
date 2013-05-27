@@ -11,12 +11,10 @@
  */
 package org.lafayette.server.http.digest;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * Helper to generate HTTP digest duthentication responses.
+ * Helper to generate HTTP digest authentication responses.
  *
  * Format is:
  * <pre>
