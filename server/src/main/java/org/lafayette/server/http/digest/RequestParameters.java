@@ -13,6 +13,7 @@
 package org.lafayette.server.http.digest;
 
 import com.google.common.base.Objects;
+import org.apache.commons.lang3.Validate;
 
 /**
  *
@@ -35,9 +36,25 @@ public final class RequestParameters extends BaseParameters {
         return response;
     }
 
-    public void setResponse(String response) {
+    public void setResponse(final String response) {
+        Validate.notNull(response);
         this.response = response;
     }
+
+    /**
+         * The parameter object is only valid if all parameters are not empty strings
+         * because all parameters are required for digest authentication.
+         *
+         * @return {@code true} if and only if all properties are not empty
+         */
+        public boolean isValid() {
+            return !(getUsername().isEmpty()
+                    || getRealm().isEmpty()
+                    || getNonce().isEmpty()
+                    || getHttpMethod().isEmpty()
+                    || getRequestedUri().isEmpty()
+                    || getResponse().isEmpty());
+        }
 
     @Override
     public int hashCode() {

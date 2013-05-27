@@ -53,89 +53,18 @@ public class Digest {
         return DigestUtils.md5Hex(String.format("%s:%s:%s", username, realm, password));
     }
 
-    public static String digestRequestData(final HttpMethod httpMethod, final URI requestedUri) {
-        return DigestUtils.md5Hex(String.format("%s:%s", httpMethod, requestedUri.getPath()));
+    public static String digestRequestData(final String httpMethod, final String requestedUri) {
+        return DigestUtils.md5Hex(String.format("%s:%s", httpMethod, requestedUri));
     }
 
     public static String digest(final String userData, final String nonce, final String requetsData) {
         return DigestUtils.md5Hex(String.format("%s:%s:%s", userData, nonce, requetsData));
     }
 
-    public static String digest(final Values v) {
-        final String userData = digestUserData(v.getUsername(), v.getPassword(), v.getRealm());
-        final String requestData = digestRequestData(v.getHttpMethod(), v.getRequestedUri());
-        return digest(userData, v.getNonce(), requestData);
+    public static String digest(final ResponseParameters params) {
+        final String userData = digestUserData(params.getUsername(), params.getPassword(), params.getRealm());
+        final String requestData = digestRequestData(params.getHttpMethod(), params.getRequestedUri());
+        return digest(userData, params.getNonce(), requestData);
     }
 
-    /**
-     * TODO Duplicated to {@link AuthorizationHeaderParser.DigestParams}.
-     */
-    public static class Values {
-        private String username = "";
-        private String password = "";
-        private String realm = "";
-        private String nonce = "";
-        private HttpMethod httpMethod = HttpMethod.GET;
-        private URI requestedUri;
-
-        public Values() {
-            super();
-            try {
-                requestedUri = new URI("/");
-            } catch (URISyntaxException ex) {
-                // Does never happen for URI "/".
-            }
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(final String username) {
-            this.username = username;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(final String password) {
-            this.password = password;
-        }
-
-        public String getRealm() {
-            return realm;
-        }
-
-        public void setRealm(final String realm) {
-            this.realm = realm;
-        }
-
-        public String getNonce() {
-            return nonce;
-        }
-
-        public void setNonce(final String nonce) {
-            this.nonce = nonce;
-        }
-
-        public HttpMethod getHttpMethod() {
-            return httpMethod;
-        }
-
-        public void setHttpMethod(final HttpMethod httpMethod) {
-            this.httpMethod = httpMethod;
-        }
-
-        public URI getRequestedUri() {
-            return requestedUri;
-        }
-
-        public void setRequestedUri(final URI requestedUri) {
-            this.requestedUri = requestedUri;
-        }
-
-    }
-
-    public static enum HttpMethod { GET, PUT, POST, DELETE, HEAD, OPTIONS }
 }

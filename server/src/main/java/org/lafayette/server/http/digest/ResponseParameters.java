@@ -13,6 +13,7 @@
 package org.lafayette.server.http.digest;
 
 import com.google.common.base.Objects;
+import org.apache.commons.lang3.Validate;
 
 /**
  *
@@ -35,10 +36,11 @@ public class ResponseParameters  extends BaseParameters {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
+        Validate.notNull(password);
         this.password = password;
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hashCode(super.hashCode(), password);

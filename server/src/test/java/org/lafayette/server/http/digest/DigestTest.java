@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 /**
  * Tests for {@link Digest}.
  *
- * Sven Strittmatter <weltraumschaf@googlemail.com>
+ * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class DigestTest {
 
@@ -32,7 +32,7 @@ public class DigestTest {
 
     @Test
     public void testDigestRequestData() throws URISyntaxException {
-        assertThat(Digest.digestRequestData(Digest.HttpMethod.GET, new URI("/foo")),
+        assertThat(Digest.digestRequestData("GET", "/foo"),
                    is("435c145e5ba6c34b4ef332e7bab538d1"));
     }
 
@@ -44,13 +44,13 @@ public class DigestTest {
 
     @Test
     public void testDigest_DigestValues() throws URISyntaxException {
-        final Digest.Values values = new Digest.Values();
+        final ResponseParameters values = new ResponseParameters();
         values.setUsername("foo");
         values.setRealm("baz");
         values.setPassword("bar");
         values.setNonce("nonce");
-        values.setHttpMethod(Digest.HttpMethod.GET);
-        values.setRequestedUri(new URI("/foo"));
+        values.setHttpMethod("GET");
+        values.setRequestedUri("/foo");
         assertThat(Digest.digest(values), is("b9140c5927e712419cdb9666f0866c31"));
     }
 

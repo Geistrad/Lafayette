@@ -12,37 +12,69 @@
 package org.lafayette.server.http.digest;
 
 import com.google.common.base.Objects;
+import org.apache.commons.lang3.Validate;
 
 /**
+ * Base values needed for HTTP digest authentication.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 abstract class BaseParameters {
 
+    /**
+     * Authenticated user's name.
+     */
     private String username;
+    /**
+     * Realm of the authenticated resource.
+     */
     private String realm;
+    /**
+     * Server generated unique random nonce.
+     */
     private String nonce;
+    /**
+     * HTTP method of the request.
+     */
     private String httpMethod;
+    /**
+     * URI to the requested resource.
+     */
     private String requestedUri;
 
+    /**
+     * Default constructor.
+     *
+     * Initializes all properties with an empty string.
+     */
     public BaseParameters() {
         this("", "", "", "", "");
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param username must not be {@code null}
+     * @param realm must not be {@code  null}
+     * @param nonce must not be {@code  null}
+     * @param httpMethod must not be {@code  null}
+     * @param requestedUri must not be {@code  null}
+     */
     public BaseParameters(final String username, final String realm, final String nonce, final String httpMethod, final String requestedUri) {
         super();
-        this.username = username;
-        this.realm = realm;
-        this.nonce = nonce;
-        this.httpMethod = httpMethod;
-        this.requestedUri = requestedUri;
+        setUsername(username);
+        setRealm(realm);
+        setNonce(nonce);
+        setHttpMethod(httpMethod);
+        setRequestedUri(requestedUri);
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public final void setUsername(final String username) {
+        Validate.notNull(username);
         this.username = username;
     }
 
@@ -50,7 +82,8 @@ abstract class BaseParameters {
         return realm;
     }
 
-    public void setRealm(String realm) {
+    public final void setRealm(final String realm) {
+        Validate.notNull(realm);
         this.realm = realm;
     }
 
@@ -58,7 +91,8 @@ abstract class BaseParameters {
         return nonce;
     }
 
-    public void setNonce(String nonce) {
+    public final void setNonce(final String nonce) {
+        Validate.notNull(nonce);
         this.nonce = nonce;
     }
 
@@ -66,15 +100,17 @@ abstract class BaseParameters {
         return httpMethod;
     }
 
-    public void setHttpMethod(String httpMethod) {
+    public final void setHttpMethod(final String httpMethod) {
+        Validate.notNull(httpMethod);
         this.httpMethod = httpMethod;
     }
 
-    public String getRequestedUri() {
+    public final String getRequestedUri() {
         return requestedUri;
     }
 
-    public void setRequestedUri(String requestedUri) {
+    public final void setRequestedUri(final String requestedUri) {
+        Validate.notNull(requestedUri);
         this.requestedUri = requestedUri;
     }
 
@@ -107,4 +143,5 @@ abstract class BaseParameters {
                     .append("requestedUri=").append(requestedUri)
                     .toString();
         }
+
 }
