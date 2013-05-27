@@ -152,11 +152,6 @@ public final class AuthorizationHeaderParser {
             return httpMethod;
         }
 
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(username, realm, nonce, httpMethod, requestedUri, response);
-        }
-
         /**
          * The parameter object is only valid if all parameters are not empty strings
          * because all parameters are required for digest authentication.
@@ -170,6 +165,11 @@ public final class AuthorizationHeaderParser {
                     || httpMethod.isEmpty()
                     || requestedUri.isEmpty()
                     || response.isEmpty());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(username, realm, nonce, httpMethod, requestedUri, response);
         }
 
         @Override
