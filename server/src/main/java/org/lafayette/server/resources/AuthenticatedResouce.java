@@ -11,6 +11,12 @@
  */
 package org.lafayette.server.resources;
 
+import java.util.List;
+import javax.ws.rs.core.HttpHeaders;
+import org.lafayette.server.http.ForbiddenException;
+import org.lafayette.server.http.UnauthorizedException;
+import org.lafayette.server.http.digest.ResponseParameters;
+
 /**
  * XXX Consider package private.
  *
@@ -24,7 +30,7 @@ public abstract class AuthenticatedResouce extends BaseResource {
     protected final void authenticate() {
         log.debug("Start authentication");
 
-        if (requestHasAuthenticationHEader()) {
+        if (requestHasAuthenticationHeader()) {
             log.debug("Verify authentication.");
             verifyAuthentiaction();
 
@@ -38,23 +44,39 @@ public abstract class AuthenticatedResouce extends BaseResource {
         }
     }
 
-    private boolean requestHasAuthenticationHEader() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String getAuthorizationHeader() {
+       final List<String> authHeader = headers().getRequestHeader(HttpHeaders.AUTHORIZATION);
+
+       if (authHeader == null || authHeader.isEmpty()) {
+           log.debug("No authorization header sent by client.");
+           return "";
+       }
+
+       if (authHeader.size() > 1) {
+           log.warn("More than one authorization header sent by client! Using first one and ignore others.");
+       }
+
+       return authHeader.get(0);
+    }
+
+    private boolean requestHasAuthenticationHeader() {
+        return !getAuthorizationHeader().isEmpty();
     }
 
     private void verifyAuthentiaction() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private boolean isAuthenticated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void sendForbiddenResponse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new ForbiddenException();
     }
 
     private void sendAuthenticationResponse() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final ResponseParameters params = new ResponseParameters();
+        throw new UnauthorizedException(params);
     }
 }

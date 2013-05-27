@@ -119,21 +119,6 @@ public abstract class BaseResource {
         return new String(msgpack.write(object));
     }
 
-    protected String getAuthorizationHeader() {
-       final List<String> authHeader = headers().getRequestHeader(HttpHeaders.AUTHORIZATION);
-
-       if (authHeader == null || authHeader.isEmpty()) {
-           log.debug("No authorization header sent by client.");
-           return "";
-       }
-
-       if (authHeader.size() > 1) {
-           log.warn("More than one authorization header sent by client! Using first one and ignore others.");
-       }
-
-       return authHeader.get(0);
-    }
-
     @GET
     @Produces(MediaType.TEXT_URI_LIST)
     public String indexAsUriList() throws URISyntaxException {
