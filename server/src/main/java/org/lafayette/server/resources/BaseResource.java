@@ -14,13 +14,14 @@ package org.lafayette.server.resources;
 import com.sun.jersey.api.NotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
@@ -58,7 +59,7 @@ public abstract class BaseResource {
     /**
      * Security context injected by Jersey.
      */
-    @Context private SecurityContext security;
+    @Context private HttpHeaders headers;
     /**
      * URI info injected by Jersey.
      */
@@ -79,8 +80,8 @@ public abstract class BaseResource {
         return context;
     }
 
-    protected SecurityContext security() {
-        return security;
+    protected HttpHeaders headers() {
+        return headers;
     }
 
     protected UriInfo uriInfo() {
@@ -115,7 +116,22 @@ public abstract class BaseResource {
     protected String formatMessagePack(final DomainObject object) throws IOException {
         return new String(msgpack.write(object));
     }
-
+    
+    protected String getAuthorizationHeader() {
+       final List<String> authHeader = headers().getRequestHeader(HttpHeaders.AUTHORIZATION); 
+       
+       if (authHeader == null || authHeader.isEmpty()) {
+           log.debug("No authorization header sent by client.");
+           return "";
+       }
+       
+       if (authHeader.size() > 1) {
+           log.warn("More than one authorization header sent by client! Using first one and ignore others.");
+       }
+       
+       return authHeader.get(0);
+    }
+    
     @GET
     @Produces(MediaType.TEXT_URI_LIST)
     public String indexAsUriList() throws URISyntaxException {

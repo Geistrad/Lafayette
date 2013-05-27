@@ -13,9 +13,11 @@ package org.lafayette.server.resources;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.HttpHeaders;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
@@ -31,8 +33,6 @@ public class IndexResource extends BaseResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String indexAsText() {
-        String username = security().getUserPrincipal().getName();
-        log.info("userame: %s", username);
         final StringBuilder buffer = new StringBuilder("Lafayette Server");
         buffer.append(Constants.NL).append(Constants.NL).append("Hello World!");
         return buffer.toString();
@@ -44,4 +44,10 @@ public class IndexResource extends BaseResource {
         indexUriList.add(new URI(servlet().getRealPath("/service")));
     }
 
+    @GET
+    @Path("test/")
+    public String test() {
+        // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
+       return getAuthorizationHeader();
+    }
 }
