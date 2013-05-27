@@ -68,6 +68,11 @@ public class ServerConfigTest {
         assertThat(sut.getDbDriver(), is("mysql"));
     }
 
+    @Test
+    public void getSecurotyRealm() {
+        assertThat(sut.getSecurotyRealm(), is("Lafayette restricted area."));
+    }
+
     @Test public void getEmptyStringsOrZeroByDefault() {
         final Properties prop = new Properties();
         final ServerConfig config = new ServerConfig(prop);
@@ -77,6 +82,7 @@ public class ServerConfigTest {
         assertThat(config.getDbPassword(), is(""));
         assertThat(config.getDbUser(), is(""));
         assertThat(config.getDbPort(), is(0));
+        assertThat(config.getSecurotyRealm(), is(""));
     }
 
     @Test

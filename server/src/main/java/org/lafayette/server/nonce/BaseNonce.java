@@ -11,18 +11,22 @@
  */
 package org.lafayette.server.nonce;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.List;
+import java.util.Collection;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
+ * Base common implementation for nonce generators.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 abstract class BaseNonce implements Nonce {
 
+    /**
+     * Random string used as default salt.
+     */
     static final String DEFAULT_SALT =
             "Shiun4Wuahg7Peijio7VipieUoquie8yiveuKae4Ailae2FieeW7aeheipe1eNg2"
             + "eeH5reerXeig7ahtAiXiequ5De0aiJagEocho8heaekaiTh5ro3OokaeJu0thiom"
@@ -58,8 +62,10 @@ abstract class BaseNonce implements Nonce {
     private static final int BITS_PER_BYTE = 8;
     /**
      * Liste of generated nonce strings.
+     *
+     * FIXME Remove old nonce after threshold.
      */
-    private final List<String> usedNones = Lists.newArrayList();
+    private final Collection<String> usedNones = Sets.newHashSet();
     /**
      * Used salt.
      */
@@ -88,10 +94,9 @@ abstract class BaseNonce implements Nonce {
      * @throws NoSuchAlgorithmException On unsupported algorithm.
      */
     public BaseNonce(final Nonce.RandonAlgorithm algorithm, final String salt, final Nonce.DigestAlgorithm digest)
-            throws NoSuchAlgorithmException {
+        throws NoSuchAlgorithmException {
         super();
         this.salt = salt;
-
         seeder = SecureRandom.getInstance(algorithm.getName());
         random = SecureRandom.getInstance(algorithm.getName());
         random.setSeed(generateSeed(RANDOM_SEED_SIZE));

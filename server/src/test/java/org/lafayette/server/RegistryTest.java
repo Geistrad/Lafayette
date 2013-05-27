@@ -12,6 +12,7 @@
 package org.lafayette.server;
 
 import de.weltraumschaf.commons.Version;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.Properties;
 import org.junit.Test;
@@ -22,6 +23,8 @@ import org.junit.rules.ExpectedException;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
 import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.nonce.Nonce;
+import org.lafayette.server.nonce.NonceFactory;
 
 /**
  * Tests for {@link Registry}.
@@ -34,6 +37,10 @@ public class RegistryTest {
     @Rule public final ExpectedException thrown = ExpectedException.none();
     //CHECKSTYLE:ON
     private final Registry sut = new Registry();
+
+    public RegistryTest() throws NoSuchAlgorithmException {
+        super();
+    }
 
     @Test
     public void defaultReturnsNeverNull() {
@@ -75,6 +82,12 @@ public class RegistryTest {
     }
 
     @Test
+    public void setNongeGenerator_throwsExceptionIfParameterIsNull() {
+        thrown.expect(NullPointerException.class);
+        sut.setNongeGenerator(null);
+    }
+
+    @Test
     public void setDatabase() {
         final Connection db = new NullConnection();
         sut.setDatabase(db);
@@ -107,6 +120,13 @@ public class RegistryTest {
         final Mappers mappers = new Mappers(new NullConnection());
         sut.setMappers(mappers);
         assertThat(sut.getMappers(), is(sameInstance(mappers)));
+    }
+
+    @Test
+    public void setNongeGenerator() throws NoSuchAlgorithmException {
+        final Nonce nonce = NonceFactory.sha1();
+        sut.setNongeGenerator(nonce);
+        assertThat(sut.getNongeGenerator(), is(sameInstance(nonce)));
     }
 
 }

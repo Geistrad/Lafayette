@@ -13,12 +13,15 @@
 package org.lafayette.server;
 
 import de.weltraumschaf.commons.Version;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.Properties;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
 import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.nonce.Nonce;
+import org.lafayette.server.nonce.NonceFactory;
 
 /**
  * Registers shared core resources.
@@ -57,11 +60,17 @@ public final class Registry {
      * Mapper factory.
      */
     private Mappers mappers = new Mappers(database);
+    /**
+     * USed to generate server nonce for authentication.
+     */
+    private Nonce nongeGenerator = NonceFactory.sha1();
 
     /**
      * Dedicated constructor.
+     *
+     * @throws NoSuchAlgorithmException if SHA1 algorithm is not present
      */
-    public Registry() {
+    public Registry() throws NoSuchAlgorithmException {
         super();
     }
 
@@ -141,13 +150,42 @@ public final class Registry {
         this.serverConfig = sc;
     }
 
+    /**
+     * Get database mapper factory.
+     *
+     * @return never {@code null}
+     */
     public Mappers getMappers() {
         return mappers;
     }
 
+    /**
+     * Set database mapper factory.
+     *
+     * @param m must not be null
+     */
     public void setMappers(final Mappers m) {
         Validate.notNull(m, "Mappers must not be null!");
         this.mappers = m;
+    }
+
+    /**
+     * Get server nonce generator.
+     *
+     * @return never {@code null}
+     */
+    public Nonce getNongeGenerator() {
+        return nongeGenerator;
+    }
+
+    /**
+     * Set server nonce generator.
+     *
+     * @param n must not be null
+     */
+    public void setNongeGenerator(final Nonce n) {
+        Validate.notNull(n, "Nonce generator must not be null!");
+        this.nongeGenerator = n;
     }
 
 }

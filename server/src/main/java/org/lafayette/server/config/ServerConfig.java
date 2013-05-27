@@ -50,6 +50,10 @@ public final class ServerConfig {
      */
     static final String DB_HOST = "db.host";
     /**
+     * Realm for HTTP authorization.
+     */
+    static final String SECURITY_REALM = "security.realm";
+    /**
      * Holds the properties from configuration file.
      */
     private final Properties serverProperties;
@@ -121,6 +125,15 @@ public final class ServerConfig {
      */
     public String getDbDriver() {
         return serverProperties.getProperty(DB_DRIVER, "");
+    }
+
+    /**
+     * Get the realm string for authorization.
+     *
+     * @return never {@code null}
+     */
+    public String getSecurotyRealm() {
+        return serverProperties.getProperty(SECURITY_REALM, "");
     }
 
     public String generateJdbcUri() {

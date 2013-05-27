@@ -77,6 +77,8 @@ public abstract class AuthenticatedResouce extends BaseResource {
 
     private void sendAuthenticationResponse() {
         final ResponseParameters params = new ResponseParameters();
+        params.setRealm(registry().getServerConfig().getSecurotyRealm());
+        params.setNonce(registry().getNongeGenerator().getNext());
         throw new UnauthorizedException(params);
     }
 }

@@ -16,6 +16,7 @@ import de.weltraumschaf.commons.Version;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -57,8 +58,10 @@ public final class ServerContextListener implements ServletContextListener {
 
     /**
      * Dedicated constructor.
+     *
+     * @throws NoSuchAlgorithmException if registry can't initialize {@link Registry#nongeGenerator}
      */
-    public ServerContextListener() {
+    public ServerContextListener() throws NoSuchAlgorithmException {
         super();
     }
 
