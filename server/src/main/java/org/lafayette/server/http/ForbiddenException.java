@@ -27,7 +27,7 @@ public class ForbiddenException extends WebApplicationException {
     }
 
     public ForbiddenException(final String message) {
-        super(Response.status(Response.Status.UNAUTHORIZED).entity(message).build());
+        super(Response.status(Response.Status.FORBIDDEN).entity(message).build());
     }
 
 }
