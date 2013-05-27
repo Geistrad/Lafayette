@@ -27,7 +27,13 @@ import org.lafayette.server.http.UriList;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/")
-public class IndexResource extends BaseResource {
+public class IndexResource extends AuthenticatedResouce {
+
+    @Override
+    protected void addUrisToIndexList(UriList indexUriList) throws URISyntaxException {
+        indexUriList.add(new URI(servlet().getRealPath("/user")));
+        indexUriList.add(new URI(servlet().getRealPath("/service")));
+    }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -37,16 +43,12 @@ public class IndexResource extends BaseResource {
         return buffer.toString();
     }
 
-    @Override
-    protected void addUrisToIndexList(UriList indexUriList) throws URISyntaxException {
-        indexUriList.add(new URI(servlet().getRealPath("/user")));
-        indexUriList.add(new URI(servlet().getRealPath("/service")));
-    }
-
     @GET
     @Path("test/")
     public String test() {
+        authenticate();
         // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
-       return AuthorizationHeaderParser.parseDigestHeaderValue(getAuthorizationHeader()).toString() + Constants.NL;
+//       return AuthorizationHeaderParser.parseDigestHeaderValue(getAuthorizationHeader()).toString() + Constants.NL;
+        return "";
     }
 }

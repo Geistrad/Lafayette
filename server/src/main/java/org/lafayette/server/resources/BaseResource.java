@@ -27,8 +27,6 @@ import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.domain.Finders;
-import org.lafayette.server.http.AuthorizationHeaderParser;
-import org.lafayette.server.http.AuthorizationHeaderParser.DigestParams;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.log.Log;
@@ -37,6 +35,8 @@ import org.msgpack.MessagePack;
 
 /**
  * Common functionality for all resource classes.
+ *
+ * XXX Consider package private.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -118,22 +118,22 @@ public abstract class BaseResource {
     protected String formatMessagePack(final DomainObject object) throws IOException {
         return new String(msgpack.write(object));
     }
-    
+
     protected String getAuthorizationHeader() {
-       final List<String> authHeader = headers().getRequestHeader(HttpHeaders.AUTHORIZATION); 
-       
+       final List<String> authHeader = headers().getRequestHeader(HttpHeaders.AUTHORIZATION);
+
        if (authHeader == null || authHeader.isEmpty()) {
            log.debug("No authorization header sent by client.");
            return "";
        }
-       
+
        if (authHeader.size() > 1) {
            log.warn("More than one authorization header sent by client! Using first one and ignore others.");
        }
-       
+
        return authHeader.get(0);
     }
-    
+
     @GET
     @Produces(MediaType.TEXT_URI_LIST)
     public String indexAsUriList() throws URISyntaxException {

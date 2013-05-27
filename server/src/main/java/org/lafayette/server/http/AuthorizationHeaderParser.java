@@ -91,11 +91,31 @@ public final class AuthorizationHeaderParser {
      */
     public static class DigestParams {
 
+        /**
+         * Users login name.
+         */
         private final String username;
+        /**
+         * Parameter from server retrieved from previous 401 response.
+         */
         private final String realm;
+        /**
+         * Parameter from server retrieved from previous 401 response.
+         */
         private final String nonce;
+        /**
+         * Used HTTP method.
+         */
         private final String httpMethod;
+        /**
+         * Uri to resource which want to be accessed.
+         */
         private final String requestedUri;
+        /**
+         * Response calculated by client.
+         *
+         * @see Digest#digest(org.lafayette.server.http.Digest.Values)
+         */
         private final String response;
 
         DigestParams(final String username, final String realm, final String nonce, final String httpMethod, final String uri, final String response) {

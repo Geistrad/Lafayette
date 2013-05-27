@@ -67,6 +67,9 @@ public class Digest {
         return digest(userData, v.getNonce(), requestData);
     }
 
+    /**
+     * TODO Duplicated to {@link AuthorizationHeaderParser.DigestParams}.
+     */
     public static class Values {
         private String username = "";
         private String password = "";
