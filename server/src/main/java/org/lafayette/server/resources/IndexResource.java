@@ -13,11 +13,10 @@ package org.lafayette.server.resources;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.HttpHeaders;
+import org.lafayette.server.http.AuthorizationHeaderParser;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
@@ -48,6 +47,6 @@ public class IndexResource extends BaseResource {
     @Path("test/")
     public String test() {
         // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
-       return getAuthorizationHeader();
+       return AuthorizationHeaderParser.parseDigestHeaderValue(getAuthorizationHeader()).toString() + Constants.NL;
     }
 }

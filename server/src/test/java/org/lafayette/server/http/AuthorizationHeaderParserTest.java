@@ -43,7 +43,7 @@ public class AuthorizationHeaderParserTest {
     }
 
     @Test
-    public void parseDigestHeaderValue_returnDefualtIf() {
+    public void parseDigestHeaderValue() {
         final String header = "Digest username=\"Foo\", realm=\"Private Area\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
                 + "uri=\"/\", response=\"$RESPONSE\"";
         final DigestParams params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
@@ -61,9 +61,13 @@ public class AuthorizationHeaderParserTest {
     }
 
     @Test
-    public void parseDigestHeaderValue_throwsExcpetionIfEmpty() {
-        thrown.expect(IllegalArgumentException.class);
-        AuthorizationHeaderParser.parseDigestHeaderValue("");
+    public void parseDigestHeaderValue_returnDefualtIfEmpty() {
+        final DigestParams params = AuthorizationHeaderParser.parseDigestHeaderValue("");
+        assertThat(params.getUsername(), is(equalTo("")));
+        assertThat(params.getRealm(), is(equalTo("")));
+        assertThat(params.getNonce(), is(equalTo("")));
+        assertThat(params.getUri(), is(equalTo("")));
+        assertThat(params.getResponse(), is(equalTo("")));
     }
-
+    
 }

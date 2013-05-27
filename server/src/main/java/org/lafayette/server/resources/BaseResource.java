@@ -27,6 +27,8 @@ import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.domain.Finders;
+import org.lafayette.server.http.AuthorizationHeaderParser;
+import org.lafayette.server.http.AuthorizationHeaderParser.DigestParams;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.log.Log;

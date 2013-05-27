@@ -17,56 +17,56 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Helper to generate HTTP digest duthentication responses.
- * 
+ *
  * Format is:
  * <pre>
- * $RESPONSE = md5( 
+ * $RESPONSE = md5(
  *                  md5( username + ":" + realm + ":" + password ) +    // User data.
- *                  ":" + nonce + ":" + 
+ *                  ":" + nonce + ":" +
  *                  md5( httpMethod + ":" + requestedUri )              // Request data.
  *             )
  * </pre>
- * 
+ *
  * Server response header:
  * <pre>
  * HTTP/1.1 401 Unauthorized
  * WWW-Authenticate: Digest real="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0"
  * ...
  * </pre>
- * 
+ *
  * Client Request:
  * <pre>
  * GET / HTTP/1.1
- * Authorization: Digest username="Foo", 
- *                       realm="Private Area", 
- *                       nonce="IrTfjizEdXmIdlwHwkDJx0", 
- *                       uri="/", 
+ * Authorization: Digest username="Foo",
+ *                       realm="Private Area",
+ *                       nonce="IrTfjizEdXmIdlwHwkDJx0",
+ *                       uri="/",
  *                       response="$RESPONSE"
  * ...
  * </pre>
- * 
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class Digest {
-    
+
     public static String digestUserData(final String username, final String password, final String realm) {
         return DigestUtils.md5Hex(String.format("%s:%s:%s", username, realm, password));
     }
-    
+
     public static String digestRequestData(final HttpMethod httpMethod, final URI requestedUri) {
         return DigestUtils.md5Hex(String.format("%s:%s", httpMethod, requestedUri.getPath()));
     }
-    
+
     public static String digest(final String userData, final String nonce, final String requetsData) {
         return DigestUtils.md5Hex(String.format("%s:%s:%s", userData, nonce, requetsData));
     }
-    
+
     public static String digest(final Values v) {
         final String userData = digestUserData(v.getUsername(), v.getPassword(), v.getRealm());
         final String requestData = digestRequestData(v.getHttpMethod(), v.getRequestedUri());
         return digest(userData, v.getNonce(), requestData);
     }
-            
+
     public static class Values {
         private String username = "";
         private String password = "";
@@ -83,7 +83,7 @@ public class Digest {
                 // Does never happen for URI "/".
             }
         }
-        
+
         public String getUsername() {
             return username;
         }
@@ -131,8 +131,8 @@ public class Digest {
         public void setRequestedUri(final URI requestedUri) {
             this.requestedUri = requestedUri;
         }
-        
+
     }
-    
+
     public static enum HttpMethod { GET, PUT, POST, DELETE, HEAD, OPTIONS }
 }

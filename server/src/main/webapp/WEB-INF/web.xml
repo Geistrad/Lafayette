@@ -4,10 +4,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Lafayette Server</display-name>
 
-    <!--    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>-->
-
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
@@ -43,39 +39,8 @@
 
     <listener>
         <display-name>application</display-name>
-        <description>Context listener of Lafayette server.</description>
         <listener-class>org.lafayette.server.ServerContextListener</listener-class>
     </listener>
-    <listener>
-        <display-name>spring</display-name>
-        <description>Context listener of Spring security framework.</description>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            /WEB-INF/security-app-context.xml,
-            /WEB-INF/app-context.xml
-        </param-value>
-    </context-param>
-
-    <!-- Enables Spring Security -->
-    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>
-            org.springframework.web.filter.DelegatingFilterProxy
-        </filter-class>
-        <init-param>
-            <param-name>targetBeanName</param-name>
-            <param-value>springSecurityFilterChain</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 
     <servlet>
         <servlet-name>resources</servlet-name>

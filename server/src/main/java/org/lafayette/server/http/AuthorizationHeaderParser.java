@@ -9,11 +9,12 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.http;
 
 import com.google.common.base.Objects;
 import org.apache.commons.lang3.Validate;
+import org.lafayette.server.log.Log;
+import org.lafayette.server.log.Logger;
 
 /**
  * Parses the "Authorization" header field from a HTTP request.
@@ -32,17 +33,26 @@ import org.apache.commons.lang3.Validate;
 public final class AuthorizationHeaderParser {
 
     private static final DigestParams DEFAULT_DIGEST_PARAMAS = new DigestParams("", "", "", "", "");
+    private static final Logger LOG = Log.getLogger(AuthorizationHeaderParser.class);
 
     private AuthorizationHeaderParser() {
         super();
     }
 
     public static DigestParams parseDigestHeaderValue(final String headerValue) {
-        Validate.notEmpty(headerValue, "Header value must not be empty!");
+        Validate.notNull(headerValue, "Header value must not be null!");
         final String trimmedValue = headerValue.trim();
+
+        if (trimmedValue.isEmpty()) {
+            LOG.info("Authorization header is empty! Return empty default params.");
+
+            return DEFAULT_DIGEST_PARAMAS;
+        }
+
         final int firstWhiteSpace = trimmedValue.indexOf(' ');
 
         if (!"Digest".equalsIgnoreCase(trimmedValue.substring(0, firstWhiteSpace))) {
+            LOG.info("Authorization header is not of type 'Digest'! Return empty default params.");
             return DEFAULT_DIGEST_PARAMAS;
         }
 
@@ -74,6 +84,7 @@ public final class AuthorizationHeaderParser {
     }
 
     public static class DigestParams {
+
         private final String username;
         private final String realm;
         private final String nonce;
@@ -121,17 +132,22 @@ public final class AuthorizationHeaderParser {
             }
 
             final DigestParams other = (DigestParams) obj;
-            return Objects.equal(username, other.username) &&
-                    Objects.equal(realm, other.realm) &&
-                    Objects.equal(nonce, other.nonce) &&
-                    Objects.equal(uri, other.uri) &&
-                    Objects.equal(response, other.response);
+            return Objects.equal(username, other.username)
+                    && Objects.equal(realm, other.realm)
+                    && Objects.equal(nonce, other.nonce)
+                    && Objects.equal(uri, other.uri)
+                    && Objects.equal(response, other.response);
         }
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this).toString();
+            return Objects.toStringHelper(this)
+                    .add("username", username)
+                    .add("realm", realm)
+                    .add("nonce", nonce)
+                    .add("uri", uri)
+                    .add("response", response)
+                    .toString();
         }
-
     }
 }
