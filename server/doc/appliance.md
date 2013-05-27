@@ -10,14 +10,25 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 
 ## Import into Virtual Box
 
-1. Download and install [Virtual Box][1]. 
-2. Import appliance: `Menu -> File -> Import Aplliance
-3. Change network from NAT to bridged
+1. download and install [Virtual Box][1]. 
+2. import appliance: `Menu -> File -> Import Aplliance
+3. change network from NAT to bridged
     1. Open virtual machne settings
     2. Navigate to network
-    3. Change `Attached to:` from `NAT` to `Bridged Adapter`
-4. Start virtual machine
-
+    3. change `Attached to:` from `NAT` to `Bridged Adapter`
+4. start virtual machine
+5. chaneg hostname
+	1. login as root
+	2. edit /etc/hostname and change `lafayette-dev`: `$ nano /et/hostname`
+	3. edit /htc/hosts and  change `lafayette-dev`: `$ nano /et/hosts`
+	4. reboot machine: `$ shutdown -r now`
+6. change Sonar URI in Jenkins
+	1. login via Webbrowser to Jenkins with user `service-user` (see below): http://YOURHOSTNAME:8080
+	2. go to `configure Jenkins`
+	3. go to `configure system`
+	4. search for `sonar`
+	5. edit server URI to: http://YOURHOSTNAME:9000
+	
 ## Users
 
     root: mo3Shoo7
