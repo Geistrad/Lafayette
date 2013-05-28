@@ -32,7 +32,6 @@ import org.lafayette.server.nonce.NonceFactory;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-@Ignore
 public class RegistryTest {
 
     //CHECKSTYLE:OFF
@@ -83,7 +82,7 @@ public class RegistryTest {
         sut.setMappers(null);
     }
 
-    @Test @Ignore
+    @Test
     public void setNongeGenerator_throwsExceptionIfParameterIsNull() {
         thrown.expect(NullPointerException.class);
         sut.setNongeGenerator(null);
@@ -124,7 +123,7 @@ public class RegistryTest {
         assertThat(sut.getMappers(), is(sameInstance(mappers)));
     }
 
-    @Test @Ignore
+    @Test
     public void setNongeGenerator() throws NoSuchAlgorithmException {
         final Nonce nonce = NonceFactory.sha1();
         sut.setNongeGenerator(nonce);

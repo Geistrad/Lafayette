@@ -24,7 +24,7 @@ import org.junit.Test;
  */
 public class NonceFactoryTest {
 
-    @Test @Ignore 
+    @Test
     public void createSha() throws NoSuchAlgorithmException {
         assertThat(NonceFactory.sha1() instanceof Sha1, is(true));
     }

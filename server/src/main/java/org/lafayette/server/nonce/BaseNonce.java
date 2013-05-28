@@ -53,10 +53,6 @@ abstract class BaseNonce implements Nonce {
      */
     static final Nonce.DigestAlgorithm DEFAULT_DIGEST = Nonce.DigestAlgorithm.SHA1;
     /**
-     * Default size for seed generator.
-     */
-    private static final int RANDOM_SEED_SIZE = 1024;
-    /**
      * Bits per byte.
      */
     private static final int BITS_PER_BYTE = 8;
@@ -72,35 +68,27 @@ abstract class BaseNonce implements Nonce {
     private final String salt;
     /**
      * Used random number generator.
-     *
-     * Lazy computed.
      */
     private final SecureRandom random;
     /**
      * Used digest algorithm.
      */
-    private final Nonce.DigestAlgorithm digester;
-    /**
-     * Seeder.
-     */
-    private final SecureRandom seeder;
+    private final Nonce.DigestAlgorithm digestAlgorithm;
 
     /**
      * Default constructor.
      *
-     * @param algorithm Used nonce calculating algorithm.
+     * @param randomAlgorithm Used nonce calculating algorithm.
      * @param salt Used hash salt.
-     * @param digest Used hashing algorithm.
+     * @param digestAlgorithm Used hashing algorithm.
      * @throws NoSuchAlgorithmException On unsupported algorithm.
      */
-    public BaseNonce(final Nonce.RandonAlgorithm algorithm, final String salt, final Nonce.DigestAlgorithm digest)
+    public BaseNonce(final Nonce.RandonAlgorithm randomAlgorithm, final String salt, final Nonce.DigestAlgorithm digestAlgorithm)
         throws NoSuchAlgorithmException {
         super();
         this.salt = salt;
-        seeder = SecureRandom.getInstance(algorithm.getName());
-        random = SecureRandom.getInstance(algorithm.getName());
-        random.setSeed(generateSeed(RANDOM_SEED_SIZE));
-        this.digester = digest;
+        this.random = SecureRandom.getInstance(randomAlgorithm.getName());
+        this.digestAlgorithm = digestAlgorithm;
     }
 
     /**
@@ -118,7 +106,7 @@ abstract class BaseNonce implements Nonce {
      * @param nonce Nonce to check.
      * @return True if given nonce string already generated, otherwise false.
      */
-    boolean allreadyUsed(final String nonce) {
+    boolean alreadyUsed(final String nonce) {
         return usedNones.contains(nonce);
     }
 
@@ -154,26 +142,14 @@ abstract class BaseNonce implements Nonce {
      * @return hashed plain text
      */
     protected String digest(final String plaintext) {
-        switch (digester) {
+        switch (digestAlgorithm) {
             case MD5:
                 return DigestUtils.md5Hex(plaintext);
             case SHA1:
                 return DigestUtils.sha1Hex(plaintext);
             default:
-                throw new IllegalArgumentException(String.format("Unsupported algorithm '%s'!", digester));
+                throw new IllegalArgumentException(String.format("Unsupported algorithm '%s'!", digestAlgorithm));
         }
-    }
-
-    /**
-     * Generates random seed.
-     *
-     * @param size Seed size in bits.
-     * @return Byte array with random seed.
-     */
-    private byte[] generateSeed(final int size) {
-        final byte[] bytes = new byte[size / BITS_PER_BYTE];
-        seeder.nextBytes(bytes);
-        return seeder.generateSeed(size);
     }
 
     @Override
