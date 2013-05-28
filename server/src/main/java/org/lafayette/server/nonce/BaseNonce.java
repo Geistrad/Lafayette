@@ -11,10 +11,8 @@
  */
 package org.lafayette.server.nonce;
 
-import com.google.common.collect.Sets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Collection;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -53,15 +51,9 @@ abstract class BaseNonce implements Nonce {
      */
     static final Nonce.DigestAlgorithm DEFAULT_DIGEST = Nonce.DigestAlgorithm.SHA1;
     /**
-     * Bits per byte.
-     */
-    private static final int BITS_PER_BYTE = 8;
-    /**
      * Liste of generated nonce strings.
-     *
-     * FIXME Remove old nonce after threshold.
      */
-    private final Collection<String> usedNones = Sets.newHashSet();
+    private final NonceCache usedNones = new NonceCache();
     /**
      * Used salt.
      */
@@ -107,7 +99,7 @@ abstract class BaseNonce implements Nonce {
      * @return True if given nonce string already generated, otherwise false.
      */
     boolean alreadyUsed(final String nonce) {
-        return usedNones.contains(nonce);
+        return usedNones.has(nonce);
     }
 
     @Override
@@ -117,7 +109,7 @@ abstract class BaseNonce implements Nonce {
         do {
             nonce = calculateNonce();
 
-            if (!usedNones.contains(nonce)) {
+            if (!usedNones.has(nonce)) {
                 usedNones.add(nonce);
                 break;
             }

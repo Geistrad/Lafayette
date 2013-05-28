@@ -15,14 +15,18 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
+ * Auto cleaning cache for nonce.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class NonceCache {
 
+    /**
+     * Default capacity.
+     */
     private static final int DEFAULT_CAPACITY = 1000;
     /**
-     *
+     * Default threshold.
      */
     private static final int DEFAULT_THRESHOLD = 10;
     /**
