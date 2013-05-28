@@ -37,6 +37,9 @@ class NonceCache {
      * If size() >= capacity - capacity / threshold then garbage collect.
      */
     private final int threshold;
+    /**
+     * Collects the nonce strings.
+     */
     private final List<String> nonces;
 
     public NonceCache() {

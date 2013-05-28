@@ -121,7 +121,7 @@ abstract class BaseNonce implements Nonce {
     /**
      * Get the salt string.
      *
-     * @return Sal string.
+     * @return salt string.
      */
     String getSalt() {
         return salt;
