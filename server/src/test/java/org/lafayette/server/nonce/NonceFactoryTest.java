@@ -14,7 +14,6 @@ package org.lafayette.server.nonce;
 import java.security.NoSuchAlgorithmException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
