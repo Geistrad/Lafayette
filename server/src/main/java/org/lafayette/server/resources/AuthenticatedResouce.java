@@ -64,11 +64,11 @@ public abstract class AuthenticatedResouce extends BaseResource {
     }
 
     private void verifyAuthentiaction() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     private boolean isAuthenticated() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return false;
     }
 
     private void sendForbiddenResponse() {
