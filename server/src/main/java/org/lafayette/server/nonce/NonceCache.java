@@ -76,7 +76,7 @@ class NonceCache {
                 return;
             }
 
-            List<String> retained = nonces.subList(capacity / threshold, nonces.size() - 1);
+            final List<String> retained = Lists.newArrayList(nonces.subList(capacity / threshold, nonces.size()));
             nonces.clear();
             nonces.addAll(retained);
         }

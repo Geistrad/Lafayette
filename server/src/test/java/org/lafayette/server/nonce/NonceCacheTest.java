@@ -11,8 +11,6 @@
  */
 package org.lafayette.server.nonce;
 
-import com.google.common.collect.Lists;
-import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -52,7 +50,7 @@ public class NonceCacheTest {
         sut.add("foo");
         assertThat(sut.has("foo"), is(true));
     }
-    
+
     @Test
     public void add() {
         final NonceCache sut = new NonceCache();
@@ -64,11 +62,51 @@ public class NonceCacheTest {
         assertThat(sut.size(), is(3));
     }
 
-    @Test @Ignore
+    @Test
     public void garbageCollect() {
-        
+        final NonceCache sut = new NonceCache(10, 3);
+        sut.add("foo1");
+        assertThat(sut.size(), is(1));
+        sut.add("foo2");
+        assertThat(sut.size(), is(2));
+        sut.add("foo3");
+        assertThat(sut.size(), is(3));
+        sut.add("foo4");
+        assertThat(sut.size(), is(4));
+        sut.add("foo5");
+        assertThat(sut.size(), is(5));
+        sut.add("foo6");
+        assertThat(sut.size(), is(6));
+        sut.add("foo7");
+        assertThat(sut.size(), is(4));
+        assertThat(sut.has("foo1"), is(false));
+        assertThat(sut.has("foo2"), is(false));
+        assertThat(sut.has("foo3"), is(false));
+        assertThat(sut.has("foo4"), is(true));
+        assertThat(sut.has("foo5"), is(true));
+        assertThat(sut.has("foo6"), is(true));
+        assertThat(sut.has("foo7"), is(true));
+        assertThat(sut.has("foo8"), is(false));
+        assertThat(sut.has("foo9"), is(false));
+        assertThat(sut.has("foo10"), is(false));
+        sut.add("foo8");
+        assertThat(sut.size(), is(5));
+        sut.add("foo9");
+        assertThat(sut.size(), is(6));
+        sut.add("foo10");
+        assertThat(sut.size(), is(4));
+        assertThat(sut.has("foo1"), is(false));
+        assertThat(sut.has("foo2"), is(false));
+        assertThat(sut.has("foo3"), is(false));
+        assertThat(sut.has("foo4"), is(false));
+        assertThat(sut.has("foo5"), is(false));
+        assertThat(sut.has("foo6"), is(false));
+        assertThat(sut.has("foo7"), is(true));
+        assertThat(sut.has("foo8"), is(true));
+        assertThat(sut.has("foo9"), is(true));
+        assertThat(sut.has("foo10"), is(true));
     }
-    
+
     @Test
     public void shouldDoGarbageCollection_throwsExceptionIfSizeLessThanZero() {
         thrown.expect(IllegalArgumentException.class);
@@ -123,5 +161,4 @@ public class NonceCacheTest {
         assertThat(NonceCache.shouldDoGarbageCollection(99, 100, 10), is(true));
         assertThat(NonceCache.shouldDoGarbageCollection(100, 100, 10), is(true));
     }
-
 }
