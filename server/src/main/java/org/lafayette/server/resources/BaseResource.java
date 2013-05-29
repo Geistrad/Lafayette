@@ -57,7 +57,7 @@ public abstract class BaseResource {
     /**
      * Servlet context injected by Jersey.
      */
-    @Context private ServletContext context;
+    @Context private ServletContext servlet;
     /**
      * Security context injected by Jersey.
      */
@@ -75,11 +75,11 @@ public abstract class BaseResource {
     protected abstract void addUrisToIndexList(UriList indexUriList) throws URISyntaxException;
 
     protected Registry registry() {
-        return (Registry) context.getAttribute(ServerContextListener.REGISRTY);
+        return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);
     }
 
     protected ServletContext servlet() {
-        return context;
+        return servlet;
     }
 
     protected HttpHeaders headers() {
@@ -122,7 +122,7 @@ public abstract class BaseResource {
     @GET
     @Produces(MediaType.TEXT_URI_LIST)
     public String indexAsUriList() throws URISyntaxException {
-        log.info("Respond with URI list for %s", context.getRealPath(""));
+        log.info("Respond with URI list for %s", servlet.getRealPath(""));
         addUrisToIndexList(indexUriList);
         return indexUriList.toString();
     }

@@ -17,6 +17,8 @@ import java.util.List;
 /**
  * Auto cleaning cache for nonce.
  *
+ * XXX Consider using byte[] instead of string.
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class NonceCache {

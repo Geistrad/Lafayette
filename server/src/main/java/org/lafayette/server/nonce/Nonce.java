@@ -36,6 +36,8 @@ public interface Nonce {
      */
     String calculateNonce();
 
+    boolean isValid(final String nonce);
+
     /**
      * SUpported algorithms.
      */

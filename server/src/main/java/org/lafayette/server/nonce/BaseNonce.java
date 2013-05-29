@@ -152,4 +152,9 @@ abstract class BaseNonce implements Nonce {
         return digest(nonceString.toString());
     }
 
+    @Override
+    public boolean isValid(final String nonce) {
+        return false;
+    }
+
 }
