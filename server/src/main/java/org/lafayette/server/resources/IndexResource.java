@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import org.lafayette.server.http.digest.AuthorizationHeaderParser;
+import org.lafayette.server.Authentication;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
@@ -45,8 +45,9 @@ public class IndexResource extends AuthenticatedResouce {
 
     @GET
     @Path("test/")
+    @Authentication
     public String test() {
-        authenticate();
+//        authenticate();
         // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
 //       return AuthorizationHeaderParser.parseDigestHeaderValue(getAuthorizationHeader()).toString() + Constants.NL;
         return "";
