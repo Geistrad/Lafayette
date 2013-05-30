@@ -42,6 +42,16 @@
         <listener-class>org.lafayette.server.ServerContextListener</listener-class>
     </listener>
 
+    <filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/r/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>resources</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>

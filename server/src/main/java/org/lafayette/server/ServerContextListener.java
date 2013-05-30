@@ -13,6 +13,7 @@ package org.lafayette.server;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
 import org.lafayette.server.log.Log;
 import de.weltraumschaf.commons.Version;
 import java.io.File;
@@ -35,11 +36,9 @@ import org.lafayette.server.mapper.Mappers;
 /**
  * Implements a servlet context listener.
  *
- * Creates and provides an instance of a Neo4j database.
- *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class ServerContextListener implements ServletContextListener {
+public final class ServerContextListener extends GuiceServletContextListener implements ServletContextListener {
 
     /**
      * Key for a {@link Registry registry object} servlet context attribute.
@@ -68,9 +67,14 @@ public final class ServerContextListener implements ServletContextListener {
     }
 
     @Override
+    protected Injector getInjector() {
+        return Guice.createInjector(new ServerModule());
+    }
+
+    @Override
     public void contextInitialized(final ServletContextEvent sce) {
         LOG.debug("Context initialized. Execute listener...");
-        setUpDependencyInjection();
+//        setUpDependencyInjection();
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
@@ -197,5 +201,4 @@ public final class ServerContextListener implements ServletContextListener {
         final Injector injector = Guice.createInjector(new ServerModule());
         reg.setDependnecyInjector(injector);
     }
-
 }

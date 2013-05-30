@@ -17,6 +17,7 @@ import com.sun.jersey.spi.container.ContainerResponseFilter;
 import com.sun.jersey.spi.container.ResourceFilter;
 
 /**
+ * Interface for security context filter.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
