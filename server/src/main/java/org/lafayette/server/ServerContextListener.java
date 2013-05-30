@@ -68,6 +68,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
 
     @Override
     protected Injector getInjector() {
+        // http://code.google.com/p/google-guice/wiki/ServletModule
         LOG.debug("Create Guice injector.");
         final Injector injector = Guice.createInjector(new ServerModule());
         reg.setDependnecyInjector(injector);

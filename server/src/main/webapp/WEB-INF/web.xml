@@ -43,6 +43,7 @@
     </listener>
 
     <filter>
+        <!-- http://code.google.com/p/google-guice/wiki/Servlets -->
         <filter-name>guiceFilter</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
     </filter>
