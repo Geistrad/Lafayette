@@ -146,7 +146,7 @@ abstract class BaseNonce implements Nonce {
 
     @Override
     public String calculateNonce() {
-        final Long nonceVal = Math.abs(getRandom().nextLong());
+        final Long nonceVal = getRandom().nextLong();
         final StringBuilder nonceString = new StringBuilder();
         nonceString.append(getSalt()).append(Long.toHexString(nonceVal));
         return digest(nonceString.toString());
