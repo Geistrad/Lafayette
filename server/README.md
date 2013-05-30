@@ -15,9 +15,9 @@ Add to `.m2/settings.xml`
         </server>
         ...
     </servers>
-
+	
     ...
-
+	
     <profiles>
         ...
         <profile>

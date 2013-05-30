@@ -31,8 +31,8 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 	
 ## Users
 
-    root: mo3Shoo7
-    service-user: ahf4Iedu (sudoer)
+- root: mo3Shoo7
+- service-user: ahf4Iedu (sudoer)
 
 ## Services
 
@@ -45,21 +45,21 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 
 - Port 80: in `/etc/default/tomcat7` autobind=on
 - MySQL JDBC connector: `/usr/share/tomcat7/lib/mysql.jar -> /usr/share/java/mysql.jar`
-- see https://mifosforge.jira.com/wiki/display/MIFOSX/Install+Tomcat+7+on+Ubuntu+11.10+for+Mifos+X
+- see [Install Tomcat 7 on Ubuntu 11.10 for Mifos X][2]
 
-in `/etc/defaults/tomcat`
+Add in `/etc/defaults/tomcat`
 
     export STAGE=development
     
     ...
-
+	
     # Java memory options
     MAX_PERM_SIZE=128m
     HEAP_SPACE_START=128m
     HEAP_SPACE_MAX=256m
-
+	
     ...
-
+	
     JAVA_OPTS="-Djava.awt.headless=true \
     -Xmx128m \
     -XX:+UseConcMarkSweepGC \
@@ -69,3 +69,4 @@ in `/etc/defaults/tomcat`
     -Xms${HEAP_SPACE_START} -Xmx${HEAP_SPACE_MAX}"
 
 [1]: https://www.virtualbox.org/wiki/Downloads
+[2]: https://mifosforge.jira.com/wiki/display/MIFOSX/Install+Tomcat+7+on+Ubuntu+11.10+for+Mifos+X
