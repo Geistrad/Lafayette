@@ -55,7 +55,7 @@
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.spi.container.ResourceFilters</param-name>
-            <param-value>org.lafayette.server.AuthenticationResourceFilterFactory</param-value>
+            <param-value>org.lafayette.server.filter.AuthenticationResourceFilterFactory</param-value>
         </init-param>
     </servlet>
 

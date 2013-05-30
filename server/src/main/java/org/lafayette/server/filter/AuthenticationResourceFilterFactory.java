@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server;
+package org.lafayette.server.filter;
 
 import com.sun.jersey.api.model.AbstractMethod;
 import com.sun.jersey.spi.container.ResourceFilter;
@@ -17,7 +17,7 @@ import com.sun.jersey.spi.container.ResourceFilterFactory;
 import java.util.Collections;
 import java.util.List;
 import javax.ws.rs.ext.Provider;
-import org.lafayette.server.filter.SecurityContextFilter;
+import org.lafayette.server.Authentication;
 
 /**
  * Filters the request/response for authentication.
