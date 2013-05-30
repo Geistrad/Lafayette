@@ -12,7 +12,6 @@
 package org.lafayette.server.mapper;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -182,11 +181,6 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         try {
             final String sql = source.sql();
             stmt = db.prepareStatement(sql);
-
-            if (null == stmt) {
-                LOG.error("Can't prepare statement for SQL '%s'! Warnings: %s", sql, db.getWarnings());
-                return Collections.emptyList();
-            }
 
             for (int i = 0; i < source.parameters().length; ++i) {
                 stmt.setObject(i + 1, source.parameters()[i]);
