@@ -36,11 +36,9 @@ import org.msgpack.MessagePack;
 /**
  * Common functionality for all resource classes.
  *
- * XXX Consider package private.
- *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public abstract class BaseResource {
+abstract class BaseResource {
 
     /**
      * Logger facility.
