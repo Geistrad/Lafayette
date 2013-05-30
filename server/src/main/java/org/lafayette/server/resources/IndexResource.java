@@ -45,7 +45,7 @@ public class IndexResource extends BaseResource {
 
     @GET
     @Path("test/")
-//    @Authentication
+    @Authentication
     public Object test() {
         // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
         return security().getUserPrincipal().toString()  + "\r\n";

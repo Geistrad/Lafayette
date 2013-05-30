@@ -19,8 +19,6 @@ import java.sql.SQLException;
 import java.util.Collection;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
