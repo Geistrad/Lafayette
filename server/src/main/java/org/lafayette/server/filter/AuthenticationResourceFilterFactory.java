@@ -17,6 +17,9 @@ import com.sun.jersey.spi.container.ResourceFilter;
 import com.sun.jersey.spi.container.ResourceFilterFactory;
 import java.util.Collections;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.ext.Provider;
 
 /**
@@ -29,12 +32,21 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class AuthenticationResourceFilterFactory implements ResourceFilterFactory {
 
-    @Inject private SecuirityContextFilter security;
+    @Context
+    private ServletContext servlet;
+    @Context
+    private HttpHeaders headers;
+
+//    @Inject
+//    public AuthenticationResourceFilterFactory(final SecuirityContextFilter security) {
+//        super();
+//        this.security = security;
+//    }
 
     @Override
     public List<ResourceFilter> create(final AbstractMethod am) {
         if (am.isAnnotationPresent(Authentication.class)) {
-            return Collections.<ResourceFilter>singletonList(security);
+            return Collections.<ResourceFilter>singletonList(new SecurityContextFilterDigest(servlet, headers));
         }
 
         return Collections.emptyList();

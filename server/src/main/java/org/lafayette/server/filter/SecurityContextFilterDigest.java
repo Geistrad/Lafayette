@@ -43,10 +43,16 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
      * Logger facility.
      */
     private final Logger log = Log.getLogger(this);
-    @Context
-    private ServletContext servlet;
-    @Context
-    private HttpHeaders headers;
+
+    private final ServletContext servlet;
+
+    private final HttpHeaders headers;
+
+    public SecurityContextFilterDigest(final ServletContext servlet, final HttpHeaders headers) {
+        super();
+        this.servlet = servlet;
+        this.headers = headers;
+    }
 
     /**
      * Get global registry from servlet context.
