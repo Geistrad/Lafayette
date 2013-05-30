@@ -13,6 +13,7 @@ package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Sets;
+import java.security.Principal;
 import java.util.Collection;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.msgpack.annotation.Message;
@@ -23,7 +24,7 @@ import org.msgpack.annotation.Message;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @XmlRootElement @Message
-public class User extends BaseDomainObject {
+public class User extends BaseDomainObject implements Principal {
 
     /**
      * Unique login name of the user.
@@ -150,5 +151,10 @@ public class User extends BaseDomainObject {
                 .add("salt", salt)
                 .add("roles", roles)
                 .toString();
+    }
+
+    @Override
+    public String getName() {
+        return loginName;
     }
 }
