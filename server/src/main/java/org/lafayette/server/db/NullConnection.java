@@ -769,7 +769,7 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(int parameterIndex, int scale) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
@@ -799,7 +799,7 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(int parameterIndex) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
@@ -1034,7 +1034,7 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(String parameterName) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
@@ -1291,7 +1291,7 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
@@ -1371,7 +1371,7 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
@@ -1455,12 +1455,12 @@ public class NullConnection implements Connection {
 
         @Override
         public BigDecimal getBigDecimal(int columnIndex) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
         public BigDecimal getBigDecimal(String columnLabel) throws SQLException {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
 
         @Override
