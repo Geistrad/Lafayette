@@ -31,15 +31,40 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
+    /**
+     * Generic find by id query.
+     *
+     * First format parameter are the colum names.
+     * Second format parameter is he table name.
+     * Third format parameter is the primary key field name.
+     * First prepared statement parameter is the id.
+     */
     private static final String SQL_FIND_BY_ID = "select %s from %s where %s = ?";
+    /**
+     * Generic find all query.
+     *
+     * First format parameter are the colum names.
+     * Second format parameter is he table name.
+     * Third format parameter is the limit.
+     * Fourth format parameter is the offset.
+     */
     private static final String SQL_FIND_ALL = "select %s from %s limit %d offset %s";
+    /**
+     * Generic query to find the maximum id used.
+     *
+     * First format parameter is the primary key field name.
+     * Second format parameter is the table name.
+     */
     private static final String SQL_MAX_PK = "select max(%s) from %s";
+    /**
+     * Generic query to delete by id.
+     *
+     * First format parameter is the table name.
+     * Second format parameter is the primary key field name.
+     * First prepared statement parameter is the id.
+     */
     private static final String SQL_DELETE = "delete from %s where %s = ?";
 
-    /**
-     * Logging facility.
-     */
-    private static final Logger LOG = Log.getLogger(BaseMapper.class);
     /**
      * Used JDBC database connection.
      */
@@ -55,6 +80,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Dedicated constructor.
      *
      * @param db used database connection
+     * @param idMap maps identity map for mapped domain objects
      */
     public BaseMapper(final Connection db, final IntegerIdentityMap<T> idMap) {
         super();
@@ -69,6 +95,14 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      */
     protected abstract String findByIdStatement();
 
+    /**
+     * Generates the find by id SQL statement.
+     *
+     * @param columns comma separated column names
+     * @param table table name
+     * @param pk primary key field name
+     * @return SQL prepared statement string
+     */
     protected String findByIdStatement(final String columns, final String table, final String pk) {
         return String.format(SQL_FIND_BY_ID, columns, table, pk);
     }
@@ -82,9 +116,19 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      */
     protected abstract String findAllStatement(final int limit, final int offset);
 
+    /**
+     * Generates the find all SQL statement.
+     *
+     * @param columns comma separated column names
+     * @param table table name
+     * @param limit limit parameter
+     * @param offset offset parameter
+     * @return SQL prepared statement string
+     */
     protected String findAllStatement(final String columns, final String table, final int limit, final int offset) {
         return String.format(SQL_FIND_ALL, columns, table, limit, offset);
     }
+
     /**
      * SQL statement to find the max ID.
      *
@@ -92,22 +136,38 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      */
     protected abstract String findMaxPrimaryKeyStatement();
 
+    /**
+     * SQL statement to find the max ID.
+     *
+     * @param pk primary key field name
+     * @param table table name
+     * @return SQL prepared statement string
+     */
     protected String findfindMaxPrimaryKeyStatement(final String pk, final String table) {
         return String.format(SQL_MAX_PK, pk, table);
     }
 
     /**
+     * SQL statement to insert record set.
      *
      * @return SQL prepared statement string
      */
     protected abstract String insertStatement();
 
     /**
+     * SQL statement to delete record set.
      *
      * @return SQL prepared statement string
      */
     protected abstract String deleteStatement();
 
+    /**
+     * SQL statement to delete record set.
+     *
+     * @param table table name
+     * @param pk primary key field name
+     * @return SQL prepared statement string
+     */
     protected String deleteStatement(final String table, final String pk) {
         return String.format(SQL_DELETE, table, pk);
     }
@@ -116,6 +176,12 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
     protected abstract void doInsert(final T subject, final PreparedStatement insertStatement) throws SQLException;
 
+    /**
+     * Generic find method.
+     *
+     * @param id primary key id of domain object.
+     * @return found domain object
+     */
     protected T abstractFind(final int id) {
         if (idMap.containsIdentity(id)) {
             return idMap.get(id);

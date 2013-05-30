@@ -43,11 +43,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.rmi.CORBA.Tie;
 
 /**
+ * A default implementation of {@link Connection} which does nothing for testing.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
