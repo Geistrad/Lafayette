@@ -56,5 +56,6 @@ Deploy
 
 - Add security http://stackoverflow.com/questions/2902427/user-authentication-on-a-jersey-rest-service
 	- http://stackoverflow.com/questions/9462955/authentication-in-jersey
+- Database mappers: Validate input (string length, id range etc.)
 
 [1]: http://weltraumschaf.github.io/Lafayette/

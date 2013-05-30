@@ -38,10 +38,10 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     /**
      * Field of database table.
      */
-    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedPassword, salt";
-    private static final String SQL_INSERT = "insert into %s values (?, ?, ?, ?)";
+    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedUserData";
+    private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
     private static final String SQL_FIND_BY_LOGIN_NAME = "select %s from %s where loginName like ?";
-    private static final String SQL_UPDATE = "update %s set loginName = ?, hashedPassword = ?, salt = ? where %s = ?";
+    private static final String SQL_UPDATE = "update %s set loginName = ?, hashedUserData = ? where %s = ?";
 
     /**
      * Created by {@link Mappers factory}.
@@ -89,16 +89,14 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     protected User doLoad(final int id, final ResultSet result) throws SQLException {
         final String loginName = result.getString(2);
-        final String hashedPassword = result.getString(3);
-        final String salt = result.getString(4);
-        return new User(id, loginName, hashedPassword, salt);
+        final String hashedUserData = result.getString(3);
+        return new User(id, loginName, hashedUserData);
     }
 
     @Override
     protected void doInsert(final User subject, final PreparedStatement insertStatement) throws SQLException {
         insertStatement.setString(2, subject.getLoginName());
-        insertStatement.setString(3, subject.getHashedPassword());
-        insertStatement.setString(4, subject.getSalt());
+        insertStatement.setString(3, subject.getHashedUserData());
     }
 
     @Override
@@ -135,9 +133,8 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
         try {
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
             updateStatement.setString(1, subject.getLoginName());
-            updateStatement.setString(2, subject.getHashedPassword());
-            updateStatement.setString(3, subject.getSalt());
-            updateStatement.setInt(4, subject.getId());
+            updateStatement.setString(2, subject.getHashedUserData());
+            updateStatement.setInt(3, subject.getId());
             updateStatement.execute();
             updateStatement.close();
         } catch (SQLException ex) {

@@ -45,14 +45,12 @@ public class UserMapperTest extends DbTestCase {
         User user = sut.find(1);
         assertThat(user.getId(), is(1));
         assertThat(user.getLoginName(), is("Foo"));
-        assertThat(user.getHashedPassword(), is("b9f46238b289f23ba807973840655032"));
-        assertThat(user.getSalt(), is("Oih0mei7"));
+        assertThat(user.getHashedUserData(), is("b9f46238b289f23ba807973840655032"));
 
         user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
-        assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
-        assertThat(user.getSalt(), is("AiZuur1Y"));
+        assertThat(user.getHashedUserData(), is("043bd227eaa879d438e7c1dfea568bc9"));
     }
 
     @Test
@@ -68,8 +66,7 @@ public class UserMapperTest extends DbTestCase {
         final User user = sut.findByLoginName("Baz");
         assertThat(user.getId(), is(3));
         assertThat(user.getLoginName(), is("Baz"));
-        assertThat(user.getHashedPassword(), is("aa82cc74b4a932c06d4ea5a9ac38cf5e"));
-        assertThat(user.getSalt(), is("Eng7ovej"));
+        assertThat(user.getHashedUserData(), is("aa82cc74b4a932c06d4ea5a9ac38cf5e"));
     }
 
     @Test
@@ -89,18 +86,15 @@ public class UserMapperTest extends DbTestCase {
             switch (userId) {
                 case 1:
                     assertThat(user.getLoginName(), is("Foo"));
-                    assertThat(user.getHashedPassword(), is("b9f46238b289f23ba807973840655032"));
-                    assertThat(user.getSalt(), is("Oih0mei7"));
+                    assertThat(user.getHashedUserData(), is("b9f46238b289f23ba807973840655032"));
                     break;
                 case 2:
                     assertThat(user.getLoginName(), is("Bar"));
-                    assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
-                    assertThat(user.getSalt(), is("AiZuur1Y"));
+                    assertThat(user.getHashedUserData(), is("043bd227eaa879d438e7c1dfea568bc9"));
                     break;
                 case 3:
                     assertThat(user.getLoginName(), is("Baz"));
-                    assertThat(user.getHashedPassword(), is("aa82cc74b4a932c06d4ea5a9ac38cf5e"));
-                    assertThat(user.getSalt(), is("Eng7ovej"));
+                    assertThat(user.getHashedUserData(), is("aa82cc74b4a932c06d4ea5a9ac38cf5e"));
                     break;
                 default:
                     fail("Unexpected user id: " + userId);
@@ -120,9 +114,8 @@ public class UserMapperTest extends DbTestCase {
     @Test
     public void insert() {
         final String loginName = "snafu";
-        final String hashedPassword = "snafupw";
-        final String salt = "snafusalt";
-        User user = new User(loginName, hashedPassword, salt);
+        final String hashedUserData = "snafupw";
+        User user = new User(loginName, hashedUserData);
         UserMapper sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         final int id = sut.insert(user);
 
@@ -130,8 +123,7 @@ public class UserMapperTest extends DbTestCase {
         sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         user = sut.find(id);
         assertThat(user.getLoginName(), is(loginName));
-        assertThat(user.getHashedPassword(), is(hashedPassword));
-        assertThat(user.getSalt(), is(salt));
+        assertThat(user.getHashedUserData(), is(hashedUserData));
     }
 
     @Test
@@ -140,26 +132,22 @@ public class UserMapperTest extends DbTestCase {
         User user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
-        assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
-        assertThat(user.getSalt(), is("AiZuur1Y"));
+        assertThat(user.getHashedUserData(), is("043bd227eaa879d438e7c1dfea568bc9"));
 
         user.setLoginName("snafu");
-        user.setHashedPassword("snafupw");
-        user.setSalt("snafusalt");
+        user.setHashedUserData("snafupw");
         sut.update(user);
 
         user = sut.find(2); // get from cache
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("snafu"));
-        assertThat(user.getHashedPassword(), is("snafupw"));
-        assertThat(user.getSalt(), is("snafusalt"));
+        assertThat(user.getHashedUserData(), is("snafupw"));
 
         sut = new UserMapper(db(), new IntegerIdentityMap<User>());
         user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("snafu"));
-        assertThat(user.getHashedPassword(), is("snafupw"));
-        assertThat(user.getSalt(), is("snafusalt"));
+        assertThat(user.getHashedUserData(), is("snafupw"));
     }
 
     @Test
@@ -168,8 +156,7 @@ public class UserMapperTest extends DbTestCase {
         final User user = sut.find(2);
         assertThat(user.getId(), is(2));
         assertThat(user.getLoginName(), is("Bar"));
-        assertThat(user.getHashedPassword(), is("043bd227eaa879d438e7c1dfea568bc9"));
-        assertThat(user.getSalt(), is("AiZuur1Y"));
+        assertThat(user.getHashedUserData(), is("043bd227eaa879d438e7c1dfea568bc9"));
 
         sut.delete(user);
 

@@ -11,8 +11,7 @@
 create table if not exists user (
     id int not null,
     loginName varchar(255) not null,
-    hashedPassword varchar(255) not null,
-    salt varchar(255) not null,
+    hashedUserData varchar(255) not null,
     primary key(id),
     unique(loginName)
 );

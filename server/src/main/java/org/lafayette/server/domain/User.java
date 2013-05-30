@@ -31,17 +31,11 @@ public class User extends BaseDomainObject implements Principal {
      */
     private String loginName;
     /**
-     * Hashed password.
+     * Hashed user data.
      *
-     * hash = PBKDF2( password + salt)
-     *
-     * see http://stackoverflow.com/questions/8674018/pbkdf2-with-bouncycastle-in-java
+     * hashedUserData = md5 ( username : realm : password )
      */
-    private String hashedPassword;
-    /**
-     * Unique salt for password hash.
-     */
-    private String salt;
+    private String hashedUserData;
     /**
      * Roles a user has.
      */
@@ -51,7 +45,7 @@ public class User extends BaseDomainObject implements Principal {
      * No argument constructor for necessary for Jackson XML generation.
      */
     public User() {
-        this("", "", "");
+        this("", "");
     }
 
     /**
@@ -60,11 +54,10 @@ public class User extends BaseDomainObject implements Principal {
      * This constructor should be used for user objects which were not yet saved in the database.
      *
      * @param loginName the login name
-     * @param hashedPassword the hashed password
-     * @param salt the password hash salt
+     * @param hashedUserData the hashed password
      */
-    public User(final String loginName, final String hashedPassword, final String salt) {
-        this(UNINITIALIZED_ID, loginName, hashedPassword, salt);
+    public User(final String loginName, final String hashedUserData) {
+        this(UNINITIALIZED_ID, loginName, hashedUserData);
     }
 
     /**
@@ -72,38 +65,28 @@ public class User extends BaseDomainObject implements Principal {
      *
      * @param id the primary key
      * @param loginName the login name
-     * @param hashedPassword the hashed password
-     * @param salt the password hash salt
+     * @param hashedUserData the hashed password
      */
-    public User(final int id, final String loginName, final String hashedPassword, final String salt) {
+    public User(final int id, final String loginName, final String hashedUserData) {
         super(id);
         this.loginName = loginName;
-        this.hashedPassword = hashedPassword;
-        this.salt = salt;
+        this.hashedUserData = hashedUserData;
     }
 
-    public void setLoginName(String loginName) {
+    public void setLoginName(final String loginName) {
         this.loginName = loginName;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public void setHashedUserData(final String hashedUserData) {
+        this.hashedUserData = hashedUserData;
     }
 
     public String getLoginName() {
         return loginName;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public String getSalt() {
-        return salt;
+    public String getHashedUserData() {
+        return hashedUserData;
     }
 
     public Collection<Role> getRoles() {
@@ -124,7 +107,7 @@ public class User extends BaseDomainObject implements Principal {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), loginName, hashedPassword, salt, roles);
+        return Objects.hashCode(super.hashCode(), loginName, hashedUserData, roles);
     }
 
     @Override
@@ -137,8 +120,7 @@ public class User extends BaseDomainObject implements Principal {
 
         return super.equals(other)
                 && Objects.equal(loginName, other.loginName)
-                && Objects.equal(hashedPassword, other.hashedPassword)
-                && Objects.equal(salt, other.salt)
+                && Objects.equal(hashedUserData, other.hashedUserData)
                 && Objects.equal(roles, other.roles);
     }
 
@@ -147,8 +129,7 @@ public class User extends BaseDomainObject implements Principal {
         return Objects.toStringHelper(this)
                 .addValue(super.toString())
                 .add("loginName", loginName)
-                .add("hashedPassword", hashedPassword)
-                .add("salt", salt)
+                .add("hashedUserData", hashedUserData)
                 .add("roles", roles)
                 .toString();
     }

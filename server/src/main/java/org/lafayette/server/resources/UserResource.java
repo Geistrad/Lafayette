@@ -41,7 +41,7 @@ public class UserResource extends BaseResource {
 
     private static final int PAD_ID = 5;
     private static final int PAD_LOGIN_NAME = 16;
-    private static final int PAD_HASHED_PASSWORD = 34;
+    private static final int PAD_HASHED_USER_DATA = 34;
     private static final int LIMIT = 25;
 
     @Override
@@ -58,15 +58,15 @@ public class UserResource extends BaseResource {
         final UserFinder finder = finders().forUsers();
         buffer.append(StringUtils.rightPad("id", PAD_ID))
                 .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
-                .append(StringUtils.rightPad("hashedPassword", PAD_HASHED_PASSWORD))
+                .append(StringUtils.rightPad("hashedUserData", PAD_HASHED_USER_DATA))
                 .append("salt")
                 .append(Constants.NL);
 
         for (final User user : finder.findAll(LIMIT, 0)) {
             buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
                     .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
-                    .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
-                    .append(user.getSalt()).append(Constants.NL);
+                    .append(StringUtils.rightPad(user.getHashedUserData(), PAD_HASHED_USER_DATA))
+                    .append(Constants.NL);
         }
 
         return buffer.toString();
@@ -119,7 +119,7 @@ public class UserResource extends BaseResource {
         }
 
         final String loginName = jsonEntity.getString("loginName");
-        final User newUser = new User(loginName, "", "");
+        final User newUser = new User(loginName, ""); // FIXME Set hashed user data (password).
         registry().getMappers().createUserMapper().insert(newUser);
         final URI uri = uriInfo().getAbsolutePathBuilder()
                 .path(String.valueOf(newUser.getId()))

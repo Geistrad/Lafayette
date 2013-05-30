@@ -131,7 +131,7 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     }
 
     private void createAndSetPrincipal(final ContainerRequest request) {
-        final User principal = new User(23, "Snafu", "foo", "bar");
+        final User principal = new User(23, "Snafu", "foo");
         request.setSecurityContext(new SecurityContextImpl(principal));
     }
 }

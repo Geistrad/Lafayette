@@ -8,4 +8,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-insert into user values (1, 'root', 'b9f46238b289f23ba807973840655032', 'Oih0mei7');
+-- root:Lafayette restricted area.:mo3Shoo7
+insert into user values (1, 'root', 'd7fa6cf1b5ad2a3afdc32e96c364eb74');
+-- testuser1:Lafayette restricted area.:test1234
+insert into user values (2, 'testuser1', '324469c568446d04d0a5725d2640672e');

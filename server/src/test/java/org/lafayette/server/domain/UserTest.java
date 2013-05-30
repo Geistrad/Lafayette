@@ -31,9 +31,9 @@ public class UserTest {
 
     @Test
     public void testHashCode() {
-        final User u1 = new User(1, "foo", "bar", "baz");
-        final User u2 = new User(1, "foo", "bar", "baz");
-        final User u3 = new User(2, "snafu", "bar", "baz");
+        final User u1 = new User(1, "foo", "bar");
+        final User u2 = new User(1, "foo", "bar");
+        final User u3 = new User(2, "snafu", "bar");
 
         assertThat(u1.hashCode(), is(equalTo(u1.hashCode())));
         assertThat(u1.hashCode(), is(equalTo(u2.hashCode())));
@@ -53,9 +53,9 @@ public class UserTest {
     @Test
     @SuppressWarnings("IncompatibleEquals")
     public void testEquals() {
-        final User u1 = new User(1, "foo", "bar", "baz");
-        final User u2 = new User(1, "foo", "bar", "baz");
-        final User u3 = new User(2, "snafu", "bar", "baz");
+        final User u1 = new User(1, "foo", "bar");
+        final User u2 = new User(1, "foo", "bar");
+        final User u3 = new User(2, "snafu", "bar");
 
         //CHECKSTYLE:OFF
         assertThat(u1.equals(null), is(equalTo(false)));
@@ -79,18 +79,18 @@ public class UserTest {
 
     @Test
     public void testToString() {
-        final User u1 = new User(1, "foo", "bar", "baz");
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedPassword=bar, salt=baz, roles=[]}")));
+        final User u1 = new User(1, "foo", "bar");
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=[]}")));
 
         final Role r1 = new Role(1, "foo", "bar");
         u1.addRole(r1);
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedPassword=bar, salt=baz, roles=["
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=["
                 + "Role{id=1, name=foo, description=bar}"
                 + "]}")));
 
         final Role r2 = new Role(2, "baz", "bar");
         u1.addRole(r2);
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedPassword=bar, salt=baz, roles=["
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=["
                 + "Role{id=2, name=baz, description=bar}, "
                 + "Role{id=1, name=foo, description=bar}"
                 + "]}")));
@@ -98,7 +98,7 @@ public class UserTest {
 
     @Test
     public void addGetAndRemoveRoles() {
-        final User u1 = new User(1, "foo", "bar", "baz");
+        final User u1 = new User(1, "foo", "bar");
         assertThat(u1.getRoles(), hasSize(0));
 
         final Role r1 = new Role(1, "foo", "bar");
