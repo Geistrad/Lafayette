@@ -23,6 +23,7 @@ import org.lafayette.server.log.Logger;
  * Authorization: Digest username="Foo",
  *                       realm="Private Area",
  *                       nonce="IrTfjizEdXmIdlwHwkDJx0",
+ *                       httpMethod="GET",
  *                       uri="/",
  *                       response="$RESPONSE"
  * </pre>

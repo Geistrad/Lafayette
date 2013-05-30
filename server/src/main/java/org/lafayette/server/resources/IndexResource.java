@@ -27,7 +27,7 @@ import org.lafayette.server.http.UriList;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/")
-public class IndexResource extends AuthenticatedResouce {
+public class IndexResource extends BaseResource {
 
     @Override
     protected void addUrisToIndexList(UriList indexUriList) throws URISyntaxException {
@@ -47,9 +47,7 @@ public class IndexResource extends AuthenticatedResouce {
     @Path("test/")
     @Authentication
     public String test() {
-//        authenticate();
         // curl -i -X GET -H 'Authorization: Digest username="Foo", realm="Private Area", nonce="IrTfjizEdXmIdlwHwkDJx0", uri="/", response="$RESPONSE"' http://localhost:8084/r/test
-//       return AuthorizationHeaderParser.parseDigestHeaderValue(getAuthorizationHeader()).toString() + Constants.NL;
-        return "";
+        return "HELO\r\n";
     }
 }

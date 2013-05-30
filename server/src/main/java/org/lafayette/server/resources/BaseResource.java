@@ -14,7 +14,6 @@ package org.lafayette.server.resources;
 import com.sun.jersey.api.NotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
