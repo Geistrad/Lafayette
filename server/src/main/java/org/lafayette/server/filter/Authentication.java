@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server;
+package org.lafayette.server.filter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

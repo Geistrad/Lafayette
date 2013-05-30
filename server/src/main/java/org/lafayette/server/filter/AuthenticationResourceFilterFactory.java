@@ -17,7 +17,6 @@ import com.sun.jersey.spi.container.ResourceFilterFactory;
 import java.util.Collections;
 import java.util.List;
 import javax.ws.rs.ext.Provider;
-import org.lafayette.server.Authentication;
 
 /**
  * Filters the request/response for authentication.

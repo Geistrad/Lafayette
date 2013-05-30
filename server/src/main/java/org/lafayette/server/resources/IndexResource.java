@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import org.lafayette.server.Authentication;
+import org.lafayette.server.filter.Authentication;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
