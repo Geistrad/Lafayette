@@ -10,14 +10,14 @@ Add to `.m2/settings.xml`
         ...
         <server>
             <id>SERVER_ID</id>
-            <username>admin</username>
+            <username>root</username>
             <password>PASSWORD</password>
         </server>
         ...
     </servers>
-	
+
     ...
-	
+
     <profiles>
         ...
         <profile>
@@ -51,12 +51,6 @@ Deploy
             /{id}   text/plain, text/html, application/json, application/xml, application/x-msgpack
         /service    text/uri-list, text/plain, text/html, application/json, application/xml, application/x-msgpack
             /{name} text/plain, text/html, application/json, application/xml, application/x-msgpack
-
-## Classes
-
-### org.lafayette.server.http
-
-    UriList > Set<URI>
 
 ## Todo
 

@@ -21,8 +21,6 @@ import org.junit.rules.ExpectedException;
 /**
  * Tests for {@link AuthorizationHeaderParser}.
  *
- * TODO Move into ResponseParameters
- *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class AuthorizationHeaderParserTest {
