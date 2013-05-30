@@ -12,6 +12,7 @@
 
 package org.lafayette.server;
 
+import com.google.inject.Injector;
 import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -61,9 +62,13 @@ public final class Registry {
      */
     private Mappers mappers = new Mappers(database);
     /**
-     * USed to generate server nonce for authentication.
+     * Used to generate server nonce for authentication.
      */
     private Nonce nongeGenerator = NonceFactory.sha1();
+    /**
+     * Manages dependencies.
+     */
+    private Injector dependnecyInjector;
 
     /**
      * Dedicated constructor.
@@ -181,11 +186,30 @@ public final class Registry {
     /**
      * Set server nonce generator.
      *
-     * @param n must not be null
+     * @param n must not be {@code null}
      */
     public void setNongeGenerator(final Nonce n) {
         Validate.notNull(n, "Nonce generator must not be null!");
         this.nongeGenerator = n;
+    }
+
+    /**
+     * Set injector which manages dependency injection.
+     *
+     * @param i must not be {@code null}
+     */
+    public void setDependnecyInjector(final Injector i) {
+        Validate.notNull(i, "Injector must not be null!");
+        this.dependnecyInjector = i;
+    }
+
+    /**
+     * Get dependency injector.
+     *
+     * @return never {@code null}
+     */
+    public Injector getDependnecyInjector() {
+        return dependnecyInjector;
     }
 
 }

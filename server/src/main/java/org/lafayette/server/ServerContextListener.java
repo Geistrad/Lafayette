@@ -11,6 +11,8 @@
  */
 package org.lafayette.server;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.lafayette.server.log.Log;
 import de.weltraumschaf.commons.Version;
 import java.io.File;
@@ -68,6 +70,7 @@ public final class ServerContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
         LOG.debug("Context initialized. Execute listener...");
+        setUpDependencyInjection();
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
@@ -188,6 +191,11 @@ public final class ServerContextListener implements ServletContextListener {
 
     private void createMappersFactory(final Connection con) {
         reg.setMappers(new Mappers(con));
+    }
+
+    private void setUpDependencyInjection() {
+        final Injector injector = Guice.createInjector(new ServerModule());
+        reg.setDependnecyInjector(injector);
     }
 
 }

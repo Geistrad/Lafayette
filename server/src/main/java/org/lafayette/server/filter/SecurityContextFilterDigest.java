@@ -15,7 +15,6 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
-import com.sun.jersey.spi.container.ResourceFilter;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
@@ -38,7 +37,7 @@ import org.lafayette.server.log.Logger;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Provider
-public class SecurityContextFilter implements ResourceFilter, ContainerRequestFilter, ContainerResponseFilter {
+public class SecurityContextFilterDigest implements SecuirityContextFilter {
 
     /**
      * Logger facility.

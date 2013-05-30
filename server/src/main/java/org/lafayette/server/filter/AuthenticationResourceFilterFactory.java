@@ -11,6 +11,7 @@
  */
 package org.lafayette.server.filter;
 
+import com.google.inject.Inject;
 import com.sun.jersey.api.model.AbstractMethod;
 import com.sun.jersey.spi.container.ResourceFilter;
 import com.sun.jersey.spi.container.ResourceFilterFactory;
@@ -28,10 +29,12 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class AuthenticationResourceFilterFactory implements ResourceFilterFactory {
 
+    @Inject private SecuirityContextFilter security;
+
     @Override
     public List<ResourceFilter> create(final AbstractMethod am) {
         if (am.isAnnotationPresent(Authentication.class)) {
-            return Collections.<ResourceFilter>singletonList(new SecurityContextFilter());
+            return Collections.<ResourceFilter>singletonList(security);
         }
 
         return Collections.emptyList();

@@ -10,22 +10,16 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server;
+package org.lafayette.server.filter;
 
-import com.google.inject.AbstractModule;
-import org.lafayette.server.filter.SecuirityContextFilter;
-import org.lafayette.server.filter.SecurityContextFilterDigest;
+import com.sun.jersey.spi.container.ContainerRequestFilter;
+import com.sun.jersey.spi.container.ContainerResponseFilter;
+import com.sun.jersey.spi.container.ResourceFilter;
 
 /**
- * Defines <a href="http://code.google.com/p/google-guice/">Guice</a> dependencies.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class ServerModule extends AbstractModule {
-
-    @Override
-    protected void configure() {
-        bind(SecuirityContextFilter.class).to(SecurityContextFilterDigest.class);
-    }
+public interface SecuirityContextFilter extends ResourceFilter, ContainerRequestFilter, ContainerResponseFilter {
 
 }
