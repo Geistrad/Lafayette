@@ -8,5 +8,8 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-insert into role values (1, 'admin', 'Administrative user with all privileges.');
-insert into role values (2, 'user', 'Standart user with limited privileges.');
+-- user root
+insert into role values (1, 'USER');
+insert into role values (1, 'ADMINISTRATOR');
+-- user testuser1
+insert into role values (2, 'USER');

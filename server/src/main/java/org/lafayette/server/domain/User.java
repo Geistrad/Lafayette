@@ -12,9 +12,11 @@
 package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.msgpack.annotation.Message;
 
@@ -39,7 +41,7 @@ public class User extends BaseDomainObject implements Principal {
     /**
      * Roles a user has.
      */
-    private final Collection<Role> roles = Sets.newHashSet();
+    private final Map<String, Role> roles = Maps.newHashMap();
 
     /**
      * No argument constructor for necessary for Jackson XML generation.
@@ -90,11 +92,15 @@ public class User extends BaseDomainObject implements Principal {
     }
 
     public Collection<Role> getRoles() {
-        return Sets.newHashSet(roles);
+        return Sets.newHashSet(roles.values());
+    }
+
+    public boolean hasRole(final String r) {
+        return roles.containsKey(r);
     }
 
     public boolean hasRole(final Role r) {
-        return roles.contains(r);
+        return roles.containsValue(r);
     }
 
     public void removeRole(final Role r) {
@@ -102,7 +108,7 @@ public class User extends BaseDomainObject implements Principal {
     }
 
     public void addRole(final Role r) {
-        roles.add(r);
+        roles.put(r.getName(), r);
     }
 
     @Override

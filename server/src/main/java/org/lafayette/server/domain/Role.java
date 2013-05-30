@@ -83,4 +83,8 @@ public class Role extends BaseDomainObject {
                 .add("description", description)
                 .toString();
     }
+
+    public enum Names {
+        ANONYMOUS, USER, ADMINISTRATOR;
+    }
 }

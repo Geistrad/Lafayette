@@ -9,9 +9,7 @@
  */
 
 create table if not exists role (
-    id int not null,
-    name varchar(255) not null,
-    description varchar(255) not null,
-    primary key(id),
-    unique(name)
+    user_id int not null,
+    roleName varchar(255) not null,
+    unique(user_id, roleName)
 );
