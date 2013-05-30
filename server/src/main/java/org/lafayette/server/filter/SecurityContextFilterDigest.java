@@ -22,6 +22,7 @@ import javax.ws.rs.ext.Provider;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
+import org.lafayette.server.domain.User;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
 import org.lafayette.server.http.digest.AuthorizationHeaderParser;
@@ -76,22 +77,22 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     public ContainerRequest filter(final ContainerRequest request) {
         log.debug("Start authentication");
 
-        if (requestHasAuthenticationHeader()) {
-            log.debug("Verify authentication.");
-
-            if (verifyAuthentiaction()) {
-                createAndSetPrincipal();
+//        if (requestHasAuthenticationHeader()) {
+//            log.debug("Verify authentication.");
+//
+//            if (verifyAuthentiaction()) {
+                createAndSetPrincipal(request);
                 return request;
-            } else {
-                log.debug("Not authorized! Send forbidden response.");
-                sendForbiddenResponse(); // throws 403
-                return null;
-            }
-        } else {
-            log.debug("Request doesn't have authentication header! Send authentication response.");
-            sendAuthenticationResponse(); // throws 401
-            return null;
-        }
+//            } else {
+//                log.debug("Not authorized! Send forbidden response.");
+//                sendForbiddenResponse(); // throws 403
+//                return request;
+//            }
+//        } else {
+//            log.debug("Request doesn't have authentication header! Send authentication response.");
+//            sendAuthenticationResponse(); // throws 401
+//            return request;
+//        }
     }
 
     @Override
@@ -141,7 +142,9 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
         throw new UnauthorizedException(params);
     }
 
-    private void createAndSetPrincipal() {
-        // TODO
+    private void createAndSetPrincipal(final ContainerRequest request) {
+        final User principal = new User(23, "Snafu", "foo", "bar");
+        request.setSecurityContext(new SecurityContextImpl(principal));
     }
+
 }

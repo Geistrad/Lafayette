@@ -10,7 +10,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server;
+package org.lafayette.server.filter;
 
 import java.security.Principal;
 import javax.ws.rs.core.SecurityContext;

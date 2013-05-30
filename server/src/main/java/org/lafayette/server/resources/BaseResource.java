@@ -21,6 +21,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
@@ -65,8 +66,19 @@ public abstract class BaseResource {
      * URI info injected by Jersey.
      */
     @Context private UriInfo uriInfo;
+    /**
+     * Security context injected by Jersey.
+     */
+    @Context private SecurityContext security;
+    /**
+     * Finder factory.
+     *
+     * Lazy computed.
+     */
+    private Finders finders;
 
     public BaseResource() {
+        super();
         indexUriList = new UriList();
         indexUriList.setComment("# Available URIs:");
     }
@@ -88,7 +100,10 @@ public abstract class BaseResource {
     protected UriInfo uriInfo() {
         return uriInfo;
     }
-    private Finders finders = null;
+
+    protected SecurityContext security() {
+        return security;
+    }
 
     protected synchronized Finders finders() {
         if (null == finders) {
