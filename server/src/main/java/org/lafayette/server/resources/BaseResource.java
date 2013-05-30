@@ -114,8 +114,8 @@ public abstract class BaseResource {
         throw new WebApplicationException(createErrorResponse(message));
     }
 
-    protected String formatMessagePack(final DomainObject object) throws IOException {
-        return new String(msgpack.write(object));
+    protected byte[] formatMessagePack(final DomainObject object) throws IOException {
+        return msgpack.write(object);
     }
 
     @GET
