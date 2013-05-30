@@ -123,7 +123,11 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
             final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
             findStatement.setString(1, name);
             final ResultSet rs = findStatement.executeQuery();
-            rs.next();
+
+            if (!rs.next()) {
+                throw new ApplicationException(String.format("There is no role with name %s!", name));
+            }
+
             final Role result = load(rs);
             findStatement.close();
             return result;

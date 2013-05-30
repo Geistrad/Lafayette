@@ -188,7 +188,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         try {
             final PreparedStatement findStatement = db.prepareStatement(findByIdStatement());
             findStatement.setInt(1, id);
-            final ResultSet rs = findStatement.executeQuery();
+            final ResultSet rs = findStatement.executeQuery(); // NOPMD NExt is checked in next line.
 
             if (!rs.next()) {
                 throw new ApplicationException(String.format("There is no record set whith primary key '%d'!", id));
@@ -249,7 +249,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
                 stmt.setObject(i + 1, source.parameters()[i]);
             }
 
-            final ResultSet rs = stmt.executeQuery();
+            final ResultSet rs = stmt.executeQuery(); // NOPMD Next is invoked on loadAll(rs).
             final Collection<T> result = loadAll(rs);
             stmt.close();
 
@@ -293,7 +293,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
             final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
             findMaxPrimaryKeyStatement.close();
-            rs.next();
+
+            if (!rs.next()) {
+                throw new ApplicationException("Can't determine next id!");
+            }
+
             return rs.getInt(1) + 1;
         } catch (SQLException ex) {
             throw new ApplicationException(ex);

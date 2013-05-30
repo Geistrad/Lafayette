@@ -43,9 +43,7 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
      * Logger facility.
      */
     private final Logger log = Log.getLogger(this);
-
     private final ServletContext servlet;
-
     private final HttpHeaders headers;
 
     public SecurityContextFilterDigest(final ServletContext servlet, final HttpHeaders headers) {
@@ -77,22 +75,23 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     public ContainerRequest filter(final ContainerRequest request) {
         log.debug("Start authentication");
 
-//        if (requestHasAuthenticationHeader()) {
-//            log.debug("Verify authentication.");
-//
-//            if (verifyAuthentiaction()) {
+        if (requestHasAuthenticationHeader()) {
+            log.debug("Verify authentication.");
+
+            if (verifyAuthentiaction()) {
                 createAndSetPrincipal(request);
                 return request;
-//            } else {
-//                log.debug("Not authorized! Send forbidden response.");
-//                sendForbiddenResponse(); // throws 403
-//                return request;
-//            }
-//        } else {
-//            log.debug("Request doesn't have authentication header! Send authentication response.");
-//            sendAuthenticationResponse(); // throws 401
-//            return request;
-//        }
+            } else {
+                log.debug("Not authorized! Send forbidden response.");
+                throw new ForbiddenException();
+            }
+        } else {
+            log.debug("Request doesn't have authentication header! Send authentication response.");
+            final ResponseParameters params = new ResponseParameters();
+            params.setRealm(registry().getServerConfig().getSecurotyRealm());
+            params.setNonce(registry().getNongeGenerator().getNext());
+            throw new UnauthorizedException(params);
+        }
     }
 
     @Override
@@ -131,20 +130,8 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
         return expectedResponse.equalsIgnoreCase(params.getResponse());
     }
 
-    private void sendForbiddenResponse() {
-        throw new ForbiddenException();
-    }
-
-    private void sendAuthenticationResponse() {
-        final ResponseParameters params = new ResponseParameters();
-        params.setRealm(registry().getServerConfig().getSecurotyRealm());
-        params.setNonce(registry().getNongeGenerator().getNext());
-        throw new UnauthorizedException(params);
-    }
-
     private void createAndSetPrincipal(final ContainerRequest request) {
         final User principal = new User(23, "Snafu", "foo", "bar");
         request.setSecurityContext(new SecurityContextImpl(principal));
     }
-
 }
