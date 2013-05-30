@@ -43,8 +43,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -283,7 +281,7 @@ public class NullConnection implements Connection {
         return false;
     }
 
-    final private class NullPreparedStatement implements CallableStatement {
+    private static final class NullPreparedStatement implements CallableStatement {
 
         private final Connection con;
 
