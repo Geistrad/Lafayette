@@ -68,13 +68,15 @@ public final class ServerContextListener extends GuiceServletContextListener imp
 
     @Override
     protected Injector getInjector() {
-        return Guice.createInjector(new ServerModule());
+        LOG.debug("Create Guice injector.");
+        final Injector injector = Guice.createInjector(new ServerModule());
+        reg.setDependnecyInjector(injector);
+        return injector;
     }
 
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
         LOG.debug("Context initialized. Execute listener...");
-//        setUpDependencyInjection();
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
@@ -197,8 +199,4 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         reg.setMappers(new Mappers(con));
     }
 
-    private void setUpDependencyInjection() {
-        final Injector injector = Guice.createInjector(new ServerModule());
-        reg.setDependnecyInjector(injector);
-    }
 }
