@@ -11,7 +11,6 @@
  */
 package org.lafayette.server.filter;
 
-import com.google.inject.Inject;
 import com.sun.jersey.api.model.AbstractMethod;
 import com.sun.jersey.spi.container.ResourceFilter;
 import com.sun.jersey.spi.container.ResourceFilterFactory;

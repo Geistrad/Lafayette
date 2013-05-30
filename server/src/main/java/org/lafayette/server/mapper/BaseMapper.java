@@ -17,7 +17,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Collections;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.log.Log;

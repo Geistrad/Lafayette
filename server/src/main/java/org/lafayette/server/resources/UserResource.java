@@ -25,7 +25,6 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.lafayette.server.domain.Finders;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.Constants;
