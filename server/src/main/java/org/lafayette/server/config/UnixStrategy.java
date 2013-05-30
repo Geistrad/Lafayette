@@ -161,7 +161,7 @@ class UnixStrategy implements LoaderStrategie {
 
             foundConfig = file;
             LOG.debug("Configuration file found in '%s'.", fileName);
-            break;
+            break; // NOPMD
         }
     }
 
