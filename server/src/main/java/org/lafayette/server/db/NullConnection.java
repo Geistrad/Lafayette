@@ -1233,6 +1233,7 @@ public class NullConnection implements Connection {
     }
 
     //CHECKSTYLE:OFF
+    @SuppressWarnings("deprecation")
     private static final class NullResultSet implements ResultSet {
 
         private final Statement statement;
