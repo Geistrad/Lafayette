@@ -11,7 +11,6 @@
  */
 package org.lafayette.server.http.digest;
 
-import com.google.common.base.Objects;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;

@@ -27,6 +27,8 @@ import javax.ws.rs.core.SecurityContext;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
+import org.lafayette.server.http.digest.AuthorizationHeaderParser;
+import org.lafayette.server.http.digest.RequestParameters;
 import org.lafayette.server.http.digest.ResponseParameters;
 import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
@@ -132,6 +134,8 @@ public class AuthenticationResourceFilterFactory implements ResourceFilterFactor
         }
 
         private void verifyAuthentiaction() {
+            final String header = getAuthorizationHeader();
+            final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
         }
 
         private boolean isAuthenticated() {
