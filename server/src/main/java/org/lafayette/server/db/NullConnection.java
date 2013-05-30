@@ -144,7 +144,8 @@ public class NullConnection implements Connection {
     }
 
     @Override
-    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
+        throws SQLException {
         return null;
     }
 
@@ -190,17 +191,20 @@ public class NullConnection implements Connection {
     }
 
     @Override
-    public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+    public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability)
+        throws SQLException {
         return null;
     }
 
     @Override
-    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency,
+        int resultSetHoldability) throws SQLException {
         return null;
     }
 
     @Override
-    public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+    public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
+        int resultSetHoldability) throws SQLException {
         return null;
     }
 
@@ -282,6 +286,8 @@ public class NullConnection implements Connection {
         return false;
     }
 
+    //CHECKSTYLE:OFF
+    @SuppressWarnings("deprecation")
     private static final class NullPreparedStatement implements CallableStatement {
 
         private final Connection con;
@@ -289,6 +295,7 @@ public class NullConnection implements Connection {
         public NullPreparedStatement(final Connection con) {
             this.con = con;
         }
+        //CHECKSTYLE:ON
 
         @Override
         public ResultSet executeQuery(String sql) throws SQLException {
@@ -1225,6 +1232,7 @@ public class NullConnection implements Connection {
         }
     }
 
+    //CHECKSTYLE:OFF
     private static final class NullResultSet implements ResultSet {
 
         private final Statement statement;
@@ -1232,6 +1240,7 @@ public class NullConnection implements Connection {
         public NullResultSet(Statement s) {
             this.statement = s;
         }
+        //CHECKSTYLE:OFF
 
         @Override
         public boolean next() throws SQLException {
