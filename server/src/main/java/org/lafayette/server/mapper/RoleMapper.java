@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.RoleFinder;
@@ -38,10 +39,11 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     /**
      * Field of database table.
      */
-    private static final String COLUMNS = PK_FIELD_NAME + ", name, description";
+    private static final String COLUMNS = PK_FIELD_NAME + ", userId, name";
     private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
     private static final String SQL_FIND_BY_NAME = "select %s from %s where name like ?";
-    private static final String SQL_UPDATE = "update %s set name = ?, description = ? where %s = ?";
+    private static final String SQL_FIND_BY_USER_ID = "select %s from %s where userId like ?";
+    private static final String SQL_UPDATE = "update %s set userId = ?, name = ? where %s = ?";
 
     RoleMapper(final Connection db, final IntegerIdentityMap<Role> idMap) {
         super(db, idMap);
@@ -82,23 +84,23 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected Role doLoad(int id, ResultSet result) throws SQLException {
-        final String name = result.getString(2);
-        final String description = result.getString(3);
-        return new Role(id, name, description);
+        final int userId = result.getInt(2);
+        final String name = result.getString(3);
+        return new Role(id, userId, name);
     }
 
     @Override
     protected void doInsert(final Role subject, final PreparedStatement insertStatement) throws SQLException {
-        insertStatement.setString(2, subject.getName());
-        insertStatement.setString(3, subject.getDescription());
+        insertStatement.setInt(2, subject.getUserId());
+        insertStatement.setString(3, subject.getName());
     }
 
     @Override
     public void update(Role subject) {
         try {
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
-            updateStatement.setString(1, subject.getName());
-            updateStatement.setString(2, subject.getDescription());
+            updateStatement.setInt(1, subject.getUserId());
+            updateStatement.setString(2, subject.getName());
             updateStatement.setInt(3, subject.getId());
             updateStatement.execute();
             updateStatement.close();
@@ -118,22 +120,28 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     }
 
     @Override
-    public Role findByName(final String name) {
-        try {
-            final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
-            findStatement.setString(1, name);
-            final ResultSet rs = findStatement.executeQuery();
+    public Collection<Role> findByName(final String name) {
+        throw new UnsupportedOperationException("Not implemented yet!");
+//        try {
+//            final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
+//            findStatement.setString(1, name);
+//            final ResultSet rs = findStatement.executeQuery();
+//
+//            if (!rs.next()) {
+//                throw new ApplicationException(String.format("There is no role with name %s!", name));
+//            }
+//
+//            final Role result = load(rs);
+//            findStatement.close();
+//            return result;
+//        } catch (SQLException ex) {
+//            throw new ApplicationException(ex);
+//        }
+    }
 
-            if (!rs.next()) {
-                throw new ApplicationException(String.format("There is no role with name %s!", name));
-            }
-
-            final Role result = load(rs);
-            findStatement.close();
-            return result;
-        } catch (SQLException ex) {
-            throw new ApplicationException(ex);
-        }
+    @Override
+    public Collection<Role> findByUserId(int userId) {
+        throw new UnsupportedOperationException("Not implemented yet!");
     }
 
 }

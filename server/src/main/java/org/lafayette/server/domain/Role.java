@@ -24,42 +24,49 @@ import org.msgpack.annotation.Message;
 @XmlRootElement @Message
 public class Role extends BaseDomainObject {
 
+    private int userId;
+    /**
+     * Name of role.
+     *
+     * One of {@link Role.Names}.
+     *
+     * TODO use {@link Role.Names} as type.
+     */
     private String name;
-    private String description;
 
     public Role() {
-        this("", "");
+        this(0, "");
     }
 
-    public Role(final String name, final String description) {
-        this(UNINITIALIZED_ID, name, description);
+    public Role(final int userId, final String name) {
+        this(UNINITIALIZED_ID, userId, name);
     }
 
-    public Role(final int id, final String name, final String description) {
+    public Role(final int id, final int userId, final String name) {
         super(id);
+        this.userId = userId;
         this.name = name;
-        this.description = description;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(final int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), name, description);
+        return Objects.hashCode(super.hashCode(), userId, name);
     }
 
     @Override
@@ -71,16 +78,16 @@ public class Role extends BaseDomainObject {
         final Role other = (Role) obj;
 
         return super.equals(other)
-                && Objects.equal(name, other.name)
-                && Objects.equal(description, other.description);
+                && Objects.equal(userId, other.userId)
+                && Objects.equal(name, other.name);
     }
 
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
                 .addValue(super.toString())
+                .add("userId", userId)
                 .add("name", name)
-                .add("description", description)
                 .toString();
     }
 

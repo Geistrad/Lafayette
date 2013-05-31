@@ -41,7 +41,7 @@ public class User extends BaseDomainObject implements Principal {
     /**
      * Roles a user has.
      */
-    private final Map<String, Role> roles = Maps.newHashMap();
+    private final Map<String, Role> roles = Maps.newTreeMap();
 
     /**
      * No argument constructor for necessary for Jackson XML generation.
@@ -104,7 +104,7 @@ public class User extends BaseDomainObject implements Principal {
     }
 
     public void removeRole(final Role r) {
-        roles.remove(r);
+        roles.remove(r.getName());
     }
 
     public void addRole(final Role r) {

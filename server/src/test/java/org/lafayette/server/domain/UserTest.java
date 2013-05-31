@@ -43,7 +43,7 @@ public class UserTest {
         assertThat(u1.hashCode(), is(not(equalTo(u3.hashCode()))));
         assertThat(u2.hashCode(), is(not(equalTo(u3.hashCode()))));
 
-        final Role r1 = new Role(1, "foo", "bar");
+        final Role r1 = new Role(1, 1, "bar");
         u1.addRole(r1);
         assertThat(u1.hashCode(), is(not(equalTo(u2.hashCode()))));
         u2.addRole(r1);
@@ -70,7 +70,7 @@ public class UserTest {
         assertThat(u1.equals(u3), is(equalTo(false)));
         assertThat(u2.equals(u3), is(equalTo(false)));
 
-        final Role r1 = new Role(1, "foo", "bar");
+        final Role r1 = new Role(1, 1, "bar");
         u1.addRole(r1);
         assertThat(u1.equals(u2), is(equalTo(false)));
         u2.addRole(r1);
@@ -80,20 +80,20 @@ public class UserTest {
     @Test
     public void testToString() {
         final User u1 = new User(1, "foo", "bar");
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=[]}")));
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles={}}")));
 
-        final Role r1 = new Role(1, "foo", "bar");
+        final Role r1 = new Role(1, 1, "bar");
         u1.addRole(r1);
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=["
-                + "Role{id=1, name=foo, description=bar}"
-                + "]}")));
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles={"
+                + "bar=Role{id=1, userId=1, name=bar}"
+                + "}}")));
 
-        final Role r2 = new Role(2, "baz", "bar");
+        final Role r2 = new Role(2, 1, "baz");
         u1.addRole(r2);
-        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles=["
-                + "Role{id=2, name=baz, description=bar}, "
-                + "Role{id=1, name=foo, description=bar}"
-                + "]}")));
+        assertThat(u1.toString(), is(equalTo("User{id=1, loginName=foo, hashedUserData=bar, roles={"
+                + "bar=Role{id=1, userId=1, name=bar}, "
+                + "baz=Role{id=2, userId=1, name=baz}"
+                + "}}")));
     }
 
     @Test
@@ -101,14 +101,14 @@ public class UserTest {
         final User u1 = new User(1, "foo", "bar");
         assertThat(u1.getRoles(), hasSize(0));
 
-        final Role r1 = new Role(1, "foo", "bar");
+        final Role r1 = new Role(1, 1, "bar");
         assertThat(u1.hasRole(r1), is(equalTo(false)));
         u1.addRole(r1);
         assertThat(u1.hasRole(r1), is(equalTo(true)));
         assertThat(u1.getRoles(), hasSize(1));
         assertThat(u1.getRoles(), contains(r1));
 
-        final Role r2 = new Role(2, "baz", "bar");
+        final Role r2 = new Role(2, 1, "baz");
         assertThat(u1.hasRole(r2), is(equalTo(false)));
         u1.addRole(r2);
         assertThat(u1.hasRole(r1), is(equalTo(true)));

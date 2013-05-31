@@ -9,7 +9,7 @@
  */
 
 -- user root
-insert into role values (1, 'USER');
-insert into role values (1, 'ADMINISTRATOR');
+insert into role values (1, 1, 'USER');
+insert into role values (2, 1, 'ADMINISTRATOR');
 -- user testuser1
-insert into role values (2, 'USER');
+insert into role values (3, 2, 'USER');
