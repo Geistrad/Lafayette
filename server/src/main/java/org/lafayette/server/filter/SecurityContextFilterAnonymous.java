@@ -16,10 +16,11 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
+import javax.ws.rs.core.SecurityContext;
 import org.lafayette.server.domain.User;
 
 /**
- * Always inject {@link User.ANONYMOUS} into the requests {@link SecurityContext security context}.
+ * Always inject {@link User#ANONYMOUS} into the requests {@link SecurityContext security context}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
