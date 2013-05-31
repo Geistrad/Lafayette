@@ -74,23 +74,25 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     @Override
     public ContainerRequest filter(final ContainerRequest request) {
         log.debug("Start authentication");
+        final String header = getAuthorizationHeader();
 
-        if (requestHasAuthenticationHeader()) {
-            log.debug("Verify authentication.");
-
-            if (verifyAuthentiaction()) {
-                createAndSetPrincipal(request);
-                return request;
-            } else {
-                log.debug("Not authorized! Send forbidden response.");
-                throw new ForbiddenException();
-            }
-        } else {
+        if (header.isEmpty()) {
             log.debug("Request doesn't have authentication header! Send authentication response.");
             final ResponseParameters params = new ResponseParameters();
             params.setRealm(registry().getServerConfig().getSecurotyRealm());
             params.setNonce(registry().getNongeGenerator().getNext());
             throw new UnauthorizedException(params);
+        } else {
+            log.debug("Verify authentication.");
+            final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
+
+            if (verifyAuthentiaction(params)) {
+                createAndSetPrincipal(request, params);
+                return request;
+            } else {
+                log.debug("Not authorized! Send forbidden response.");
+                throw new ForbiddenException();
+            }
         }
     }
 
@@ -114,24 +116,20 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
         return authHeader.get(0);
     }
 
-    private boolean requestHasAuthenticationHeader() {
-        return !getAuthorizationHeader().isEmpty();
-    }
-
-    private boolean verifyAuthentiaction() {
-        final String header = getAuthorizationHeader();
-        final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
+    private boolean verifyAuthentiaction(final RequestParameters params) {
         final String userRealmPw = DigestUtils.md5Hex(String.format("Foo:%s:1234",
                 registry().getServerConfig().getSecurotyRealm()));
-        // TODO Verify nonce
+        // FIXME Verify nonce
         final String expectedResponse = Digest.digest(userRealmPw,
                 params.getNonce(),
                 Digest.digestRequestData(params.getHttpMethod(), params.getRequestedUri()));
         return expectedResponse.equalsIgnoreCase(params.getResponse());
     }
 
-    private void createAndSetPrincipal(final ContainerRequest request) {
-        final User principal = new User(23, "Snafu", "foo");
+    private void createAndSetPrincipal(final ContainerRequest request, final RequestParameters params) {
+        final User principal = registry().getMappers()
+                                         .createUserMapper()
+                                         .findByLoginName(params.getUsername());
         request.setSecurityContext(new SecurityContextImpl(principal));
     }
 }
