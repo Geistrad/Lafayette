@@ -13,8 +13,6 @@
 package org.lafayette.server;
 
 import com.google.inject.AbstractModule;
-import org.lafayette.server.filter.SecuirityContextFilter;
-import org.lafayette.server.filter.SecurityContextFilterDigest;
 
 /**
  * Defines <a href="http://code.google.com/p/google-guice/">Guice</a> dependencies.
@@ -25,7 +23,7 @@ public class ServerModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(SecuirityContextFilter.class).to(SecurityContextFilterDigest.class);
+
     }
 
 }
