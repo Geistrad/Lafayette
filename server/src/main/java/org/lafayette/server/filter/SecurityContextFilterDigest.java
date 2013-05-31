@@ -15,14 +15,11 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
-import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
@@ -38,7 +35,7 @@ import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
 
 /**
- * Filters resource request/response for digest athentication.
+ * Filters resource request/response for digest authentication.
  *
  * If a user is authorized then a {@link User} representing the user is injected as {@link Principal} to the
  * {@link SecurityContext}.
@@ -62,7 +59,7 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     private final HttpHeaders headers;
 
     /**
-     * Dedicated constructor
+     * Dedicated constructor.
      *
      * @param servlet must not be {2code null}
      * @param headers must not be {2code null}
@@ -164,7 +161,7 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
                 .createRoleMapper()
                 .findByUserId(principal.getId());
         principal.addAllRoles(roles);
-        request.setSecurityContext(new SecurityContextImpl(principal));
+        request.setSecurityContext(new SecurityContextImpl(principal, request.isSecure()));
     }
 
     private User findPrincipal(final RequestParameters params) {

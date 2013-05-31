@@ -27,15 +27,30 @@ public class SecurityContextImpl implements SecurityContext {
      * The authenticated principal.
      */
     private final User user;
+    /**
+     * Whether secure channel or not (HTTPS etc.).
+     */
+    private final boolean secure;
+
+    /**
+     * Initializes {@link #secure} with {@code false}.
+     *
+     * @param user authenticated principal
+     */
+    public SecurityContextImpl(final User user) {
+        this(user, false);
+    }
 
     /**
      * Dedicated constructor.
      *
      * @param user authenticated principal
+     * @param secure whether secure channel or not (HTTPS etc.)
      */
-    public SecurityContextImpl(final User user) {
+    public SecurityContextImpl(final User user, final boolean secure) {
         super();
         this.user = user;
+        this.secure = secure;
     }
 
     @Override
@@ -44,13 +59,13 @@ public class SecurityContextImpl implements SecurityContext {
     }
 
     @Override
-    public boolean isUserInRole(final String role) {
-        return false;
+    public boolean isUserInRole(final String roleName) {
+        return user.hasRole(roleName);
     }
 
     @Override
     public boolean isSecure() {
-        return false;
+        return secure;
     }
 
     @Override
