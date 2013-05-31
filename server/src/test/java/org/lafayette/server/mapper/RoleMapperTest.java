@@ -23,6 +23,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.lafayette.server.ApplicationException;
+import org.lafayette.server.domain.Role.Names;
 
 /**
  * Tests for {@link RoleMapper}.
@@ -47,12 +48,12 @@ public class RoleMapperTest extends DbTestCase {
         Role role = sut.find(1);
         assertThat(role.getId(), is(1));
         assertThat(role.getUserId(), is(1));
-        assertThat(role.getName(), is("USER"));
+        assertThat(role.getName(), is(equalTo(Names.USER)));
 
         role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(1));
-        assertThat(role.getName(), is("ADMINISTRATOR"));
+        assertThat(role.getName(), is(equalTo(Names.ADMINISTRATOR)));
     }
 
     @Test
@@ -99,15 +100,15 @@ public class RoleMapperTest extends DbTestCase {
             switch (roleId) {
                 case 1:
                     assertThat(role.getUserId(), is(1));
-                    assertThat(role.getName(), is("USER"));
+                    assertThat(role.getName(), is(equalTo(Names.USER)));
                     break;
                 case 2:
                     assertThat(role.getUserId(), is(1));
-                    assertThat(role.getName(), is("ADMINISTRATOR"));
+                    assertThat(role.getName(), is(equalTo(Names.ADMINISTRATOR)));
                     break;
                 case 3:
                     assertThat(role.getUserId(), is(2));
-                    assertThat(role.getName(), is("USER"));
+                    assertThat(role.getName(), is(equalTo(Names.USER)));
                     break;
                 default:
                     fail("Unexpected role id: " + roleId);
@@ -127,8 +128,7 @@ public class RoleMapperTest extends DbTestCase {
     @Test
     public void insert() {
         final int userId = 5;
-        final String name = "snafu";
-        Role role = new Role(userId, name);
+        Role role = new Role(userId, Names.ANONYMOUS);
         RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         final int id = sut.insert(role);
 
@@ -136,7 +136,7 @@ public class RoleMapperTest extends DbTestCase {
         sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         role = sut.find(id);
         assertThat(role.getUserId(), is(userId));
-        assertThat(role.getName(), is(name));
+        assertThat(role.getName(), is(Names.ANONYMOUS));
     }
 
     @Test
@@ -145,22 +145,22 @@ public class RoleMapperTest extends DbTestCase {
         Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(1));
-        assertThat(role.getName(), is("ADMINISTRATOR"));
+        assertThat(role.getName(), is(equalTo(Names.ADMINISTRATOR)));
 
         role.setUserId(3);
-        role.setName("bar");
+        role.setName(Names.ANONYMOUS);
         sut.update(role);
 
         role = sut.find(2); // get from cache
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(3));
-        assertThat(role.getName(), is("bar"));
+        assertThat(role.getName(), is(equalTo(Names.ANONYMOUS)));
 
         sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
         role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(3));
-        assertThat(role.getName(), is("bar"));
+        assertThat(role.getName(), is(equalTo(Names.ANONYMOUS)));
     }
 
     @Test
@@ -169,7 +169,7 @@ public class RoleMapperTest extends DbTestCase {
         final Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(1));
-        assertThat(role.getName(), is("ADMINISTRATOR"));
+        assertThat(role.getName(), is(equalTo(Names.ADMINISTRATOR)));
 
         sut.delete(role);
 

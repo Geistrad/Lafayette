@@ -18,6 +18,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.lafayette.server.domain.Role.Names;
 import org.msgpack.annotation.Message;
 
 /**
@@ -27,6 +28,14 @@ import org.msgpack.annotation.Message;
  */
 @XmlRootElement @Message
 public class User extends BaseDomainObject implements Principal {
+
+    /**
+     * Default anonymous user for all.
+     */
+    public static final User ANONYMOUS = new User(0, "", "");
+    static {
+        ANONYMOUS.addRole(new Role(0, ANONYMOUS.getId(), Names.ANONYMOUS));
+    }
 
     /**
      * Unique login name of the user.
@@ -41,7 +50,7 @@ public class User extends BaseDomainObject implements Principal {
     /**
      * Roles a user has.
      */
-    private final Map<String, Role> roles = Maps.newTreeMap();
+    private final Map<Names, Role> roles = Maps.newTreeMap();
 
     /**
      * No argument constructor for necessary for Jackson XML generation.

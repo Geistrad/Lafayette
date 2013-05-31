@@ -24,25 +24,26 @@ import org.msgpack.annotation.Message;
 @XmlRootElement @Message
 public class Role extends BaseDomainObject {
 
+    /**
+     * Id of the {@link User} which has this role.
+     */
     private int userId;
     /**
      * Name of role.
      *
      * One of {@link Role.Names}.
-     *
-     * TODO use {@link Role.Names} as type.
      */
-    private String name;
+    private Names name;
 
     public Role() {
-        this(0, "");
+        this(0, Names.ANONYMOUS);
     }
 
-    public Role(final int userId, final String name) {
+    public Role(final int userId, final Names name) {
         this(UNINITIALIZED_ID, userId, name);
     }
 
-    public Role(final int id, final int userId, final String name) {
+    public Role(final int id, final int userId, final Names name) {
         super(id);
         this.userId = userId;
         this.name = name;
@@ -56,11 +57,11 @@ public class Role extends BaseDomainObject {
         this.userId = userId;
     }
 
-    public String getName() {
+    public Names getName() {
         return name;
     }
 
-    public void setName(final String name) {
+    public void setName(final Names name) {
         this.name = name;
     }
 
@@ -91,7 +92,33 @@ public class Role extends BaseDomainObject {
                 .toString();
     }
 
-    public enum Names {
-        ANONYMOUS, USER, ADMINISTRATOR;
+    /**
+     * Roles a {@link User} can have.
+     */
+    public static enum Names {
+        /**
+         * Unauthorized anonymous users.
+         */
+        ANONYMOUS,
+        /**
+         * Authorized usual users.
+         */
+        USER,
+        /**
+         * Full privileged authorized administrative users.
+         */
+        ADMINISTRATOR;
+
+        public static Names forName(final String name) {
+            if (ANONYMOUS.toString().equalsIgnoreCase(name)) {
+                return ANONYMOUS;
+            } else if (USER.toString().equalsIgnoreCase(name)) {
+                return USER;
+            } else if (ADMINISTRATOR.toString().equalsIgnoreCase(name)) {
+                return ADMINISTRATOR;
+            } else {
+                throw new IllegalArgumentException(String.format("Unknown role name '%s'!", name));
+            }
+        }
     }
 }

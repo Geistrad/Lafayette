@@ -15,6 +15,7 @@ package org.lafayette.server.domain;
 import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import org.lafayette.server.domain.Role.Names;
 
 /**
  * Tests for {@link Role}.
@@ -28,14 +29,14 @@ public class RoleTest {
         final Role r1 = new Role();
         assertThat(r1.getId(), is(equalTo(BaseDomainObject.UNINITIALIZED_ID)));
         assertThat(r1.getUserId(), is(equalTo(0)));
-        assertThat(r1.getName(), is(equalTo("")));
+        assertThat(r1.getName(), is(equalTo(Names.ANONYMOUS)));
     }
 
     @Test
     public void testHashCode() {
-        final Role r1 = new Role(1, 1, "bar");
-        final Role r2 = new Role(1, 1, "bar");
-        final Role r3 = new Role(2, 2, "bar");
+        final Role r1 = new Role(1, 1, Names.USER);
+        final Role r2 = new Role(1, 1, Names.USER);
+        final Role r3 = new Role(2, 2, Names.USER);
 
         assertThat(r1.hashCode(), is(equalTo(r1.hashCode())));
         assertThat(r1.hashCode(), is(equalTo(r2.hashCode())));
@@ -49,9 +50,9 @@ public class RoleTest {
     @Test
     @SuppressWarnings("IncompatibleEquals")
     public void testEquals() {
-        final Role r1 = new Role(1, 1, "bar");
-        final Role r2 = new Role(1, 1, "bar");
-        final Role r3 = new Role(2, 2, "bar");
+        final Role r1 = new Role(1, 1, Names.USER);
+        final Role r2 = new Role(1, 1, Names.USER);
+        final Role r3 = new Role(2, 2, Names.USER);
 
         //CHECKSTYLE:OFF
         assertThat(r1.equals(null), is(equalTo(false)));
@@ -71,7 +72,7 @@ public class RoleTest {
 
     @Test
     public void testToString() {
-        assertThat(new Role(1, 2, "bar").toString(), is(equalTo("Role{id=1, userId=2, name=bar}")));
+        assertThat(new Role(1, 2, Names.USER).toString(), is(equalTo("Role{id=1, userId=2, name=USER}")));
     }
 
 }
