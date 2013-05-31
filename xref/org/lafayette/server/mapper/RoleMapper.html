@@ -96,13 +96,13 @@
 <a class="jxr_linenumber" name="86" href="#86">86</a>      <strong class="jxr_keyword">protected</strong> <a href="../../../../org/lafayette/server/domain/Role.html">Role</a> doLoad(<strong class="jxr_keyword">int</strong> id, ResultSet result) <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="87" href="#87">87</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> userId = result.getInt(2);
 <a class="jxr_linenumber" name="88" href="#88">88</a>          <strong class="jxr_keyword">final</strong> String name = result.getString(3);
-<a class="jxr_linenumber" name="89" href="#89">89</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/Role.html">Role</a>(id, userId, name);
+<a class="jxr_linenumber" name="89" href="#89">89</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/Role.html">Role</a>(id, userId, Role.Names.forName(name));
 <a class="jxr_linenumber" name="90" href="#90">90</a>      }
 <a class="jxr_linenumber" name="91" href="#91">91</a>  
 <a class="jxr_linenumber" name="92" href="#92">92</a>      @Override
 <a class="jxr_linenumber" name="93" href="#93">93</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> doInsert(<strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/Role.html">Role</a> subject, <strong class="jxr_keyword">final</strong> PreparedStatement insertStatement) <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="94" href="#94">94</a>          insertStatement.setInt(2, subject.getUserId());
-<a class="jxr_linenumber" name="95" href="#95">95</a>          insertStatement.setString(3, subject.getName());
+<a class="jxr_linenumber" name="95" href="#95">95</a>          insertStatement.setString(3, subject.getName().toString());
 <a class="jxr_linenumber" name="96" href="#96">96</a>      }
 <a class="jxr_linenumber" name="97" href="#97">97</a>  
 <a class="jxr_linenumber" name="98" href="#98">98</a>      @Override
@@ -110,7 +110,7 @@
 <a class="jxr_linenumber" name="100" href="#100">100</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="101" href="#101">101</a>             <strong class="jxr_keyword">final</strong> PreparedStatement updateStatement = db.prepareStatement(updateStatement());
 <a class="jxr_linenumber" name="102" href="#102">102</a>             updateStatement.setInt(1, subject.getUserId());
-<a class="jxr_linenumber" name="103" href="#103">103</a>             updateStatement.setString(2, subject.getName());
+<a class="jxr_linenumber" name="103" href="#103">103</a>             updateStatement.setString(2, subject.getName().toString());
 <a class="jxr_linenumber" name="104" href="#104">104</a>             updateStatement.setInt(3, subject.getId());
 <a class="jxr_linenumber" name="105" href="#105">105</a>             updateStatement.execute();
 <a class="jxr_linenumber" name="106" href="#106">106</a>             updateStatement.close();

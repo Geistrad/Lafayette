@@ -8,8 +8,8 @@
     <language>en-us</language>
     <copyright>&#169;2013</copyright>
     <item>
-      <title>File: 70,
-             Errors: 1361,
+      <title>File: 71,
+             Errors: 1346,
              Warnings: 0,
              Infos: 0
       </title>
@@ -53,20 +53,6 @@
                 </td>
                 <td>
                   7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.resources.ServerResource.java">org/lafayette/server/resources/ServerResource.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
                 </td>
               </tr>
                           <tr>
@@ -206,7 +192,7 @@
                   0
                 </td>
                 <td>
-                  21
+                  18
                 </td>
               </tr>
                           <tr>
@@ -309,6 +295,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.resources.ServiceResource.java">org/lafayette/server/resources/ServiceResource.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.mapper.id.BaseIdentityMap.java">org/lafayette/server/mapper/id/BaseIdentityMap.java</a>
                 </td>
                 <td>
@@ -333,6 +333,20 @@
                 </td>
                 <td>
                   26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.filter.AuthenticationResourceFilters.java">org/lafayette/server/filter/AuthenticationResourceFilters.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
                 </td>
               </tr>
                           <tr>
@@ -430,7 +444,7 @@
                   0
                 </td>
                 <td>
-                  15
+                  14
                 </td>
               </tr>
                           <tr>
@@ -472,7 +486,7 @@
                   0
                 </td>
                 <td>
-                  3
+                  1
                 </td>
               </tr>
                           <tr>
@@ -640,7 +654,7 @@
                   0
                 </td>
                 <td>
-                  5
+                  3
                 </td>
               </tr>
                           <tr>
@@ -715,20 +729,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.filter.AuthenticationResourceFilterFactory.java">org/lafayette/server/filter/AuthenticationResourceFilterFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.mapper.Mappers.java">org/lafayette/server/mapper/Mappers.java</a>
                 </td>
                 <td>
@@ -757,6 +757,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.filter.SecurityContextFilterAnonymous.java">org/lafayette/server/filter/SecurityContextFilterAnonymous.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://weltraumschaf.github.com/Lafayette//checkstyle.html#org.lafayette.server.log.Log.java">org/lafayette/server/log/Log.java</a>
                 </td>
                 <td>
@@ -780,7 +794,7 @@
                   0
                 </td>
                 <td>
-                  25
+                  22
                 </td>
               </tr>
                           <tr>
@@ -808,7 +822,7 @@
                   0
                 </td>
                 <td>
-                  32
+                  26
                 </td>
               </tr>
                           <tr>
@@ -822,7 +836,7 @@
                   0
                 </td>
                 <td>
-                  8
+                  9
                 </td>
               </tr>
                           <tr>

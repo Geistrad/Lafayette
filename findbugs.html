@@ -122,8 +122,8 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>67</td>
-<td>0</td>
+<td>68</td>
+<td>3</td>
 <td>0</td>
 <td>0</td></tr></table></div>
 <div class="section">
@@ -131,7 +131,37 @@
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Class</th>
-<th>Bugs</th></tr></table></div>
+<th>Bugs</th></tr>
+<tr class="b">
+<td><a href="#org.lafayette.server.mapper.UserMapper">org.lafayette.server.mapper.UserMapper</a></td>
+<td>3</td></tr></table></div><a name="org.lafayette.server.mapper.UserMapper"></a>
+<div class="section">
+<h3>org.lafayette.server.mapper.UserMapper<a name="org.lafayette.server.mapper.UserMapper"></a></h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.UserMapper.findByLoginName(String) may fail to clean up java.sql.ResultSet</td>
+<td>EXPERIMENTAL</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION">OBL_UNSATISFIED_OBLIGATION</a></td>
+<td><a href="./xref/org/lafayette/server/mapper/UserMapper.html#117">117</a></td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.UserMapper.findByLoginName(String) may fail to clean up java.sql.Statement</td>
+<td>EXPERIMENTAL</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION">OBL_UNSATISFIED_OBLIGATION</a></td>
+<td><a href="./xref/org/lafayette/server/mapper/UserMapper.html#115">115</a></td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.UserMapper.findByLoginName(String) may fail to close PreparedStatement</td>
+<td>BAD_PRACTICE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ODR_OPEN_DATABASE_RESOURCE">ODR_OPEN_DATABASE_RESOURCE</a></td>
+<td><a href="./xref/org/lafayette/server/mapper/UserMapper.html#115">115</a></td>
+<td>Medium</td></tr></table></div>
       </div>
     </div>
     <div class="clear">
