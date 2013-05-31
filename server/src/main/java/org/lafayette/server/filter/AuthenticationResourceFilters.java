@@ -29,7 +29,7 @@ import javax.ws.rs.ext.Provider;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Provider
-public class AuthenticationResourceFilterFactory implements ResourceFilterFactory {
+public class AuthenticationResourceFilters implements ResourceFilterFactory {
 
     @Context
     private ServletContext servlet;
