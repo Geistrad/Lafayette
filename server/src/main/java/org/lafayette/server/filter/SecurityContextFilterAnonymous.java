@@ -16,7 +16,6 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
-import javax.ws.rs.core.SecurityContext;
 import org.lafayette.server.domain.User;
 
 /**
@@ -24,7 +23,7 @@ import org.lafayette.server.domain.User;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class SecurityContextFilterAnonymous implements SecuirityContextFilter {
+final class SecurityContextFilterAnonymous implements SecuirityContextFilter {
 
     @Override
     public ContainerRequestFilter getRequestFilter() {
