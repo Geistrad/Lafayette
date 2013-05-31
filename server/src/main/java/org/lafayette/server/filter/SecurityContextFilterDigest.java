@@ -15,10 +15,12 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;
@@ -43,7 +45,7 @@ import org.lafayette.server.log.Logger;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Provider
-public class SecurityContextFilterDigest implements SecuirityContextFilter {
+class SecurityContextFilterDigest implements SecuirityContextFilter {
 
     /**
      * Logger facility.
