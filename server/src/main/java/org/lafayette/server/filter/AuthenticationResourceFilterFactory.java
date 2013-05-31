@@ -36,19 +36,13 @@ public class AuthenticationResourceFilterFactory implements ResourceFilterFactor
     @Context
     private HttpHeaders headers;
 
-//    @Inject
-//    public AuthenticationResourceFilterFactory(final SecuirityContextFilter security) {
-//        super();
-//        this.security = security;
-//    }
-
     @Override
     public List<ResourceFilter> create(final AbstractMethod am) {
         if (am.isAnnotationPresent(Authentication.class)) {
             return Collections.<ResourceFilter>singletonList(new SecurityContextFilterDigest(servlet, headers));
         }
 
-        return Collections.emptyList();
+        return Collections.<ResourceFilter>singletonList(new SecurityContextFilterAnonymous());
     }
 
 }
