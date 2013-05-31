@@ -22,7 +22,6 @@ import javax.ws.rs.core.SecurityContext;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
-import org.junit.Ignore;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import static org.mockito.Mockito.*;

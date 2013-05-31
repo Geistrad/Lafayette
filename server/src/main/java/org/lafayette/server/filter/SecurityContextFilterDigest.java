@@ -79,7 +79,7 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
      *
      * @return always same instance
      */
-    private Registry registry() {
+    Registry registry() {
         return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);
     }
 
