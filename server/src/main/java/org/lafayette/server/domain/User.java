@@ -104,8 +104,12 @@ public class User extends BaseDomainObject implements Principal {
         return Sets.newHashSet(roles.values());
     }
 
-    public boolean hasRole(final String r) {
-        return roles.containsKey(r);
+    public boolean hasRole(final String name) {
+        return hasRole(Names.forName(name));
+    }
+
+    public boolean hasRole(final Names name) {
+        return roles.containsKey(name);
     }
 
     public boolean hasRole(final Role r) {
