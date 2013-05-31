@@ -141,7 +141,7 @@
 <a class="jxr_linenumber" name="131" href="#131">131</a>     }
 <a class="jxr_linenumber" name="132" href="#132">132</a> 
 <a class="jxr_linenumber" name="133" href="#133">133</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> createAndSetPrincipal(<strong class="jxr_keyword">final</strong> ContainerRequest request) {
-<a class="jxr_linenumber" name="134" href="#134">134</a>         <strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a> principal = <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a>(23, <span class="jxr_string">"Snafu"</span>, <span class="jxr_string">"foo"</span>, <span class="jxr_string">"bar"</span>);
+<a class="jxr_linenumber" name="134" href="#134">134</a>         <strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a> principal = <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a>(23, <span class="jxr_string">"Snafu"</span>, <span class="jxr_string">"foo"</span>);
 <a class="jxr_linenumber" name="135" href="#135">135</a>         request.setSecurityContext(<strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/filter/SecurityContextImpl.html">SecurityContextImpl</a>(principal));
 <a class="jxr_linenumber" name="136" href="#136">136</a>     }
 <a class="jxr_linenumber" name="137" href="#137">137</a> }

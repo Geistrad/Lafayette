@@ -51,7 +51,7 @@
 <a class="jxr_linenumber" name="41" href="#41">41</a>  
 <a class="jxr_linenumber" name="42" href="#42">42</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> PAD_ID = 5;
 <a class="jxr_linenumber" name="43" href="#43">43</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> PAD_LOGIN_NAME = 16;
-<a class="jxr_linenumber" name="44" href="#44">44</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> PAD_HASHED_PASSWORD = 34;
+<a class="jxr_linenumber" name="44" href="#44">44</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> PAD_HASHED_USER_DATA = 34;
 <a class="jxr_linenumber" name="45" href="#45">45</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LIMIT = 25;
 <a class="jxr_linenumber" name="46" href="#46">46</a>  
 <a class="jxr_linenumber" name="47" href="#47">47</a>      @Override
@@ -68,15 +68,15 @@
 <a class="jxr_linenumber" name="58" href="#58">58</a>          <strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/UserFinder.html">UserFinder</a> finder = finders().forUsers();
 <a class="jxr_linenumber" name="59" href="#59">59</a>          buffer.append(StringUtils.rightPad(<span class="jxr_string">"id"</span>, PAD_ID))
 <a class="jxr_linenumber" name="60" href="#60">60</a>                  .append(StringUtils.rightPad(<span class="jxr_string">"loginName"</span>, PAD_LOGIN_NAME))
-<a class="jxr_linenumber" name="61" href="#61">61</a>                  .append(StringUtils.rightPad(<span class="jxr_string">"hashedPassword"</span>, PAD_HASHED_PASSWORD))
+<a class="jxr_linenumber" name="61" href="#61">61</a>                  .append(StringUtils.rightPad(<span class="jxr_string">"hashedUserData"</span>, PAD_HASHED_USER_DATA))
 <a class="jxr_linenumber" name="62" href="#62">62</a>                  .append(<span class="jxr_string">"salt"</span>)
 <a class="jxr_linenumber" name="63" href="#63">63</a>                  .append(Constants.NL);
 <a class="jxr_linenumber" name="64" href="#64">64</a>  
 <a class="jxr_linenumber" name="65" href="#65">65</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> User user : finder.findAll(LIMIT, 0)) {
 <a class="jxr_linenumber" name="66" href="#66">66</a>              buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
 <a class="jxr_linenumber" name="67" href="#67">67</a>                      .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
-<a class="jxr_linenumber" name="68" href="#68">68</a>                      .append(StringUtils.rightPad(user.getHashedPassword(), PAD_HASHED_PASSWORD))
-<a class="jxr_linenumber" name="69" href="#69">69</a>                      .append(user.getSalt()).append(Constants.NL);
+<a class="jxr_linenumber" name="68" href="#68">68</a>                      .append(StringUtils.rightPad(user.getHashedUserData(), PAD_HASHED_USER_DATA))
+<a class="jxr_linenumber" name="69" href="#69">69</a>                      .append(Constants.NL);
 <a class="jxr_linenumber" name="70" href="#70">70</a>          }
 <a class="jxr_linenumber" name="71" href="#71">71</a>  
 <a class="jxr_linenumber" name="72" href="#72">72</a>          <strong class="jxr_keyword">return</strong> buffer.toString();
@@ -129,7 +129,7 @@
 <a class="jxr_linenumber" name="119" href="#119">119</a>         }
 <a class="jxr_linenumber" name="120" href="#120">120</a> 
 <a class="jxr_linenumber" name="121" href="#121">121</a>         <strong class="jxr_keyword">final</strong> String loginName = jsonEntity.getString(<span class="jxr_string">"loginName"</span>);
-<a class="jxr_linenumber" name="122" href="#122">122</a>         <strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a> newUser = <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a>(loginName, <span class="jxr_string">""</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="122" href="#122">122</a>         <strong class="jxr_keyword">final</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a> newUser = <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/domain/User.html">User</a>(loginName, <span class="jxr_string">""</span>); <em class="jxr_comment">// FIXME Set hashed user data (password).</em>
 <a class="jxr_linenumber" name="123" href="#123">123</a>         registry().getMappers().createUserMapper().insert(newUser);
 <a class="jxr_linenumber" name="124" href="#124">124</a>         <strong class="jxr_keyword">final</strong> URI uri = uriInfo().getAbsolutePathBuilder()
 <a class="jxr_linenumber" name="125" href="#125">125</a>                 .path(String.valueOf(newUser.getId()))
