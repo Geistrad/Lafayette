@@ -21,7 +21,7 @@ import org.lafayette.server.domain.User;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class SecurityContextImpl implements SecurityContext {
+class SecurityContextImpl implements SecurityContext {
 
     /**
      * The authenticated principal.
