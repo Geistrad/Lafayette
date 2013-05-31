@@ -15,13 +15,18 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
+import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
+import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
@@ -33,6 +38,10 @@ import org.lafayette.server.log.Log;
 import org.lafayette.server.log.Logger;
 
 /**
+ * Filters resource request/response for digest athentication.
+ *
+ * If a user is authorized then a {@link User} representing the user is injected as {@link Principal} to the
+ * {@link SecurityContext}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -43,12 +52,26 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
      * Logger facility.
      */
     private final Logger log = Log.getLogger(this);
+    /**
+     * The servlet context to get registry from.
+     */
     private final ServletContext servlet;
+    /**
+     * The request's HTTP headers.
+     */
     private final HttpHeaders headers;
 
+    /**
+     * Dedicated constructor
+     *
+     * @param servlet must not be {2code null}
+     * @param headers must not be {2code null}
+     */
     public SecurityContextFilterDigest(final ServletContext servlet, final HttpHeaders headers) {
         super();
+        Validate.notNull(servlet, "Servlet context must not be null!");
         this.servlet = servlet;
+        Validate.notNull(headers, "HTTP headers must not be null!");
         this.headers = headers;
     }
 
@@ -101,6 +124,11 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
         return response;
     }
 
+    /**
+     * Extracts the authorization header from the requests headers.
+     *
+     * @return may return empty string, but never {@code null}
+     */
     private String getAuthorizationHeader() {
         final List<String> authHeader = headers.getRequestHeader(HttpHeaders.AUTHORIZATION);
 
@@ -117,19 +145,31 @@ public class SecurityContextFilterDigest implements SecuirityContextFilter {
     }
 
     private boolean verifyAuthentiaction(final RequestParameters params) {
-        final String userRealmPw = DigestUtils.md5Hex(String.format("Foo:%s:1234",
-                registry().getServerConfig().getSecurotyRealm()));
+        final User principal = findPrincipal(params);
+
+        if (null == principal) {
+            return false;
+        }
+
         // FIXME Verify nonce
-        final String expectedResponse = Digest.digest(userRealmPw,
+        final String expectedResponse = Digest.digest(principal.getHashedUserData(),
                 params.getNonce(),
                 Digest.digestRequestData(params.getHttpMethod(), params.getRequestedUri()));
         return expectedResponse.equalsIgnoreCase(params.getResponse());
     }
 
     private void createAndSetPrincipal(final ContainerRequest request, final RequestParameters params) {
-        final User principal = registry().getMappers()
-                                         .createUserMapper()
-                                         .findByLoginName(params.getUsername());
+        final User principal = findPrincipal(params);
+        final Collection<Role> roles = registry().getMappers()
+                .createRoleMapper()
+                .findByUserId(principal.getId());
+        principal.addAllRoles(roles);
         request.setSecurityContext(new SecurityContextImpl(principal));
+    }
+
+    private User findPrincipal(final RequestParameters params) {
+        return registry().getMappers()
+                .createUserMapper()
+                .findByLoginName(params.getUsername());
     }
 }

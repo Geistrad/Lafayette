@@ -117,7 +117,7 @@ public final class UserMapper extends BaseMapper<User> implements UserFinder {
             final ResultSet rs = findStatement.executeQuery();
 
             if (!rs.next())  {
-                throw new ApplicationException(String.format("There is no user whith loginName '%s'!", loginName));
+                return null;
             }
 
             final User result = load(rs);

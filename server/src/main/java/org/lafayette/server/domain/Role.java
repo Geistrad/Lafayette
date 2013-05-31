@@ -109,6 +109,13 @@ public class Role extends BaseDomainObject {
          */
         ADMINISTRATOR;
 
+        /**
+         * Look up a given name and returns the according name enum.
+         *
+         * @param name case insensitive
+         * @return one of the enums
+         * @throws IllegalArgumentException if there is no mathing enum
+         */
         public static Names forName(final String name) {
             if (ANONYMOUS.toString().equalsIgnoreCase(name)) {
                 return ANONYMOUS;
