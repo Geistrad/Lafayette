@@ -82,7 +82,7 @@ public class BaseParametersTest {
     public void testEquals() {
     }
 
-    private final class BaseParametersStung extends BaseParameters {
+    private static final class BaseParametersStung extends BaseParameters {
 
     }
 }

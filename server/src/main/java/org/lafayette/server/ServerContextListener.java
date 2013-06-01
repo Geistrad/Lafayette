@@ -122,6 +122,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
      * Open and add database connection to the {@link Registry registry}.
      *
      * @param config server configuration
+     * @return the opened connection
      */
     private Connection openDatabaseConnection(final ServerConfig config) {
         try {
@@ -196,8 +197,12 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         }
     }
 
+    /**
+     * Create {@link Mappers mapper factory} and stores to registry.
+     *
+     * @param con open database connection
+     */
     private void createMappersFactory(final Connection con) {
         reg.setMappers(new Mappers(con));
     }
-
 }

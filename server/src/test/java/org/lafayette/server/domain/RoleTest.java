@@ -9,12 +9,13 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server.domain;
 
 import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 import org.lafayette.server.domain.Role.Names;
 
 /**
@@ -23,6 +24,25 @@ import org.lafayette.server.domain.Role.Names;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class RoleTest {
+
+    @Rule
+    //CHECKSTYLE:OFF
+    public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:ON
+
+    @Test
+    public void setUserId_throwsExceptionIfLesthanZero() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("User id must not be leass than 0!");
+        new Role().setUserId(-1);
+    }
+
+    @Test
+    public void setName_throwsExceptionIfNull() {
+        thrown.expect(NullPointerException.class);
+        thrown.expectMessage("Name must not be null!");
+        new Role().setName(null);
+    }
 
     @Test
     public void defaultConstructor() {
@@ -74,5 +94,4 @@ public class RoleTest {
     public void testToString() {
         assertThat(new Role(1, 2, Names.USER).toString(), is(equalTo("Role{id=1, userId=2, name=USER}")));
     }
-
 }

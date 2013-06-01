@@ -14,10 +14,13 @@ package org.lafayette.server.domain;
 
 import com.google.common.base.Objects;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.apache.commons.lang3.Validate;
 import org.msgpack.annotation.Message;
 
 /**
  * Represents the roles a {@link User} has.
+ *
+ * This class represents the record sets which describes which user has what role.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -35,33 +38,71 @@ public class Role extends BaseDomainObject {
      */
     private Names name;
 
+    /**
+     * Initializes id with {@link #UNINITIALIZED_ID}, userId with {@code 0} and name with {@code Names.ANONYMOUS}.
+     */
     public Role() {
         this(0, Names.ANONYMOUS);
     }
 
+    /**
+     * Initializes id with {@link #UNINITIALIZED_ID}.
+     *
+     * @param userId id of user which has the role
+     * @param name name of role the user has
+     */
     public Role(final int userId, final Names name) {
         this(UNINITIALIZED_ID, userId, name);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param id the record set unique id
+     * @param userId id of user which has the role
+     * @param name name of role the user has
+     */
     public Role(final int id, final int userId, final Names name) {
         super(id);
         this.userId = userId;
         this.name = name;
     }
 
+    /**
+     * Get user id.
+     *
+     * @return always positive integer
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     * Set user id
+     *
+     * @param userId must not be less than 0
+     */
     public void setUserId(final int userId) {
+        Validate.isTrue(userId >= 0, "User id must not be leass than 0!");
         this.userId = userId;
     }
 
+    /**
+     * Get the role name.
+     *
+     * @return never {@code null}
+     */
     public Names getName() {
         return name;
     }
 
+    /**
+     * Set the role name.
+     *
+     * @param name must not be {@code null}
+     */
     public void setName(final Names name) {
+        Validate.notNull(name, "Name must not be null!");
         this.name = name;
     }
 
@@ -114,7 +155,9 @@ public class Role extends BaseDomainObject {
          *
          * @param name case insensitive
          * @return one of the enums
-         * @throws IllegalArgumentException if there is no mathing enum
+         * //CHECKSTYLE:OFF
+         * @throws IllegalArgumentException if there is no matching enum
+         * //CHECKSTYLE:ON
          */
         public static Names forName(final String name) {
             if (ANONYMOUS.toString().equalsIgnoreCase(name)) {

@@ -44,23 +44,60 @@ class NonceCache {
      */
     private final List<String> nonces;
 
+    /**
+     * Initializes capacity with {@link #DEFAULT_CAPACITY} and threshold with {@link #DEFAULT_CAPACITY}.
+     */
     public NonceCache() {
         this(DEFAULT_CAPACITY, DEFAULT_THRESHOLD);
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param capacity maximum number of cached NONCEs, must not be less than 1
+     * @param threshold used determine if garbage collection is needed, must not be less than 1 and must be less than
+     *                  capacity
+     */
     public NonceCache(final int capacity, final int threshold) {
         super();
+
+        if (capacity < 1) {
+            throw new IllegalArgumentException("Capacity must not be less than one!");
+        }
+
+        if (threshold < 1) {
+            throw new IllegalArgumentException("Threshold must not be less than one!");
+        }
+
+        if (threshold >= capacity) {
+            throw new IllegalArgumentException("Threshold must be less than capacity!");
+        }
+
         this.capacity = capacity;
         this.threshold = threshold;
         this.nonces = Lists.newArrayListWithCapacity(capacity);
     }
 
+    /**
+     * Whether the caches has a NONCE value or not.
+     *
+     * @param nonce asked for
+     * @return {@code true} if the cache has this value, else {@code false}
+     */
     public boolean has(final String nonce) {
         synchronized (nonces) {
             return nonces.contains(nonce);
         }
     }
 
+    /**
+     * Add a NONCE to the cache.
+     *
+     * Throws {@link IllegalArgumentException} if a NONCE was already added to the cache. Also calls
+     * {@link #garbageCollection()} as last operation.
+     *
+     * @param nonce
+     */
     public void add(final String nonce) {
         synchronized (nonces) {
             if (has(nonce)) {
@@ -73,12 +110,20 @@ class NonceCache {
         garbageCollection();
     }
 
+    /**
+     * Return number of cached NONCEs.
+     *
+     * @return never les than 0
+     */
     public int size() {
         synchronized (nonces) {
             return nonces.size();
         }
     }
 
+    /**
+     * Determine if garbage collection is necessary, and if, delete old NONCEs from cache.
+     */
     private void garbageCollection() {
         synchronized (nonces) {
             if (!shouldDoGarbageCollection(nonces.size(), capacity, threshold)) {
@@ -91,6 +136,19 @@ class NonceCache {
         }
     }
 
+    /**
+     * Calculates if it is necessary to run garbage collection.
+     *
+     * Garbage collection is done if:
+     * <pre>
+     * size >= capacity - capacity / threshold
+     * </pre>
+     *
+     * @param size current size of cache, must not be less than 0
+     * @param capacity current capacity of cache, must not be less than 1
+     * @param threshold current threshold of cache, must not be less than 1 and must nut be greater or equal capacity
+     * @return {@code true} if garbage collection should be run, else {@code false}
+     */
     static boolean shouldDoGarbageCollection(final int size, final int capacity, final int threshold) {
         if (size < 0) {
             throw new IllegalArgumentException("Size must not be less than zero!");
