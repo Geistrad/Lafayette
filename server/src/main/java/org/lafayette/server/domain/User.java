@@ -188,10 +188,10 @@ public class User extends BaseDomainObject implements Principal {
     /**
      * Add a bunch of roles to the user.
      *
-     * @param roles collection of roles to add
+     * @param r collection of roles to add
      */
-    public void addAllRoles(final Collection<Role> roles) {
-        for (final Role role : roles) {
+    public void addAllRoles(final Collection<Role> r) {
+        for (final Role role : r) {
             addRole(role);
         }
     }

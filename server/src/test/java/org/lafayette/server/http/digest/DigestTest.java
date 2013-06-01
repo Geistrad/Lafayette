@@ -11,7 +11,6 @@
  */
 package org.lafayette.server.http.digest;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;

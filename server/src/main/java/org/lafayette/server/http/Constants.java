@@ -13,7 +13,7 @@ package org.lafayette.server.http;
 
 /**
  * Various HTPP constants.
- * 
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface Constants {

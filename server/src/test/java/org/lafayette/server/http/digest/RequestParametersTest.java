@@ -54,31 +54,31 @@ public class RequestParametersTest {
 
     @Test
     public void isValid_trueIfAllParamsNotEmpty() {
-        final RequestParameters sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
-        assertThat(sut.isValid(), is(true));
+        final RequestParameters innerSut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(innerSut.isValid(), is(true));
     }
 
     @Test
     public void isValid_falseIfAtLeastOneParamIsEmpty() {
-        RequestParameters sut = new RequestParameters("", "realm", "nonce", "GET", "uri", "response");
-        assertThat(sut.isValid(), is(false));
-        sut = new RequestParameters("name", "", "nonce", "GET", "uri", "response");
-        assertThat(sut.isValid(), is(false));
-        sut = new RequestParameters("name", "realm", "", "GET", "uri", "response");
-        assertThat(sut.isValid(), is(false));
-        sut = new RequestParameters("name", "realm", "nonce", "", "uri", "response");
-        assertThat(sut.isValid(), is(false));
-        sut = new RequestParameters("name", "realm", "nonce", "GET", "", "response");
-        assertThat(sut.isValid(), is(false));
-        sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "");
-        assertThat(sut.isValid(), is(false));
+        RequestParameters innerSut = new RequestParameters("", "realm", "nonce", "GET", "uri", "response");
+        assertThat(innerSut.isValid(), is(false));
+        innerSut = new RequestParameters("name", "", "nonce", "GET", "uri", "response");
+        assertThat(innerSut.isValid(), is(false));
+        innerSut = new RequestParameters("name", "realm", "", "GET", "uri", "response");
+        assertThat(innerSut.isValid(), is(false));
+        innerSut = new RequestParameters("name", "realm", "nonce", "", "uri", "response");
+        assertThat(innerSut.isValid(), is(false));
+        innerSut = new RequestParameters("name", "realm", "nonce", "GET", "", "response");
+        assertThat(innerSut.isValid(), is(false));
+        innerSut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "");
+        assertThat(innerSut.isValid(), is(false));
     }
 
     @Test
     public void testToString() {
-        final RequestParameters sut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
-        assertThat(sut.toString(), is(equalTo("RequestParameters{username=name, realm=realm, nonce=nonce, httpMethod=GET, "
-                + "requestedUri=uri, response=response}")));
+        final RequestParameters innerSut = new RequestParameters("name", "realm", "nonce", "GET", "uri", "response");
+        assertThat(innerSut.toString(), is(equalTo("RequestParameters{username=name, realm=realm, nonce=nonce, "
+                + "httpMethod=GET, requestedUri=uri, response=response}")));
     }
 
     @Test

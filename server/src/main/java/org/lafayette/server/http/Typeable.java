@@ -14,16 +14,16 @@ package org.lafayette.server.http;
 
 /**
  * Implementors must tell which {@link MediaType} it produces.
- * 
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface Typeable {
-    
+
     /**
      * Get the media type.
-     * 
+     *
      * @return must not return {@code null}
      */
     String getMediaType();
-    
+
 }

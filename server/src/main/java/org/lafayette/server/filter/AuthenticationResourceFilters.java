@@ -37,7 +37,9 @@ public class AuthenticationResourceFilters implements ResourceFilterFactory {
     private HttpHeaders headers;
 
     @Override
+    //CHECKSTYLE:OFF
     public List<ResourceFilter> create(final AbstractMethod am) {
+    //CHECKSTYLE:ON
         if (am.isAnnotationPresent(Authentication.class)) {
             return Collections.<ResourceFilter>singletonList(new SecurityContextFilterDigest(servlet, headers));
         }

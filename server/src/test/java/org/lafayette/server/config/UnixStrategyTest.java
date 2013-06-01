@@ -19,7 +19,6 @@ import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import org.junit.Ignore;
 import org.junit.rules.ExpectedException;
 
 /**
@@ -29,10 +28,14 @@ import org.junit.rules.ExpectedException;
 public class UnixStrategyTest {
 
     @Rule
+    //CHECKSTYLE:OFF
     public final TemporaryFolder tempFolder = new TemporaryFolder();
+    //CHECKSTYLE:ON
 
     @Rule
+    //CHECKSTYLE:OFF
     public final ExpectedException thrown = ExpectedException.none();
+    //CHECKSTYLE:ON
 
     @Test
     public void createHomeConfigFileName_throwExceptionIfNullArgument() {

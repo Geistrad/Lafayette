@@ -27,7 +27,8 @@ public class ResponseParameters  extends BaseParameters {
         this("", "", "", "", "", "");
     }
 
-    public ResponseParameters(final String username, final String realm, final String password, final String nonce, final String httpMethod, final String requestedUri) {
+    public ResponseParameters(final String username, final String realm, final String password, final String nonce,
+        final String httpMethod, final String requestedUri) {
         super(username, realm, nonce, httpMethod, requestedUri);
         this.password = password;
     }

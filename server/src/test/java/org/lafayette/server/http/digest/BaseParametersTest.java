@@ -71,13 +71,16 @@ public class BaseParametersTest {
     }
 
     @Test @Ignore
-    public void testToString() {}
+    public void testToString() {
+    }
 
     @Test @Ignore
-    public void testHashCode() {}
+    public void testHashCode() {
+    }
 
     @Test @Ignore
-    public void testEquals() {}
+    public void testEquals() {
+    }
 
     private final class BaseParametersStung extends BaseParameters {
 

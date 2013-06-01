@@ -75,7 +75,8 @@ abstract class BaseNonce implements Nonce {
      * @param digestAlgorithm Used hashing algorithm.
      * @throws NoSuchAlgorithmException On unsupported algorithm.
      */
-    public BaseNonce(final Nonce.RandonAlgorithm randomAlgorithm, final String salt, final Nonce.DigestAlgorithm digestAlgorithm)
+    public BaseNonce(final Nonce.RandonAlgorithm randomAlgorithm, final String salt,
+        final Nonce.DigestAlgorithm digestAlgorithm)
         throws NoSuchAlgorithmException {
         super();
         this.salt = salt;

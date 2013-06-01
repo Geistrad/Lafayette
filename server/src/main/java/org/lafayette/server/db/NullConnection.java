@@ -49,7 +49,7 @@ import java.util.Properties;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class NullConnection implements Connection {
+public final class NullConnection implements Connection {
 
     @Override
     public Statement createStatement() throws SQLException {

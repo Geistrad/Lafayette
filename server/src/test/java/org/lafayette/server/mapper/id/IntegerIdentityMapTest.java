@@ -15,17 +15,16 @@ import org.junit.Test;
 import org.lafayette.server.domain.DomainObject;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
-import org.junit.Ignore;
 
 /**
  * Tests for {@link IntegerIdentity}.
- * 
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class IntegerIdentityMapTest {
-    
+
     private final IntegerIdentityMap<DomainObjectStub> sut = new IntegerIdentityMap<DomainObjectStub>();
-    
+
     @Test
     public void testSize() {
         assertThat(sut.size(), is(0));
@@ -55,7 +54,7 @@ public class IntegerIdentityMapTest {
         assertThat(sut.containsIdentity(Integer.valueOf(1)), is(true));
         assertThat(sut.containsIdentity(Integer.valueOf(2)), is(true));
     }
-    
+
     @Test
     public void testContainsIdentity_nativeInt() {
         assertThat(sut.containsIdentity(1), is(false));
@@ -98,7 +97,7 @@ public class IntegerIdentityMapTest {
         assertThat(sut.get(Integer.valueOf(1)), is(sameInstance(obj1)));
         assertThat(sut.get(Integer.valueOf(2)), is(sameInstance(obj2)));
     }
-    
+
     @Test
     public void testGet_nativeInt() {
         final DomainObjectStub obj1 = new DomainObjectStub();
@@ -124,7 +123,7 @@ public class IntegerIdentityMapTest {
         assertThat(sut.get(Integer.valueOf(1)), is(sameInstance(obj2)));
     }
 
-    @Test 
+    @Test
     public void testPut_nativeInt() {
         final DomainObjectStub obj1 = new DomainObjectStub();
         final DomainObjectStub obj2 = new DomainObjectStub();
@@ -134,14 +133,14 @@ public class IntegerIdentityMapTest {
         assertThat(sut.put(1, obj2), is(sameInstance(obj1)));
         assertThat(sut.get(1), is(sameInstance(obj2)));
     }
-    
+
     /**
      * Stubbed domain objerct for tests.
      */
-    private final static class DomainObjectStub implements DomainObject {
+    private static final class DomainObjectStub implements DomainObject {
 
         private int id;
-        
+
         @Override
         public int getId() {
             return id;
@@ -151,6 +150,6 @@ public class IntegerIdentityMapTest {
         public void setId(final int id) {
             this.id = id;
         }
-        
+
     }
 }

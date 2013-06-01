@@ -81,7 +81,7 @@ abstract class BaseResource {
         indexUriList.setComment("# Available URIs:");
     }
 
-    protected abstract void addUrisToIndexList(UriList indexUriList) throws URISyntaxException;
+    protected abstract void addUrisToIndexList(UriList list) throws URISyntaxException;
 
     protected Registry registry() {
         return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);

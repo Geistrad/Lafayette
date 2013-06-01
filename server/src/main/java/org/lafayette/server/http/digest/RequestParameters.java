@@ -26,7 +26,8 @@ public final class RequestParameters extends BaseParameters {
         this("", "", "", "", "", "");
     }
 
-    public RequestParameters(final String username, final String realm, final String nonce, final String httpMethod, final String requestedUri, final String response) {
+    public RequestParameters(final String username, final String realm, final String nonce, final String httpMethod,
+        final String requestedUri, final String response) {
         super(username, realm, nonce, httpMethod, requestedUri);
         this.response = response;
     }

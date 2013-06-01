@@ -62,7 +62,7 @@ public final class ConfigLoader {
      * @param osName name of operating system
      * @return new strategy object
      */
-    static LoaderStrategie determineStrategy(final String osName ) {
+    static LoaderStrategie determineStrategy(final String osName) {
         final OperatingSystem os = OperatingSystem.determine(osName);
 
         if (OperatingSystem.WINDOWS == os) {

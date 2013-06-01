@@ -45,7 +45,11 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class Digest {
+public final class Digest {
+
+    private Digest() {
+        super();
+    }
 
     public static String digestUserData(final String username, final String password, final String realm) {
         return DigestUtils.md5Hex(String.format("%s:%s:%s", username, realm, password));

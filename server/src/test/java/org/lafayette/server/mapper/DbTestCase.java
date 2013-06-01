@@ -73,7 +73,8 @@ public abstract class DbTestCase {
      * @throws IOException
      * @throws URISyntaxException
      */
-    public void startTestDatabase(final boolean withData) throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
+    public void startTestDatabase(final boolean withData) throws ClassNotFoundException, SQLException, IOException,
+        URISyntaxException {
         createDatabaseConnection();
         createTable();
 

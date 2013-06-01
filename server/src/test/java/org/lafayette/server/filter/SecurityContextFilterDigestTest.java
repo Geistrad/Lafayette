@@ -21,14 +21,11 @@ import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.HttpHeaders;
 import org.junit.Test;
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import org.junit.Ignore;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
-import org.lafayette.server.http.ForbiddenException;
-import org.lafayette.server.http.UnauthorizedException;
 import static org.mockito.Mockito.*;
 
 /**
@@ -76,15 +73,17 @@ public class SecurityContextFilterDigestTest {
 
     @Test
     @Ignore
-    public void filterRequest_throwsUnauthorizedExceptionIfHeaderEmpty() {}
+    public void filterRequest_throwsUnauthorizedExceptionIfHeaderEmpty() {
+    }
 
     @Test
     @Ignore
-    public void filterRequest_throwsForbiddenExceptionIfAuthenticationNotValid() {}
+    public void filterRequest_throwsForbiddenExceptionIfAuthenticationNotValid() {
+    }
 
     @Test
     @Ignore
     public void filterRequest_returnRequestWithSecurityContextIfValidAuthentication() {
-        
+
     }
 }

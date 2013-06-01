@@ -76,7 +76,7 @@ public class UserResource extends BaseResource {
     @Path("/{id}")
     @Produces(MediaType.TEXT_PLAIN)
     public String userAsPlainText(@PathParam("id") String id) {
-        final User user = findUSerById(id);
+        final User user = findUserById(id);
 
         if (null == user) {
             raiseIdNotFoundError("user", id);
@@ -87,9 +87,9 @@ public class UserResource extends BaseResource {
 
     @GET
     @Path("/{id}")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public User userAsJsonOrXml(@PathParam("id") String id) {
-        final User user = findUSerById(id);
+        final User user = findUserById(id);
 
         if (null == user) {
             raiseIdNotFoundError("user", id);
@@ -100,9 +100,9 @@ public class UserResource extends BaseResource {
 
     @GET
     @Path("/{id}")
-    @Produces({MediaType.APPLICATION_X_MSGPACK})
+    @Produces(MediaType.APPLICATION_X_MSGPACK)
     public Response userAsMessagePack(@PathParam("id") String id) throws IOException {
-        final User user = findUSerById(id);
+        final User user = findUserById(id);
 
         if (null == user) {
             raiseIdNotFoundError("user", id);
@@ -130,7 +130,14 @@ public class UserResource extends BaseResource {
                 .build();
     }
 
-    private User findUSerById(String id) throws NumberFormatException {
+    /**
+     * Find a user by it's id.
+     *
+     * @param id user's id
+     * @return may be {@code null}, if user was not found
+     * throws NumberFormatException if passed in user id is not parseable to integer
+     */
+    private User findUserById(String id) {
         final UserFinder finder = finders().forUsers();
         return finder.find(Integer.parseInt(id));
     }

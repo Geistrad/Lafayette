@@ -18,7 +18,7 @@ import org.junit.Test;
 
 /**
  * Tests for {@link NonceFactory}.
- * 
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class NonceFactoryTest {
@@ -28,12 +28,12 @@ public class NonceFactoryTest {
         assertThat(NonceFactory.sha1() instanceof Sha1, is(true));
     }
 
-    @Test(expected=NoSuchAlgorithmException.class)
+    @Test(expected = NoSuchAlgorithmException.class)
     public void createYarrow() throws NoSuchAlgorithmException {
         NonceFactory.yarrow();
     }
 
-    @Test(expected=NoSuchAlgorithmException.class)
+    @Test(expected = NoSuchAlgorithmException.class)
     public void createNative() throws NoSuchAlgorithmException {
         NonceFactory.nativ();
     }
