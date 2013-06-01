@@ -563,7 +563,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-<!--                <configuration>
+                <configuration>
                     <reportPlugins>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
@@ -581,7 +581,7 @@
                                 </reportSet>
                             </reportSets>
                         </plugin>
-
+<!--
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
@@ -594,7 +594,7 @@
                                 </reportSet>
                             </reportSets>
                         </plugin>
-
+-->
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
                             <artifactId>versions-maven-plugin</artifactId>
@@ -653,7 +653,7 @@
                             </configuration>
                         </plugin>
 
-                        <plugin>
+<!--                        <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-pmd-plugin</artifactId>
                             <configuration>
@@ -672,9 +672,9 @@
                                     <ruleset>/rulesets/design.xml</ruleset>
                                 </rulesets>
                             </configuration>
-                        </plugin>
+                        </plugin>-->
 
-                        <plugin>
+<!--                        <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
                             <configuration>
@@ -682,7 +682,7 @@
                                 <logViolationsToConsole>true</logViolationsToConsole>
                                 <includeTestSourceDirectory>false</includeTestSourceDirectory>
                             </configuration>
-                        </plugin>
+                        </plugin>-->
 
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
@@ -752,7 +752,7 @@
                             </configuration>
                         </plugin>
                     </reportPlugins>
-                </configuration>-->
+                </configuration>
             </plugin>
         </plugins>
     </build>
