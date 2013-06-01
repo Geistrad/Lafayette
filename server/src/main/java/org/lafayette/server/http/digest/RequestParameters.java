@@ -15,27 +15,56 @@ import com.google.common.base.Objects;
 import org.apache.commons.lang3.Validate;
 
 /**
+ * Authentication parameters sent by client in authentication digest request.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public final class RequestParameters extends BaseParameters {
 
+    /**
+     * Response value calculated by client.
+     *
+     * @see Digest
+     */
     private String response;
 
+    /**
+     * Initializes all parameters with empty strings.
+     */
     public RequestParameters() {
         this("", "", "", "", "", "");
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param username must not be {@code null}
+     * @param realm must not be {@code  null}
+     * @param nonce must not be {@code  null}
+     * @param httpMethod must not be {@code  null}
+     * @param requestedUri must not be {@code  null}
+     * @param response must not be {@code  null}
+     */
     public RequestParameters(final String username, final String realm, final String nonce, final String httpMethod,
         final String requestedUri, final String response) {
         super(username, realm, nonce, httpMethod, requestedUri);
         this.response = response;
     }
 
+    /**
+     * Get the response parameter.
+     *
+     * @return never {@code null}
+     */
     public String getResponse() {
         return response;
     }
 
+    /**
+     * Set the response.
+     *
+     * @param response must not be {@code null}
+     */
     public void setResponse(final String response) {
         Validate.notNull(response);
         this.response = response;
