@@ -38,6 +38,8 @@ import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
+import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.mapper.UserMapper;
 import static org.mockito.Mockito.*;
 
 /**
@@ -158,19 +160,27 @@ public class SecurityContextFilterDigestTest {
     @Test
     @Ignore
     public void filterRequest_returnRequestWithSecurityContextIfValidAuthentication() {
+        final SecurityContextFilterDigest sut = new SecurityContextFilterDigest(servlet, headers);
+        when(headers.getRequestHeader("Authorization"))
+            .thenReturn(Lists.<String>newArrayList("Authorization: Digest "
+                + "username=\"Foo\", realm=\"Private Area\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
+                + "httpMethod=\"GET\", uri=\"/\", response=\"85b78939376de982650217f6b9c6783d\""));
+        // hashedPassword = md5 ( Foo:Private Area:Bar )
+        final User user = new User(1, "Foo", "5f9cc3ee75165842ac6efce65cc77ce9");
+        final UserMapper userMapper = mock(UserMapper.class);
+        when(userMapper.findByLoginName(user.getLoginName())).thenReturn(user);
+        final Mappers mappers = mock(Mappers.class);
+        when(mappers.createUserMapper()).thenReturn(userMapper);
+        registry.setMappers(mappers);
         final ContainerRequest req = new ContainerRequest(
                 mock(WebApplication.class),
                 null, null, null,
                 new InBoundHeaders(), null);
-        final SecurityContextFilterDigest sut = new SecurityContextFilterDigest(servlet, headers);
 
         assertThat(sut.filter(req), is(sameInstance(req)));
         final SecurityContext securityContext = req.getSecurityContext();
         assertThat(securityContext.isSecure(), is(false));
         assertThat(securityContext.getAuthenticationScheme(), is(equalTo(SecurityContext.DIGEST_AUTH)));
-        assertThat(securityContext.isUserInRole(Role.Names.ADMINISTRATOR.toString()), is(false));
-        assertThat(securityContext.isUserInRole(Role.Names.USER.toString()), is(false));
-        assertThat(securityContext.isUserInRole(Role.Names.ANONYMOUS.toString()), is(true));
-        assertThat(securityContext.getUserPrincipal(), is(sameInstance((Principal) User.ANONYMOUS)));
+        assertThat(securityContext.getUserPrincipal(), is(sameInstance((Principal) user)));
     }
 }

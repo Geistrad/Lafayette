@@ -25,7 +25,7 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class Mappers {
+public class Mappers {
 
     /**
      * Used database connection.

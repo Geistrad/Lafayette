@@ -38,6 +38,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  * Authorization: Digest username="Foo",
  *                       realm="Private Area",
  *                       nonce="IrTfjizEdXmIdlwHwkDJx0",
+ * ,                     httpMethod="GET",
  *                       uri="/",
  *                       response="$RESPONSE"
  * ...
