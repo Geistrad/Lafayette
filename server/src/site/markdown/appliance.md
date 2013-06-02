@@ -1,4 +1,4 @@
-# Lafayette-Dev
+# Lafayette Server Appliance
 
 Documentation for Lafayete Server Development appliance.
 
@@ -11,7 +11,7 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 ## Import into Virtual Box
 
 1. download and install [Virtual Box][1]. 
-2. import appliance: `Menu -> File -> Import Aplliance
+2. import appliance: __Menu__ -> __File__ -> __Import Aplliance__
 3. change network from NAT to bridged
     1. Open virtual machne settings
     2. Navigate to network
@@ -31,15 +31,15 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 	
 ## Users
 
-- root: mo3Shoo7
-- service-user: ahf4Iedu (sudoer)
+- root: `mo3Shoo7`
+- service-user: `ahf4Iedu` (sudoer)
 
 ## Services
 
-* MySQL 5.5.31 (User: root - Password: mo3Shoo7)
-* Apache Tomcat 7 (User: root - Password: mo3Shoo7)
-* Jenkins (User: root - Password: mo3Shoo7)
-* Sonar (User: root - Password: mo3Shoo7, DB: sonar - Quizook1) in `/usr/local/sonar`
+* MySQL 5.5.31 (User: `root` - Password: `mo3Shoo7`)
+* Apache Tomcat 7 (User: `root` - Password: `mo3Shoo7`)
+* Jenkins (User: `root` - Password: `mo3Shoo7`)
+* Sonar (User: `root` - Password: `mo3Shoo7`, DB: `sonar` - `Quizook1`) in `/usr/local/sonar`
 
 ### Tomcat
 

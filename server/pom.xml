@@ -564,6 +564,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>1.4</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
                     <reportPlugins>
                         <plugin>
@@ -582,20 +589,20 @@
                                 </reportSet>
                             </reportSets>
                         </plugin>
-<!--
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-javadoc-plugin</artifactId>
-                            <reportSets>
-                                <reportSet>
-                                    <id>default</id>
-                                    <reports>
-                                        <report>javadoc</report>
-                                    </reports>
-                                </reportSet>
-                            </reportSets>
-                        </plugin>
--->
+                        <!--
+                                                <plugin>
+                                                    <groupId>org.apache.maven.plugins</groupId>
+                                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                                    <reportSets>
+                                                        <reportSet>
+                                                            <id>default</id>
+                                                            <reports>
+                                                                <report>javadoc</report>
+                                                            </reports>
+                                                        </reportSet>
+                                                    </reportSets>
+                                                </plugin>
+                        -->
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
                             <artifactId>versions-maven-plugin</artifactId>
@@ -654,7 +661,7 @@
                             </configuration>
                         </plugin>
 
-<!--                        <plugin>
+                        <!--                        <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-pmd-plugin</artifactId>
                             <configuration>
@@ -675,7 +682,7 @@
                             </configuration>
                         </plugin>-->
 
-<!--                        <plugin>
+                        <!--                        <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
                             <configuration>
@@ -695,7 +702,7 @@
                                 <findbugsXmlOutput>true</findbugsXmlOutput>
                                 <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
                                 <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
-                                 Optional directory to put findbugs xdoc xml report
+                                Optional directory to put findbugs xdoc xml report
                                 <xmlOutputDirectory>target/site</xmlOutputDirectory>
                                 <xmlOutput>true</xmlOutput>
                                 <threshold>Low</threshold>
