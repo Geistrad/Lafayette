@@ -78,7 +78,7 @@ public class Role extends BaseDomainObject {
     }
 
     /**
-     * Set user id
+     * Set user id.
      *
      * @param userId must not be less than 0
      */
@@ -160,6 +160,8 @@ public class Role extends BaseDomainObject {
          * //CHECKSTYLE:ON
          */
         public static Names forName(final String name) {
+            Validate.notEmpty(name);
+
             if (ANONYMOUS.toString().equalsIgnoreCase(name)) {
                 return ANONYMOUS;
             } else if (USER.toString().equalsIgnoreCase(name)) {

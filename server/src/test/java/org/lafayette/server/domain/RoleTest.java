@@ -94,4 +94,36 @@ public class RoleTest {
     public void testToString() {
         assertThat(new Role(1, 2, Names.USER).toString(), is(equalTo("Role{id=1, userId=2, name=USER}")));
     }
+
+    @Test
+    public void namesForName() {
+        assertThat(Names.forName("ADMINISTRATOR"), is(Names.ADMINISTRATOR));
+        assertThat(Names.forName("administrator"), is(Names.ADMINISTRATOR));
+        assertThat(Names.forName("AdmiNiStrator"), is(Names.ADMINISTRATOR));
+        assertThat(Names.forName("USER"), is(Names.USER));
+        assertThat(Names.forName("user"), is(Names.USER));
+        assertThat(Names.forName("UsEr"), is(Names.USER));
+        assertThat(Names.forName("ANONYMOUS"), is(Names.ANONYMOUS));
+        assertThat(Names.forName("anonymous"), is(Names.ANONYMOUS));
+        assertThat(Names.forName("AnonYmous"), is(Names.ANONYMOUS));
+    }
+
+    @Test
+    public void namesForName_throwsExcpetionIfUnknown() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Unknown role name 'foobar'!");
+        Names.forName("foobar");
+    }
+
+    @Test
+    public void namesForName_throwsExcpetionIfNullPassedIn() {
+        thrown.expect(NullPointerException.class);
+        Names.forName(null);
+    }
+
+    @Test
+    public void namesForName_throwsExcpetionIfEmptyPassedIn() {
+        thrown.expect(IllegalArgumentException.class);
+        Names.forName("");
+    }
 }
