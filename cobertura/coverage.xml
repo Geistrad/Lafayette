@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.41947029348604153" branch-rate="0.5714285714285714" lines-covered="586" lines-valid="1397" branches-covered="116" branches-valid="203" complexity="1.2484472049689441" version="1.9.4.1" timestamp="1370185401176">
+<coverage line-rate="0.41947029348604153" branch-rate="0.5714285714285714" lines-covered="586" lines-valid="1397" branches-covered="116" branches-valid="203" complexity="1.2484472049689441" version="1.9.4.1" timestamp="1370185677884">
 	<sources>
 		<source>--source</source>
 		<source>/Users/sxs/Projects/Lafayette/server/src/main/java</source>
@@ -3939,14 +3939,14 @@
 						</method>
 						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="87" hits="35" branch="true" condition-coverage="100% (2/2)">
+								<line number="87" hits="36" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="88" hits="2" branch="false"/>
-								<line number="91" hits="33" branch="false"/>
-								<line number="93" hits="33" branch="false"/>
+								<line number="91" hits="34" branch="false"/>
+								<line number="93" hits="34" branch="false"/>
 							</lines>
 						</method>
 						<method name="getId" signature="()I" line-rate="1.0" branch-rate="1.0">
@@ -4015,14 +4015,14 @@
 						<line number="77" hits="11" branch="false"/>
 						<line number="78" hits="11" branch="false"/>
 						<line number="82" hits="51" branch="false"/>
-						<line number="87" hits="35" branch="true" condition-coverage="100% (2/2)">
+						<line number="87" hits="36" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="88" hits="2" branch="false"/>
-						<line number="91" hits="33" branch="false"/>
-						<line number="93" hits="33" branch="false"/>
+						<line number="91" hits="34" branch="false"/>
+						<line number="93" hits="34" branch="false"/>
 						<line number="98" hits="8" branch="false"/>
 						<line number="109" hits="14" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
@@ -4089,14 +4089,14 @@
 						</method>
 						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="0.75">
 							<lines>
-								<line number="116" hits="21" branch="true" condition-coverage="100% (2/2)">
+								<line number="116" hits="22" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="117" hits="2" branch="false"/>
-								<line number="120" hits="19" branch="false"/>
-								<line number="122" hits="19" branch="true" condition-coverage="66% (4/6)">
+								<line number="120" hits="20" branch="false"/>
+								<line number="122" hits="20" branch="true" condition-coverage="66% (4/6)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="50%"/>
@@ -4166,14 +4166,14 @@
 						<line number="106" hits="1" branch="false"/>
 						<line number="107" hits="1" branch="false"/>
 						<line number="111" hits="23" branch="false"/>
-						<line number="116" hits="21" branch="true" condition-coverage="100% (2/2)">
+						<line number="116" hits="22" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="117" hits="2" branch="false"/>
-						<line number="120" hits="19" branch="false"/>
-						<line number="122" hits="19" branch="true" condition-coverage="66% (4/6)">
+						<line number="120" hits="20" branch="false"/>
+						<line number="122" hits="20" branch="true" condition-coverage="66% (4/6)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="50%"/>
