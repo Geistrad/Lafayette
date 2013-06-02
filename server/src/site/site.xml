@@ -19,17 +19,8 @@
             <leftColumnClass>span2</leftColumnClass>
             <bodyColumnClass>span10</bodyColumnClass>
             <topBarEnabled>false</topBarEnabled>
-<!--            <topBarIcon>
-                <name>${project.name}</name>
-                <alt>${project.name}</alt>
-                <src>images/topbar-logo.png</src>
-                <href>index.html</href>
-            </topBarIcon>-->
-
             <sideBarEnabled>true</sideBarEnabled>
-            <!--<profile>sandbox</profile>-->
             <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
-            <!--<navBarStyle>navbar-inverse</navBarStyle>-->
             <gitHub>
                 <projectId>Weltraumschaf/Lafayette</projectId>
                 <ribbonOrientation>right</ribbonOrientation>
@@ -46,6 +37,10 @@
     </bannerLeft>
 
     <body>
+        <breadcrumbs>
+            <item name="Weltraumschaf" href="http://www.weltraumschaf.de"/>
+            <item name="Continious Integration" href="http://www.weltraumschaf.de:8080/job/Lafayette-Server/"/>
+        </breadcrumbs>
         <menu name="${project.name}">
             <item name="Home" href="index.html"/>
         </menu>
