@@ -32,7 +32,7 @@ public class AuthorizationHeaderParserTest {
     @Test
     public void parseDigestHeaderValue_returnDefualtIfNotDigest() {
         final String header = "Foobar username=\"Foo\", realm=\"Private Area\", nonce=«\"IrTfjizEdXmIdlwHwkDJx0\", "
-                + "uri=\"/\", response=\"$RESPONSE\"";
+                + "httpMethod=\"GET\", uri=\"/\", response=\"$RESPONSE\"";
         final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
         assertThat(params.getUsername(), is(equalTo("")));
         assertThat(params.getRealm(), is(equalTo("")));
@@ -42,13 +42,27 @@ public class AuthorizationHeaderParserTest {
     }
 
     @Test
+    public void parseDigestHeaderValue_missingFields() {
+        final String header = "Digest username=\"Foo\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
+                + "uri=\"/\", response=\"$RESPONSE\"";
+        final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
+        assertThat(params.getUsername(), is(equalTo("Foo")));
+        assertThat(params.getRealm(), is(equalTo("")));
+        assertThat(params.getNonce(), is(equalTo("IrTfjizEdXmIdlwHwkDJx0")));
+        assertThat(params.getHttpMethod(), is(equalTo("")));
+        assertThat(params.getRequestedUri(), is(equalTo("/")));
+        assertThat(params.getResponse(), is(equalTo("$RESPONSE")));
+    }
+
+    @Test
     public void parseDigestHeaderValue() {
         final String header = "Digest username=\"Foo\", realm=\"Private Area\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
-                + "uri=\"/\", response=\"$RESPONSE\"";
+                + "httpMethod=\"GET\", uri=\"/\", response=\"$RESPONSE\"";
         final RequestParameters params = AuthorizationHeaderParser.parseDigestHeaderValue(header);
         assertThat(params.getUsername(), is(equalTo("Foo")));
         assertThat(params.getRealm(), is(equalTo("Private Area")));
         assertThat(params.getNonce(), is(equalTo("IrTfjizEdXmIdlwHwkDJx0")));
+        assertThat(params.getHttpMethod(), is(equalTo("GET")));
         assertThat(params.getRequestedUri(), is(equalTo("/")));
         assertThat(params.getResponse(), is(equalTo("$RESPONSE")));
     }
