@@ -36,7 +36,15 @@ public interface Nonce {
      */
     String calculateNonce();
 
-    boolean isValid(final String nonce);
+    /**
+     * Verify if a NONCE is valid.
+     *
+     * A NONCE is valid if it was issued by this generator and not invalidated yet.
+     *
+     * @param nonce NONCE to verify
+     * @return {@code true} if valid, else {@code false}
+     */
+    boolean isValid(String nonce);
 
     /**
      * SUpported algorithms.

@@ -15,15 +15,47 @@ package org.lafayette.server.domain;
 import java.util.Collection;
 
 /**
+ * Domain facade to obtain {@link Role roles} from persistent data storage.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface RoleFinder {
 
+    /**
+     * Find role by it's id.
+     *
+     * @param id id to find
+     * @return {@cde null} if no role found
+     */
     Role find(final int id);
+    /**
+     * Find role by it's id.
+     *
+     * @param id id to find
+     * @return {@cde null} if no role found
+     */
     Role find(final Integer id);
+    /**
+     * Find all roles belonging to an user id.
+     *
+     * @param userId of user to find roles for
+     * @return never {@code null}, but maybe empty collection
+     */
     Collection<Role> findByUserId(int userId);
+    /**
+     * Find all roles belonging to an user's login name.
+     *
+     * @param loginName of user to find roles for
+     * @return never {@code null}, but maybe empty collection
+     */
     Collection<Role> findByName(String loginName);
+    /**
+     * Find all roles.
+     *
+     * @param limit maxim amount af roles
+     * @param offset offset of roles
+     * @return never {@code null}, but maybe empty collection
+     */
     Collection<Role> findAll(int limit, int offset);
     /**
      * Insert {@link Role} into database.
