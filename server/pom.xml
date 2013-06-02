@@ -557,7 +557,11 @@
                         <format>xml</format>
                     </formats>
                     <instrumentation>
-                        <excludes />
+                        <excludes>
+                            <exclude>org/lafayette/server/NullInjector.class</exclude>
+                            <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
+                            <exclude>org/lafayette/server/ServerModule.class</exclude>
+                        </excludes>
                     </instrumentation>
                 </configuration>
             </plugin>
