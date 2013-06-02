@@ -40,18 +40,20 @@ public class LoggerTest {
     }
 
     @Test
+    public void setAndGetLevel() {
+        final org.apache.log4j.Logger innerDelegate = org.apache.log4j.Logger.getLogger(this.getClass());
+        final Logger innerSut = new Logger(innerDelegate);
+        final Level level = Level.OFF;
+        innerSut.setLevel(level);
+        // Testing this via mock verification not possibale because Logger#getLevel is final.
+        assertThat(innerSut.getLevel(), is(sameInstance(level)));
+    }
+
+    @Test
     public void testSetLevel() {
         final Level level = Level.OFF;
         sut.setLevel(level);
         verify(delegate, times(1)).setLevel(level);
-    }
-
-    @Test @Ignore("Not possible because Logger#getLevel is final")
-    public void testGetLevel() {
-        final Level level = Level.OFF;
-        when(delegate.getLevel()).thenReturn(level);
-        assertThat(sut.getLevel(), is(sameInstance(level)));
-        verify(delegate, times(1)).getLevel();
     }
 
     @Test
