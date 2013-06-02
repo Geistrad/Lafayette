@@ -32,30 +32,62 @@ import org.lafayette.server.log.Logger;
  */
 public final class AuthorizationHeaderParser {
 
+    /**
+     * A default instance with empty parameters.
+     */
     static final RequestParameters DEFAULT_DIGEST_PARAMAS = new RequestParameters("", "", "", "", "", "");
+    /**
+     * Logging facility.
+     */
     private static final Logger LOG = Log.getLogger(AuthorizationHeaderParser.class);
 
     private AuthorizationHeaderParser() {
         super();
     }
 
+    /**
+     * Parses digest authentication header string.
+     *
+     * @param headerValue plain header value string w/o header name and colon.
+     * @return never {@code null}
+     */
     public static RequestParameters parseDigestHeaderValue(final String headerValue) {
         Validate.notNull(headerValue, "Header value must not be null!");
         final String trimmedValue = headerValue.trim();
 
         if (trimmedValue.isEmpty()) {
             LOG.info("Authorization header is empty! Return empty default params.");
-
             return DEFAULT_DIGEST_PARAMAS;
         }
 
         final int firstWhiteSpace = trimmedValue.indexOf(' ');
 
-        if (!"Digest".equalsIgnoreCase(trimmedValue.substring(0, firstWhiteSpace))) {
+        if (!isDigestHeader(headerValue, firstWhiteSpace)) {
             LOG.info("Authorization header is not of type 'Digest'! Return empty default params.");
             return DEFAULT_DIGEST_PARAMAS;
         }
 
+        return parseParameters(headerValue.substring(firstWhiteSpace));
+    }
+
+    /**
+     * Checks if the header string begins with "digest" case insensitive.
+     *
+     * @param str checked string
+     * @param firstWhiteSpace position of the first white space in string
+     * @return {@code true} if string begins with "digest", else {@code false}
+     */
+    private static boolean isDigestHeader(final String str, final int firstWhiteSpace) {
+        return "digest".equalsIgnoreCase(str.substring(0, firstWhiteSpace));
+    }
+
+    /**
+     * Extracts key value pairs from parameter string.
+     *
+     * @param str header field value.w/o the "digest" part.
+     * @return never {@code null}
+     */
+    private static RequestParameters parseParameters(final String str) {
         String username = "";
         String realm = "";
         String nonce = "";
@@ -63,7 +95,7 @@ public final class AuthorizationHeaderParser {
         String requestedUri = "";
         String response = "";
 
-        for (final String keyValuePair : trimmedValue.substring(firstWhiteSpace).split(",")) {
+        for (final String keyValuePair : str.split(",")) {
             final String[] keyValueParts = keyValuePair.split("=");
             final String key = keyValueParts[0].trim();
             final String value = keyValueParts[1].trim().replace("\"", "");
@@ -85,5 +117,4 @@ public final class AuthorizationHeaderParser {
 
         return new RequestParameters(username, realm, nonce, httpMethod, requestedUri, response);
     }
-
 }
