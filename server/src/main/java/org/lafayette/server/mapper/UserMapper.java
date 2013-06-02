@@ -25,7 +25,7 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class UserMapper extends BaseMapper<User> implements UserFinder {
+public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     /**
      * Name of database table.

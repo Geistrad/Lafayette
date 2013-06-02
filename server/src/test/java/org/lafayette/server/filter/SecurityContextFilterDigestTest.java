@@ -31,14 +31,13 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
-import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
 import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.mapper.RoleMapper;
 import org.lafayette.server.mapper.UserMapper;
 import static org.mockito.Mockito.*;
 
@@ -158,11 +157,10 @@ public class SecurityContextFilterDigestTest {
     }
 
     @Test
-    @Ignore
     public void filterRequest_returnRequestWithSecurityContextIfValidAuthentication() {
         final SecurityContextFilterDigest sut = new SecurityContextFilterDigest(servlet, headers);
         when(headers.getRequestHeader("Authorization"))
-            .thenReturn(Lists.<String>newArrayList("Authorization: Digest "
+            .thenReturn(Lists.<String>newArrayList("Digest "
                 + "username=\"Foo\", realm=\"Private Area\", nonce=\"IrTfjizEdXmIdlwHwkDJx0\", "
                 + "httpMethod=\"GET\", uri=\"/\", response=\"85b78939376de982650217f6b9c6783d\""));
         // hashedPassword = md5 ( Foo:Private Area:Bar )
@@ -171,12 +169,13 @@ public class SecurityContextFilterDigestTest {
         when(userMapper.findByLoginName(user.getLoginName())).thenReturn(user);
         final Mappers mappers = mock(Mappers.class);
         when(mappers.createUserMapper()).thenReturn(userMapper);
+        when(mappers.createRoleMapper()).thenReturn(mock(RoleMapper.class));
         registry.setMappers(mappers);
         final ContainerRequest req = new ContainerRequest(
                 mock(WebApplication.class),
                 null, null, null,
                 new InBoundHeaders(), null);
-
+        req.setSecurityContext(mock(SecurityContext.class));
         assertThat(sut.filter(req), is(sameInstance(req)));
         final SecurityContext securityContext = req.getSecurityContext();
         assertThat(securityContext.isSecure(), is(false));
