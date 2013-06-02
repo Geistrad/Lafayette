@@ -6,7 +6,7 @@ are some JSPs and static web resources.
 
 ## Big Picture
 
-<img src="image/big_picture.png"/>
+<img alt="Big picture" src="images/big_picture.png"/>
 
 [1]: http://tomcat.apache.org/download-70.cgi
 [2]: https://jersey.java.net/
