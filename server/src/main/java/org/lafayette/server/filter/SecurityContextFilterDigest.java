@@ -128,7 +128,7 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
      *
      * @return may return empty string, but never {@code null}
      */
-    private String getAuthorizationHeader() {
+    String getAuthorizationHeader() {
         final List<String> authHeader = headers.getRequestHeader(HttpHeaders.AUTHORIZATION);
 
         if (authHeader == null || authHeader.isEmpty()) {
@@ -144,6 +144,10 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
     }
 
     private boolean verifyAuthentiaction(final RequestParameters params) {
+        if (!params.isValid()) {
+            return false;
+        }
+
         final User principal = findPrincipal(params);
 
         if (null == principal) {
