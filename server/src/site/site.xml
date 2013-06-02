@@ -49,10 +49,10 @@
         <menu name="${project.name}">
             <item name="Home" href="index.html"/>
         </menu>
-        <menu name="documentation">
+        <menu name="Documentation">
             <item name="Appliance" href="appliance.html"/>
             <item name="Architecture" href="architecture.html"/>
         </menu>
-        <menu ref="reports"/>
+        <menu name="Reports" ref="reports"/>
     </body>
 </project>

@@ -23,11 +23,11 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 	3. edit /htc/hosts and  change `lafayette-dev`: `$ nano /et/hosts`
 	4. reboot machine: `$ shutdown -r now`
 6. change Sonar URI in Jenkins
-	1. login via Webbrowser to Jenkins with user `service-user` (see below): http://YOURHOSTNAME:8080
+	1. login via Webbrowser to Jenkins with user `service-user` (see below): `http://YOURHOSTNAME:8080`
 	2. go to `configure Jenkins`
 	3. go to `configure system`
 	4. search for `sonar`
-	5. edit server URI to: http://YOURHOSTNAME:9000
+	5. edit server URI to: `http://YOURHOSTNAME:9000`
 	
 ## Users
 
