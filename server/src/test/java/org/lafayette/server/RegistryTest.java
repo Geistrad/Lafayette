@@ -11,6 +11,7 @@
  */
 package org.lafayette.server;
 
+import com.google.inject.Injector;
 import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -43,12 +44,13 @@ public class RegistryTest {
     }
 
     @Test
-    public void defaultReturnsNeverNull() {
+    public void defaultReturnsNeverNullBut() {
         assertThat(sut.getDatabase(), is(notNullValue()));
         assertThat(sut.getServerConfig(), is(notNullValue()));
         assertThat(sut.getStage(), is(notNullValue()));
         assertThat(sut.getVersion(), is(notNullValue()));
         assertThat(sut.getMappers(), is(notNullValue()));
+        assertThat(sut.getDependnecyInjector(), is(notNullValue()));
     }
 
     @Test
@@ -85,6 +87,12 @@ public class RegistryTest {
     public void setNongeGenerator_throwsExceptionIfParameterIsNull() {
         thrown.expect(NullPointerException.class);
         sut.setNongeGenerator(null);
+    }
+
+    @Test
+    public void setDependnecyInjector_throwsExceptionIfParameterIsNull() {
+        thrown.expect(NullPointerException.class);
+        sut.setDependnecyInjector(null);
     }
 
     @Test
@@ -127,6 +135,13 @@ public class RegistryTest {
         final Nonce nonce = NonceFactory.sha1();
         sut.setNongeGenerator(nonce);
         assertThat(sut.getNongeGenerator(), is(sameInstance(nonce)));
+    }
+
+    @Test
+    public void getDependnecyInjector() {
+        final Injector injector = new NullInjector();
+        sut.setDependnecyInjector(injector);
+        assertThat(sut.getDependnecyInjector(), is(sameInstance(injector)));
     }
 
 }

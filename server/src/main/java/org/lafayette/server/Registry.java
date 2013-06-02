@@ -68,7 +68,7 @@ public final class Registry {
     /**
      * Manages dependencies.
      */
-    private Injector dependnecyInjector;
+    private Injector dependnecyInjector = new NullInjector();
 
     /**
      * Dedicated constructor.
