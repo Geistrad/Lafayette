@@ -18,7 +18,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.*;
-import org.junit.Ignore;
 
 /**
  * Tests for {@link Logger}.
@@ -57,10 +56,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testDebug_String_ObjectArr() {
+    public void testDebug_formatString_isEnabled() {
+        when(delegate.isDebugEnabled()).thenReturn(Boolean.TRUE);
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.debug(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).debug(fmt.toString());
+    }
+    
+    @Test
+    public void testDebug_formatString_isNotEnabled() {
+        when(delegate.isDebugEnabled()).thenReturn(Boolean.FALSE);
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.debug(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).debug(fmt.toString());
     }
 
     @Test
@@ -79,10 +87,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testTrace_String_ObjectArr() {
+    public void testTrace_FormatString_isEnabled() {
+        when(delegate.isTraceEnabled()).thenReturn(Boolean.TRUE);
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.trace(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).trace(fmt.toString());
+    }
+    
+    @Test
+    public void testTrace_FormatString_isNotEnabled() {
+        when(delegate.isTraceEnabled()).thenReturn(Boolean.FALSE);
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.trace(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).trace(fmt.toString());
     }
 
     @Test
@@ -101,10 +118,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testInfo_String_ObjectArr() {
+    public void testInfo_formatString_isEnabled() {
+        when(delegate.isInfoEnabled()).thenReturn(Boolean.TRUE);
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.info(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).info(fmt.toString());
+    }
+    
+    @Test
+    public void testInfo_formatString_isNotEnabled() {
+        when(delegate.isInfoEnabled()).thenReturn(Boolean.FALSE);
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.info(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).info(fmt.toString());
     }
 
     @Test
@@ -123,10 +149,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testWarn_String_ObjectArr() {
+    public void testWarn_formatString_isEnabled() {
+        when(delegate.isEnabledFor(Level.WARN)).thenReturn(Boolean.TRUE);
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.warn(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).warn(fmt.toString());
+    }
+    
+    @Test
+    public void testWarn_formatString_isNotEnabled() {
+        when(delegate.isEnabledFor(Level.WARN)).thenReturn(Boolean.FALSE);
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.warn(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).warn(fmt.toString());
     }
 
     @Test
@@ -145,10 +180,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testError_String_ObjectArr() {
+    public void testError_formatString_isEnabled() {
+        when(delegate.isEnabledFor(Level.ERROR)).thenReturn(Boolean.TRUE);
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.error(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).error(fmt.toString());
+    }
+    
+    @Test
+    public void testError_formatString_isNotEnabled() {
+        when(delegate.isEnabledFor(Level.ERROR)).thenReturn(Boolean.FALSE);
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.error(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).error(fmt.toString());
     }
 
     @Test
@@ -167,10 +211,19 @@ public class LoggerTest {
     }
 
     @Test
-    public void testFatal_String_ObjectArr() {
+    public void testFatal_formatString_isEnabled() {
+        when(delegate.isEnabledFor(Level.FATAL)).thenReturn(Boolean.TRUE);                
         final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
         sut.fatal(FORMAT, ARG_OBJECT);
         verify(delegate, times(1)).fatal(fmt.toString());
+    }
+    
+    @Test
+    public void testFatal_formatString_isNotEnabled() {
+        when(delegate.isEnabledFor(Level.FATAL)).thenReturn(Boolean.FALSE);                
+        final Formatter fmt = sut.format(FORMAT, ARG_OBJECT);
+        sut.fatal(FORMAT, ARG_OBJECT);
+        verify(delegate, never()).fatal(fmt.toString());
     }
 
     @Test

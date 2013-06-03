@@ -75,7 +75,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void debug(final String format, final Object... args) {
-        debug(new Formatter().format(format, args).toString());
+        if (delegate.isDebugEnabled()) {
+            // Do not string formatting if not enabled.
+            debug(new Formatter().format(format, args).toString());
+        }
     }
 
     /**
@@ -104,7 +107,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void trace(final String format, final Object... args) {
-        trace(format(format, args).toString());
+        if (delegate.isTraceEnabled()) {
+            // Do not string formatting if not enabled.
+            trace(format(format, args).toString());
+        }
     }
 
     /**
@@ -133,7 +139,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void info(final String format, final Object... args) {
-        info(format(format, args).toString());
+        if (delegate.isInfoEnabled()) {
+            // Do not string formatting if not enabled.
+            info(format(format, args).toString());
+        }
     }
 
     /**
@@ -162,7 +171,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void warn(final String format, final Object... args) {
-        warn(format(format, args).toString());
+        if (delegate.isEnabledFor(Level.WARN)) {
+            // Do not string formatting if not enabled.
+            warn(format(format, args).toString());
+        }
     }
 
     /**
@@ -191,7 +203,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void error(final String format, final Object... args) {
-        error(format(format, args).toString());
+        if (delegate.isEnabledFor(Level.ERROR)) {
+            // Do not string formatting if not enabled.
+            error(format(format, args).toString());
+        }
     }
 
     /**
@@ -220,7 +235,10 @@ public class Logger {
      * @param args format string arguments
      */
     public void fatal(final String format, final Object... args) {
-        fatal(format(format, args).toString());
+        if (delegate.isEnabledFor(Level.FATAL)) {
+            // Do not string formatting if not enabled.
+            fatal(format(format, args).toString());
+        }
     }
 
     /**
@@ -239,5 +257,4 @@ public class Logger {
     public void fatal(final Object message, final Throwable t) {
         delegate.fatal(message, t);
     }
-
 }
