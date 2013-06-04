@@ -52,7 +52,7 @@ public interface RoleFinder {
     /**
      * Find all roles.
      *
-     * @param limit maxim amount af roles
+     * @param limit maxim amount of roles
      * @param offset offset of roles
      * @return never {@code null}, but maybe empty collection
      */

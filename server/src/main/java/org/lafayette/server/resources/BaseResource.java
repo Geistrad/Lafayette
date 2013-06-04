@@ -23,6 +23,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
+import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.DomainObject;
@@ -120,7 +121,7 @@ abstract class BaseResource {
     }
 
     /**
-     * Get the requests URI info
+     * Get the requests URI info.
      *
      * @return never {@code null}
      */
@@ -150,23 +151,50 @@ abstract class BaseResource {
         return finders;
     }
 
+    /**
+     * Create an 500 error response,
+     *
+     * @param message error message
+     * @return never {@code null}
+     */
     protected Response createErrorResponse(final String message) {
         return Response.serverError()
                 .entity(message)
                 .build();
     }
 
-    protected void raiseIdNotFoundError(final String resource, final String id) throws WebApplicationException {
+    /**
+     * Throw a 404 error.
+     *
+     * @param resource resource name
+     * @param id id of resource
+     * @throws NotFoundException always
+     */
+    protected void raiseIdNotFoundError(final String resource, final String id) throws NotFoundException {
         final String message = String.format("Can't find '%s' with id '%s'!", resource, id);
         throw new NotFoundException(message);
     }
 
-    protected void raiseMissingPropertyError(String name) throws WebApplicationException {
+    /**
+     * Throws a web application error for a missing request property.
+     *
+     * @param name of missing property
+     * @throws WebApplicationException always
+     */
+    protected void raiseMissingPropertyError(final String name) throws WebApplicationException {
         final String message = String.format("Property '%s' missing!", name);
         throw new WebApplicationException(createErrorResponse(message));
     }
 
+    /**
+     * Returns message pack marshalled domain object.
+     *
+     * @param object to marshal, must not be {@code null}
+     * @return message pack formated bytes
+     * @throws IOException should not happen
+     */
     protected byte[] formatMessagePack(final DomainObject object) throws IOException {
+        Validate.notNull(object);
         return msgpack.write(object);
     }
 
