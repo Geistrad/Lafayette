@@ -42,7 +42,7 @@ public enum JdbcDriver {
     private final String name;
 
     /**
-     * Dedicated constructor
+     * Dedicated constructor.
      *
      * @param driverClassName full qualified class name
      * @param name typical JDBC name

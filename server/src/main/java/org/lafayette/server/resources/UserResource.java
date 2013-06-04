@@ -39,9 +39,21 @@ import org.lafayette.server.http.UriList;
 @Path("/user")
 public class UserResource extends BaseResource {
 
+    /**
+     * Number of white spaces to pad id.
+     */
     private static final int PAD_ID = 5;
+    /**
+     * Number of white spaces to pad login name.
+     */
     private static final int PAD_LOGIN_NAME = 16;
+    /**
+     * Number of white spaces to pad hashed user data.
+     */
     private static final int PAD_HASHED_USER_DATA = 34;
+    /**
+     * Limit for all user query.
+     */
     private static final int LIMIT = 25;
 
     @Override

@@ -75,34 +75,73 @@ abstract class BaseResource {
      */
     private Finders finders;
 
+    /**
+     * Dedicated constructor.
+     */
     public BaseResource() {
         super();
         indexUriList = new UriList();
         indexUriList.setComment("# Available URIs:");
     }
 
+    /**
+     * Add all URIs to all sub resources to the given list.
+     *
+     * @param list list to add URIs
+     * @throws URISyntaxException if URI has bad syntax
+     */
     protected abstract void addUrisToIndexList(UriList list) throws URISyntaxException;
 
+    /**
+     * Get object registry for shared objects.
+     *
+     * @return never {@code null}
+     */
     protected Registry registry() {
         return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);
     }
 
+    /**
+     * Get the servlet context.
+     *
+     * @return never {@code null}
+     */
     protected ServletContext servlet() {
         return servlet;
     }
 
+    /**
+     * Get the requests HTTP headers.
+     *
+     * @return never {@code null}
+     */
     protected HttpHeaders headers() {
         return headers;
     }
 
+    /**
+     * Get the requests URI info
+     *
+     * @return never {@code null}
+     */
     protected UriInfo uriInfo() {
         return uriInfo;
     }
 
+    /**
+     * Get the requests security context.
+     *
+     * @return never {@code null}
+     */
     protected SecurityContext security() {
         return security;
     }
 
+    /**
+     * Get domain object finders.
+     *
+     * @return never {@code null} and same instance
+     */
     protected synchronized Finders finders() {
         if (null == finders) {
             finders = new Finders(registry().getMappers());
@@ -111,13 +150,13 @@ abstract class BaseResource {
         return finders;
     }
 
-    protected Response createErrorResponse(String message) {
+    protected Response createErrorResponse(final String message) {
         return Response.serverError()
                 .entity(message)
                 .build();
     }
 
-    protected void raiseIdNotFoundError(String resource, String id) throws WebApplicationException {
+    protected void raiseIdNotFoundError(final String resource, final String id) throws WebApplicationException {
         final String message = String.format("Can't find '%s' with id '%s'!", resource, id);
         throw new NotFoundException(message);
     }

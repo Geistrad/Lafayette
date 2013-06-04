@@ -101,8 +101,18 @@ public interface Nonce {
         }
     }
 
+    /**
+     * Supported digest algorithms.
+     */
     public enum DigestAlgorithm {
-        MD5, SHA1;
+        /**
+         * MD5 digest.
+         */
+        MD5,
+        /**
+         * SHA-1 digest.
+         */
+        SHA1;
     }
 
 }

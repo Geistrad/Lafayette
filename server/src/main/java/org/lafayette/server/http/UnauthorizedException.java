@@ -27,19 +27,39 @@ import org.lafayette.server.http.digest.ResponseParameters;
  */
 public class UnauthorizedException extends WebApplicationException {
 
+    /**
+     * Format string for HTTP authorization header.
+     */
     private static final String AUTH_HEADER_FORMAT = "Digest realm=\"%s\" nonce=\"%s\"";
 
+    /**
+     * Initializes the response with empty message.
+     *
+     * @param params response parameters used to get realm and nonce from
+     */
     public UnauthorizedException(final ResponseParameters params) {
         this(params, "");
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param params response parameters used to get realm and nonce from
+     * @param message response message
+     */
     public UnauthorizedException(final ResponseParameters params, final String message) {
         super(Response.status(Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE,
-                                                          createDigestHEaderValue(params))
+                                                          createDigestHeaderValue(params))
                 .entity(message).build());
     }
 
-    static String createDigestHEaderValue(final ResponseParameters params) {
+    /**
+     * Formats the HTTP authorization header.
+     *
+     * @param params response parameters used to get realm and nonce from
+     * @return formatted string
+     */
+    static String createDigestHeaderValue(final ResponseParameters params) {
         return String.format(AUTH_HEADER_FORMAT, params.getRealm(), params.getNonce());
     }
 

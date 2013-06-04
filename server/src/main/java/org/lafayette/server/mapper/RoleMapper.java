@@ -40,11 +40,29 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * Field of database table.
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", userId, name";
+    /**
+     * Insert SQL statement .
+     */
     private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
+    /**
+     * Find by name SQL statement .
+     */
     private static final String SQL_FIND_BY_NAME = "select %s from %s where name like ?";
+    /**
+     * Find by user id SQL statement .
+     */
     private static final String SQL_FIND_BY_USER_ID = "select %s from %s where userId like ?";
+    /**
+     * Update SQL statement .
+     */
     private static final String SQL_UPDATE = "update %s set userId = ?, name = ? where %s = ?";
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param db database connection
+     * @param idMap identity map
+     */
     RoleMapper(final Connection db, final IntegerIdentityMap<Role> idMap) {
         super(db, idMap);
     }

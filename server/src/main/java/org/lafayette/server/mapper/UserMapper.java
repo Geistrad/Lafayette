@@ -39,8 +39,17 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      * Field of database table.
      */
     private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedUserData";
+    /**
+     * Insert SQL statement.
+     */
     private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
+    /**
+     * Find by login name SQL statement.
+     */
     private static final String SQL_FIND_BY_LOGIN_NAME = "select %s from %s where loginName like ?";
+    /**
+     * Update SQL statement.
+     */
     private static final String SQL_UPDATE = "update %s set loginName = ?, hashedUserData = ? where %s = ?";
 
     /**

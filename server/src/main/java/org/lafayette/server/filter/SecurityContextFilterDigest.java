@@ -15,12 +15,16 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
+//CHECKSTYLE:OFF
 import java.security.Principal;
+//CHECKSTYLE:ON
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.HttpHeaders;
+//CHECKSTYLE:OFF
 import javax.ws.rs.core.SecurityContext;
+//CHECKSTYLE:ON
 import javax.ws.rs.ext.Provider;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;

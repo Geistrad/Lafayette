@@ -16,27 +16,56 @@ import com.google.common.base.Objects;
 import org.apache.commons.lang3.Validate;
 
 /**
+ * Parameter needed for authentication response.
+ *
+ * XXX Consider if necessary.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class ResponseParameters  extends BaseParameters {
 
+    /**
+     * The users plain text password.
+     */
     private String password;
 
+    /**
+     * Initializes all parameters with an empty string.
+     */
     public ResponseParameters() {
         this("", "", "", "", "", "");
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param username must not be {@code null}
+     * @param realm must not be {@code  null}
+     * @param password must not be {@code  null}
+     * @param nonce must not be {@code  null}
+     * @param httpMethod must not be {@code  null}
+     * @param requestedUri must not be {@code  null}
+     */
     public ResponseParameters(final String username, final String realm, final String password, final String nonce,
         final String httpMethod, final String requestedUri) {
         super(username, realm, nonce, httpMethod, requestedUri);
         this.password = password;
     }
 
+    /**
+     * Get the plain text password.
+     *
+     * @return never {@code null}
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Set the plain text password.
+     *
+     * @param password must not be {code null}
+     */
     public void setPassword(final String password) {
         Validate.notNull(password);
         this.password = password;

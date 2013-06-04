@@ -16,10 +16,17 @@ import java.io.File;
 import java.net.URISyntaxException;
 
 /**
+ * Configuration loader strategy for unit tests.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class TestStrategy implements LoaderStrategie {
+
+    /**
+     * Configuration file for unit tests.
+     *
+     * TODO USe this for configs of HSQLDEB.
+     */
     private static final String FILE = "/org/lafayette/server/config/server.properties";
 
     @Override

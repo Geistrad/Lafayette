@@ -17,5 +17,9 @@ package org.lafayette.server.http;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface Constants {
+
+    /**
+     * New line string for HTTP messages.
+     */
     String NL = "\r\n";
 }
