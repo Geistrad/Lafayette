@@ -225,7 +225,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     public Collection<T> findAll(final int limit, final int offset) {
-        return findMany(new StatementSource() {
+        return findMany(new BaseStatementSource() {
             @Override
             public String sql() {
                 return findAllStatement(limit, offset);
@@ -239,16 +239,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     }
 
     protected Collection<T> findMany(final StatementSource source) {
-        final PreparedStatement stmt;
-
         try {
-            final String sql = source.sql();
-            stmt = db.prepareStatement(sql);
-
-            for (int i = 0; i < source.parameters().length; ++i) {
-                stmt.setObject(i + 1, source.parameters()[i]);
-            }
-
+            final PreparedStatement stmt = source.prepare(db);
             final ResultSet rs = stmt.executeQuery(); // NOPMD Next is invoked on loadAll(rs).
             final Collection<T> result = loadAll(rs);
             stmt.close();

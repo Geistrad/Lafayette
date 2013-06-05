@@ -14,7 +14,6 @@ package org.lafayette.server.resources;
 import com.sun.jersey.api.NotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
@@ -22,7 +21,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.status;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang3.Validate;
@@ -38,6 +36,8 @@ import org.msgpack.MessagePack;
 
 /**
  * Common functionality for all resource classes.
+ *
+ * TODO Write tests for this class.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
