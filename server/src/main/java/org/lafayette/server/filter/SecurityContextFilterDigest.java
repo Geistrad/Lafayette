@@ -147,7 +147,15 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
         return authHeader.get(0);
     }
 
+    /**
+     * Verifies the digest authentication request parameters against user from persistent store.
+     *
+     * @param params must not be {@code null}
+     * @return {@code true} if authentication parameters are valid, else {@code false}
+     */
     private boolean verifyAuthentiaction(final RequestParameters params) {
+        Validate.notNull(params);
+
         if (!params.isValid()) {
             return false;
         }
@@ -155,6 +163,7 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
         final User principal = findPrincipal(params);
 
         if (null == principal) {
+            log.debug("Usser with name '%s' not found.", params.getUsername());
             return false;
         }
 
@@ -165,8 +174,23 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
         return expectedResponse.equalsIgnoreCase(params.getResponse());
     }
 
+    /**
+     * If a authentication request was valid, loads user data from persistent store and set
+     * the user as principal on requests security context.
+     *
+     * @param request must not be {@code null}
+     * @param params must not be {@code null}
+     */
     private void createAndSetPrincipal(final ContainerRequest request, final RequestParameters params) {
+        Validate.notNull(request);
+        Validate.notNull(params);
         final User principal = findPrincipal(params);
+
+        if (null == principal) {
+            log.warn("Usser with name '%s' not found.", params.getUsername());
+            return;
+        }
+
         final Collection<Role> roles = registry().getMappers()
                 .createRoleMapper()
                 .findByUserId(principal.getId());
@@ -174,7 +198,14 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
         request.setSecurityContext(new SecurityContextImpl(principal, request.isSecure()));
     }
 
+    /**
+     * Helper method to find a user by the request parameters.
+     *
+     * @param params must not be {@code null}
+     * @return may return {@code null} if no user found.
+     */
     private User findPrincipal(final RequestParameters params) {
+        Validate.notNull(params);
         return registry().getMappers()
                 .createUserMapper()
                 .findByLoginName(params.getUsername());
