@@ -35,6 +35,11 @@ public class IndexResource extends BaseResource {
         indexUriList.add(new URI(servlet().getRealPath("/service")));
     }
 
+    /**
+     * Returns the index as plain text.
+     *
+     * @return never {@code null}
+     */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String indexAsText() {
@@ -43,10 +48,12 @@ public class IndexResource extends BaseResource {
         return buffer.toString();
     }
 
+    //CHECKSTYLE:OFF
     @GET
     @Path("test/")
     @Produces(MediaType.TEXT_PLAIN)
     public Object test() {
+        // XXX Remove this.
         return security().getUserPrincipal().toString()  + "\r\n";
     }
 
@@ -55,6 +62,8 @@ public class IndexResource extends BaseResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Authentication
     public Object auth() {
+        // XXX Remove this.
         return security().getUserPrincipal().toString()  + "\r\n";
     }
+    //CHECKSTYLE:ON
 }

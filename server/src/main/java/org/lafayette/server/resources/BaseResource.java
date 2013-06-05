@@ -85,6 +85,20 @@ abstract class BaseResource {
         super();
         indexUriList = new UriList();
         indexUriList.setComment("# Available URIs:");
+        init();
+    }
+
+    /**
+     * Initialize resource.
+     *
+     * - call {@link #addUrisToIndexList(org.lafayette.server.http.UriList)}
+     */
+    private void init() {
+        try {
+            addUrisToIndexList(indexUriList);
+        } catch (URISyntaxException ex) {
+            log.fatal("Error adding index uris: %s", ex);
+        }
     }
 
     /**
@@ -234,11 +248,15 @@ abstract class BaseResource {
         }
     }
 
+    /**
+     * Returns the resource index as plain text.
+     *
+     * @return never {@code null}
+     */
     @GET
     @Produces(MediaType.TEXT_URI_LIST)
-    public String indexAsUriList() throws URISyntaxException {
+    public String indexAsUriList() {
         log.info("Respond with URI list for %s", servlet.getRealPath(""));
-        addUrisToIndexList(indexUriList);
         return indexUriList.toString();
     }
 }

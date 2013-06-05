@@ -77,10 +77,20 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
         return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
     }
 
+    /**
+     * Creates SQL prepared statement to find a user by login name.
+     *
+     * @return never {@code null}
+     */
     private String findByLoginNameStatement() {
         return String.format(SQL_FIND_BY_LOGIN_NAME, COLUMNS, TABLE_NAME);
     }
 
+    /**
+     * Creates SQL prepared statement to update a user.
+     *
+     * @return never {@code null}
+     */
     private String updateStatement() {
         return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
     }
