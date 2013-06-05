@@ -136,6 +136,11 @@ public final class ServerConfig {
         return serverProperties.getProperty(SECURITY_REALM, "");
     }
 
+    /**
+     * Generates JDBC URI from configuration parameters.
+     *
+     * @return never {@code null}
+     */
     public String generateJdbcUri() {
         final StringBuilder buffer = new StringBuilder("jdbc:");
         buffer.append(getDbDriver())

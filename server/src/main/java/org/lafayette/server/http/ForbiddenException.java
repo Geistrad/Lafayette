@@ -16,16 +16,24 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
 /**
- * Used to signal failed authorization.
+ * Used to signal failed authorization (Status 403).
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class ForbiddenException extends WebApplicationException {
 
+   /**
+    * Initializes message with empty string.
+    */
     public ForbiddenException() {
         this("");
     }
 
+    /**
+     * Dedicated constructor.
+     *
+     * @param message error message
+     */
     public ForbiddenException(final String message) {
         super(Response.status(Response.Status.FORBIDDEN).entity(message).build());
     }

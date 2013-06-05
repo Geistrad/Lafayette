@@ -96,7 +96,10 @@ class NonceCache {
      * Throws {@link IllegalArgumentException} if a NONCE was already added to the cache. Also calls
      * {@link #garbageCollection()} as last operation.
      *
-     * @param nonce
+     * @param nonce value to cache
+     * CHECKSTYLE:OFF
+     * @throws IllegalArgumentException if you try to add a nonce twice
+     * CHECKSTYLE:ON
      */
     public void add(final String nonce) {
         synchronized (nonces) {

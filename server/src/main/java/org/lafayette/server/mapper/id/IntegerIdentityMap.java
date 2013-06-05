@@ -22,14 +22,33 @@ import org.lafayette.server.domain.DomainObject;
  */
 public final class IntegerIdentityMap<D extends DomainObject> extends BaseIdentityMap<Integer, D> {
 
+    /**
+     * Whether a id is mapped.
+     *
+     * @param id asked identity
+     * @return {@code true} if this identity is in the map., else {@code false}
+     */
     public boolean containsIdentity(final int id) {
         return containsIdentity(Integer.valueOf(id));
     }
 
+    /**
+     * Get the domain object with an id.
+     *
+     * @param id identity of object
+     * @return may return {@code null}, if no object mapped to given identity
+     */
     public D get(final int id) {
         return get(Integer.valueOf(id));
     }
 
+    /**
+     * Put a domain object with an id into the map.
+     *
+     * @param id domain object identity
+     * @param domainObject domain object
+     * @return previous mapped domain object
+     */
     public D put(final int id, final D domainObject) {
         return put(Integer.valueOf(id), domainObject);
     }

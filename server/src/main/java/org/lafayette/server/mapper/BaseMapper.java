@@ -170,8 +170,23 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return String.format(SQL_DELETE, table, pk);
     }
 
+    /**
+     * Mapper specific implementation for creating a domain object from result set.
+     *
+     * @param id identity of domain object
+     * @param result data source
+     * @return may return {@code null} if no results in result set
+     * @throws SQLException if any SQL error occurs
+     */
     protected abstract T doLoad(final int id, final ResultSet result) throws SQLException;
 
+    /**
+     * Mapper specific implementation for inserting a domain object.
+     *
+     * @param subject domain object to persist
+     * @param insertStatement statement for insert
+     * @throws SQLException if any SQL error occurs
+     */
     protected abstract void doInsert(final T subject, final PreparedStatement insertStatement) throws SQLException;
 
     /**
@@ -202,6 +217,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
     }
 
+    /**
+     * Mapper unspecific general implementation for creating a domain object from result set.
+     *
+     * @param rs data source
+     * @return may return {@code null} if no results in result set
+     * @throws SQLException if any SQL error occurs
+     */
     protected T load(final ResultSet rs) throws SQLException {
         final Integer id = Integer.valueOf(rs.getInt(1));
 
@@ -214,6 +236,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return result;
     }
 
+    /**
+     * Mapper unspecific general implementation for creating a list of domain object from result set.
+     *
+     * @param rs data source
+     * @return never {@code null}, maybe empty collection
+     * @throws SQLException if any SQL error occurs
+     */
     protected Collection<T> loadAll(final ResultSet rs) throws SQLException {
         final Collection<T> result = Lists.newArrayList();
 
@@ -224,6 +253,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return result;
     }
 
+    /**
+     * Mapper unspecific general implementation to find all domain objects.
+     *
+     * @param limit number of maximum objects
+     * @param offset shift of list start
+     * @return never {@code null}, maybe empty collection
+     */
     public Collection<T> findAll(final int limit, final int offset) {
         return findMany(new BaseStatementSource() {
             @Override
@@ -238,6 +274,12 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         });
     }
 
+    /**
+     * General mapper unspecific implementation to find many objects.
+     *
+     * @param source statement source to get prepared statement from
+     * @return never {@code null}, maybe empty collection
+     */
     protected Collection<T> findMany(final StatementSource source) {
         try {
             final PreparedStatement stmt = source.prepare(db);
@@ -280,6 +322,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
     }
 
+    /**
+     * General implementation to find next free identity for a table.
+     *
+     * @return always greater 0
+     */
     private int findNextDatabaseId() {
         try {
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
