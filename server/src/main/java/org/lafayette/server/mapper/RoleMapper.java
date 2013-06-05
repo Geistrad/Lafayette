@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import org.lafayette.server.ApplicationException;
 import org.lafayette.server.domain.Role;
+import org.lafayette.server.domain.Role.Names;
 import org.lafayette.server.domain.RoleFinder;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
@@ -138,7 +139,8 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     }
 
     @Override
-    public Collection<Role> findByName(final String name) {
+    public Collection<Role> findByName(final Names name) {
+        // TODO Implement
         throw new UnsupportedOperationException("Not implemented yet!");
 //        try {
 //            final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
@@ -159,6 +161,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     public Collection<Role> findByUserId(int userId) {
+        // TODO Implement
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 

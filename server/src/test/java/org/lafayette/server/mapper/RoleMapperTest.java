@@ -66,28 +66,31 @@ public class RoleMapperTest extends DbTestCase {
     @Test @Ignore
     public void findByName() {
         final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
-        final Collection<Role> role = sut.findByName("USER");
-//        assertThat(role.getId(), is(2));
-//        assertThat(role.getUserId(), is(1));
-//        assertThat(role.getName(), is("Standart user with limited privileges."));
+        final Collection<Role> role = sut.findByName(Names.USER);
+        assertThat(role, hasSize(2));
+        assertThat(role, contains(new Role(1, 1, Names.USER), new Role(3, 2, Names.USER)));
     }
 
 
     @Test @Ignore
     public void findByName_caches() {
         final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
-        final Collection<Role> role = sut.findByName("USER");
-        assertThat(role, is(equalTo(sut.findByName("USER"))));
+        final Collection<Role> role = sut.findByName(Names.USER);
+        assertThat(role, is(equalTo(sut.findByName(Names.USER))));
     }
 
     @Test @Ignore
     public void findByUserId() {
-
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final Collection<Role> role = sut.findByUserId(1);
+        assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
     }
 
     @Test @Ignore
     public void findByUserId_caches() {
-
+        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final Collection<Role> role = sut.findByUserId(1);
+        assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
     }
 
     @Test

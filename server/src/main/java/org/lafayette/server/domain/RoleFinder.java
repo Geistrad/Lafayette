@@ -13,6 +13,7 @@
 package org.lafayette.server.domain;
 
 import java.util.Collection;
+import org.lafayette.server.domain.Role.Names;
 
 /**
  * Domain facade to obtain {@link Role roles} from persistent data storage.
@@ -48,7 +49,7 @@ public interface RoleFinder {
      * @param loginName of user to find roles for
      * @return never {@code null}, but maybe empty collection
      */
-    Collection<Role> findByName(String loginName);
+    Collection<Role> findByName(Names loginName);
     /**
      * Find all roles.
      *
