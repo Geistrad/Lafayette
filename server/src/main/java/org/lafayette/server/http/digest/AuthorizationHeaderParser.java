@@ -41,6 +41,9 @@ public final class AuthorizationHeaderParser {
      */
     private static final Logger LOG = Log.getLogger(AuthorizationHeaderParser.class);
 
+    /**
+     * Hidden for pure static class.
+     */
     private AuthorizationHeaderParser() {
         super();
     }

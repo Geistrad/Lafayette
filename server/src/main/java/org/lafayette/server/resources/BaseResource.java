@@ -14,6 +14,7 @@ package org.lafayette.server.resources;
 import com.sun.jersey.api.NotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
@@ -21,6 +22,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.status;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang3.Validate;
@@ -152,15 +154,45 @@ abstract class BaseResource {
     }
 
     /**
-     * Create an 500 error response,
+     * Create an 500 error response.
      *
      * @param message error message
      * @return never {@code null}
      */
-    protected Response createErrorResponse(final String message) {
+    protected Response createServerErrorResponse(final String message) {
         return Response.serverError()
                 .entity(message)
                 .build();
+    }
+
+    /**
+     * Create an 400 error response.
+     *
+     * @param message error message
+     * @return never {@code null}
+     */
+    protected Response createClientErrorResponse(final String message) {
+        return Response.status(Response.Status.BAD_REQUEST)
+                .entity(message)
+                .build();
+    }
+
+    /**
+     * Throws a error exception with status code 500.
+     *
+     * @param message error message
+     */
+    protected void raiseServerError(final String message) {
+        throw new WebApplicationException(createServerErrorResponse(message));
+    }
+
+    /**
+     * Throws a error exception with status code 400.
+     *
+     * @param message error message
+     */
+    protected void raiseClientError(final String message) {
+        throw new WebApplicationException(createClientErrorResponse(message));
     }
 
     /**
@@ -183,7 +215,7 @@ abstract class BaseResource {
      */
     protected void raiseMissingPropertyError(final String name) throws WebApplicationException {
         final String message = String.format("Property '%s' missing!", name);
-        throw new WebApplicationException(createErrorResponse(message));
+        throw new WebApplicationException(createServerErrorResponse(message));
     }
 
     /**
@@ -191,11 +223,15 @@ abstract class BaseResource {
      *
      * @param object to marshal, must not be {@code null}
      * @return message pack formated bytes
-     * @throws IOException should not happen
      */
-    protected byte[] formatMessagePack(final DomainObject object) throws IOException {
+    protected byte[] formatMessagePack(final DomainObject object) {
         Validate.notNull(object);
-        return msgpack.write(object);
+        try {
+            return msgpack.write(object);
+        } catch (IOException ex) {
+            log.fatal("Can not marshall object to message pack: %s!", object);
+            return new byte[] {};
+        }
     }
 
     @GET
