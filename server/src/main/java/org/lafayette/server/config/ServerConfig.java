@@ -139,6 +139,8 @@ public final class ServerConfig {
     /**
      * Generates JDBC URI from configuration parameters.
      *
+     * Format of URI: <kbd>jdbc:DRIVER:HOST[:PORT]/DBNAME</kbd>
+     * 
      * @return never {@code null}
      */
     public String generateJdbcUri() {
