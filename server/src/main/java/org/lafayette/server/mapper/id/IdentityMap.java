@@ -63,6 +63,12 @@ public interface IdentityMap<I, D extends DomainObject> {
      */
     D put(final I id, final D domainObject);
 
+    /**
+     * Removes a domain object with an identity from the map.
+     *
+     * @param id domain object identity
+     * @return removed mapped domain object
+     */
     D remove(final I id);
 
     /**

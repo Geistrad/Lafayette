@@ -58,6 +58,14 @@ public abstract class DbTestCase {
         return db;
     }
 
+    /**
+     * Start test database and insert test data.
+     *
+     * @throws ClassNotFoundException if JDBC driver not found
+     * @throws SQLException if SQL error occurs
+     * @throws IOException if SQL file read error occurs
+     * @throws URISyntaxException if SQL file read error occurs
+     */
     @Before
     public void startTestDatabase() throws ClassNotFoundException, SQLException, IOException, URISyntaxException {
         startTestDatabase(true);
@@ -68,10 +76,10 @@ public abstract class DbTestCase {
      * some test data from {@link #testDataSql()} if wanted.
      *
      * @param withData whether to create test data from {@link #testDataSql()}
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     * @throws IOException
-     * @throws URISyntaxException
+     * @throws ClassNotFoundException if JDBC driver not found
+     * @throws SQLException if SQL error occurs
+     * @throws IOException if SQL file read error occurs
+     * @throws URISyntaxException if SQL file read error occurs
      */
     public void startTestDatabase(final boolean withData) throws ClassNotFoundException, SQLException, IOException,
         URISyntaxException {
@@ -83,6 +91,11 @@ public abstract class DbTestCase {
         }
     }
 
+    /**
+     * Shutdown and close test database connection.
+     *
+     * @throws SQLException if SQL error occurs
+     */
     @After
     @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void destroyTestDatabase() throws SQLException {
@@ -96,12 +109,25 @@ public abstract class DbTestCase {
         }
     }
 
+    /**
+     * Create database connection.
+     *
+     * @throws SQLException if SQL error occurs
+     * @throws ClassNotFoundException if JDBC driver not found
+     */
     @SuppressWarnings("DMI_EMPTY_DB_PASSWORD")
     private void createDatabaseConnection() throws SQLException, ClassNotFoundException {
         JdbcDriver.HSQLDB.load();
         db = DriverManager.getConnection(JDBC_URI, DB_USER, DB_PASSWORD);
     }
 
+    /**
+     * Create tables from SQL files.
+     *
+     * @throws SQLException if SQL error occurs
+     * @throws IOException if SQL file read error occurs
+     * @throws URISyntaxException if SQL file read error occurs
+     */
     @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void createTable() throws SQLException, IOException, URISyntaxException {
         final String tableSql = SqlLoader.loadSql(tableSql());
@@ -117,6 +143,13 @@ public abstract class DbTestCase {
      */
     protected abstract String tableSql();
 
+    /**
+     * Insert test date from SQL files.
+     *
+     * @throws SQLException if SQL error occurs
+     * @throws IOException if SQL file read error occurs
+     * @throws URISyntaxException if SQL file read error occurs
+     */
     @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void insertTestData() throws SQLException, URISyntaxException, IOException {
         final String dataSql = SqlLoader.loadSql(testDataSql());

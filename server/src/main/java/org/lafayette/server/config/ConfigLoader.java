@@ -82,6 +82,11 @@ public final class ConfigLoader {
         }
     }
 
+    /**
+     * Factory method which auto determines appropriate strategy.
+     *
+     * @return new loader instance
+     */
     public static ConfigLoader create() {
         return create(determineStrategy());
     }
@@ -90,7 +95,7 @@ public final class ConfigLoader {
      * Creates a configuration loader with configuration finding strategy.
      *
      * @param loaderStrategy used strategy to find configuration
-     * @return new loader
+     * @return new loader instance
      */
     public static ConfigLoader create(final LoaderStrategie loaderStrategy) {
         return new ConfigLoader(loaderStrategy);
