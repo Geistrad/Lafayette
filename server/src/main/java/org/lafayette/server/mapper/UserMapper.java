@@ -136,6 +136,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
             final ResultSet rs = findStatement.executeQuery();
 
             if (!rs.next())  {
+                findStatement.close();
                 return null;
             }
 
