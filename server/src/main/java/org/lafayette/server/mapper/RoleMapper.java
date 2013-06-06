@@ -83,10 +83,20 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
         return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
     }
 
+    /**
+     * SQL statement to find role by name.
+     *
+     * @return SQL prepared statement string
+     */
     private String findByNameStatement() {
         return String.format(SQL_FIND_BY_NAME, COLUMNS, TABLE_NAME);
     }
 
+    /**
+     * SQL statement to update role.
+     *
+     * @return SQL prepared statement string
+     */
     private String updateStatement() {
         return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
     }
