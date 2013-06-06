@@ -15,7 +15,7 @@ package org.lafayette.server.domain;
 import java.util.Collection;
 
 /**
- * Domain facade to obtain {@link USer users} from persistent data storage.
+ * Domain facade to obtain {@link User users} from persistent data storage.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
@@ -25,21 +25,21 @@ public interface UserFinder {
      * Find user by it's id.
      *
      * @param id id to find
-     * @return {@cde null} if no user found
+     * @return {@code null} if no user found
      */
     User find(final int id);
     /**
      * Find user by it's id.
      *
      * @param id id to find
-     * @return {@cde null} if no user found
+     * @return {@code null} if no user found
      */
     User find(final Integer id);
     /**
      * Find a user by the login name.
      *
      * @param loginName name to find
-     * @return {@cde null} if no user found
+     * @return {@code null} if no user found
      */
     User findByLoginName(String loginName);
     /**

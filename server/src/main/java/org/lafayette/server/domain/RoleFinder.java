@@ -26,14 +26,14 @@ public interface RoleFinder {
      * Find role by it's id.
      *
      * @param id id to find
-     * @return {@cde null} if no role found
+     * @return {@code null} if no role found
      */
     Role find(final int id);
     /**
      * Find role by it's id.
      *
      * @param id id to find
-     * @return {@cde null} if no role found
+     * @return {@code null} if no role found
      */
     Role find(final Integer id);
     /**
