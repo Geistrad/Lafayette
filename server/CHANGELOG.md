@@ -12,3 +12,5 @@
 
 - Add Maven site.
 - Introduce user roles.
+- Implement digest authentication.
+- Introduce security context.
