@@ -14,3 +14,7 @@
 - Introduce user roles.
 - Implement digest authentication.
 - Introduce security context.
+
+## 0.1.2
+
+- Split into modules.

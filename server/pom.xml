@@ -5,12 +5,18 @@
 
     <groupId>org.lafayette</groupId>
     <artifactId>server</artifactId>
-    <version>0.1.1</version>
-    <packaging>war</packaging>
+    <version>0.1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>Lafayette Server</name>
     <description>Lafayette Server Application</description>
     <url>http://weltraumschaf.github.com/Lafayette/</url>
+
+
+    <modules>
+        <module>model</module>
+        <module>webapp</module>
+    </modules>
 
     <developers>
         <developer>
@@ -485,13 +491,6 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>true</failOnMissingWebXml>
                 </configuration>
             </plugin>
             <plugin>
