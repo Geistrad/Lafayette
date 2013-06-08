@@ -42,6 +42,7 @@
         <listener-class>org.lafayette.server.ServerContextListener</listener-class>
     </listener>
 
+    <!-- Guice setup -->
     <filter>
         <!-- http://code.google.com/p/google-guice/wiki/Servlets -->
         <filter-name>guiceFilter</filter-name>
@@ -53,6 +54,7 @@
         <url-pattern>/r/*</url-pattern>
     </filter-mapping>
 
+    <!-- REST API w/ Jersey -->
     <servlet>
         <servlet-name>resources</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
@@ -75,4 +77,23 @@
         <url-pattern>/r/*</url-pattern>
     </servlet-mapping>
 
+    <!-- Registration w/ Vaadin -->
+    <context-param>
+        <description>Vaadin production mode</description>
+        <param-name>productionMode</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+        <init-param>
+            <description>Lafayette User Registration</description>
+            <param-name>UI</param-name>
+            <param-value>org.lafayette.server.registration.RegisrationUI</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>registration/*</url-pattern>
+    </servlet-mapping>
 </web-app>
