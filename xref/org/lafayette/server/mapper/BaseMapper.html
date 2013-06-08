@@ -27,7 +27,7 @@
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> java.sql.ResultSet;
 <a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> java.sql.SQLException;
 <a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
-<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.ApplicationException;
+<a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.DomainModelException;
 <a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.domain.DomainObject;
 <a class="jxr_linenumber" name="22" href="#22">22</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.mapper.id.IntegerIdentityMap;
 <a class="jxr_linenumber" name="23" href="#23">23</a>  
@@ -216,14 +216,14 @@
 <a class="jxr_linenumber" name="206" href="#206">206</a>             <strong class="jxr_keyword">final</strong> ResultSet rs = findStatement.executeQuery(); <em class="jxr_comment">// NOPMD NExt is checked in next line.</em>
 <a class="jxr_linenumber" name="207" href="#207">207</a> 
 <a class="jxr_linenumber" name="208" href="#208">208</a>             <strong class="jxr_keyword">if</strong> (!rs.next()) {
-<a class="jxr_linenumber" name="209" href="#209">209</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(String.format(<span class="jxr_string">"There is no record set whith primary key '%d'!"</span>, id));
+<a class="jxr_linenumber" name="209" href="#209">209</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(String.format(<span class="jxr_string">"There is no record set whith primary key '%d'!"</span>, id));
 <a class="jxr_linenumber" name="210" href="#210">210</a>             }
 <a class="jxr_linenumber" name="211" href="#211">211</a> 
 <a class="jxr_linenumber" name="212" href="#212">212</a>             <strong class="jxr_keyword">final</strong> T result = load(rs);
 <a class="jxr_linenumber" name="213" href="#213">213</a>             findStatement.close();
 <a class="jxr_linenumber" name="214" href="#214">214</a>             <strong class="jxr_keyword">return</strong> result;
 <a class="jxr_linenumber" name="215" href="#215">215</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="216" href="#216">216</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="216" href="#216">216</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="217" href="#217">217</a>         }
 <a class="jxr_linenumber" name="218" href="#218">218</a>     }
 <a class="jxr_linenumber" name="219" href="#219">219</a> 
@@ -299,7 +299,7 @@
 <a class="jxr_linenumber" name="289" href="#289">289</a> 
 <a class="jxr_linenumber" name="290" href="#290">290</a>             <strong class="jxr_keyword">return</strong> result;
 <a class="jxr_linenumber" name="291" href="#291">291</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="292" href="#292">292</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex.getMessage() + <span class="jxr_string">" "</span> + ex.getErrorCode() + <span class="jxr_string">" "</span> + ex.getSQLState(), ex);
+<a class="jxr_linenumber" name="292" href="#292">292</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex.getMessage() + <span class="jxr_string">" "</span> + ex.getErrorCode() + <span class="jxr_string">" "</span> + ex.getSQLState(), ex);
 <a class="jxr_linenumber" name="293" href="#293">293</a>         }
 <a class="jxr_linenumber" name="294" href="#294">294</a>     }
 <a class="jxr_linenumber" name="295" href="#295">295</a> 
@@ -315,7 +315,7 @@
 <a class="jxr_linenumber" name="305" href="#305">305</a>             insertStatement.close();
 <a class="jxr_linenumber" name="306" href="#306">306</a>             <strong class="jxr_keyword">return</strong> subject.getId();
 <a class="jxr_linenumber" name="307" href="#307">307</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="308" href="#308">308</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="308" href="#308">308</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="309" href="#309">309</a>         }
 <a class="jxr_linenumber" name="310" href="#310">310</a>     }
 <a class="jxr_linenumber" name="311" href="#311">311</a> 
@@ -328,7 +328,7 @@
 <a class="jxr_linenumber" name="318" href="#318">318</a>             idMap.remove(subject.getId());
 <a class="jxr_linenumber" name="319" href="#319">319</a>             updateStatement.close();
 <a class="jxr_linenumber" name="320" href="#320">320</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="321" href="#321">321</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="321" href="#321">321</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="322" href="#322">322</a>         }
 <a class="jxr_linenumber" name="323" href="#323">323</a>     }
 <a class="jxr_linenumber" name="324" href="#324">324</a> 
@@ -344,12 +344,12 @@
 <a class="jxr_linenumber" name="334" href="#334">334</a>             findMaxPrimaryKeyStatement.close();
 <a class="jxr_linenumber" name="335" href="#335">335</a> 
 <a class="jxr_linenumber" name="336" href="#336">336</a>             <strong class="jxr_keyword">if</strong> (!rs.next()) {
-<a class="jxr_linenumber" name="337" href="#337">337</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(<span class="jxr_string">"Can't determine next id!"</span>);
+<a class="jxr_linenumber" name="337" href="#337">337</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(<span class="jxr_string">"Can't determine next id!"</span>);
 <a class="jxr_linenumber" name="338" href="#338">338</a>             }
 <a class="jxr_linenumber" name="339" href="#339">339</a> 
 <a class="jxr_linenumber" name="340" href="#340">340</a>             <strong class="jxr_keyword">return</strong> rs.getInt(1) + 1;
 <a class="jxr_linenumber" name="341" href="#341">341</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="342" href="#342">342</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="342" href="#342">342</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="343" href="#343">343</a>         }
 <a class="jxr_linenumber" name="344" href="#344">344</a>     }
 <a class="jxr_linenumber" name="345" href="#345">345</a> }

@@ -25,7 +25,7 @@
 <a class="jxr_linenumber" name="15" href="#15">15</a>  <strong class="jxr_keyword">import</strong> java.sql.PreparedStatement;
 <a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">import</strong> java.sql.ResultSet;
 <a class="jxr_linenumber" name="17" href="#17">17</a>  <strong class="jxr_keyword">import</strong> java.sql.SQLException;
-<a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.ApplicationException;
+<a class="jxr_linenumber" name="18" href="#18">18</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.DomainModelException;
 <a class="jxr_linenumber" name="19" href="#19">19</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.domain.User;
 <a class="jxr_linenumber" name="20" href="#20">20</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.domain.UserFinder;
 <a class="jxr_linenumber" name="21" href="#21">21</a>  <strong class="jxr_keyword">import</strong> org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -154,7 +154,7 @@
 <a class="jxr_linenumber" name="144" href="#144">144</a>             findStatement.close();
 <a class="jxr_linenumber" name="145" href="#145">145</a>             <strong class="jxr_keyword">return</strong> result;
 <a class="jxr_linenumber" name="146" href="#146">146</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="147" href="#147">147</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="147" href="#147">147</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="148" href="#148">148</a>         }
 <a class="jxr_linenumber" name="149" href="#149">149</a>     }
 <a class="jxr_linenumber" name="150" href="#150">150</a> 
@@ -168,7 +168,7 @@
 <a class="jxr_linenumber" name="158" href="#158">158</a>             updateStatement.execute();
 <a class="jxr_linenumber" name="159" href="#159">159</a>             updateStatement.close();
 <a class="jxr_linenumber" name="160" href="#160">160</a>         } <strong class="jxr_keyword">catch</strong> (SQLException ex) {
-<a class="jxr_linenumber" name="161" href="#161">161</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/ApplicationException.html">ApplicationException</a>(ex);
+<a class="jxr_linenumber" name="161" href="#161">161</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../org/lafayette/server/DomainModelException.html">DomainModelException</a>(ex);
 <a class="jxr_linenumber" name="162" href="#162">162</a>         }
 <a class="jxr_linenumber" name="163" href="#163">163</a>     }
 <a class="jxr_linenumber" name="164" href="#164">164</a> }
