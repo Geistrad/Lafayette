@@ -467,11 +467,11 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                 </configuration>
-                <executions>
+<!--                <executions>
                     <execution>
-                        <!--http://stackoverflow.com/questions/5976123/maven-site-for-multi-module-->
+                        http://stackoverflow.com/questions/5976123/maven-site-for-multi-module
                         <id>copy-sitedescriptor</id>
-                        <!--fetch site.xml before creating site documentation-->
+                        fetch site.xml before creating site documentation
                         <phase>pre-site</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -488,7 +488,7 @@
                             </resources>
                         </configuration>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>

@@ -25,6 +25,8 @@ import org.msgpack.annotation.Message;
 /**
  * Represents an user.
  *
+ * TODO Add emailAdress.
+ *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @XmlRootElement @Message

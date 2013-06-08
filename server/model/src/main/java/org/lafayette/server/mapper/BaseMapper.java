@@ -331,13 +331,15 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         try {
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
             final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
-            findMaxPrimaryKeyStatement.close();
 
             if (!rs.next()) {
+//                findMaxPrimaryKeyStatement.close();
                 throw new DomainModelException("Can't determine next id!");
             }
 
-            return rs.getInt(1) + 1;
+            final int nextId = rs.getInt(1) + 1;
+//            findMaxPrimaryKeyStatement.close();
+            return nextId;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
         }
