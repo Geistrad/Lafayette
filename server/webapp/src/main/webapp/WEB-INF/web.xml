@@ -78,11 +78,11 @@
     </servlet-mapping>
 
     <!-- Registration w/ Vaadin -->
-    <context-param>
+<!--    <context-param>
         <description>Vaadin production mode</description>
         <param-name>productionMode</param-name>
         <param-value>false</param-value>
-    </context-param>
+    </context-param>-->
     <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
@@ -94,6 +94,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
-        <url-pattern>registration/*</url-pattern>
+        <url-pattern>/registration/*</url-pattern>
+    </servlet-mapping>
+    <!-- see https://vaadin.com/book/-/page/application.environment.html -->
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/VAADIN/*</url-pattern>
     </servlet-mapping>
 </web-app>

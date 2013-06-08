@@ -54,9 +54,7 @@ Deploy
 
 ## Todo
 
-- Adapt Role model.
-- Add security http://stackoverflow.com/questions/2902427/user-authentication-on-a-jersey-rest-service
-	- http://stackoverflow.com/questions/9462955/authentication-in-jersey
+- https://vaadin.com/wiki/-/wiki/Main/Creating%20Secure%20Vaadin%20Applications%20using%20JEE6#section-Creating+Secure+Vaadin+Applications+using+JEE6-SecuringTheWebLayer
 - Database mappers: Validate input (string length, id range etc.)
 
 [1]: http://weltraumschaf.github.io/Lafayette/

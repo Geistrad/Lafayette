@@ -18,12 +18,15 @@
         <h1>Lafayette Server</h1>
 
         <p>Hello World!</p>
+        <ul>
+            <li><a href="registration/">Sign Up</a></li>
+        </ul>
 
         <small>
             Version: ${applicationScope['registry'].version} &ndash;
             Stage: ${applicationScope['registry'].stage}
             <c:if test="${applicationScope.registry.stage=='DEVELOPMENT'}">
-                 &ndash; <a href="http://${pageContext.request.serverName}:8080/">Jenkins CI</a>
+                &ndash; <a href="http://${pageContext.request.serverName}:8080/">Jenkins CI</a>
             </c:if>
         </small>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
