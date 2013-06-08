@@ -67,11 +67,15 @@
     </ciManagement>
 
     <properties>
+        <site.basedir>${project.basedir}</site.basedir>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.version.source>1.6</project.build.version.source>
         <project.build.version.target>1.6</project.build.version.target>
+        <maven.pmd.rulesetfiles>${project.basedir}/src/main/comf/pmd.xml</maven.pmd.rulesetfiles>
+        <maven.pmd.cpd-excludes>${project.basedir}/src/main/conf/exclude-cpd.properties</maven.pmd.cpd-excludes>
+        <maven.pmd.pmd-excludes>${project.basedir}/src/main/conf/exclude-pmd.properties</maven.pmd.pmd-excludes>
         <maven.version>3.0.3</maven.version>
         <dependnecy.jersey.version>1.17.1</dependnecy.jersey.version>
         <dependnecy.jackson.version>1.9.12</dependnecy.jackson.version>
@@ -245,11 +249,11 @@
     </dependencies>
 
     <build>
-        <defaultGoal>package</defaultGoal>
+        <defaultGoal>install</defaultGoal>
 
         <resources>
             <resource>
-                <directory>${basedir}/src/main/resources</directory>
+                <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
@@ -418,15 +422,6 @@
                     <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
                     <targetJdk>${project.build.targetJdk}</targetJdk>
-                    <!-- http://pmd.sourceforge.net/rules/index.html -->
-                    <rulesets>
-                        <ruleset>/rulesets/basic.xml</ruleset>
-                        <ruleset>/rulesets/unusedcode.xml</ruleset>
-                        <ruleset>/rulesets/imports.xml</ruleset>
-                        <ruleset>/rulesets/clone.xml</ruleset>
-                        <ruleset>/rulesets/coupling.xml</ruleset>
-                        <ruleset>/rulesets/design.xml</ruleset>
-                    </rulesets>
                 </configuration>
                 <executions>
                     <execution>
@@ -435,7 +430,7 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <excludeFromFailureFile>${basedir}/src/main/conf/exclude-pmd.properties</excludeFromFailureFile>
+                            <excludeFromFailureFile>${maven.pmd.pmd-excludes}</excludeFromFailureFile>
                             <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
@@ -445,7 +440,7 @@
                             <goal>cpd-check</goal>
                         </goals>
                         <configuration>
-                            <excludeFromFailureFile>${basedir}/src/main/conf/exclude-cpd.properties</excludeFromFailureFile>
+                            <excludeFromFailureFile>${maven.pmd.cpd-excludes}</excludeFromFailureFile>
                             <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
@@ -455,7 +450,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
-                    <configLocation>${basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
+                    <configLocation>${project.basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
                     <logViolationsToConsole>true</logViolationsToConsole>
                     <includeTestSourceDirectory>false</includeTestSourceDirectory>
                 </configuration>
@@ -468,8 +463,8 @@
                     <threshold>Default</threshold>
                     <xmlOutput>true</xmlOutput>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
-                    <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
+                    <excludeFilterFile>${project.basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
+                    <includeFilterFile>${project.basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
                     <!-- Optional directory to put findbugs xdoc xml report -->
                     <xmlOutputDirectory>target/site</xmlOutputDirectory>
                     <xmlOutput>true</xmlOutput>
@@ -522,8 +517,30 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <webappDirectory>${basedir}/src/main/webapp</webappDirectory>
+                    <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <!-- http://stackoverflow.com/questions/5976123/maven-site-for-multi-module -->
+                        <id>copy-sitedescriptor</id>
+                        <!-- fetch site.xml before creating site documentation -->
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/src/site/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${site.basedir}/src/site/</directory>
+                                    <includes>
+                                        <include>**/site.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -708,7 +725,7 @@
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
                             <configuration>
-                                <configLocation>${basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
+                                <configLocation>${project.basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
                                 <logViolationsToConsole>true</logViolationsToConsole>
                                 <includeTestSourceDirectory>false</includeTestSourceDirectory>
                             </configuration>
@@ -722,8 +739,8 @@
                                 <threshold>Default</threshold>
                                 <xmlOutput>true</xmlOutput>
                                 <findbugsXmlOutput>true</findbugsXmlOutput>
-                                <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
-                                <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
+                                <excludeFilterFile>${project.basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
+                                <includeFilterFile>${project.basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
                                 Optional directory to put findbugs xdoc xml report
                                 <xmlOutputDirectory>target/site</xmlOutputDirectory>
                                 <xmlOutput>true</xmlOutput>
