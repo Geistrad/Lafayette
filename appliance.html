@@ -194,9 +194,22 @@
     
 <li>edit server URI to: <tt>http://YOURHOSTNAME:9000</tt></li>
   </ol></li>
-</ol></div>
+</ol>
 <div class="section">
-<h2>Users<a name="Users"></a></h2>
+<h3>Update the system<a name="Update_the_system"></a></h3>
+
+<ol style="list-style-type: decimal">
+  
+<li>Login as user <tt>root</tt></li>
+  
+<li>run <tt>apt-get update</tt></li>
+  
+<li>run <tt>apt-get upgrade</tt> and confirm with <tt>Y</tt></li>
+</ol></div></div>
+<div class="section">
+<h2>System Details<a name="System_Details"></a></h2>
+<div class="section">
+<h3>Users<a name="Users"></a></h3>
 
 <ul>
   
@@ -205,7 +218,7 @@
 <li>service-user: <tt>ahf4Iedu</tt> (sudoer)</li>
 </ul></div>
 <div class="section">
-<h2>Services<a name="Services"></a></h2>
+<h3>Services<a name="Services"></a></h3>
 
 <ul>
   
@@ -218,7 +231,7 @@
 <li>Sonar (User: <tt>root</tt> - Password: <tt>mo3Shoo7</tt>, DB: <tt>sonar</tt> - <tt>Quizook1</tt>) in <tt>/usr/local/sonar</tt></li>
 </ul>
 <div class="section">
-<h3>Tomcat<a name="Tomcat"></a></h3>
+<h4>Tomcat<a name="Tomcat"></a></h4>
 
 <ul>
   
@@ -249,7 +262,7 @@ JAVA_OPTS=&quot;-Djava.awt.headless=true \
 -XX:+UseParNewGC \
 -XX:MaxPermSize=${MAX_PERM_SIZE} \
 -Xms${HEAP_SPACE_START} -Xmx${HEAP_SPACE_MAX}&quot;
-</pre></div></div></div>
+</pre></div></div></div></div>
                   </div>
             </div>
           </div>

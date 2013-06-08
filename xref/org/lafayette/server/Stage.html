@@ -35,7 +35,7 @@
 <a class="jxr_linenumber" name="25" href="#25">25</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../org/lafayette/server/Stage.html">Stage</a> {
 <a class="jxr_linenumber" name="26" href="#26">26</a>  
 <a class="jxr_linenumber" name="27" href="#27">27</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="28" href="#28">28</a>  <em class="jxr_javadoccomment">     * Default stage used as fallback is {@value Stages#PRODUCTION}.</em>
+<a class="jxr_linenumber" name="28" href="#28">28</a>  <em class="jxr_javadoccomment">     * Default stage used as fallback is {@link Stages#PRODUCTION}.</em>
 <a class="jxr_linenumber" name="29" href="#29">29</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="30" href="#30">30</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../org/lafayette/server/Stage.html">Stages</a> DEFUALT_STAGE = Stages.PRODUCTION;
 <a class="jxr_linenumber" name="31" href="#31">31</a>      <em class="jxr_javadoccomment">/**</em>
@@ -113,7 +113,7 @@
 <a class="jxr_linenumber" name="103" href="#103">103</a> <em class="jxr_javadoccomment">         * &lt;/ul&gt;</em>
 <a class="jxr_linenumber" name="104" href="#104">104</a> <em class="jxr_javadoccomment">         *</em>
 <a class="jxr_linenumber" name="105" href="#105">105</a> <em class="jxr_javadoccomment">         * @param name case does not matter</em>
-<a class="jxr_linenumber" name="106" href="#106">106</a> <em class="jxr_javadoccomment">         * @return never returns {@code null}, if no proper stage was found by the name {@value Stage#DEFUALT_STAGE}</em>
+<a class="jxr_linenumber" name="106" href="#106">106</a> <em class="jxr_javadoccomment">         * @return never returns {@code null}, if no proper stage was found by the name {@link Stage#DEFUALT_STAGE}</em>
 <a class="jxr_linenumber" name="107" href="#107">107</a> <em class="jxr_javadoccomment">         *         will be returned</em>
 <a class="jxr_linenumber" name="108" href="#108">108</a> <em class="jxr_javadoccomment">         */</em>
 <a class="jxr_linenumber" name="109" href="#109">109</a>         <strong class="jxr_keyword">static</strong> <a href="../../../org/lafayette/server/Stage.html">Stages</a> map(<strong class="jxr_keyword">final</strong> String name) {
