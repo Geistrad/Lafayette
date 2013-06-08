@@ -4,8 +4,8 @@ button,
 input,
 select,
 textarea {
-    color: #737373;
-    background: #fcfcfc;
+    color: #222;
+    background-color: #F5F5F5;
 }
 
 ::-moz-selection {

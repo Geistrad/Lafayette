@@ -10,7 +10,7 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 
 ## Import into Virtual Box
 
-1. download and install [Virtual Box][1]. 
+1. download and install [Virtual Box][1].
 2. import appliance: __Menu__ -> __File__ -> __Import Aplliance__
 3. change network from NAT to bridged
     1. Open virtual machne settings
@@ -28,20 +28,28 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 	3. go to `configure system`
 	4. search for `sonar`
 	5. edit server URI to: `http://YOURHOSTNAME:9000`
-	
-## Users
+
+### Update the system
+
+1. Login as user `root`
+2. run `apt-get update`
+3. run `apt-get upgrade` and confirm with `Y`
+
+## System Details
+
+### Users
 
 - root: `mo3Shoo7`
 - service-user: `ahf4Iedu` (sudoer)
 
-## Services
+### Services
 
 * MySQL 5.5.31 (User: `root` - Password: `mo3Shoo7`)
 * Apache Tomcat 7 (User: `root` - Password: `mo3Shoo7`)
 * Jenkins (User: `root` - Password: `mo3Shoo7`)
 * Sonar (User: `root` - Password: `mo3Shoo7`, DB: `sonar` - `Quizook1`) in `/usr/local/sonar`
 
-### Tomcat
+#### Tomcat
 
 - Port 80: in `/etc/default/tomcat7` autobind=on
 - MySQL JDBC connector: `/usr/share/tomcat7/lib/mysql.jar -> /usr/share/java/mysql.jar`
@@ -50,16 +58,16 @@ Install Script: `wget https://raw.github.com/Weltraumschaf/Lafayette/master/serv
 Add in `/etc/defaults/tomcat`
 
     export STAGE=development
-    
+
     ...
-	
+
     # Java memory options
     MAX_PERM_SIZE=128m
     HEAP_SPACE_START=128m
     HEAP_SPACE_MAX=256m
-	
+
     ...
-	
+
     JAVA_OPTS="-Djava.awt.headless=true \
     -Xmx128m \
     -XX:+UseConcMarkSweepGC \
