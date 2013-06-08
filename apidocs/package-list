@@ -1,5 +1,8 @@
 org.lafayette.server
-org.lafayette.server.db
-org.lafayette.server.domain
-org.lafayette.server.mapper
-org.lafayette.server.mapper.id
+org.lafayette.server.config
+org.lafayette.server.filter
+org.lafayette.server.http
+org.lafayette.server.http.digest
+org.lafayette.server.log
+org.lafayette.server.nonce
+org.lafayette.server.resources
