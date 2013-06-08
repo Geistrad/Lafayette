@@ -25,7 +25,7 @@ package org.lafayette.server;
 public class Stage {
 
     /**
-     * Default stage used as fallback is {@value Stages#PRODUCTION}.
+     * Default stage used as fallback is {@link Stages#PRODUCTION}.
      */
     private static final Stages DEFUALT_STAGE = Stages.PRODUCTION;
     /**
@@ -103,7 +103,7 @@ public class Stage {
          * </ul>
          *
          * @param name case does not matter
-         * @return never returns {@code null}, if no proper stage was found by the name {@value Stage#DEFUALT_STAGE}
+         * @return never returns {@code null}, if no proper stage was found by the name {@link Stage#DEFUALT_STAGE}
          *         will be returned
          */
         static Stages map(final String name) {

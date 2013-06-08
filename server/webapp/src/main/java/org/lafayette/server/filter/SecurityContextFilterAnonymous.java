@@ -16,6 +16,9 @@ import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerRequestFilter;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;
+//CHECKSTYLE:OFF
+import javax.ws.rs.core.SecurityContext;
+//CHECKSTYLE:ON
 import org.lafayette.server.domain.User;
 
 /**

@@ -43,7 +43,7 @@ interface StatementSource {
      * are not empty, sets them on the statement.
      *
      * @param db used to get prepared statement
-     * @return never {@link null}
+     * @return never {@code null}
      * @throws SQLException if any SQL syntax error occurs.
      */
     PreparedStatement prepare(Connection db) throws SQLException;
