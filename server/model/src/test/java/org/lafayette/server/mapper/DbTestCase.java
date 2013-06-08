@@ -12,7 +12,6 @@
 
 package org.lafayette.server.mapper;
 
-import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -97,7 +96,6 @@ public abstract class DbTestCase {
      * @throws SQLException if SQL error occurs
      */
     @After
-    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void destroyTestDatabase() throws SQLException {
         try {
             final Statement shutdownStatement = db.createStatement();

@@ -23,6 +23,9 @@
         <maven.pmd.pmd-excludes>${project.parent.basedir}/src/main/conf/exclude-pmd.properties</maven.pmd.pmd-excludes>
         <maven.findbugs.excludefilterfile>${project.parent.basedir}/src/main/conf/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
         <maven.findbugs.includefilterfile>${project.parent.basedir}/src/main/conf/findbugs-include.xml</maven.findbugs.includefilterfile>
+        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <dependnecy.jersey.version>1.17.1</dependnecy.jersey.version>
+        <dependnecy.jackson.version>1.9.12</dependnecy.jackson.version>
     </properties>
 
     <dependencies>
@@ -30,6 +33,58 @@
             <groupId>org.lafayette</groupId>
             <artifactId>server-model</artifactId>
             <version>0.1.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.19</version>
+        </dependency>
+        <!-- Jersey dependencies (https://jersey.java.net/nonav/documentation/latest/user-guide.html) -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>${dependnecy.jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>${dependnecy.jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>${dependnecy.jersey.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${dependnecy.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${dependnecy.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>${dependnecy.jackson.version}</version>
+        </dependency>
+        <!-- JSP tag libraries. -->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 

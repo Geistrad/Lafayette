@@ -12,7 +12,6 @@
 
 package org.lafayette.server.config;
 
-import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +27,6 @@ import org.junit.Test;
 public class ConfigLoaderTest {
 
     @Test
-    @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void loadConfig() throws IOException {
         final ConfigLoader sut = ConfigLoader.create(new TestStrategy());
         final Properties prop = new Properties();
