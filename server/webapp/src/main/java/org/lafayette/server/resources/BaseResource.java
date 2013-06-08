@@ -12,6 +12,8 @@
 package org.lafayette.server.resources;
 
 import com.sun.jersey.api.NotFoundException;
+import com.sun.jersey.api.model.AbstractResourceModelContext;
+import com.sun.jersey.api.model.AbstractResourceModelListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import javax.servlet.ServletContext;
@@ -41,7 +43,7 @@ import org.msgpack.MessagePack;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-abstract class BaseResource {
+abstract class BaseResource implements AbstractResourceModelListener {
 
     /**
      * Logger facility.
@@ -85,6 +87,10 @@ abstract class BaseResource {
         super();
         indexUriList = new UriList();
         indexUriList.setComment("# Available URIs:");
+    }
+
+    @Override
+    public void onLoaded(final AbstractResourceModelContext modelContext) {
         init();
     }
 
