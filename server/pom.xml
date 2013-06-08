@@ -223,6 +223,11 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.7</version>
                 </plugin>
@@ -683,8 +688,8 @@
                                 <xmlOutput>true</xmlOutput>
                                 <findbugsXmlOutput>true</findbugsXmlOutput>
                                 <excludeFilterFile>${maven.findbugs.excludefilterfile}</excludeFilterFile>
-                    <includeFilterFile>${maven.findbugs.includefilterfile}</includeFilterFile>
-                    <!-- Optional directory to put findbugs xdoc xml report -->
+                                <includeFilterFile>${maven.findbugs.includefilterfile}</includeFilterFile>
+                                <!-- Optional directory to put findbugs xdoc xml report -->
                                 <xmlOutputDirectory>target/site</xmlOutputDirectory>
                                 <xmlOutput>true</xmlOutput>
                                 <threshold>Low</threshold>
