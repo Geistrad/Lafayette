@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
-      <x>390</x>
-      <y>80</y>
+      <x>470</x>
+      <y>160</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -16,7 +16,7 @@
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
       <x>30</x>
-      <y>50</y>
+      <y>230</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -27,8 +27,8 @@
   <element>
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
-      <x>390</x>
-      <y>240</y>
+      <x>470</x>
+      <y>330</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -40,7 +40,7 @@
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
       <x>30</x>
-      <y>130</y>
+      <y>310</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -51,41 +51,41 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>460</x>
-      <y>110</y>
+      <x>540</x>
+      <y>190</y>
       <w>50</w>
-      <h>150</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>30;30;30;130</additional_attributes>
+    <additional_attributes>30;30;30;140</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>50</y>
-      <w>210</w>
-      <h>80</h>
+      <y>160</y>
+      <w>290</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>190;60;30;30</additional_attributes>
+    <additional_attributes>270;30;30;100</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>90</y>
-      <w>210</w>
-      <h>90</h>
+      <y>160</y>
+      <w>290</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>190;30;30;70</additional_attributes>
+    <additional_attributes>270;30;30;180</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
-      <x>70</x>
-      <y>250</y>
+      <x>30</x>
+      <y>20</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -96,8 +96,8 @@
   <element>
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
-      <x>70</x>
-      <y>320</y>
+      <x>30</x>
+      <y>90</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
@@ -108,13 +108,46 @@
   <element>
     <type>com.umlet.element.custom.Component</type>
     <coordinates>
-      <x>70</x>
-      <y>390</y>
+      <x>30</x>
+      <y>160</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
     <panel_attributes> &lt;&lt;provided&gt;&gt;
 'javaee-web-apii:6.0</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>160</y>
+      <w>290</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>270;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>90</y>
+      <w>290</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>270;100;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>20</y>
+      <w>290</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>270;170;30;30</additional_attributes>
   </element>
 </diagram>
