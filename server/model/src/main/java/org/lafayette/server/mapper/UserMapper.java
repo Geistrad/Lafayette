@@ -74,7 +74,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
+        return findMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
     }
 
     /**

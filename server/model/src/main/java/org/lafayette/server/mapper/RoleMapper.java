@@ -80,7 +80,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findfindMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
+        return findMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
     }
 
     /**

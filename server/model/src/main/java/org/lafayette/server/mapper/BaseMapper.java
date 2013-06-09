@@ -141,7 +141,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * @param table table name
      * @return SQL prepared statement string
      */
-    protected String findfindMaxPrimaryKeyStatement(final String pk, final String table) {
+    protected String findMaxPrimaryKeyStatement(final String pk, final String table) {
         return String.format(SQL_MAX_PK, pk, table);
     }
 
@@ -327,18 +327,18 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      *
      * @return always greater 0
      */
-    private int findNextDatabaseId() {
+    int findNextDatabaseId() {
         try {
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
             final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
 
             if (!rs.next()) {
-//                findMaxPrimaryKeyStatement.close();
+                findMaxPrimaryKeyStatement.close();
                 throw new DomainModelException("Can't determine next id!");
             }
 
             final int nextId = rs.getInt(1) + 1;
-//            findMaxPrimaryKeyStatement.close();
+            findMaxPrimaryKeyStatement.close();
             return nextId;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
