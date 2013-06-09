@@ -20,6 +20,7 @@
         <p>Hello World!</p>
         <ul>
             <li><a href="registration/">Sign Up</a></li>
+            <li><a href="r/">REST API</a></li>
         </ul>
 
         <small>
