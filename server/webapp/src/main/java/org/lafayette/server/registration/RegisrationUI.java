@@ -132,15 +132,15 @@ public class RegisrationUI extends UI {
                     return;
                 }
 
-//                try {
-//                    registration.registerNewUser(
-//                            loginName,
-//                            password,
-//                            registry().getServerConfig().getSecurotyRealm(),
-//                            emailAddress);
-//                } catch (ServiceExcpetion ex) {
-//                    Notification.show("Error!", ex.getMessage(), Notification.Type.ERROR_MESSAGE);
-//                }
+                try {
+                    registration.registerNewUser(
+                            loginName,
+                            password,
+                            registry().getServerConfig().getSecurotyRealm(),
+                            emailAddress);
+                } catch (ServiceExcpetion ex) {
+                    Notification.show("Error!", ex.getMessage(), Notification.Type.ERROR_MESSAGE);
+                }
             }
         });
     }

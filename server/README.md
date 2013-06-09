@@ -52,6 +52,10 @@ Deploy
         /service    text/uri-list, text/plain, text/html, application/json, application/xml, application/x-msgpack
             /{name} text/plain, text/html, application/json, application/xml, application/x-msgpack
 
+## Vaadin
+
+- https://vaadin.com/book/vaadin7/-/page/index.html
+
 ## Todo
 
 - https://vaadin.com/wiki/-/wiki/Main/Creating%20Secure%20Vaadin%20Applications%20using%20JEE6#section-Creating+Secure+Vaadin+Applications+using+JEE6-SecuringTheWebLayer
