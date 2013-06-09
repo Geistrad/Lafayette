@@ -11,8 +11,10 @@
  */
 package org.lafayette.server.registration;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.lafayette.server.business.RegistrationService;
 import com.vaadin.annotations.Title;
+import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Alignment;
@@ -36,6 +38,12 @@ import org.lafayette.server.domain.Finders;
  */
 @Title("Sign up")
 public class RegisrationUI extends UI {
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_EMPTY = "Password must not be empty!";
+    private static final String ERR_MSG_EMAIL_ADDRESS_MUST_NOT_BE_EMPTY = "Email address must not be empty!";
+    private static final String ERR_MSG_LOGIN_NAME_MUST_NOT_BE_EMPTY = "Login name must not be empty!";
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_LOGIN_NAME = "Password must not be same as login name!";
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_EMAIL_ADDRES = "Password must not be same as email address!";
+    private static final String ERR_MSG_PASSWORD_MUST_HAVE_AT_LEAST_8_CHARATCERS = "Password must have at least 8 charatcers!";
 
     private final Button createAccountButton = new Button("Create Account");
     private final TextField loginNameField = new TextField("Login name");
@@ -76,15 +84,19 @@ public class RegisrationUI extends UI {
         final FormLayout formLayout = new FormLayout();
         formLayout.setSizeUndefined();
 
-        formLayout.addComponent(loginNameField);
+
         loginNameField.setRequired(true);
-        loginNameField.setRequiredError("The Field may not be empty.");
-        formLayout.addComponent(emailAddressField);
+        loginNameField.setRequiredError(ERR_MSG_LOGIN_NAME_MUST_NOT_BE_EMPTY);
+        formLayout.addComponent(loginNameField);
+
         emailAddressField.setRequired(true);
-        emailAddressField.setRequiredError("The Field may not be empty.");
-        formLayout.addComponent(passwordField);
+        emailAddressField.setRequiredError(ERR_MSG_EMAIL_ADDRESS_MUST_NOT_BE_EMPTY);
+        formLayout.addComponent(emailAddressField);
+
         passwordField.setRequired(true);
-        passwordField.setRequiredError("The Field may not be empty.");
+        passwordField.setRequiredError(ERR_MSG_PASSWORD_MUST_NOT_BE_EMPTY);
+        formLayout.addComponent(passwordField);
+
         formLayout.addComponent(createAccountButton);
 
         mainLayout.addComponent(formLayout);
@@ -95,16 +107,61 @@ public class RegisrationUI extends UI {
         createAccountButton.addClickListener(new ClickListener() {
             @Override
             public void buttonClick(final ClickEvent event) {
+                boolean isInputFaulty = false;
+
+                final String loginName = loginNameField.getValue();
+                final String password = passwordField.getValue();
+                final String emailAddress = emailAddressField.getValue();
+
+
                 try {
-                    registration.registerNewUser(
-                            loginNameField.getValue(),
-                            passwordField.getValue(),
-                            "realm",
-                            emailAddressField.getValue());
-                } catch (ServiceExcpetion ex) {
-                    Notification.show("Error!", ex.getMessage(), Notification.Type.ERROR_MESSAGE);
+                    validatePassword(password, loginName, emailAddress);
+                } catch (IllegalArgumentException ex) {
+                    passwordField.setComponentError(new UserError(ex.getMessage()));
+                    isInputFaulty = true;
                 }
+
+                try {
+                    validateEmailAddress(emailAddress);
+                } catch (IllegalArgumentException ex) {
+                    emailAddressField.setComponentError(new UserError(ex.getMessage()));
+                    isInputFaulty = true;
+                }
+
+                if (isInputFaulty) {
+                    return;
+                }
+
+//                try {
+//                    registration.registerNewUser(
+//                            loginName,
+//                            password,
+//                            registry().getServerConfig().getSecurotyRealm(),
+//                            emailAddress);
+//                } catch (ServiceExcpetion ex) {
+//                    Notification.show("Error!", ex.getMessage(), Notification.Type.ERROR_MESSAGE);
+//                }
             }
         });
+    }
+
+    static void validatePassword(final String password, final String loginName, final String emailAdress) {
+        if (password.equalsIgnoreCase(loginName)) {
+            throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_LOGIN_NAME);
+        }
+
+        if (password.equalsIgnoreCase(emailAdress)) {
+            throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_EMAIL_ADDRES);
+        }
+
+        if (password.length() < 8) {
+            throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_HAVE_AT_LEAST_8_CHARATCERS);
+        }
+    }
+
+    static void validateEmailAddress(final String emailaddress) {
+        if (!EmailValidator.getInstance().isValid(emailaddress)) {
+            throw new IllegalArgumentException("Email address is not valid!");
+        }
     }
 }
