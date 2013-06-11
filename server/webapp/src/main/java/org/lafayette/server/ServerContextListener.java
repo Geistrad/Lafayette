@@ -20,9 +20,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -31,8 +28,7 @@ import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
 import org.lafayette.server.config.ConfigLoader;
 import org.lafayette.server.config.ServerConfig;
-import org.lafayette.server.db.JdbcDriver;
-import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.Mappers;
 
@@ -55,6 +51,9 @@ public final class ServerContextListener extends GuiceServletContextListener imp
      * Logging facility.
      */
     private static final Logger LOG = Log.getLogger(ServerContextListener.class);
+    /**
+     * JNDI name for main data base data source.
+     */
     private static final String JNDI_NAME_DATA_SOURCE = "java:/comp/env/jdbc/mysql";
     /**
      * Registry shared over the whole web application.
@@ -85,16 +84,14 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         loadVersion();
         loadStage();
         final ServerConfig config = loadConfig();
-        final Connection con = openDatabaseConnection(config);
-        createMappersFactory(con);
-        createDataSource();
+        final DataSource dataSource = createDataSource();
+        createMappersFactory(dataSource);
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
         LOG.debug("Context destroyed. Execute listener...");
-        closeDatabaseConnection();
     }
 
     /**
@@ -121,35 +118,6 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         final Stage stage = new Stage(envStage);
         LOG.info("Loaded stage %s.", stage.toString());
         reg.setStage(stage);
-    }
-
-    /**
-     * Open and add database connection to the {@link Registry registry}.
-     *
-     * @param config server configuration
-     * @return the opened connection
-     */
-    private Connection openDatabaseConnection(final ServerConfig config) {
-        try {
-            LOG.debug("Load JDBC driver class for '%s'.", config.getDbDriver());
-            JdbcDriver.getFor(config.getDbDriver()).load();
-            LOG.info("Open database connection to %s.", config.generateJdbcUri());
-            final Connection con = DriverManager.getConnection(
-                    config.generateJdbcUri(),
-                    config.getDbUser(),
-                    config.getDbPassword());
-            LOG.info("Database connection to %s established.", config.generateJdbcUri());
-            reg.setDatabase(con);
-            return con;
-        } catch (SQLException ex) {
-            LOG.fatal("Error opening database connection: %s", ex.toString());
-        } catch (ClassNotFoundException ex) {
-            LOG.fatal("Error loading JDBC driver: %s", ex.toString());
-        } catch (IllegalArgumentException ex) {
-            LOG.fatal("Error loading JDBC driver: %s", ex.toString());
-        }
-
-        return new NullConnection();
     }
 
     /**
@@ -191,27 +159,15 @@ public final class ServerContextListener extends GuiceServletContextListener imp
     }
 
     /**
-     * Close database connection.
-     */
-    private void closeDatabaseConnection() {
-        try {
-            LOG.info("Close database connection.");
-            reg.getDatabase().close();
-        } catch (SQLException ex) {
-            LOG.fatal("Error closing database connection: %s", ex.toString());
-        }
-    }
-
-    /**
      * Create {@link Mappers mapper factory} and stores to registry.
      *
-     * @param con open database connection
+     * @param dataSource open database connection
      */
-    private void createMappersFactory(final Connection con) {
-        reg.setMappers(new Mappers(con));
+    private void createMappersFactory(final DataSource dataSource) {
+        reg.setMappers(new Mappers(dataSource));
     }
 
-    private void createDataSource() {
+    private DataSource createDataSource() {
         try {
             LOG.info("Create data source.");
             final InitialContext initialContext = new InitialContext();
@@ -221,9 +177,12 @@ public final class ServerContextListener extends GuiceServletContextListener imp
                 LOG.error("Can't lookup data source via JNDI!");
             } else {
                 reg.setDataSource(dataSource);
+                return dataSource;
             }
         } catch (NamingException ex) {
             LOG.fatal(ex.getMessage());
         }
+
+        return new NullDataSource();
     }
 }

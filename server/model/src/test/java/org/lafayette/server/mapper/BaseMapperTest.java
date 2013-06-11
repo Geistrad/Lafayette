@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
 import org.junit.Test;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -41,19 +42,21 @@ public class BaseMapperTest extends DbTestCase {
 
     @Test
     public void findNextDatabaseId() throws SQLException {
-        final BaseMapper sut = new BaseMapperStub(db(), new IntegerIdentityMap<DomainObject>());
+        final BaseMapper sut = new BaseMapperStub(dataSource(), new IntegerIdentityMap<DomainObject>());
         assertThat(sut.findNextDatabaseId(), is(4));
         assertThat(sut.findNextDatabaseId(), is(4));
-        db().createStatement().execute("insert into base_mapper values (4, 'test1')");
+        final Connection db = db();
+        db.createStatement().execute("insert into base_mapper values (4, 'test1')");
         assertThat(sut.findNextDatabaseId(), is(5));
-        db().createStatement().execute("insert into base_mapper values (7, 'test1')");
+        db.createStatement().execute("insert into base_mapper values (7, 'test1')");
         assertThat(sut.findNextDatabaseId(), is(8));
+        db.close();
     }
 
     private final static class BaseMapperStub extends BaseMapper<DomainObject> {
 
-        public BaseMapperStub(Connection db, IntegerIdentityMap<DomainObject> idMap) {
-            super(db, idMap);
+        public BaseMapperStub(DataSource dataSurce, IntegerIdentityMap<DomainObject> idMap) {
+            super(dataSurce, idMap);
         }
 
         @Override

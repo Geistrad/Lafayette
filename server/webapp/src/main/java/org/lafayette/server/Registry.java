@@ -51,17 +51,9 @@ public final class Registry {
      */
     private Stage stage = new Stage();
     /**
-     * JDBC database connection.
-     */
-    private Connection database = new NullConnection();
-    /**
      * Service configuration.
      */
     private ServerConfig serverConfig = new ServerConfig(new Properties());
-    /**
-     * Mapper factory.
-     */
-    private Mappers mappers = new Mappers(database);
     /**
      * Used to generate server nonce for authentication.
      */
@@ -74,6 +66,10 @@ public final class Registry {
      * Manages database connections.
      */
     private DataSource dataSource = new NullDataSource();
+    /**
+     * Mapper factory.
+     */
+    private Mappers mappers = new Mappers(dataSource);
 
     /**
      * Dedicated constructor.
@@ -120,25 +116,6 @@ public final class Registry {
     public void setStage(final Stage s) {
         Validate.notNull(s, "Stage must not be null!");
         this.stage = s;
-    }
-
-    /**
-     * Get the database connection.
-     *
-     * @return never {@code null}
-     */
-    public Connection getDatabase() {
-        return database;
-    }
-
-    /**
-     * Set the database connection.
-     *
-     * @param c must not be null
-     */
-    public void setDatabase(final Connection c) {
-        Validate.notNull(c, "Connection must not be null!");
-        this.database = c;
     }
 
     /**
@@ -222,6 +199,7 @@ public final class Registry {
     }
 
     public void setDataSource(final DataSource dataSource) {
+        Validate.notNull(dataSource, "Data source must not be null!");
         this.dataSource = dataSource;
     }
 

@@ -124,16 +124,6 @@
             <version>1.4.0</version>
         </dependency>
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
             <groupId>org.msgpack</groupId>
             <artifactId>msgpack</artifactId>
             <version>0.6.7</version>
@@ -168,13 +158,6 @@
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <!-- HSQLDB JDBC Connector for tests. -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.2.9</version>
-            <scope>test</scope>
         </dependency>
         <!-- Dependnecies provided by JEE Web Container. -->
         <dependency>

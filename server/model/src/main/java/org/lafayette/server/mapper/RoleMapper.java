@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import javax.sql.DataSource;
 import org.lafayette.server.DomainModelException;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.Role.Names;
@@ -61,11 +62,11 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     /**
      * Dedicated constructor.
      *
-     * @param db database connection
+     * @param dataSource database connection
      * @param idMap identity map
      */
-    RoleMapper(final Connection db, final IntegerIdentityMap<Role> idMap) {
-        super(db, idMap);
+    RoleMapper(final DataSource dataSource, final IntegerIdentityMap<Role> idMap) {
+        super(dataSource, idMap);
     }
 
     @Override
@@ -127,12 +128,14 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
     @Override
     public void update(Role subject) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
             updateStatement.setInt(1, subject.getUserId());
             updateStatement.setString(2, subject.getName().toString());
             updateStatement.setInt(3, subject.getId());
             updateStatement.execute();
             updateStatement.close();
+            closeConnection(db);
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
         }

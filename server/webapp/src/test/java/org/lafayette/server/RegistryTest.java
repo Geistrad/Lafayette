@@ -14,8 +14,8 @@ package org.lafayette.server;
 import com.google.inject.Injector;
 import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.util.Properties;
+import javax.sql.DataSource;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -23,6 +23,7 @@ import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
@@ -45,7 +46,7 @@ public class RegistryTest {
 
     @Test
     public void defaultReturnsNeverNullBut() {
-        assertThat(sut.getDatabase(), is(notNullValue()));
+        assertThat(sut.getDataSource(), is(notNullValue()));
         assertThat(sut.getServerConfig(), is(notNullValue()));
         assertThat(sut.getStage(), is(notNullValue()));
         assertThat(sut.getVersion(), is(notNullValue()));
@@ -56,7 +57,7 @@ public class RegistryTest {
     @Test
     public void setDatabase_throwsExceptionIfParameterIsNull() {
         thrown.expect(NullPointerException.class);
-        sut.setDatabase(null);
+        sut.setDataSource(null);
     }
 
     @Test
@@ -97,9 +98,9 @@ public class RegistryTest {
 
     @Test
     public void setDatabase() {
-        final Connection db = new NullConnection();
-        sut.setDatabase(db);
-        assertThat(sut.getDatabase(), is(sameInstance(db)));
+        final DataSource db = new NullDataSource();
+        sut.setDataSource(db);
+        assertThat(sut.getDataSource(), is(sameInstance(db)));
     }
 
     @Test
@@ -125,7 +126,7 @@ public class RegistryTest {
 
     @Test
     public void setMappers() {
-        final Mappers mappers = new Mappers(new NullConnection());
+        final Mappers mappers = new Mappers(new NullDataSource());
         sut.setMappers(mappers);
         assertThat(sut.getMappers(), is(sameInstance(mappers)));
     }

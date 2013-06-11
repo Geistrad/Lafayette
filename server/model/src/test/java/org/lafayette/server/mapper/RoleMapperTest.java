@@ -44,7 +44,7 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void findRoleById() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         Role role = sut.find(1);
         assertThat(role.getId(), is(1));
         assertThat(role.getUserId(), is(1));
@@ -58,14 +58,14 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void findRoleById_caches() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Role role = sut.find(1);
         assertThat(role, is(sameInstance(sut.find(1))));
     }
 
     @Test @Ignore
     public void findByName() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByName(Names.USER);
         assertThat(role, hasSize(2));
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(3, 2, Names.USER)));
@@ -74,28 +74,28 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test @Ignore
     public void findByName_caches() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByName(Names.USER);
         assertThat(role, is(equalTo(sut.findByName(Names.USER))));
     }
 
     @Test @Ignore
     public void findByUserId() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByUserId(1);
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
     }
 
     @Test @Ignore
     public void findByUserId_caches() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByUserId(1);
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
     }
 
     @Test
     public void findAll() {
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
 
         for (final Role role : sut.findAll(10, 0)) {
             final int roleId = role.getId();
@@ -123,7 +123,7 @@ public class RoleMapperTest extends DbTestCase {
     public void findAll_emptyTable() throws SQLException, ClassNotFoundException, IOException, URISyntaxException {
         destroyTestDatabase();
         startTestDatabase(false);
-        final RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> roles = sut.findAll(10, 0);
         assertThat(roles, is(empty()));
     }
@@ -132,11 +132,11 @@ public class RoleMapperTest extends DbTestCase {
     public void insert() {
         final int userId = 5;
         Role role = new Role(userId, Names.ANONYMOUS);
-        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final int id = sut.insert(role);
 
         // avoid cache
-        sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         role = sut.find(id);
         assertThat(role.getUserId(), is(userId));
         assertThat(role.getName(), is(Names.ANONYMOUS));
@@ -144,7 +144,7 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void update() {
-        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(1));
@@ -159,7 +159,7 @@ public class RoleMapperTest extends DbTestCase {
         assertThat(role.getUserId(), is(3));
         assertThat(role.getName(), is(equalTo(Names.ANONYMOUS)));
 
-        sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(3));
@@ -168,7 +168,7 @@ public class RoleMapperTest extends DbTestCase {
 
     @Test
     public void delete() {
-        RoleMapper sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Role role = sut.find(2);
         assertThat(role.getId(), is(2));
         assertThat(role.getUserId(), is(1));
@@ -184,7 +184,7 @@ public class RoleMapperTest extends DbTestCase {
         }
 
         // avoid cache
-        sut = new RoleMapper(db(), new IntegerIdentityMap<Role>());
+        sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
 
         try {
             sut.find(2);

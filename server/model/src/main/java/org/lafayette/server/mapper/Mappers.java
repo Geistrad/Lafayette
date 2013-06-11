@@ -13,6 +13,7 @@
 package org.lafayette.server.mapper;
 
 import java.sql.Connection;
+import javax.sql.DataSource;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -30,7 +31,7 @@ public class Mappers {
     /**
      * Used database connection.
      */
-    private final Connection db;
+    private final DataSource dataSource;
     /**
      * Identity map for {@link User user ovjects}.
      */
@@ -43,11 +44,11 @@ public class Mappers {
     /**
      * Dedicated constructor.
      *
-     * @param db used database connection
+     * @param dataSource used database connection
      */
-    public Mappers(final Connection db) {
+    public Mappers(final DataSource dataSource) {
         super();
-        this.db = db;
+        this.dataSource = dataSource;
     }
 
     /**
@@ -56,7 +57,7 @@ public class Mappers {
      * @return always new instance, but w/ shared identity map
      */
     public UserMapper createUserMapper() {
-        return new UserMapper(db, userIdMap);
+        return new UserMapper(dataSource, userIdMap);
     }
 
     /**
@@ -65,7 +66,7 @@ public class Mappers {
      * @return always new instance, but w/ shared identity map
      */
     public RoleMapper createRoleMapper() {
-        return new RoleMapper(db, roleIdMap);
+        return new RoleMapper(dataSource, roleIdMap);
     }
 
 

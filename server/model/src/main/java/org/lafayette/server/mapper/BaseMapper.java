@@ -21,6 +21,8 @@ import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.DomainModelException;
 import org.lafayette.server.domain.DomainObject;
+import org.lafayette.server.log.Log;
+import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
 
 /**
@@ -31,7 +33,7 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
-//    private static final Logger LOG = Log.getLogger(BaseMapper.class);
+    private static final Logger LOG = Log.getLogger(BaseMapper.class);
 
     /**
      * Generic find by id query.
@@ -68,16 +70,9 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     private static final String SQL_DELETE = "delete from %s where %s = ?";
 
     /**
-     * Used JDBC database connection.
-     *
-     * @deprecated
-     */
-    @Deprecated
-    protected final Connection db;
-    /**
      * Manages database connections.
      */
-    private final DataSource dataSource = null;
+    private final DataSource dataSource;
     /**
      * Caches domain object loaded from database in memory.
      *
@@ -91,9 +86,9 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * @param db used database connection
      * @param idMap maps identity map for mapped domain objects
      */
-    public BaseMapper(final Connection db, final IntegerIdentityMap<T> idMap) {
+    public BaseMapper(final DataSource dataSource, final IntegerIdentityMap<T> idMap) {
         super();
-        this.db = db;
+        this.dataSource = dataSource;
         this.idMap = idMap;
     }
 
@@ -211,7 +206,9 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             return idMap.get(id);
         }
 
+
         try {
+            final Connection db = getConnection();
             final PreparedStatement findStatement = db.prepareStatement(findByIdStatement());
             findStatement.setInt(1, id);
             final ResultSet rs = findStatement.executeQuery(); // NOPMD NExt is checked in next line.
@@ -222,6 +219,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
             final T result = load(rs);
             findStatement.close();
+            closeConnection(db);
             return result;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
@@ -293,11 +291,12 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      */
     protected Collection<T> findMany(final StatementSource source) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement stmt = source.prepare(db);
             final ResultSet rs = stmt.executeQuery(); // NOPMD Next is invoked on loadAll(rs).
             final Collection<T> result = loadAll(rs);
             stmt.close();
-
+            closeConnection(db);
             return result;
         } catch (SQLException ex) {
             throw new DomainModelException(ex.getMessage() + " " + ex.getErrorCode() + " " + ex.getSQLState(), ex);
@@ -307,6 +306,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     @Override
     public int insert(final T subject) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement insertStatement = db.prepareStatement(insertStatement());
             subject.setId(findNextDatabaseId());
             insertStatement.setInt(1, subject.getId());
@@ -314,6 +314,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             insertStatement.execute();
             idMap.put(subject.getId(), subject);
             insertStatement.close();
+            closeConnection(db);
             return subject.getId();
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
@@ -323,11 +324,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     @Override
     public void delete(final T subject) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement updateStatement = db.prepareStatement(deleteStatement());
             updateStatement.setInt(1, subject.getId());
             updateStatement.execute();
             idMap.remove(subject.getId());
             updateStatement.close();
+            closeConnection(db);
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
         }
@@ -340,6 +343,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      */
     int findNextDatabaseId() {
         try {
+            final Connection db = getConnection();
             final PreparedStatement findMaxPrimaryKeyStatement = db.prepareStatement(findMaxPrimaryKeyStatement());
             final ResultSet rs = findMaxPrimaryKeyStatement.executeQuery();
 
@@ -350,6 +354,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
             final int nextId = rs.getInt(1) + 1;
             findMaxPrimaryKeyStatement.close();
+            closeConnection(db);
             return nextId;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
@@ -360,13 +365,13 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         return dataSource.getConnection();
     }
 
-    protected synchronized void freeConnection(final Connection connection) {
+    protected synchronized void closeConnection(final Connection connection) {
         Validate.notNull(connection);
 
         try {
             connection.close();
         } catch (Exception ex) {
-//            LOG.fatal("Threw an exception closing a database connection: %s", ex);
+            LOG.fatal("Threw an exception closing a database connection: %s", ex);
         }
     }
 }

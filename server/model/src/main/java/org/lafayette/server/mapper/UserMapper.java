@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.sql.DataSource;
 import org.lafayette.server.DomainModelException;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
@@ -55,11 +56,11 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     /**
      * Created by {@link Mappers factory}.
      *
-     * @param db database connection
+     * @param dataSource database connection
      * @param idMap all mappers must share same identity map
      */
-    UserMapper(final Connection db, final IntegerIdentityMap<User> idMap) {
-        super(db, idMap);
+    UserMapper(final DataSource dataSource, final IntegerIdentityMap<User> idMap) {
+        super(dataSource, idMap);
     }
 
     @Override
@@ -131,6 +132,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     public User findByLoginName(final String loginName) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement findStatement = db.prepareStatement(findByLoginNameStatement());
             findStatement.setString(1, loginName);
             final ResultSet rs = findStatement.executeQuery();
@@ -142,6 +144,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
             final User result = load(rs);
             findStatement.close();
+            closeConnection(db);
             return result;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
@@ -151,12 +154,14 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
     @Override
     public void update(final User subject) {
         try {
+            final Connection db = getConnection();
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
             updateStatement.setString(1, subject.getLoginName());
             updateStatement.setString(2, subject.getHashedUserData());
             updateStatement.setInt(3, subject.getId());
             updateStatement.execute();
             updateStatement.close();
+            closeConnection(db);
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
         }

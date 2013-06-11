@@ -45,7 +45,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * A default implementation of {@link Connection} which does nothing for testing.
+ * A default implementation of {@link Connection} which does nothing for testing and default.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */

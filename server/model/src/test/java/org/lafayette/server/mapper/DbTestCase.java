@@ -15,13 +15,15 @@ package org.lafayette.server.mapper;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLNonTransientConnectionException;
 import java.sql.Statement;
+import java.util.UUID;
+import javax.sql.DataSource;
+import org.hsqldb.jdbc.JDBCCommonDataSource;
+import org.hsqldb.jdbc.JDBCDataSource;
 import org.junit.After;
 import org.junit.Before;
-import org.lafayette.server.db.JdbcDriver;
 import org.lafayette.server.db.SqlLoader;
 
 /**
@@ -46,15 +48,24 @@ public abstract class DbTestCase {
     /**
      * Connection to the test database.
      */
-    private Connection db;
+    private DataSource dataSource = new JDBCDataSource();
+
+    public DbTestCase() {
+        super();
+        ((JDBCCommonDataSource)dataSource).setDatabase(JDBC_URI + UUID.randomUUID().toString());
+    }
+
+    public DataSource dataSource() {
+        return dataSource;
+    }
 
     /**
      * Getter for the connection.
      *
      * @return same instance
      */
-    public Connection db() {
-        return db;
+    public synchronized Connection db() throws SQLException {
+        return dataSource.getConnection(DB_USER, DB_PASSWORD);
     }
 
     /**
@@ -82,7 +93,6 @@ public abstract class DbTestCase {
      */
     public void startTestDatabase(final boolean withData) throws ClassNotFoundException, SQLException, IOException,
         URISyntaxException {
-        createDatabaseConnection();
         createTable();
 
         if (withData) {
@@ -98,6 +108,7 @@ public abstract class DbTestCase {
     @After
     public void destroyTestDatabase() throws SQLException {
         try {
+            final Connection db = dataSource.getConnection();
             final Statement shutdownStatement = db.createStatement();
             shutdownStatement.execute("shutdown");
             shutdownStatement.close();
@@ -105,18 +116,6 @@ public abstract class DbTestCase {
         } catch (SQLNonTransientConnectionException ex) {
             // Ignore if database already removed.
         }
-    }
-
-    /**
-     * Create database connection.
-     *
-     * @throws SQLException if SQL error occurs
-     * @throws ClassNotFoundException if JDBC driver not found
-     */
-    @SuppressWarnings("DMI_EMPTY_DB_PASSWORD")
-    private void createDatabaseConnection() throws SQLException, ClassNotFoundException {
-        JdbcDriver.HSQLDB.load();
-        db = DriverManager.getConnection(JDBC_URI, DB_USER, DB_PASSWORD);
     }
 
     /**
@@ -129,7 +128,7 @@ public abstract class DbTestCase {
     @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void createTable() throws SQLException, IOException, URISyntaxException {
         final String tableSql = SqlLoader.loadSql(tableSql());
-        final Statement createTableStatement = db.createStatement();
+        final Statement createTableStatement = db().createStatement();
         createTableStatement.execute(tableSql);
         createTableStatement.close();
     }
@@ -151,7 +150,7 @@ public abstract class DbTestCase {
     @SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     private void insertTestData() throws SQLException, URISyntaxException, IOException {
         final String dataSql = SqlLoader.loadSql(testDataSql());
-        final Statement insertDataStatement = db.createStatement();
+        final Statement insertDataStatement = db().createStatement();
         insertDataStatement.execute(dataSql);
         insertDataStatement.close();
     }
