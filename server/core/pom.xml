@@ -10,11 +10,11 @@
     </parent>
 
     <groupId>org.lafayette</groupId>
-    <artifactId>server-model</artifactId>
+    <artifactId>server-core</artifactId>
     <packaging>jar</packaging>
 
-    <name>Lafayette Server Model</name>
-    <description>Domain model for Lafayette Server Application</description>
+    <name>Lafayette Server Core</name>
+    <description>Common core classes for Lafayette Server Application</description>
 
     <properties>
         <site.basedir>${project.parent.basedir}</site.basedir>
@@ -25,13 +25,7 @@
         <maven.findbugs.includefilterfile>${project.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.lafayette</groupId>
-            <artifactId>server-core</artifactId>
-            <version>0.1.2-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <dependencies/>
 
     <build>
         <plugins>
