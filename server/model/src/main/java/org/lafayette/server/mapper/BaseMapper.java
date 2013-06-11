@@ -17,6 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import javax.sql.DataSource;
+import org.apache.commons.lang3.Validate;
 import org.lafayette.server.DomainModelException;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.mapper.id.IntegerIdentityMap;
@@ -28,6 +30,8 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
+
+//    private static final Logger LOG = Log.getLogger(BaseMapper.class);
 
     /**
      * Generic find by id query.
@@ -65,8 +69,15 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
     /**
      * Used JDBC database connection.
+     *
+     * @deprecated
      */
+    @Deprecated
     protected final Connection db;
+    /**
+     * Manages database connections.
+     */
+    private final DataSource dataSource = null;
     /**
      * Caches domain object loaded from database in memory.
      *
@@ -342,6 +353,20 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             return nextId;
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
+        }
+    }
+
+    protected synchronized Connection getConnection() throws SQLException {
+        return dataSource.getConnection();
+    }
+
+    protected synchronized void freeConnection(final Connection connection) {
+        Validate.notNull(connection);
+
+        try {
+            connection.close();
+        } catch (Exception ex) {
+//            LOG.fatal("Threw an exception closing a database connection: %s", ex);
         }
     }
 }
