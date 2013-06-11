@@ -9,7 +9,6 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
 package org.lafayette.server;
 
 import com.google.inject.Injector;
@@ -17,9 +16,11 @@ import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.util.Properties;
+import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
+import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
@@ -69,6 +70,10 @@ public final class Registry {
      * Manages dependencies.
      */
     private Injector dependnecyInjector = new NullInjector();
+    /**
+     * Manages database connections.
+     */
+    private DataSource dataSource = new NullDataSource();
 
     /**
      * Dedicated constructor.
@@ -210,6 +215,14 @@ public final class Registry {
      */
     public Injector getDependnecyInjector() {
         return dependnecyInjector;
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(final DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
 }

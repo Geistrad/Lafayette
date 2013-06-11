@@ -24,8 +24,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.sql.DataSource;
 import org.lafayette.server.config.ConfigLoader;
 import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.JdbcDriver;
@@ -52,6 +55,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
      * Logging facility.
      */
     private static final Logger LOG = Log.getLogger(ServerContextListener.class);
+    private static final String JNDI_NAME_DATA_SOURCE = "java:/comp/env/jdbc/mysql";
     /**
      * Registry shared over the whole web application.
      */
@@ -83,6 +87,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         final ServerConfig config = loadConfig();
         final Connection con = openDatabaseConnection(config);
         createMappersFactory(con);
+        createDataSource();
         sce.getServletContext().setAttribute(REGISRTY, reg);
     }
 
@@ -204,5 +209,21 @@ public final class ServerContextListener extends GuiceServletContextListener imp
      */
     private void createMappersFactory(final Connection con) {
         reg.setMappers(new Mappers(con));
+    }
+
+    private void createDataSource() {
+        try {
+            LOG.info("Create data source.");
+            final InitialContext initialContext = new InitialContext();
+            final DataSource dataSource = (DataSource) initialContext.lookup(JNDI_NAME_DATA_SOURCE);
+
+            if (null == dataSource) {
+                LOG.error("Can't lookup data source via JNDI!");
+            } else {
+                reg.setDataSource(dataSource);
+            }
+        } catch (NamingException ex) {
+            LOG.fatal(ex.getMessage());
+        }
     }
 }
