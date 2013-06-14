@@ -10,8 +10,11 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.config;
+package org.lafayette.server.core.config;
 
+import org.lafayette.server.core.config.ConfigLoader;
+import org.lafayette.server.core.config.TestStrategy;
+import org.lafayette.server.core.config.ServerConfig;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;

@@ -10,13 +10,13 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.config;
+package org.lafayette.server.core.config;
 
+import org.lafayette.server.core.EnvVars;
 import de.weltraumschaf.commons.system.OperatingSystem;
 import java.io.File;
-import org.lafayette.server.EnvVars;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Log;
+import org.lafayette.server.core.log.Logger;
 
 /**
  * Load server configuration file.

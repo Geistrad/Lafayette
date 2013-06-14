@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
-import org.lafayette.server.config.ServerConfig;
+import org.lafayette.server.core.config.ServerConfig;
 import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
@@ -50,10 +50,6 @@ public final class Registry {
      * Stage of the server.
      */
     private Stage stage = new Stage();
-    /**
-     * Service configuration.
-     */
-    private ServerConfig serverConfig = new ServerConfig(new Properties());
     /**
      * Used to generate server nonce for authentication.
      */
@@ -117,27 +113,6 @@ public final class Registry {
     public void setStage(final Stage s) {
         Validate.notNull(s, "Stage must not be null!");
         this.stage = s;
-    }
-
-    /**
-     * Get the server configuration.
-     *
-     * @return never {@code null}
-     */
-    @Deprecated
-    public ServerConfig getServerConfig() {
-        return serverConfig;
-    }
-
-    /**
-     * Set the server configuration.
-     *
-     * @param sc must not be null
-     */
-    @Deprecated
-    public void setServerConfig(final ServerConfig sc) {
-        Validate.notNull(sc, "Server configuration must not be null!");
-        this.serverConfig = sc;
     }
 
     /**

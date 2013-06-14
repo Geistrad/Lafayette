@@ -32,8 +32,8 @@ import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.domain.Finders;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Log;
+import org.lafayette.server.core.log.Logger;
 import org.msgpack.MessagePack;
 
 /**

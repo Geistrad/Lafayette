@@ -37,8 +37,8 @@ import org.lafayette.server.http.digest.AuthorizationHeaderParser;
 import org.lafayette.server.http.digest.Digest;
 import org.lafayette.server.http.digest.RequestParameters;
 import org.lafayette.server.http.digest.ResponseParameters;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Log;
+import org.lafayette.server.core.log.Logger;
 
 /**
  * Filters resource request/response for digest authentication.
@@ -105,7 +105,7 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
         if (header.isEmpty()) {
             log.debug("Request doesn't have authentication header! Send authentication response.");
             final ResponseParameters params = new ResponseParameters();
-            params.setRealm(registry().getServerConfig().getSecurotyRealm());
+            params.setRealm(registry().getInitParameters().getRealm());
             params.setNonce(registry().getNongeGenerator().getNext());
             throw new UnauthorizedException(params);
         } else {

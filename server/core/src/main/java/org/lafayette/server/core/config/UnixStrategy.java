@@ -9,14 +9,14 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.config;
+package org.lafayette.server.core.config;
 
 import com.google.common.collect.Lists;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Log;
+import org.lafayette.server.core.log.Logger;
 
 /**
  * Strategy to find configuration file.

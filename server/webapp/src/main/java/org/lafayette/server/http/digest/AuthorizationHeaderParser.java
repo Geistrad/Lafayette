@@ -12,8 +12,8 @@
 package org.lafayette.server.http.digest;
 
 import org.apache.commons.lang3.Validate;
-import org.lafayette.server.log.Log;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Log;
+import org.lafayette.server.core.log.Logger;
 
 /**
  * Parses the "Authorization" header field from a HTTP request.

@@ -11,6 +11,6 @@
  */
 
 /**
- * Package for configuration stuff.
+ * Utilities for logging.
  */
-package org.lafayette.server.config;
+package org.lafayette.server.core.log;

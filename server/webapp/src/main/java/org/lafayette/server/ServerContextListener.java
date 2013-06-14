@@ -11,10 +11,11 @@
  */
 package org.lafayette.server;
 
+import org.lafayette.server.core.EnvVars;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
-import org.lafayette.server.log.Log;
+import org.lafayette.server.core.log.Log;
 import de.weltraumschaf.commons.Version;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,10 +28,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
-import org.lafayette.server.config.ConfigLoader;
-import org.lafayette.server.config.ServerConfig;
+import org.lafayette.server.core.config.ConfigLoader;
+import org.lafayette.server.core.config.ServerConfig;
 import org.lafayette.server.db.NullDataSource;
-import org.lafayette.server.log.Logger;
+import org.lafayette.server.core.log.Logger;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.web.InitialServletParameters;
 

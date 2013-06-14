@@ -136,7 +136,7 @@ public class RegisrationUI extends UI {
                     registration.registerNewUser(
                             loginName,
                             password,
-                            registry().getServerConfig().getSecurotyRealm(),
+                            registry().getInitParameters().getRealm(),
                             emailAddress);
                 } catch (ServiceExcpetion ex) {
                     Notification.show("Error!", ex.getMessage(), Notification.Type.ERROR_MESSAGE);

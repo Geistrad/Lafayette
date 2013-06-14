@@ -21,12 +21,13 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.lafayette.server.config.ServerConfig;
+import org.lafayette.server.core.config.ServerConfig;
 import org.lafayette.server.db.NullConnection;
 import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
+import org.lafayette.server.web.InitialServletParameters;
 
 /**
  * Tests for {@link Registry}.
@@ -47,7 +48,7 @@ public class RegistryTest {
     @Test
     public void defaultReturnsNeverNullBut() {
         assertThat(sut.getDataSource(), is(notNullValue()));
-        assertThat(sut.getServerConfig(), is(notNullValue()));
+        assertThat(sut.getInitParameters(), is(notNullValue()));
         assertThat(sut.getStage(), is(notNullValue()));
         assertThat(sut.getVersion(), is(notNullValue()));
         assertThat(sut.getMappers(), is(notNullValue()));
@@ -61,9 +62,9 @@ public class RegistryTest {
     }
 
     @Test
-    public void setServerConfig_throwsExceptionIfParameterIsNull() {
+    public void setInitParameters_throwsExceptionIfParameterIsNull() {
         thrown.expect(NullPointerException.class);
-        sut.setServerConfig(null);
+        sut.setInitParameters(null);
     }
 
     @Test
@@ -104,10 +105,10 @@ public class RegistryTest {
     }
 
     @Test
-    public void setServerConfig() {
-        final ServerConfig config = new ServerConfig(new Properties());
-        sut.setServerConfig(config);
-        assertThat(sut.getServerConfig(), is(sameInstance(config)));
+    public void setInitParameters() {
+        final InitialServletParameters context = new InitialServletParameters();
+        sut.setInitParameters(context);
+        assertThat(sut.getInitParameters(), is(sameInstance(context)));
     }
 
     @Test

@@ -10,7 +10,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.log;
+package org.lafayette.server.core.log;
 
 /**
  * Get Log4J loggers.
