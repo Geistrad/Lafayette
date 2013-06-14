@@ -37,13 +37,18 @@
         <location>/http_error_500.jsp</location>
     </error-page>
 
-	<resource-ref>
-	  <description>MySQL data source</description>
-	  <res-ref-name>jdbc/mysql</res-ref-name>
-	  <res-type>javax.sql.DataSource</res-type>
-	  <res-auth>Container</res-auth>
-	</resource-ref>
-	
+    <resource-ref>
+        <description>MySQL data source</description>
+        <res-ref-name>jdbc/mysql</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <context-param>
+        <param-name>realm</param-name>
+        <param-value>Lafayette restricted area.</param-value>
+    </context-param>
+
     <listener>
         <display-name>application</display-name>
         <listener-class>org.lafayette.server.ServerContextListener</listener-class>
@@ -85,7 +90,7 @@
     </servlet-mapping>
 
     <!-- Registration w/ Vaadin -->
-<!--    <context-param>
+    <!--    <context-param>
         <description>Vaadin production mode</description>
         <param-name>productionMode</param-name>
         <param-value>false</param-value>

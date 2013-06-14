@@ -38,6 +38,11 @@
         </dependency>
         <dependency>
             <groupId>org.lafayette</groupId>
+            <artifactId>server-web</artifactId>
+            <version>0.1.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lafayette</groupId>
             <artifactId>server-model</artifactId>
             <version>0.1.2-SNAPSHOT</version>
         </dependency>

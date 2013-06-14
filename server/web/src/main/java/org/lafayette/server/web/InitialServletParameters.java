@@ -13,33 +13,34 @@
 package org.lafayette.server.web;
 
 import javax.servlet.GenericServlet;
+import javax.servlet.ServletContext;
 
 /**
  * Wraps a {@link GenericServlet} to get type safe configuration.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class InitialServletParametrs {
+public class InitialServletParameters {
 
-    /**
-     * Name of the realm parameter.
-     */
-    static final String PARMA_NAME_REALM = "REALM";
     private static final String EMPTY_STRING = "";
+    static final String PARAM_NAME_REALM = "realm";
+    private final String realm;
 
     /**
-     * To get parameters from.
+     * Initializes all parameters with an empty string.
      */
-    private final GenericServlet servlet;
+    public InitialServletParameters() {
+        this(null);
+    }
 
     /**
      * Dedicated constructor.
      *
-     * @param servlet to get parameters from
+     * @param context to get parameters from
      */
-    public InitialServletParametrs(final GenericServlet servlet) {
+    public InitialServletParameters(final ServletContext context) {
         super();
-        this.servlet = servlet;
+        realm = null == context ? EMPTY_STRING : context.getInitParameter(PARAM_NAME_REALM);
     }
 
     /**
@@ -48,17 +49,7 @@ public class InitialServletParametrs {
      * @return never {@code null} but maybe empty
      */
     public String getRealm() {
-        return getInitParameter(PARMA_NAME_REALM);
+        return realm;
     }
 
-    /**
-     * Generic getter which avoids {@code null}.
-     *
-     * @param name name of property
-     * @return never {@code null} but maybe empty
-     */
-    String getInitParameter(final String name) {
-        final String value = servlet.getInitParameter(name);
-        return null == value ? EMPTY_STRING : value;
-    }
 }

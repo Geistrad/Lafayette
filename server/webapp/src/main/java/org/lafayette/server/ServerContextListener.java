@@ -23,6 +23,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
@@ -31,6 +32,7 @@ import org.lafayette.server.config.ServerConfig;
 import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.log.Logger;
 import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.web.InitialServletParameters;
 
 /**
  * Implements a servlet context listener.
@@ -83,10 +85,11 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         LOG.debug("Context initialized. Execute listener...");
         loadVersion();
         loadStage();
-        final ServerConfig config = loadConfig();
         final DataSource dataSource = createDataSource();
         createMappersFactory(dataSource);
-        sce.getServletContext().setAttribute(REGISRTY, reg);
+        final ServletContext servletContext = sce.getServletContext();
+        reg.setInitParameters(new InitialServletParameters(servletContext));
+        servletContext.setAttribute(REGISRTY, reg);
     }
 
     @Override
@@ -118,44 +121,6 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         final Stage stage = new Stage(envStage);
         LOG.info("Loaded stage %s.", stage.toString());
         reg.setStage(stage);
-    }
-
-    /**
-     * Add server configuration to the {@link Registry registry}.
-     *
-     * @return loaded server configuration
-     */
-    private ServerConfig loadConfig() {
-        final Properties configProperties = new Properties();
-        final ServerConfig serverConfig = new ServerConfig(configProperties);
-        reg.setServerConfig(serverConfig);
-        FileInputStream input = null;
-
-        try {
-            final ConfigLoader loader = ConfigLoader.create();
-            loader.load();
-
-            if (loader.hasConfig()) {
-                final File configFile = loader.getFile();
-                LOG.info("Read server config from file '%s'!", configFile.getAbsolutePath());
-                input = new FileInputStream(configFile);
-                configProperties.load(input);
-            } else {
-                LOG.warn("No server config found!");
-            }
-        } catch (IOException ex) {
-            LOG.fatal("Error reading server config: %s", ex.toString());
-        } finally {
-            try {
-                if (input != null) {
-                    input.close();
-                }
-            } catch (IOException ex) {
-                LOG.fatal("Error closing config file: %s", ex.toString());
-            }
-        }
-
-        return serverConfig;
     }
 
     /**

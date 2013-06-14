@@ -19,11 +19,11 @@ import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.config.ServerConfig;
-import org.lafayette.server.db.NullConnection;
 import org.lafayette.server.db.NullDataSource;
 import org.lafayette.server.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
+import org.lafayette.server.web.InitialServletParameters;
 
 /**
  * Registers shared core resources.
@@ -70,6 +70,7 @@ public final class Registry {
      * Mapper factory.
      */
     private Mappers mappers = new Mappers(dataSource);
+    private InitialServletParameters initParameters = new InitialServletParameters();
 
     /**
      * Dedicated constructor.
@@ -123,6 +124,7 @@ public final class Registry {
      *
      * @return never {@code null}
      */
+    @Deprecated
     public ServerConfig getServerConfig() {
         return serverConfig;
     }
@@ -132,6 +134,7 @@ public final class Registry {
      *
      * @param sc must not be null
      */
+    @Deprecated
     public void setServerConfig(final ServerConfig sc) {
         Validate.notNull(sc, "Server configuration must not be null!");
         this.serverConfig = sc;
@@ -201,6 +204,15 @@ public final class Registry {
     public void setDataSource(final DataSource dataSource) {
         Validate.notNull(dataSource, "Data source must not be null!");
         this.dataSource = dataSource;
+    }
+
+    public InitialServletParameters getInitParameters() {
+        return initParameters;
+    }
+
+    public void setInitParameters(InitialServletParameters initParameters) {
+        Validate.notNull(dataSource, "Init parameters must not be null!");
+        this.initParameters = initParameters;
     }
 
 }
