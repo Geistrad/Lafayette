@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130614" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Lafayette Server Application - Dependency Updates Report</title>
+    <title>Lafayette Server Core - Dependency Updates Report</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -38,8 +38,8 @@
         <div class="container-fluid">
           <div id="banner">
         <div class="pull-left">
-                                                  <a href="index.html" id="bannerLeft" title="Lafayette Server">
-                                                                                                <img src="images/topbar-logo.png"  alt="Lafayette Server"/>
+                                                  <a href="../index.html" id="bannerLeft" title="Lafayette Server">
+                                                                                                <img src="../images/topbar-logo.png"  alt="Lafayette Server"/>
                 </a>
                       </div>
         <div class="pull-right">  </div>
@@ -62,6 +62,11 @@
         Continious Integration</a>
         </li>
       <li class="divider ">/</li>
+                <li class="">
+                    <a href="./" title="Lafayette Server Core">
+        Lafayette Server Core</a>
+        </li>
+      <li class="divider ">/</li>
         <li class="">Dependency Updates Report</li>
                 
                 
@@ -77,94 +82,7 @@
                 
                     
                 <ul class="nav nav-list">
-                    <li class="nav-header">Lafayette Server</li>
-                                
-      <li>
-    
-                          <a href="index.html" title="Home">
-          <i class="none"></i>
-        Home</a>
-            </li>
-                              <li class="nav-header">Documentation</li>
-                                
-      <li>
-    
-                          <a href="appliance.html" title="Appliance">
-          <i class="none"></i>
-        Appliance</a>
-            </li>
-                  
-      <li>
-    
-                          <a href="architecture.html" title="Architecture">
-          <i class="none"></i>
-        Architecture</a>
-            </li>
-                              <li class="nav-header">Reports</li>
-                                                                                                                                                                                                                                                    
-      <li>
-    
-                          <a href="project-info.html" title="Project Information">
-          <i class="icon-chevron-right"></i>
-        Project Information</a>
-                  </li>
-                                                                                                                                                                                          
-      <li>
-    
-                          <a href="project-reports.html" title="Project Reports">
-          <i class="icon-chevron-down"></i>
-        Project Reports</a>
-                    <ul class="nav nav-list">
-                      
-      <li>
-    
-                          <a href="xref/index.html" title="Source Xref">
-          <i class="none"></i>
-        Source Xref</a>
-            </li>
-                      
-      <li class="active">
-    
-            <a href="#"><i class="none"></i>Dependency Updates Report</a>
-          </li>
-                      
-      <li>
-    
-                          <a href="plugin-updates-report.html" title="Plugin Updates Report">
-          <i class="none"></i>
-        Plugin Updates Report</a>
-            </li>
-                      
-      <li>
-    
-                          <a href="dev-activity.html" title="Developer Activity">
-          <i class="none"></i>
-        Developer Activity</a>
-            </li>
-                      
-      <li>
-    
-                          <a href="file-activity.html" title="File Activity">
-          <i class="none"></i>
-        File Activity</a>
-            </li>
-                      
-      <li>
-    
-                          <a href="changelog.html" title="Change Log">
-          <i class="none"></i>
-        Change Log</a>
-            </li>
-                      
-      <li>
-    
-                          <a href="javancss.html" title="JavaNCSS Report">
-          <i class="none"></i>
-        JavaNCSS Report</a>
-            </li>
-              </ul>
-        </li>
-            </ul>
+  </ul>
                 
                     
                 
@@ -191,7 +109,7 @@
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of dependencies using the latest version available</td>
-<td>12</td></tr>
+<td>13</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is smaller than an incremental version update</td>
@@ -199,7 +117,7 @@
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is an incremental version update</td>
-<td>0</td></tr>
+<td>1</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is a minor version update</td>
@@ -275,6 +193,18 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>commons-logging</td>
+<td>commons-logging</td>
+<td>1.1.2</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td><b>1.1.3</b></td>
+<td></td>
+<td><b>99.0-does-not-exist</b></td></tr>
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>commons-validator</td>
 <td>commons-validator</td>
@@ -286,7 +216,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>de.weltraumschaf</td>
 <td>commons</td>
@@ -298,7 +228,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td>javax</td>
 <td>javaee-web-api</td>
@@ -310,7 +240,7 @@
 <td></td>
 <td></td>
 <td><b>7.0</b></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td>javax.servlet</td>
 <td>servlet-api</td>
@@ -322,7 +252,7 @@
 <td></td>
 <td><b>3.0-alpha-1</b></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td>javax.servlet.jsp</td>
 <td>jsp-api</td>
@@ -334,7 +264,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>joda-time</td>
 <td>joda-time</td>
@@ -346,12 +276,24 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>junit</td>
 <td>junit</td>
 <td>4.11</td>
 <td>test</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>log4j</td>
+<td>log4j</td>
+<td>1.2.17</td>
+<td>compile</td>
 <td></td>
 <td>jar</td>
 <td></td>
@@ -517,6 +459,33 @@
 <tr class="a">
 <th width="80%">Type</th>
 <td>jar</td></tr></table></div>
+<div class="section">
+<h3>commons-logging:commons-logging<a name="commons-logging:commons-logging"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>commons-logging</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>commons-logging</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.1.2</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr>
+<tr class="b">
+<th width="80%">Newer versions</th>
+<td><b>1.1.3</b>&#160;<i>Next Incremental</i><br /><b>99.0-does-not-exist</b>&#160;<i>Next Major</i></td></tr></table></div>
 <div class="section">
 <h3>commons-validator:commons-validator<a name="commons-validator:commons-validator"></a></h3>
 <table border="0" class="table table-striped">
@@ -688,6 +657,30 @@
 <tr class="a">
 <th width="80%">Scope</th>
 <td>test</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr></table></div>
+<div class="section">
+<h3>log4j:log4j<a name="log4j:log4j"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>log4j</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>log4j</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.2.17</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
 <tr class="b">
 <th width="80%">Classifier</th>
 <td></td></tr>
