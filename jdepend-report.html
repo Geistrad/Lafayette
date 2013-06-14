@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130614" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Lafayette Server Core - JDepend Report Metrics</title>
+    <title>Lafayette Server Model - JDepend Report Metrics</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -63,8 +63,8 @@
         </li>
       <li class="divider ">/</li>
                 <li class="">
-                    <a href="./" title="Lafayette Server Core">
-        Lafayette Server Core</a>
+                    <a href="./" title="Lafayette Server Model">
+        Lafayette Server Model</a>
         </li>
       <li class="divider ">/</li>
         <li class="">JDepend Report Metrics</li>
@@ -118,7 +118,7 @@
 <th>D</th>
 <th>V</th></tr>
 <tr class="b">
-<td><a href="#org.lafayette.server.core">org.lafayette.server.core</a></td>
+<td><a href="#org.lafayette.server">org.lafayette.server</a></td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -129,29 +129,51 @@
 <td>50.0%</td>
 <td>1</td></tr>
 <tr class="a">
-<td><a href="#org.lafayette.server.core.config">org.lafayette.server.core.config</a></td>
-<td>6</td>
+<td><a href="#org.lafayette.server.db">org.lafayette.server.db</a></td>
 <td>5</td>
-<td>1</td>
+<td>5</td>
+<td>0</td>
 <td>0</td>
 <td>8</td>
-<td>17.0%</td>
+<td>0.0%</td>
 <td>100.0%</td>
-<td>17.0%</td>
+<td>0.0%</td>
 <td>1</td></tr>
 <tr class="b">
-<td><a href="#org.lafayette.server.core.log">org.lafayette.server.core.log</a></td>
-<td>2</td>
-<td>2</td>
-<td>0</td>
-<td>1</td>
+<td><a href="#org.lafayette.server.domain">org.lafayette.server.domain</a></td>
+<td>8</td>
+<td>5</td>
 <td>3</td>
-<td>0.0%</td>
-<td>75.0%</td>
-<td>25.0%</td>
+<td>2</td>
+<td>7</td>
+<td>38.0%</td>
+<td>78.0%</td>
+<td>15.000001%</td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#org.lafayette.server.mapper">org.lafayette.server.mapper</a></td>
+<td>8</td>
+<td>4</td>
+<td>4</td>
+<td>1</td>
+<td>10</td>
+<td>50.0%</td>
+<td>91.0%</td>
+<td>41.0%</td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#org.lafayette.server.mapper.id">org.lafayette.server.mapper.id</a></td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>33.0%</td>
+<td>80.0%</td>
+<td>13.0%</td>
 <td>1</td></tr></table><a name="packages"></a>
-<h2>Packages<a name="Packages"></a></h2>[ <a href="#summary">summary</a> ] [ <a href="#packages">packages</a> ] [ <a href="#cycles">cycles</a> ] [ <a href="#explanations">explanations</a> ] <br /><a name="org.lafayette.server.core"></a>
-<h3>org.lafayette.server.core<a name="org.lafayette.server.core"></a></h3>
+<h2>Packages<a name="Packages"></a></h2>[ <a href="#summary">summary</a> ] [ <a href="#packages">packages</a> ] [ <a href="#cycles">cycles</a> ] [ <a href="#explanations">explanations</a> ] <br /><a name="org.lafayette.server"></a>
+<h3>org.lafayette.server<a name="org.lafayette.server"></a></h3>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Afferent Couplings</th>
@@ -173,10 +195,10 @@
 <th>Uses Packages</th></tr>
 <tr class="b">
 <td><i>None</i></td>
-<td>org.lafayette.server.core.EnvVars<br /></td>
-<td>org.lafayette.server.core.config<br /></td>
-<td>java.lang<br /></td></tr></table><a name="org.lafayette.server.core.config"></a>
-<h3>org.lafayette.server.core.config<a name="org.lafayette.server.core.config"></a></h3>
+<td>org.lafayette.server.DomainModelException<br /></td>
+<td>org.lafayette.server.mapper<br /></td>
+<td>java.lang<br /></td></tr></table><a name="org.lafayette.server.db"></a>
+<h3>org.lafayette.server.db<a name="org.lafayette.server.db"></a></h3>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Afferent Couplings</th>
@@ -187,9 +209,9 @@
 <tr class="b">
 <td>0</td>
 <td>8</td>
-<td>17.0%</td>
+<td>0.0%</td>
 <td>100.0%</td>
-<td>17.0%</td></tr></table>
+<td>0.0%</td></tr></table>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Abstract Classes</th>
@@ -197,11 +219,36 @@
 <th>Used by Packages</th>
 <th>Uses Packages</th></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.LoaderStrategie<br /></td>
-<td>org.lafayette.server.core.config.ConfigLoader<br />org.lafayette.server.core.config.ServerConfig<br />org.lafayette.server.core.config.TestStrategy<br />org.lafayette.server.core.config.UnixStrategy<br />org.lafayette.server.core.config.WindowsStrategy<br /></td>
 <td><i>None</i></td>
-<td>com.google.common.collect<br />de.weltraumschaf.commons.system<br />java.io<br />java.lang<br />java.net<br />java.util<br />org.lafayette.server.core<br />org.lafayette.server.core.log<br /></td></tr></table><a name="org.lafayette.server.core.log"></a>
-<h3>org.lafayette.server.core.log<a name="org.lafayette.server.core.log"></a></h3>
+<td>org.lafayette.server.db.NullConnection<br />org.lafayette.server.db.NullConnection$NullPreparedStatement<br />org.lafayette.server.db.NullConnection$NullResultSet<br />org.lafayette.server.db.NullDataSource<br />org.lafayette.server.db.SqlLoader<br /></td>
+<td><i>None</i></td>
+<td>java.io<br />java.lang<br />java.math<br />java.net<br />java.sql<br />java.util<br />javax.sql<br />org.apache.commons.io<br /></td></tr></table><a name="org.lafayette.server.domain"></a>
+<h3>org.lafayette.server.domain<a name="org.lafayette.server.domain"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th></tr>
+<tr class="b">
+<td>2</td>
+<td>7</td>
+<td>38.0%</td>
+<td>78.0%</td>
+<td>15.000001%</td></tr></table>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.DomainObject<br />org.lafayette.server.domain.RoleFinder<br />org.lafayette.server.domain.UserFinder<br /></td>
+<td>org.lafayette.server.domain.BaseDomainObject<br />org.lafayette.server.domain.Finders<br />org.lafayette.server.domain.Role<br />org.lafayette.server.domain.Role$Names<br />org.lafayette.server.domain.User<br /></td>
+<td>org.lafayette.server.mapper<br />org.lafayette.server.mapper.id<br /></td>
+<td>com.google.common.base<br />com.google.common.collect<br />java.lang<br />java.security<br />java.util<br />org.apache.commons.lang3<br />org.lafayette.server.mapper<br /></td></tr></table><a name="org.lafayette.server.mapper"></a>
+<h3>org.lafayette.server.mapper<a name="org.lafayette.server.mapper"></a></h3>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Afferent Couplings</th>
@@ -211,10 +258,10 @@
 <th>Distance</th></tr>
 <tr class="b">
 <td>1</td>
-<td>3</td>
-<td>0.0%</td>
-<td>75.0%</td>
-<td>25.0%</td></tr></table>
+<td>10</td>
+<td>50.0%</td>
+<td>91.0%</td>
+<td>41.0%</td></tr></table>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Abstract Classes</th>
@@ -222,11 +269,49 @@
 <th>Used by Packages</th>
 <th>Uses Packages</th></tr>
 <tr class="b">
-<td><i>None</i></td>
-<td>org.lafayette.server.core.log.Log<br />org.lafayette.server.core.log.Logger<br /></td>
-<td>org.lafayette.server.core.config<br /></td>
-<td>java.lang<br />java.util<br />org.apache.log4j<br /></td></tr></table><a name="cycles"></a>
-<h2>Cycles<a name="Cycles"></a></h2>[ <a href="#summary">summary</a> ] [ <a href="#packages">packages</a> ] [ <a href="#cycles">cycles</a> ] [ <a href="#explanations">explanations</a> ] <br /><br />There are no cyclic dependencies.<br /><a name="explanations"></a>
+<td>org.lafayette.server.mapper.BaseMapper<br />org.lafayette.server.mapper.BaseStatementSource<br />org.lafayette.server.mapper.Mapper<br />org.lafayette.server.mapper.StatementSource<br /></td>
+<td>org.lafayette.server.mapper.BaseMapper$1<br />org.lafayette.server.mapper.Mappers<br />org.lafayette.server.mapper.RoleMapper<br />org.lafayette.server.mapper.UserMapper<br /></td>
+<td>org.lafayette.server.domain<br /></td>
+<td>com.google.common.collect<br />java.lang<br />java.sql<br />java.util<br />javax.sql<br />org.apache.commons.lang3<br />org.lafayette.server<br />org.lafayette.server.core.log<br />org.lafayette.server.domain<br />org.lafayette.server.mapper.id<br /></td></tr></table><a name="org.lafayette.server.mapper.id"></a>
+<h3>org.lafayette.server.mapper.id<a name="org.lafayette.server.mapper.id"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Afferent Couplings</th>
+<th>Efferent Couplings</th>
+<th>Abstractness</th>
+<th>Instability</th>
+<th>Distance</th></tr>
+<tr class="b">
+<td>1</td>
+<td>4</td>
+<td>33.0%</td>
+<td>80.0%</td>
+<td>13.0%</td></tr></table>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Abstract Classes</th>
+<th>Concrete Classes</th>
+<th>Used by Packages</th>
+<th>Uses Packages</th></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.id.IdentityMap<br /></td>
+<td>org.lafayette.server.mapper.id.BaseIdentityMap<br />org.lafayette.server.mapper.id.IntegerIdentityMap<br /></td>
+<td>org.lafayette.server.mapper<br /></td>
+<td>com.google.common.collect<br />java.lang<br />java.util<br />org.lafayette.server.domain<br /></td></tr></table><a name="cycles"></a>
+<h2>Cycles<a name="Cycles"></a></h2>[ <a href="#summary">summary</a> ] [ <a href="#packages">packages</a> ] [ <a href="#cycles">cycles</a> ] [ <a href="#explanations">explanations</a> ] <br /><br />
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Package</th>
+<th>Package Dependencies</th></tr>
+<tr class="b">
+<td>org.lafayette.server.domain</td>
+<td>org.lafayette.server.mapper<br />org.lafayette.server.mapper.id<br />org.lafayette.server.domain<br /></td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper</td>
+<td>org.lafayette.server.mapper.id<br />org.lafayette.server.domain<br />org.lafayette.server.mapper<br /></td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.id</td>
+<td>org.lafayette.server.domain<br />org.lafayette.server.mapper<br />org.lafayette.server.mapper.id<br /></td></tr></table><a name="explanations"></a>
 <h2>Explanation<a name="Explanation"></a></h2>[ <a href="#summary">summary</a> ] [ <a href="#packages">packages</a> ] [ <a href="#cycles">cycles</a> ] [ <a href="#explanations">explanations</a> ] <br /><br />The following explanations are for quick reference and are lifted directly from the original JDepend documentation.<br /><br />
 <table border="0" class="table table-striped">
 <tr class="a">
