@@ -1,3 +1,5 @@
-org.lafayette.server.core
-org.lafayette.server.core.config
-org.lafayette.server.core.log
+org.lafayette.server
+org.lafayette.server.db
+org.lafayette.server.domain
+org.lafayette.server.mapper
+org.lafayette.server.mapper.id
