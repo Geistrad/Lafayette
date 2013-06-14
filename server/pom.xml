@@ -17,6 +17,7 @@
         <module>model</module>
         <module>webapp</module>
         <module>core</module>
+        <module>web</module>
     </modules>
 
     <developers>
