@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130615" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Lafayette Server Core - JavaNCSS Metric Results</title>
+    <title>Lafayette Server Model - JavaNCSS Metric Results</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -63,8 +63,8 @@
         </li>
       <li class="divider ">/</li>
                 <li class="">
-                    <a href="./" title="Lafayette Server Core">
-        Lafayette Server Core</a>
+                    <a href="./" title="Lafayette Server Model">
+        Lafayette Server Model</a>
         </li>
       <li class="divider ">/</li>
         <li class="">JavaNCSS Metric Results</li>
@@ -121,32 +121,50 @@
 <th>Single lines comment</th>
 <th>Multi lines comment</th></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config</td>
-<td>6</td>
-<td>34</td>
-<td>161</td>
-<td>31</td>
-<td>182</td>
-<td>2</td>
-<td>137</td></tr>
+<td>org.lafayette.server.db</td>
+<td>5</td>
+<td>458</td>
+<td>752</td>
+<td>5</td>
+<td>26</td>
+<td>4</td>
+<td>50</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.log</td>
-<td>2</td>
-<td>25</td>
-<td>65</td>
-<td>27</td>
-<td>162</td>
-<td>6</td>
-<td>39</td></tr>
+<td>org.lafayette.server.mapper</td>
+<td>8</td>
+<td>64</td>
+<td>305</td>
+<td>41</td>
+<td>269</td>
+<td>19</td>
+<td>179</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core</td>
+<td>org.lafayette.server.domain</td>
+<td>7</td>
+<td>56</td>
+<td>179</td>
+<td>52</td>
+<td>313</td>
+<td>0</td>
+<td>124</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.id</td>
+<td>3</td>
+<td>17</td>
+<td>40</td>
+<td>13</td>
+<td>82</td>
+<td>0</td>
+<td>50</td></tr>
+<tr class="b">
+<td>org.lafayette.server</td>
 <td>1</td>
-<td>1</td>
-<td>6</td>
+<td>3</td>
+<td>8</td>
+<td>4</td>
+<td>21</td>
 <td>0</td>
-<td>0</td>
-<td>0</td>
-<td>41</td></tr></table>
+<td>11</td></tr></table>
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Classes total</th>
@@ -157,13 +175,13 @@
 <th>Single lines comment</th>
 <th>Multi lines comment</th></tr>
 <tr class="b">
-<td>9</td>
-<td>60</td>
-<td>232</td>
-<td>58</td>
-<td>344</td>
-<td>8</td>
-<td>217</td></tr></table></div>
+<td>24</td>
+<td>598</td>
+<td>1284</td>
+<td>115</td>
+<td>711</td>
+<td>23</td>
+<td>414</td></tr></table></div>
 <div class="section">
 <h2><a name="object">Objects</a><a name="Objects"></a></h2>
 <p>[ <a href="#package">package</a> ] [ <a href="#object">object</a> ] [ <a href="#method">method</a> ] [ <a href="#explanation">explanation</a> ]</p>
@@ -176,121 +194,301 @@
 <th>Classes</th>
 <th>Javadocs</th></tr>
 <tr class="b">
-<td>org.lafayette.server.core.log.Logger</td>
-<td>53</td>
-<td>22</td>
-<td>0</td>
-<td>23</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.UnixStrategy</td>
+<td>org.lafayette.server.db.NullConnection</td>
+<td>686</td>
 <td>49</td>
+<td>2</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.NullConnection.NullPreparedStatement</td>
+<td>310</td>
+<td>209</td>
+<td>0</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.db.NullConnection.NullResultSet</td>
+<td>291</td>
+<td>190</td>
+<td>0</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper</td>
+<td>113</td>
+<td>22</td>
+<td>1</td>
+<td>19</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.UserMapper</td>
+<td>59</td>
+<td>14</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.User</td>
+<td>53</td>
+<td>18</td>
+<td>0</td>
+<td>15</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.RoleMapper</td>
+<td>50</td>
+<td>15</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.Role</td>
+<td>43</td>
+<td>10</td>
+<td>1</td>
+<td>8</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.BaseDomainObject</td>
+<td>27</td>
 <td>8</td>
 <td>0</td>
-<td>6</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig</td>
-<td>37</td>
-<td>9</td>
-<td>0</td>
-<td>10</td></tr>
+<td>5</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.ConfigLoader</td>
-<td>32</td>
+<td>org.lafayette.server.mapper.id.BaseIdentityMap</td>
+<td>16</td>
+<td>7</td>
+<td>0</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.db.NullDataSource</td>
+<td>15</td>
+<td>8</td>
+<td>0</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseStatementSource</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>2</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.Mappers</td>
+<td>11</td>
+<td>3</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.Finders</td>
+<td>9</td>
+<td>3</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.RoleFinder</td>
+<td>9</td>
 <td>8</td>
 <td>0</td>
 <td>9</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.TestStrategy</td>
-<td>9</td>
-<td>3</td>
-<td>0</td>
-<td>1</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.WindowsStrategy</td>
+<td>org.lafayette.server.domain.UserFinder</td>
+<td>8</td>
 <td>7</td>
-<td>3</td>
 <td>0</td>
-<td>1</td></tr>
+<td>8</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.log.Log</td>
+<td>org.lafayette.server.mapper.id.IdentityMap</td>
+<td>8</td>
+<td>7</td>
+<td>0</td>
+<td>8</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.SqlLoader</td>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>3</td></tr>
+<tr class="b">
+<td>org.lafayette.server.DomainModelException</td>
 <td>7</td>
 <td>3</td>
 <td>0</td>
 <td>4</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.LoaderStrategie</td>
+<td>org.lafayette.server.mapper.id.IntegerIdentityMap</td>
+<td>7</td>
+<td>3</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseMapper.BaseStatementSource</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.Mapper</td>
 <td>4</td>
 <td>3</td>
 <td>0</td>
 <td>4</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.EnvVars</td>
+<td>org.lafayette.server.mapper.StatementSource</td>
 <td>4</td>
-<td>1</td>
+<td>3</td>
 <td>0</td>
-<td>0</td></tr></table>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.DomainObject</td>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+<td>3</td></tr></table>
 <p><b>TOP 30 classes containing the most methods.</b></p>
 <table border="0" class="table table-striped">
-<tr class="a">
+<tr class="b">
 <th>Object</th>
 <th>NCSS</th>
 <th>Methods</th>
 <th>Classes</th>
 <th>Javadocs</th></tr>
-<tr class="b">
-<td>org.lafayette.server.core.log.Logger</td>
-<td>53</td>
-<td>22</td>
-<td>0</td>
-<td>23</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.ServerConfig</td>
-<td>37</td>
-<td>9</td>
+<td>org.lafayette.server.db.NullConnection.NullPreparedStatement</td>
+<td>310</td>
+<td>209</td>
 <td>0</td>
-<td>10</td></tr>
+<td>0</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.ConfigLoader</td>
-<td>32</td>
+<td>org.lafayette.server.db.NullConnection.NullResultSet</td>
+<td>291</td>
+<td>190</td>
+<td>0</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.NullConnection</td>
+<td>686</td>
+<td>49</td>
+<td>2</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseMapper</td>
+<td>113</td>
+<td>22</td>
+<td>1</td>
+<td>19</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.User</td>
+<td>53</td>
+<td>18</td>
+<td>0</td>
+<td>15</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.RoleMapper</td>
+<td>50</td>
+<td>15</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.UserMapper</td>
+<td>59</td>
+<td>14</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.Role</td>
+<td>43</td>
+<td>10</td>
+<td>1</td>
+<td>8</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.NullDataSource</td>
+<td>15</td>
+<td>8</td>
+<td>0</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.BaseDomainObject</td>
+<td>27</td>
+<td>8</td>
+<td>0</td>
+<td>5</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.RoleFinder</td>
+<td>9</td>
 <td>8</td>
 <td>0</td>
 <td>9</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.UnixStrategy</td>
-<td>49</td>
-<td>8</td>
-<td>0</td>
-<td>6</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.LoaderStrategie</td>
-<td>4</td>
-<td>3</td>
+<td>org.lafayette.server.domain.UserFinder</td>
+<td>8</td>
+<td>7</td>
 <td>0</td>
-<td>4</td></tr>
+<td>8</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.TestStrategy</td>
+<td>org.lafayette.server.mapper.id.BaseIdentityMap</td>
+<td>16</td>
+<td>7</td>
+<td>0</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.id.IdentityMap</td>
+<td>8</td>
+<td>7</td>
+<td>0</td>
+<td>8</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.Finders</td>
 <td>9</td>
 <td>3</td>
 <td>0</td>
-<td>1</td></tr>
+<td>4</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.WindowsStrategy</td>
+<td>org.lafayette.server.DomainModelException</td>
 <td>7</td>
 <td>3</td>
 <td>0</td>
-<td>1</td></tr>
+<td>4</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.log.Log</td>
+<td>org.lafayette.server.mapper.id.IntegerIdentityMap</td>
 <td>7</td>
 <td>3</td>
 <td>0</td>
 <td>4</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.EnvVars</td>
+<td>org.lafayette.server.mapper.Mapper</td>
 <td>4</td>
-<td>1</td>
+<td>3</td>
 <td>0</td>
-<td>0</td></tr></table>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.Mappers</td>
+<td>11</td>
+<td>3</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.StatementSource</td>
+<td>4</td>
+<td>3</td>
+<td>0</td>
+<td>4</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.SqlLoader</td>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>3</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.DomainObject</td>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+<td>3</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.BaseStatementSource</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseStatementSource</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+<td>2</td></tr></table>
 <p><b>Averages.</b></p>
 <table border="0" class="table table-striped">
 <tr class="a">
@@ -300,11 +498,11 @@
 <th>Methods average</th>
 <th>Javadocs average</th></tr>
 <tr class="b">
-<td>22.44</td>
-<td>232.00</td>
-<td>0.00</td>
-<td>6.67</td>
-<td>6.44</td></tr></table></div>
+<td>73.13</td>
+<td>1,284.00</td>
+<td>0.17</td>
+<td>24.92</td>
+<td>4.79</td></tr></table></div>
 <div class="section">
 <h2><a name="method">Methods</a><a name="Methods"></a></h2>
 <p>[ <a href="#package">package</a> ] [ <a href="#object">object</a> ] [ <a href="#method">method</a> ] [ <a href="#explanation">explanation</a> ]</p>
@@ -317,153 +515,153 @@
 <th>CCN</th>
 <th>Javadocs</th></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.UnixStrategy.findConfig()</td>
-<td>19</td>
-<td>7</td>
-<td>0</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ConfigLoader.determineStrategy(String)</td>
-<td>14</td>
+<td>org.lafayette.server.mapper.BaseMapper.abstractFind(int)</td>
+<td>15</td>
 <td>8</td>
 <td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig.generateJdbcUri()</td>
-<td>7</td>
-<td>2</td>
-<td>1</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.config.UnixStrategy.createHomeConfigFileName(String)</td>
+<td>org.lafayette.server.mapper.UserMapper.findByLoginName(String)</td>
+<td>14</td>
+<td>6</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseMapper.insert(T)</td>
+<td>13</td>
+<td>4</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.findNextDatabaseId()</td>
+<td>13</td>
+<td>6</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.Role.Names.forName(String)</td>
+<td>12</td>
+<td>8</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.RoleMapper.update(Role)</td>
+<td>11</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.UserMapper.update(User)</td>
+<td>11</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.findMany(StatementSource)</td>
+<td>10</td>
+<td>4</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseMapper.delete(T)</td>
+<td>10</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.load(ResultSet)</td>
+<td>7</td>
+<td>3</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseStatementSource.prepare(Connection)</td>
+<td>7</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.BaseDomainObject.setId(int)</td>
 <td>6</td>
 <td>5</td>
 <td>1</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig.getDbPort()</td>
+<td>org.lafayette.server.mapper.BaseMapper.findAll(int,int)</td>
+<td>6</td>
+<td>1</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.BaseDomainObject.equals(Object)</td>
 <td>5</td>
-<td>4</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.TestStrategy.getFoundConfig()</td>
-<td>4</td>
-<td>4</td>
+<td>3</td>
 <td>0</td></tr>
 <tr class="b">
-<td>org.lafayette.server.core.config.UnixStrategy.UnixStrategy(String,String)</td>
-<td>4</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.UnixStrategy.createSystemConfigFileName(String)</td>
-<td>4</td>
-<td>4</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ConfigLoader.ConfigLoader(LoaderStrategie)</td>
-<td>3</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ServerConfig.ServerConfig(Properties)</td>
-<td>3</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.EnvVars.getFromSystem()</td>
-<td>3</td>
-<td>2</td>
+<td>org.lafayette.server.domain.Role.equals(Object)</td>
+<td>5</td>
+<td>5</td>
 <td>0</td></tr>
 <tr class="a">
-<td>org.lafayette.server.core.log.Logger.Logger(org.apache.log4j.Logger)</td>
+<td>org.lafayette.server.domain.User.equals(Object)</td>
+<td>5</td>
+<td>6</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.BaseMapper.loadAll(ResultSet)</td>
+<td>5</td>
+<td>2</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.closeConnection(Connection)</td>
+<td>5</td>
+<td>2</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.db.NullConnection.NullPreparedStatement.getURL(int)</td>
+<td>4</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.NullConnection.NullPreparedStatement.getURL(String)</td>
+<td>4</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.db.NullConnection.NullResultSet.getURL(int)</td>
+<td>4</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.db.NullConnection.NullResultSet.getURL(String)</td>
+<td>4</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.Role.Role(int,int,Names)</td>
+<td>4</td>
+<td>1</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.domain.User.User(int,String,String)</td>
+<td>4</td>
+<td>1</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.domain.User.hasRole(String)</td>
+<td>4</td>
+<td>3</td>
+<td>1</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.BaseMapper.BaseMapper(DataSource,T)</td>
+<td>4</td>
+<td>1</td>
+<td>1</td></tr>
+<tr class="b">
+<td>org.lafayette.server.mapper.RoleMapper.doLoad(int,ResultSet)</td>
+<td>4</td>
+<td>1</td>
+<td>0</td></tr>
+<tr class="a">
+<td>org.lafayette.server.mapper.UserMapper.doLoad(int,ResultSet)</td>
+<td>4</td>
+<td>1</td>
+<td>0</td></tr>
+<tr class="b">
+<td>org.lafayette.server.db.SqlLoader.loadSql(String)</td>
 <td>3</td>
 <td>1</td>
 <td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.log.Logger.debug(String,Object)</td>
+<tr class="a">
+<td>org.lafayette.server.domain.BaseDomainObject.BaseDomainObject(int)</td>
 <td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.log.Logger.trace(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.log.Logger.info(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.log.Logger.warn(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.log.Logger.error(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.log.Logger.fatal(String,Object)</td>
-<td>3</td>
-<td>2</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ConfigLoader.determineStrategy()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ConfigLoader.create()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ConfigLoader.create(LoaderStrategie)</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ConfigLoader.load()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ConfigLoader.hasConfig()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ConfigLoader.getFile()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig.getDbHost()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ServerConfig.getDbName()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig.getDbUser()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ServerConfig.getDbPassword()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="b">
-<td>org.lafayette.server.core.config.ServerConfig.getDbDriver()</td>
-<td>2</td>
-<td>1</td>
-<td>1</td></tr>
-<tr class="a">
-<td>org.lafayette.server.core.config.ServerConfig.getSecurotyRealm()</td>
-<td>2</td>
 <td>1</td>
 <td>1</td></tr></table>
 <p><b>Averages.</b></p>
@@ -475,10 +673,10 @@
 <th>CCN average</th>
 <th>Javadocs average</th></tr>
 <tr class="a">
-<td>232.00</td>
-<td>2.88</td>
-<td>1.62</td>
-<td>0.83</td></tr></table></div>
+<td>1,284.00</td>
+<td>1.82</td>
+<td>1.12</td>
+<td>0.16</td></tr></table></div>
 <div class="section">
 <h2><a name="explanation">Explanations</a><a name="Explanations"></a></h2>
 <p>[ <a href="#package">package</a> ] [ <a href="#object">object</a> ] [ <a href="#method">method</a> ] [ <a href="#explanation">explanation</a> ]</p>
