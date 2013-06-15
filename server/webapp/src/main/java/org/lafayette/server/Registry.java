@@ -186,7 +186,7 @@ public final class Registry {
     }
 
     public void setInitParameters(InitialServletParameters initParameters) {
-        Validate.notNull(dataSource, "Init parameters must not be null!");
+        Validate.notNull(initParameters, "Init parameters must not be null!");
         this.initParameters = initParameters;
     }
 
