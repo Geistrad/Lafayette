@@ -83,7 +83,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     /**
      * Dedicated constructor.
      *
-     * @param db used database connection
+     * @param dataSource used to get database connection
      * @param idMap maps identity map for mapped domain objects
      */
     public BaseMapper(final DataSource dataSource, final IntegerIdentityMap<T> idMap) {
