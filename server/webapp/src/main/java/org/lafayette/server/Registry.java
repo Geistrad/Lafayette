@@ -66,6 +66,9 @@ public final class Registry {
      * Mapper factory.
      */
     private Mappers mappers = new Mappers(dataSource);
+    /**
+     * Holds initial servlet parameters.
+     */
     private InitialServletParameters initParameters = new InitialServletParameters();
 
     /**
@@ -172,19 +175,39 @@ public final class Registry {
         return dependnecyInjector;
     }
 
+    /**
+     * Get data source.
+     *
+     * @return never {@code null}
+     */
     public DataSource getDataSource() {
         return dataSource;
     }
 
+    /**
+     * Set data source.
+     *
+     * @param dataSource must not be {@code null}
+     */
     public void setDataSource(final DataSource dataSource) {
         Validate.notNull(dataSource, "Data source must not be null!");
         this.dataSource = dataSource;
     }
 
+    /**
+     * Get servlet parameters.
+     *
+     * @return never {@code null}
+     */
     public InitialServletParameters getInitParameters() {
         return initParameters;
     }
 
+    /**
+     * Set initial servlet parameters.
+     *
+     * @param initParameters must not be {@code null}
+     */
     public void setInitParameters(InitialServletParameters initParameters) {
         Validate.notNull(initParameters, "Init parameters must not be null!");
         this.initParameters = initParameters;

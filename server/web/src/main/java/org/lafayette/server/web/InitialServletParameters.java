@@ -12,18 +12,36 @@
 
 package org.lafayette.server.web;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletContext;
 
 /**
- * Wraps a {@link GenericServlet} to get type safe configuration.
+ * Get parameters from servlet context (declared in WEB-INf/web.xml.
+ *
+ * Example:
+ * <code>
+ * &lt;context-param&gt;
+ *      &lt;param-name&gt;realm&lt;/param-name&gt;
+ *      &lt;param-value&gt;Lafayette restricted area.&lt;/param-value&gt;
+ * &lt;/context-param&gt;
+ * </code>
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class InitialServletParameters {
 
-    private static final String EMPTY_STRING = "";
+    /**
+     * Parameter name for realm.
+     */
     static final String PARAM_NAME_REALM = "realm";
+    /**
+     * Default value returned if a parameter from the context or context itself is {@code null}.
+     */
+    private static final String EMPTY_STRING = "";
+    /**
+     * Loaded value from context.
+     *
+     * Must not be {@code null}.
+     */
     private final String realm;
 
     /**
