@@ -10,7 +10,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -24,7 +24,7 @@ import org.hsqldb.jdbc.JDBCCommonDataSource;
 import org.hsqldb.jdbc.JDBCDataSource;
 import org.junit.After;
 import org.junit.Before;
-import org.lafayette.server.db.SqlLoader;
+import org.lafayette.server.domain.db.SqlLoader;
 
 /**
  * Provides a fresh HSQL in memory database for tests.
@@ -50,11 +50,19 @@ public abstract class DbTestCase {
      */
     private DataSource dataSource = new JDBCDataSource();
 
+    /**
+     * Sets the database to the data source.
+     */
     public DbTestCase() {
         super();
-        ((JDBCCommonDataSource)dataSource).setDatabase(JDBC_URI + UUID.randomUUID().toString());
+        ((JDBCCommonDataSource) dataSource).setDatabase(JDBC_URI + UUID.randomUUID().toString());
     }
 
+    /**
+     * Get the data source.
+     *
+     * @return never {@code null}
+     */
     public DataSource dataSource() {
         return dataSource;
     }
@@ -63,6 +71,7 @@ public abstract class DbTestCase {
      * Getter for the connection.
      *
      * @return same instance
+     * @throws SQLException if can not open database connection
      */
     public synchronized Connection db() throws SQLException {
         return dataSource.getConnection(DB_USER, DB_PASSWORD);
@@ -106,6 +115,7 @@ public abstract class DbTestCase {
      * @throws SQLException if SQL error occurs
      */
     @After
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings("OBL_UNSATISFIED_OBLIGATION")
     public void destroyTestDatabase() throws SQLException {
         try {
             final Connection db = dataSource.getConnection();

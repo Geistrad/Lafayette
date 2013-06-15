@@ -9,17 +9,17 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
-import org.lafayette.server.DomainModelException;
+import org.lafayette.server.domain.DomainModelException;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 
 /**
  * Maps {@link User user domain objects} to the database.
@@ -52,6 +52,34 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      * Update SQL statement.
      */
     private static final String SQL_UPDATE = "update %s set loginName = ?, hashedUserData = ? where %s = ?";
+    /**
+     * Position of user id parameter in prepared statement.
+     */
+    private static final int INSERT_PARAM_USERID_POS = 2;
+    /**
+     * Position of hashed user data parameter in prepared statement.
+     */
+    private static final int INSERT_PARAM_HASHEDUSERDATA_POS = 3;
+    /**
+     * Position of login name parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_LOGINNAME_POS = 1;
+    /**
+     * Position of hashed user data parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_HASHEDUSERDATA_POS = 2;
+    /**
+     * Position of user id parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_USERID_POS = 3;
+    /**
+     * Position of login name row in result set.
+     */
+    private static final int LOAD_ROW_LOGINNAME_POS = 2;
+    /**
+     * Position of hashed user data row in result set.
+     */
+    private static final int LOAD_ROW_HASHEDUSERDATA_POS = 3;
 
     /**
      * Created by {@link Mappers factory}.
@@ -108,15 +136,15 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected User doLoad(final int id, final ResultSet result) throws SQLException {
-        final String loginName = result.getString(2);
-        final String hashedUserData = result.getString(3);
+        final String loginName = result.getString(LOAD_ROW_LOGINNAME_POS);
+        final String hashedUserData = result.getString(LOAD_ROW_HASHEDUSERDATA_POS);
         return new User(id, loginName, hashedUserData);
     }
 
     @Override
     protected void doInsert(final User subject, final PreparedStatement insertStatement) throws SQLException {
-        insertStatement.setString(2, subject.getLoginName());
-        insertStatement.setString(3, subject.getHashedUserData());
+        insertStatement.setString(INSERT_PARAM_USERID_POS, subject.getLoginName());
+        insertStatement.setString(INSERT_PARAM_HASHEDUSERDATA_POS, subject.getHashedUserData());
     }
 
     @Override
@@ -156,9 +184,9 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
         try {
             final Connection db = getConnection();
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
-            updateStatement.setString(1, subject.getLoginName());
-            updateStatement.setString(2, subject.getHashedUserData());
-            updateStatement.setInt(3, subject.getId());
+            updateStatement.setString(UPDATE_PARAM_LOGINNAME_POS, subject.getLoginName());
+            updateStatement.setString(UPDATE_PARAM_HASHEDUSERDATA_POS, subject.getHashedUserData());
+            updateStatement.setInt(UPDATE_PARAM_USERID_POS, subject.getId());
             updateStatement.execute();
             updateStatement.close();
             closeConnection(db);

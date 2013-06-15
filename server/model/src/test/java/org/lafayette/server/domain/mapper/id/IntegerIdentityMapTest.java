@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.mapper.id;
+package org.lafayette.server.domain.mapper.id;
 
 import org.junit.Test;
 import org.lafayette.server.domain.DomainObject;

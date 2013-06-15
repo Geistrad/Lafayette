@@ -90,7 +90,9 @@ abstract class BaseResource implements AbstractResourceModelListener {
     }
 
     @Override
+    //CHECKSTYLE:OFF
     public void onLoaded(final AbstractResourceModelContext modelContext) {
+    //CHECKSTYLE:ON
         init();
     }
 

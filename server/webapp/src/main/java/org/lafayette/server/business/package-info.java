@@ -9,21 +9,8 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.business;
 
 /**
- * Runtime exceptions thrown by service layer.
- *
- * @author Sven Strittmatter <weltraumschaf@googlemail.com>
+ * Business layer.
  */
-public class ServiceExcpetion extends RuntimeException {
-
-    /**
-     * Dedicated constructor.
-     *
-     * @param message exception message
-     */
-    public ServiceExcpetion(String message) {
-        super(message);
-    }
-}
+package org.lafayette.server.business;

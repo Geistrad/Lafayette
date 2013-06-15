@@ -16,8 +16,9 @@ package org.lafayette.server.http;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+//CHECKSTYLE:OFF
 public interface Constants {
-
+//CHECKSTYLE:ON
     /**
      * New line string for HTTP messages.
      */

@@ -36,7 +36,7 @@ public class TestStrategy implements LoaderStrategie {
     public File getFoundConfig() {
         try {
             return new File(getClass().getResource(FILE).toURI());
-        } catch (URISyntaxException ex) {
+        } catch (URISyntaxException ex)  {
             throw new RuntimeException(ex);
         }
     }

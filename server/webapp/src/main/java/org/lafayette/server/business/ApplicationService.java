@@ -17,22 +17,41 @@ import org.lafayette.server.domain.RoleFinder;
 import org.lafayette.server.domain.UserFinder;
 
 /**
+ * Service layer for web applications.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 class ApplicationService {
 
+    /**
+     * Finder factory.
+     */
     private final Finders finders;
 
-    public ApplicationService(Finders finders) {
+    /**
+     * Dedicated constructor.
+     *
+     * @param finders finder factory
+     */
+    public ApplicationService(final Finders finders) {
         super();
         this.finders = finders;
     }
 
+    /**
+     * Get a user finder.
+     *
+     * @return never {@code null}
+     */
     protected UserFinder getUserFinder() {
         return finders.forUsers();
     }
 
+    /**
+     * Get a role finder.
+     *
+     * @return never {@code null}
+     */
     protected RoleFinder getRoleFinder() {
         return finders.forRoles();
     }

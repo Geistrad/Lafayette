@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -17,12 +17,12 @@ import java.sql.SQLException;
 import java.util.Collection;
 import org.junit.Test;
 import org.lafayette.server.domain.Role;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import org.junit.Ignore;
-import org.lafayette.server.DomainModelException;
+import org.lafayette.server.domain.DomainModelException;
 import org.lafayette.server.domain.Role.Names;
 
 /**

@@ -9,17 +9,17 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.sql.DataSource;
 import org.junit.Test;
 import org.lafayette.server.domain.DomainObject;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -46,15 +46,28 @@ public class BaseMapperTest extends DbTestCase {
         assertThat(sut.findNextDatabaseId(), is(4));
         assertThat(sut.findNextDatabaseId(), is(4));
         final Connection db = db();
-        db.createStatement().execute("insert into base_mapper values (4, 'test1')");
+        Statement insertStatement = db.createStatement();
+        insertStatement.execute("insert into base_mapper values (4, 'test1')");
+        insertStatement.close();
         assertThat(sut.findNextDatabaseId(), is(5));
-        db.createStatement().execute("insert into base_mapper values (7, 'test1')");
+        insertStatement = db.createStatement();
+        insertStatement.execute("insert into base_mapper values (7, 'test1')");
+        insertStatement.close();
         assertThat(sut.findNextDatabaseId(), is(8));
         db.close();
     }
 
-    private final static class BaseMapperStub extends BaseMapper<DomainObject> {
+    /**
+     * Stub to make abstract class testable.
+     */
+    private static final class BaseMapperStub extends BaseMapper<DomainObject> {
 
+        /**
+         * Dedicated constructor.
+         *
+         * @param dataSource used to get database connection
+         * @param idMap maps identity map for mapped domain objects
+         */
         public BaseMapperStub(DataSource dataSurce, IntegerIdentityMap<DomainObject> idMap) {
             super(dataSurce, idMap);
         }
@@ -98,6 +111,5 @@ public class BaseMapperTest extends DbTestCase {
         public void update(DomainObject subject) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
-
     }
 }

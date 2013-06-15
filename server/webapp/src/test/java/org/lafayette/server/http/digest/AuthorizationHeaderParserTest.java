@@ -68,6 +68,7 @@ public class AuthorizationHeaderParserTest {
     }
 
     @Test
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings("NP_NULL_PARAM_DEREF_NONVIRTUAL")
     public void parseDigestHeaderValue_throwsExcpetionIfNull() {
         thrown.expect(NullPointerException.class);
         AuthorizationHeaderParser.parseDigestHeaderValue(null);

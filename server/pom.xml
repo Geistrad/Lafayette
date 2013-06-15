@@ -129,6 +129,11 @@
             <artifactId>msgpack</artifactId>
             <version>0.6.7</version>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>1.3.2</version>
+        </dependency>
         <!-- Test dependencies. -->
         <dependency>
             <groupId>junit</groupId>
@@ -457,7 +462,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                 </configuration>
-<!--                <executions>
+                <!--                <executions>
                     <execution>
                         http://stackoverflow.com/questions/5976123/maven-site-for-multi-module
                         <id>copy-sitedescriptor</id>

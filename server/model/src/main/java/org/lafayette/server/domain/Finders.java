@@ -12,7 +12,7 @@
 
 package org.lafayette.server.domain;
 
-import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.domain.mapper.Mappers;
 
 /**
  * Create finder objects with shared identity map.

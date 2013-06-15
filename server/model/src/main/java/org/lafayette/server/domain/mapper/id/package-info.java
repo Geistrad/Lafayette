@@ -13,4 +13,4 @@
 /**
  * PAckage to manage identities.
  */
-package org.lafayette.server.mapper.id;
+package org.lafayette.server.domain.mapper.id;

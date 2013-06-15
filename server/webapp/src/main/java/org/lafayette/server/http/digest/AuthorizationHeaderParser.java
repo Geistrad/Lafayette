@@ -14,6 +14,7 @@ package org.lafayette.server.http.digest;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.core.log.Log;
 import org.lafayette.server.core.log.Logger;
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
 
 /**
  * Parses the "Authorization" header field from a HTTP request.
@@ -100,8 +101,8 @@ public final class AuthorizationHeaderParser {
 
         for (final String keyValuePair : str.split(",")) {
             final String[] keyValueParts = keyValuePair.split("=");
-            final String key = keyValueParts[0].trim();
-            final String value = keyValueParts[1].trim().replace("\"", "");
+            @SuppressWarnings("CLI_CONSTANT_LIST_INDEX") final String key = keyValueParts[0].trim();
+            @SuppressWarnings("CLI_CONSTANT_LIST_INDEX") final String value = keyValueParts[1].trim().replace("\"", "");
 
             if ("username".equalsIgnoreCase(key)) {
                 username = value;

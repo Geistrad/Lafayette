@@ -36,9 +36,9 @@ import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.http.ForbiddenException;
 import org.lafayette.server.http.UnauthorizedException;
-import org.lafayette.server.mapper.Mappers;
-import org.lafayette.server.mapper.RoleMapper;
-import org.lafayette.server.mapper.UserMapper;
+import org.lafayette.server.domain.mapper.Mappers;
+import org.lafayette.server.domain.mapper.RoleMapper;
+import org.lafayette.server.domain.mapper.UserMapper;
 import static org.mockito.Mockito.*;
 
 /**

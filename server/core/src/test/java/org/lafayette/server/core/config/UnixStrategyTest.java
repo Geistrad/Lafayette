@@ -12,7 +12,6 @@
 
 package org.lafayette.server.core.config;
 
-import org.lafayette.server.core.config.UnixStrategy;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Test;

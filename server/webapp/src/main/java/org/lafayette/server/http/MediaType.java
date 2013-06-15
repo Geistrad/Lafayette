@@ -11,11 +11,14 @@
  */
 package org.lafayette.server.http;
 
+import edu.umd.cs.findbugs.annotations.SuppressWarnings;
+
 /**
  * Extends {@link javax.ws.rs.core.MediaType MediaType from WS Core}.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
+@SuppressWarnings("NM_SAME_SIMPLE_NAME_AS_SUPERCLASS")
 public class MediaType extends javax.ws.rs.core.MediaType {
 
     /**

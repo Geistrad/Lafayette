@@ -10,13 +10,12 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
-import java.sql.Connection;
 import javax.sql.DataSource;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 
 /**
  * Factory to retrieve domain object mappers from.

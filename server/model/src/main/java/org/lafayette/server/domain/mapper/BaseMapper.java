@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import com.google.common.collect.Lists;
 import java.sql.Connection;
@@ -19,11 +19,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
-import org.lafayette.server.DomainModelException;
+import org.lafayette.server.domain.DomainModelException;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.core.log.Log;
 import org.lafayette.server.core.log.Logger;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 
 /**
  * Base implementation for database mappers.
@@ -33,6 +33,9 @@ import org.lafayette.server.mapper.id.IntegerIdentityMap;
  */
 abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
 
+    /**
+     * Logging facility.
+     */
     private static final Logger LOG = Log.getLogger(BaseMapper.class);
 
     /**
@@ -361,10 +364,21 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
     }
 
+    /**
+     * Get database connection from pool.
+     *
+     * @return database connection
+     * @throws SQLException if can not open connection
+     */
     protected synchronized Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
+    /**
+     * Close database connection quietly.
+     *
+     * @param connection database connection to close
+     */
     protected synchronized void closeConnection(final Connection connection) {
         Validate.notNull(connection);
 

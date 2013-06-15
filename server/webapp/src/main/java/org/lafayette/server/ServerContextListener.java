@@ -25,9 +25,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
 import org.lafayette.server.core.EnvVars;
-import org.lafayette.server.db.NullDataSource;
+import org.lafayette.server.domain.db.NullDataSource;
 import org.lafayette.server.core.log.Logger;
-import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.domain.mapper.Mappers;
 import org.lafayette.server.web.InitialServletParameters;
 
 /**
@@ -128,6 +128,11 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         reg.setMappers(new Mappers(dataSource));
     }
 
+    /**
+     * Creates data source provided by container via JNDI and sets to {@link Registry}.
+     *
+     * @return created data source
+     */
     private DataSource createDataSource() {
         try {
             LOG.info("Create data source.");

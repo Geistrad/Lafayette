@@ -11,6 +11,6 @@
  */
 
 /**
- * Package for domain model objects to database mapping.
+ * This package concentrates all generic JDBC stuff.
  */
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.db;

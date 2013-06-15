@@ -10,7 +10,7 @@
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
 
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,11 +18,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import javax.sql.DataSource;
-import org.lafayette.server.DomainModelException;
+import org.lafayette.server.domain.DomainModelException;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.Role.Names;
 import org.lafayette.server.domain.RoleFinder;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 
 /**
  *
@@ -58,6 +58,34 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * Update SQL statement .
      */
     private static final String SQL_UPDATE = "update %s set userId = ?, name = ? where %s = ?";
+    /**
+     * Position of user id parameter in prepared statement.
+     */
+    private static final int INSERT_PARAM_USERID_POS = 2;
+    /**
+     * Position of name parameter in prepared statement.
+     */
+    private static final int INSERT_PARAM_NAME_POS = 3;
+    /**
+     * Position of user id parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_USERID_POS = 1;
+    /**
+     * Position of name parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_NAME_POS = 2;
+    /**
+     * Position of role id parameter in prepared statement.
+     */
+    private static final int UPDATE_PARAM_ID_POS = 3;
+    /**
+     * Position of user id row in result set.
+     */
+    private static final int LOAD_ROW_USERID_POS = 2;
+    /**
+     * Position of role name row in result set.
+     */
+    private static final int LOAD_ROW_NAME = 3;
 
     /**
      * Dedicated constructor.
@@ -114,15 +142,15 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected Role doLoad(int id, ResultSet result) throws SQLException {
-        final int userId = result.getInt(2);
-        final String name = result.getString(3);
+        final int userId = result.getInt(LOAD_ROW_USERID_POS);
+        final String name = result.getString(LOAD_ROW_NAME);
         return new Role(id, userId, Role.Names.forName(name));
     }
 
     @Override
     protected void doInsert(final Role subject, final PreparedStatement insertStatement) throws SQLException {
-        insertStatement.setInt(2, subject.getUserId());
-        insertStatement.setString(3, subject.getName().toString());
+        insertStatement.setInt(INSERT_PARAM_USERID_POS, subject.getUserId());
+        insertStatement.setString(INSERT_PARAM_NAME_POS, subject.getName().toString());
     }
 
     @Override
@@ -130,9 +158,9 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
         try {
             final Connection db = getConnection();
             final PreparedStatement updateStatement = db.prepareStatement(updateStatement());
-            updateStatement.setInt(1, subject.getUserId());
-            updateStatement.setString(2, subject.getName().toString());
-            updateStatement.setInt(3, subject.getId());
+            updateStatement.setInt(UPDATE_PARAM_USERID_POS, subject.getUserId());
+            updateStatement.setString(UPDATE_PARAM_NAME_POS, subject.getName().toString());
+            updateStatement.setInt(UPDATE_PARAM_ID_POS, subject.getId());
             updateStatement.execute();
             updateStatement.close();
             closeConnection(db);

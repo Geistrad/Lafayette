@@ -7,7 +7,7 @@
  * you can buy me a non alcohol-free beer in return.
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.mapper;
+package org.lafayette.server.domain.mapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -19,8 +19,8 @@ import org.lafayette.server.domain.User;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.*;
-import org.lafayette.server.DomainModelException;
-import org.lafayette.server.mapper.id.IntegerIdentityMap;
+import org.lafayette.server.domain.DomainModelException;
+import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 
 /**
  * Tests for {@link UserMapper}.

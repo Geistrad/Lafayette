@@ -39,6 +39,7 @@ final class SecurityContextFilterAnonymous implements SecuirityContextFilter {
     }
 
     @Override
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings("CFS_CONFUSING_FUNCTION_SEMANTICS")
     public ContainerRequest filter(final ContainerRequest request) {
         request.setSecurityContext(new SecurityContextImpl(User.ANONYMOUS));
         return request;

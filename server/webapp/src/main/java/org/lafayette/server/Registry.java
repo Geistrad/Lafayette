@@ -14,13 +14,10 @@ package org.lafayette.server;
 import com.google.inject.Injector;
 import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
-import org.lafayette.server.core.config.ServerConfig;
-import org.lafayette.server.db.NullDataSource;
-import org.lafayette.server.mapper.Mappers;
+import org.lafayette.server.domain.db.NullDataSource;
+import org.lafayette.server.domain.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
 import org.lafayette.server.web.InitialServletParameters;
@@ -32,8 +29,11 @@ import org.lafayette.server.web.InitialServletParameters;
  * <ul>
  * <li>{@link Version version}
  * <li>{@link Stage stage}
- * <li>{@link Connection database connection}
- * <li>{@link ServerConfig server configuration}
+ * <li>{@link DataSource database connection}
+ * <li>{@link Injector depeendcy injector}
+ * <li>{@link InitialServletParameters servlet context parameters}
+ * <li>{@link Mappers data mappers}
+ * <li>{@link NonceFactory nonces}
  * </ul>
  *
  * All resources are initialized with default values so the registry never returns {@code null}.

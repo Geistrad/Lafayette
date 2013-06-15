@@ -9,7 +9,7 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf@googlemail.com>
  */
-package org.lafayette.server.db;
+package org.lafayette.server.domain.db;
 
 import java.io.InputStream;
 import java.io.Reader;

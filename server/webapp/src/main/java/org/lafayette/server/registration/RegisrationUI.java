@@ -38,17 +38,60 @@ import org.lafayette.server.domain.Finders;
  */
 @Title("Sign up")
 public class RegisrationUI extends UI {
-    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_EMPTY = "Password must not be empty!";
-    private static final String ERR_MSG_EMAIL_ADDRESS_MUST_NOT_BE_EMPTY = "Email address must not be empty!";
-    private static final String ERR_MSG_LOGIN_NAME_MUST_NOT_BE_EMPTY = "Login name must not be empty!";
-    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_LOGIN_NAME = "Password must not be same as login name!";
-    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_EMAIL_ADDRES = "Password must not be same as email address!";
-    private static final String ERR_MSG_PASSWORD_MUST_HAVE_AT_LEAST_8_CHARATCERS = "Password must have at least 8 charatcers!";
+    /**
+     * Minimum password length.
+     */
+    private static final int PASSWORD_MIN_LENGTH = 8;
+    /**
+     * Error message password empty.
+     */
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_EMPTY =
+            "Password must not be empty!";
+    /**
+     * Error message email empty.
+     */
+    private static final String ERR_MSG_EMAIL_ADDRESS_MUST_NOT_BE_EMPTY =
+            "Email address must not be empty!";
+    /**
+     * Error message login name empty.
+     */
+    private static final String ERR_MSG_LOGIN_NAME_MUST_NOT_BE_EMPTY =
+            "Login name must not be empty!";
+    /**
+     * Error message password is same as login name.
+     */
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_LOGIN_NAME =
+            "Password must not be same as login name!";
+    /**
+     * Error message password is same as email.
+     */
+    private static final String ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_EMAIL_ADDRES =
+            "Password must not be same as email address!";
+    /**
+     * Error message password is too short.
+     */
+    private static final String ERR_MSG_PASSWORD_IS_TOO_SHORT =
+            "Password must have at least " + PASSWORD_MIN_LENGTH + " charatcers!";
 
+    /**
+     * Button to create account.
+     */
     private final Button createAccountButton = new Button("Create Account");
+    /**
+     * Input field for login name.
+     */
     private final TextField loginNameField = new TextField("Login name");
+    /**
+     * Input field for email.
+     */
     private final TextField emailAddressField = new TextField("Email address");
+    /**
+     * Input field for password.
+     */
     private final TextField passwordField = new TextField("Password");
+    /**
+     * Business layer.
+     */
     private RegistrationService registration;
 
     /**
@@ -65,7 +108,7 @@ public class RegisrationUI extends UI {
      *
      * You should build and wire up your user interface here.
      *
-     * @param request
+     * @param request Vaadin request
      */
     @Override
     protected void init(final VaadinRequest request) {
@@ -103,6 +146,9 @@ public class RegisrationUI extends UI {
         mainLayout.setComponentAlignment(formLayout, Alignment.TOP_CENTER);
     }
 
+    /**
+     * Initializes the "create account" button.
+     */
     private void initCreateAccountButton() {
         createAccountButton.addClickListener(new ClickListener() {
             @Override
@@ -145,20 +191,39 @@ public class RegisrationUI extends UI {
         });
     }
 
-    static void validatePassword(final String password, final String loginName, final String emailAdress) {
+    /**
+     * Validates password.
+     *
+     * Checks that:
+     * <ul>
+     * <li>password is not same as login name (case insensitive)
+     * <li>password is not same as email address
+     * <li>password is not shorter than eight characters
+     * </ul>
+     *
+     * @param password password to check
+     * @param loginName log=in name to check against
+     * @param emailAddress email address to check against
+     */
+    static void validatePassword(final String password, final String loginName, final String emailAddress) {
         if (password.equalsIgnoreCase(loginName)) {
             throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_LOGIN_NAME);
         }
 
-        if (password.equalsIgnoreCase(emailAdress)) {
+        if (password.equalsIgnoreCase(emailAddress)) {
             throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_NOT_BE_SAME_AS_EMAIL_ADDRES);
         }
 
-        if (password.length() < 8) {
-            throw new IllegalArgumentException(ERR_MSG_PASSWORD_MUST_HAVE_AT_LEAST_8_CHARATCERS);
+        if (password.length() < PASSWORD_MIN_LENGTH) {
+            throw new IllegalArgumentException(ERR_MSG_PASSWORD_IS_TOO_SHORT);
         }
     }
 
+    /**
+     * Validates email address against RFC and throws {@link IllegalArgumentException} if invalid.
+     *
+     * @param emailaddress address to validate
+     */
     static void validateEmailAddress(final String emailaddress) {
         if (!EmailValidator.getInstance().isValid(emailaddress)) {
             throw new IllegalArgumentException("Email address is not valid!");

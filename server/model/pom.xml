@@ -13,7 +13,7 @@
     <artifactId>server-model</artifactId>
     <packaging>jar</packaging>
 
-    <name>Lafayette Server Model</name>
+    <name>Lafayette Server Domain Model</name>
     <description>Domain model for Lafayette Server Application</description>
 
     <properties>
