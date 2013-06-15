@@ -24,10 +24,8 @@ public class TestStrategy implements LoaderStrategie {
 
     /**
      * Configuration file for unit tests.
-     *
-     * TODO USe this for configs of HSQLDEB.
      */
-    private static final String FILE = "/org/lafayette/server/config/server.properties";
+    private static final String FILE = "/org/lafayette/server/core/config/server.properties";
 
     @Override
     public boolean hasFoundConfig() {

@@ -31,7 +31,7 @@ public class ServerConfigTest {
     @Before
     public void initSubject() throws IOException {
         final Properties prop = new Properties();
-        final InputStream input = getClass().getResourceAsStream("/org/lafayette/server/config/server.properties");
+        final InputStream input = getClass().getResourceAsStream("/org/lafayette/server/core/config/server.properties");
         prop.load(input);
         input.close();
         sut = new ServerConfig(prop);
