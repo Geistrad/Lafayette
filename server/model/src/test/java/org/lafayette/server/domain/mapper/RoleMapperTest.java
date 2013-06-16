@@ -71,7 +71,7 @@ public class RoleMapperTest extends DbTestCase {
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(3, 2, Names.USER)));
     }
 
-    @Test @Ignore
+    @Test
     public void findByUserId() {
         final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByUserId(1);
