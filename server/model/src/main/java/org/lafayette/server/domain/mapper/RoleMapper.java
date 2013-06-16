@@ -87,7 +87,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected String findByIdStatement() {
-        return findByIdStatement(columns(), tableMame(), primaryKeyFiel());
+        return findByIdStatement(columns(), tableMame(), primaryKeyColumn());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findMaxPrimaryKeyStatement(primaryKeyFiel(), tableMame());
+        return findMaxPrimaryKeyStatement(primaryKeyColumn(), tableMame());
     }
 
     /**
@@ -119,7 +119,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * @return SQL prepared statement string
      */
     private String updateStatement() {
-        return String.format(SQL_UPDATE, tableMame(), primaryKeyFiel());
+        return String.format(SQL_UPDATE, tableMame(), primaryKeyColumn());
     }
 
     @Override
@@ -129,7 +129,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     protected String deleteStatement() {
-        return deleteStatement(tableMame(), primaryKeyFiel());
+        return deleteStatement(tableMame(), primaryKeyColumn());
     }
 
     @Override
@@ -203,10 +203,13 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
         });
     }
 
+    /**
+     * Describes mapped database table.
+     */
     private static final class RoleTableDescription implements TableDescription {
 
         @Override
-        public String primaryKeyFiel() {
+        public String primaryKeyColumn() {
             return "id";
         }
 
@@ -217,7 +220,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
         @Override
         public String columns() {
-            return primaryKeyFiel() + ", userId, name";
+            return primaryKeyColumn() + ", userId, name";
         }
     }
 }

@@ -13,13 +13,31 @@
 package org.lafayette.server.domain.mapper;
 
 /**
+ * Describes a mapped database table.
+ *
+ * Mostly implemented as private inner class of a mapper.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public interface TableDescription {
 
-    String primaryKeyFiel();
+    /**
+     * Get name of primary key column.
+     *
+     * @return never {@code null} or empty
+     */
+    String primaryKeyColumn();
+    /**
+     * Get the name of mapped table.
+     *
+     * @return never {@code null} or empty
+     */
     String tableName();
+    /**
+     * Names of all columns (inclusive primary key column) separated with comma.
+     *
+     * @return never {@code null} or empty
+     */
     String columns();
 
 }

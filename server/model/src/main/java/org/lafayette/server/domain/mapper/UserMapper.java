@@ -81,7 +81,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findByIdStatement() {
-        return findByIdStatement(columns(), tableMame(), primaryKeyFiel());
+        return findByIdStatement(columns(), tableMame(), primaryKeyColumn());
     }
 
     @Override
@@ -91,7 +91,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findMaxPrimaryKeyStatement(primaryKeyFiel(), tableMame());
+        return findMaxPrimaryKeyStatement(primaryKeyColumn(), tableMame());
     }
 
     /**
@@ -109,12 +109,12 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      * @return never {@code null}
      */
     private String updateStatement() {
-        return String.format(SQL_UPDATE, tableMame(), primaryKeyFiel());
+        return String.format(SQL_UPDATE, tableMame(), primaryKeyColumn());
     }
 
     @Override
     protected String deleteStatement() {
-        return deleteStatement(tableMame(), primaryKeyFiel());
+        return deleteStatement(tableMame(), primaryKeyColumn());
     }
 
     @Override
@@ -183,10 +183,13 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
         }
     }
 
+    /**
+     * Describes mapped database table.
+     */
     private static final class UserTableDescription implements TableDescription {
 
         @Override
-        public String primaryKeyFiel() {
+        public String primaryKeyColumn() {
             return "id";
         }
 
@@ -197,7 +200,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
 
         @Override
         public String columns() {
-            return primaryKeyFiel() + ", loginName, hashedUserData";
+            return primaryKeyColumn() + ", loginName, hashedUserData";
         }
     }
 }

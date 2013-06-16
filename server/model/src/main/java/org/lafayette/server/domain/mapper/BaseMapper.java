@@ -389,14 +389,29 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
         }
     }
 
-    protected String primaryKeyFiel() {
-        return description.primaryKeyFiel();
+    /**
+     * Get name of primary key column.
+     *
+     * @return never {@code null} or empty
+     */
+    protected String primaryKeyColumn() {
+        return description.primaryKeyColumn();
     }
 
+    /**
+     * Get the name of mapped table.
+     *
+     * @return never {@code null} or empty
+     */
     protected String tableMame() {
         return description.tableName();
     }
 
+    /**
+     * Names of all columns (inclusive primary key column) separated with comma.
+     *
+     * @return never {@code null} or empty
+     */
     protected String columns() {
         return description.columns();
     }
