@@ -63,7 +63,7 @@ public class RoleMapperTest extends DbTestCase {
         assertThat(role, is(sameInstance(sut.find(1))));
     }
 
-    @Test @Ignore
+    @Test
     public void findByName() {
         final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByName(Names.USER);
@@ -71,23 +71,8 @@ public class RoleMapperTest extends DbTestCase {
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(3, 2, Names.USER)));
     }
 
-
-    @Test @Ignore
-    public void findByName_caches() {
-        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
-        final Collection<Role> role = sut.findByName(Names.USER);
-        assertThat(role, is(equalTo(sut.findByName(Names.USER))));
-    }
-
     @Test @Ignore
     public void findByUserId() {
-        final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
-        final Collection<Role> role = sut.findByUserId(1);
-        assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
-    }
-
-    @Test @Ignore
-    public void findByUserId_caches() {
         final RoleMapper sut = new RoleMapper(dataSource(), new IntegerIdentityMap<Role>());
         final Collection<Role> role = sut.findByUserId(1);
         assertThat(role, contains(new Role(1, 1, Names.USER), new Role(2, 1, Names.ADMINISTRATOR)));
