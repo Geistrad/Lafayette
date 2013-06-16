@@ -22,6 +22,7 @@ import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 
 /**
  * Tests for {@link BaseMapper}.
@@ -69,7 +70,7 @@ public class BaseMapperTest extends DbTestCase {
          * @param idMap maps identity map for mapped domain objects
          */
         public BaseMapperStub(DataSource dataSurce, IntegerIdentityMap<DomainObject> idMap) {
-            super(dataSurce, idMap);
+            super(dataSurce, idMap, mock(TableDescription.class));
         }
 
         @Override

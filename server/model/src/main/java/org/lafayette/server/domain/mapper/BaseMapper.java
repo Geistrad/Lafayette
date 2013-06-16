@@ -42,8 +42,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Generic find by id query.
      *
      * First format parameter are the colum names.
-     * Second format parameter is he table name.
-     * Third format parameter is the primary key field name.
+     * Second format parameter is he table tableMame.
+     * Third format parameter is the primary key field tableMame.
      * First prepared statement parameter is the id.
      */
     private static final String SQL_FIND_BY_ID = "select %s from %s where %s = ?";
@@ -51,7 +51,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Generic find all query.
      *
      * First format parameter are the colum names.
-     * Second format parameter is he table name.
+     * Second format parameter is he table tableMame.
      * Third format parameter is the limit.
      * Fourth format parameter is the offset.
      */
@@ -59,15 +59,15 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     /**
      * Generic query to find the maximum id used.
      *
-     * First format parameter is the primary key field name.
-     * Second format parameter is the table name.
+     * First format parameter is the primary key field tableMame.
+     * Second format parameter is the table tableMame.
      */
     private static final String SQL_MAX_PK = "select max(%s) from %s";
     /**
      * Generic query to delete by id.
      *
-     * First format parameter is the table name.
-     * Second format parameter is the primary key field name.
+     * First format parameter is the table tableMame.
+     * Second format parameter is the primary key field tableMame.
      * First prepared statement parameter is the id.
      */
     private static final String SQL_DELETE = "delete from %s where %s = ?";
@@ -82,6 +82,10 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Key is the {@link DomainObject#getId() primary key} of the domain object.
      */
     private final IntegerIdentityMap<T> idMap;
+    /**
+     * Describes the mapped table.
+     */
+    private final TableDescription description;
 
     /**
      * Dedicated constructor.
@@ -89,10 +93,11 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * @param dataSource used to get database connection
      * @param idMap maps identity map for mapped domain objects
      */
-    public BaseMapper(final DataSource dataSource, final IntegerIdentityMap<T> idMap) {
+    public BaseMapper(final DataSource dataSource, final IntegerIdentityMap<T> idMap, final TableDescription desc) {
         super();
         this.dataSource = dataSource;
         this.idMap = idMap;
+        this.description = desc;
     }
 
     /**
@@ -106,8 +111,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Generates the find by id SQL statement.
      *
      * @param columns comma separated column names
-     * @param table table name
-     * @param pk primary key field name
+     * @param table table tableMame
+     * @param pk primary key field tableMame
      * @return SQL prepared statement string
      */
     protected String findByIdStatement(final String columns, final String table, final String pk) {
@@ -127,7 +132,7 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
      * Generates the find all SQL statement.
      *
      * @param columns comma separated column names
-     * @param table table name
+     * @param table table tableMame
      * @param limit limit parameter
      * @param offset offset parameter
      * @return SQL prepared statement string
@@ -146,8 +151,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     /**
      * SQL statement to find the max ID.
      *
-     * @param pk primary key field name
-     * @param table table name
+     * @param pk primary key field tableMame
+     * @param table table tableMame
      * @return SQL prepared statement string
      */
     protected String findMaxPrimaryKeyStatement(final String pk, final String table) {
@@ -171,8 +176,8 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
     /**
      * SQL statement to delete record set.
      *
-     * @param table table name
-     * @param pk primary key field name
+     * @param table table tableMame
+     * @param pk primary key field tableMame
      * @return SQL prepared statement string
      */
     protected String deleteStatement(final String table, final String pk) {
@@ -277,11 +282,6 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             @Override
             public String sql() {
                 return findAllStatement(limit, offset);
-            }
-
-            @Override
-            public Object[] parameters() {
-                return new Object[]{};
             }
         });
     }
@@ -388,4 +388,17 @@ abstract class BaseMapper<T extends DomainObject> implements Mapper<T> {
             LOG.fatal("Threw an exception closing a database connection: %s", ex);
         }
     }
+
+    protected String primaryKeyFiel() {
+        return description.primaryKeyFiel();
+    }
+
+    protected String tableMame() {
+        return description.tableName();
+    }
+
+    protected String columns() {
+        return description.columns();
+    }
+
 }

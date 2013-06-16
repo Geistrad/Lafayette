@@ -31,23 +31,11 @@ import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     /**
-     * Name of database table.
-     */
-    private static final String TABLE_NAME = "role";
-    /**
-     * Name of primary key field.
-     */
-    private static final String PK_FIELD_NAME = "id";
-    /**
-     * Field of database table.
-     */
-    private static final String COLUMNS = PK_FIELD_NAME + ", userId, name";
-    /**
      * Insert SQL statement .
      */
     private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
     /**
-     * Find by name SQL statement .
+     * Find by tableMame SQL statement .
      */
     private static final String SQL_FIND_BY_NAME = "select %s from %s where name like ?";
     /**
@@ -63,7 +51,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      */
     private static final int INSERT_PARAM_USERID_POS = 2;
     /**
-     * Position of name parameter in prepared statement.
+     * Position of tableMame parameter in prepared statement.
      */
     private static final int INSERT_PARAM_NAME_POS = 3;
     /**
@@ -71,7 +59,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      */
     private static final int UPDATE_PARAM_USERID_POS = 1;
     /**
-     * Position of name parameter in prepared statement.
+     * Position of tableMame parameter in prepared statement.
      */
     private static final int UPDATE_PARAM_NAME_POS = 2;
     /**
@@ -83,7 +71,7 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      */
     private static final int LOAD_ROW_USERID_POS = 2;
     /**
-     * Position of role name row in result set.
+     * Position of role tableMame row in result set.
      */
     private static final int LOAD_ROW_NAME = 3;
 
@@ -94,31 +82,35 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * @param idMap identity map
      */
     RoleMapper(final DataSource dataSource, final IntegerIdentityMap<Role> idMap) {
-        super(dataSource, idMap);
+        super(dataSource, idMap, new RoleTableDescription());
     }
 
     @Override
     protected String findByIdStatement() {
-        return findByIdStatement(COLUMNS, TABLE_NAME, PK_FIELD_NAME);
+        return findByIdStatement(columns(), tableMame(), primaryKeyFiel());
     }
 
     @Override
     protected String findAllStatement(int limit, int offset) {
-        return findAllStatement(COLUMNS, TABLE_NAME, limit, offset);
+        return findAllStatement(columns(), tableMame(), limit, offset);
     }
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
+        return findMaxPrimaryKeyStatement(primaryKeyFiel(), tableMame());
     }
 
     /**
-     * SQL statement to find role by name.
+     * SQL statement to find role by tableMame.
      *
      * @return SQL prepared statement string
      */
     private String findByNameStatement() {
-        return String.format(SQL_FIND_BY_NAME, COLUMNS, TABLE_NAME);
+        return String.format(SQL_FIND_BY_NAME, columns(), tableMame());
+    }
+
+    private String findByUserIdStatement() {
+        return String.format(SQL_FIND_BY_USER_ID, columns(), tableMame());
     }
 
     /**
@@ -127,17 +119,17 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
      * @return SQL prepared statement string
      */
     private String updateStatement() {
-        return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
+        return String.format(SQL_UPDATE, tableMame(), primaryKeyFiel());
     }
 
     @Override
     protected String insertStatement() {
-        return String.format(SQL_INSERT, TABLE_NAME);
+        return String.format(SQL_INSERT, tableMame());
     }
 
     @Override
     protected String deleteStatement() {
-        return deleteStatement(TABLE_NAME, PK_FIELD_NAME);
+        return deleteStatement(tableMame(), primaryKeyFiel());
     }
 
     @Override
@@ -181,29 +173,51 @@ public class RoleMapper extends BaseMapper<Role> implements RoleFinder {
 
     @Override
     public Collection<Role> findByName(final Names name) {
-        // TODO Implement
-        throw new UnsupportedOperationException("Not implemented yet!");
-//        try {
-//            final PreparedStatement findStatement = db.prepareStatement(findByNameStatement());
-//            findStatement.setString(1, name);
-//            final ResultSet rs = findStatement.executeQuery();
-//
-//            if (!rs.next()) {
-//                throw new DomainModelException(String.format("There is no role with name %s!", name));
-//            }
-//
-//            final Role result = load(rs);
-//            findStatement.close();
-//            return result;
-//        } catch (SQLException ex) {
-//            throw new DomainModelException(ex);
-//        }
+        return findMany(new BaseStatementSource() {
+            @Override
+            public String sql() {
+                return findByNameStatement();
+            }
+
+            @Override
+            public Object[] parameters() {
+                return new Object[] { name.toString() };
+            }
+
+        });
     }
 
     @Override
-    public Collection<Role> findByUserId(int userId) {
-        // TODO Implement
-        throw new UnsupportedOperationException("Not implemented yet!");
+    public Collection<Role> findByUserId(final int userId) {
+        return findMany(new BaseStatementSource() {
+            @Override
+            public String sql() {
+                return findByUserIdStatement();
+            }
+
+            @Override
+            public Object[] parameters() {
+                return new Object[] { String.valueOf(userId) };
+            }
+
+        });
     }
 
+    private static final class RoleTableDescription implements TableDescription {
+
+        @Override
+        public String primaryKeyFiel() {
+            return "id";
+        }
+
+        @Override
+        public String tableName() {
+            return "role";
+        }
+
+        @Override
+        public String columns() {
+            return primaryKeyFiel() + ", userId, name";
+        }
+    }
 }

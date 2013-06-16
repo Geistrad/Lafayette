@@ -29,23 +29,11 @@ import org.lafayette.server.domain.mapper.id.IntegerIdentityMap;
 public class UserMapper extends BaseMapper<User> implements UserFinder {
 
     /**
-     * Name of database table.
-     */
-    private static final String TABLE_NAME = "user";
-    /**
-     * Name of primary key field.
-     */
-    private static final String PK_FIELD_NAME = "id";
-    /**
-     * Field of database table.
-     */
-    private static final String COLUMNS = PK_FIELD_NAME + ", loginName, hashedUserData";
-    /**
      * Insert SQL statement.
      */
     private static final String SQL_INSERT = "insert into %s values (?, ?, ?)";
     /**
-     * Find by login name SQL statement.
+     * Find by login tableMame SQL statement.
      */
     private static final String SQL_FIND_BY_LOGIN_NAME = "select %s from %s where loginName like ?";
     /**
@@ -61,7 +49,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      */
     private static final int INSERT_PARAM_HASHEDUSERDATA_POS = 3;
     /**
-     * Position of login name parameter in prepared statement.
+     * Position of login tableMame parameter in prepared statement.
      */
     private static final int UPDATE_PARAM_LOGINNAME_POS = 1;
     /**
@@ -73,7 +61,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      */
     private static final int UPDATE_PARAM_USERID_POS = 3;
     /**
-     * Position of login name row in result set.
+     * Position of login tableMame row in result set.
      */
     private static final int LOAD_ROW_LOGINNAME_POS = 2;
     /**
@@ -88,31 +76,31 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      * @param idMap all mappers must share same identity map
      */
     UserMapper(final DataSource dataSource, final IntegerIdentityMap<User> idMap) {
-        super(dataSource, idMap);
+        super(dataSource, idMap, new UserTableDescription());
     }
 
     @Override
     protected String findByIdStatement() {
-        return findByIdStatement(COLUMNS, TABLE_NAME, PK_FIELD_NAME);
+        return findByIdStatement(columns(), tableMame(), primaryKeyFiel());
     }
 
     @Override
     protected String findAllStatement(final int limit, final int offset) {
-        return findAllStatement(COLUMNS, TABLE_NAME, limit, offset);
+        return findAllStatement(columns(), tableMame(), limit, offset);
     }
 
     @Override
     protected String findMaxPrimaryKeyStatement() {
-        return findMaxPrimaryKeyStatement(PK_FIELD_NAME, TABLE_NAME);
+        return findMaxPrimaryKeyStatement(primaryKeyFiel(), tableMame());
     }
 
     /**
-     * Creates SQL prepared statement to find a user by login name.
+     * Creates SQL prepared statement to find a user by login tableMame.
      *
      * @return never {@code null}
      */
     private String findByLoginNameStatement() {
-        return String.format(SQL_FIND_BY_LOGIN_NAME, COLUMNS, TABLE_NAME);
+        return String.format(SQL_FIND_BY_LOGIN_NAME, columns(), tableMame());
     }
 
     /**
@@ -121,17 +109,17 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
      * @return never {@code null}
      */
     private String updateStatement() {
-        return String.format(SQL_UPDATE, TABLE_NAME, PK_FIELD_NAME);
+        return String.format(SQL_UPDATE, tableMame(), primaryKeyFiel());
     }
 
     @Override
     protected String deleteStatement() {
-        return deleteStatement(TABLE_NAME, PK_FIELD_NAME);
+        return deleteStatement(tableMame(), primaryKeyFiel());
     }
 
     @Override
     protected String insertStatement() {
-        return String.format(SQL_INSERT, TABLE_NAME);
+        return String.format(SQL_INSERT, tableMame());
     }
 
     @Override
@@ -165,7 +153,7 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
             findStatement.setString(1, loginName);
             final ResultSet rs = findStatement.executeQuery();
 
-            if (!rs.next())  {
+            if (!rs.next()) {
                 findStatement.close();
                 return null;
             }
@@ -192,6 +180,24 @@ public class UserMapper extends BaseMapper<User> implements UserFinder {
             closeConnection(db);
         } catch (SQLException ex) {
             throw new DomainModelException(ex);
+        }
+    }
+
+    private static final class UserTableDescription implements TableDescription {
+
+        @Override
+        public String primaryKeyFiel() {
+            return "id";
+        }
+
+        @Override
+        public String tableName() {
+            return "user";
+        }
+
+        @Override
+        public String columns() {
+            return primaryKeyFiel() + ", loginName, hashedUserData";
         }
     }
 }

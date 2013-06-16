@@ -32,6 +32,8 @@ interface StatementSource {
     /**
      * Returns parameter objects.
      *
+     * XXX Consider using string array.
+     *
      * @return never {@code null}, maybe empty
      */
     Object[] parameters();

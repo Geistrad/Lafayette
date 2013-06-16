@@ -43,7 +43,7 @@ public class UserResource extends BaseResource {
      */
     private static final int PAD_ID = 5;
     /**
-     * Number of white spaces to pad login name.
+     * Number of white spaces to pad login tableMame.
      */
     private static final int PAD_LOGIN_NAME = 16;
     /**
