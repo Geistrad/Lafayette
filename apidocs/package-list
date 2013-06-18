@@ -1,1 +1,8 @@
-org.lafayette.server.web
+org.lafayette.server
+org.lafayette.server.business
+org.lafayette.server.filter
+org.lafayette.server.http
+org.lafayette.server.http.digest
+org.lafayette.server.nonce
+org.lafayette.server.registration
+org.lafayette.server.resources
