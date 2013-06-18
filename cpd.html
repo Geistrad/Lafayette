@@ -47,75 +47,7 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>CPD Results<a name="CPD_Results"></a></h2><p>The following document contains the results of PMD's  <a class="externalLink" href="http://pmd.sourceforge.net/cpd.html">CPD</a> 5.0.2.</p></div><div class="section"><h2>Duplications<a name="Duplications"></a></h2><table align="center" border="0" class="bodyTable"><tr class="a"><th>File</th><th>Line</th></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>124</td></tr><tr class="a"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>152</td></tr><tr class="b"><td colspan='2'><div><pre>        final File home = tempFolder.newFolder();
-        final File prefix = tempFolder.newFolder();
-        final File systemConfigDir = new File(prefix, &quot;etc/lafayette&quot;);
-        assertThat(systemConfigDir.mkdirs(), is(true));
-        final File systemConfig = new File(systemConfigDir, &quot;server.properties&quot;);
-        assertThat(systemConfig.createNewFile(), is(true));
-
-        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFoundConfig(), is(nullValue()));
-        assertThat(sut.getFileList(), hasSize(2));
-        assertThat(sut.getFileList(), contains(
-            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
-            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
-        ));
-
-        sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(true));
-        assertThat(sut.getFoundConfig().getAbsolutePath(), is(systemConfig.getAbsolutePath()));</pre></div></td></tr></table><table align="center" border="0" class="bodyTable"><tr class="a"><th>File</th><th>Line</th></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>105</td></tr><tr class="a"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>157</td></tr><tr class="b"><td colspan='2'><div><pre>        final File prefix = tempFolder.newFolder();
-
-        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFoundConfig(), is(nullValue()));
-        assertThat(sut.getFileList(), hasSize(2));
-        assertThat(sut.getFileList(), contains(
-            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
-            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
-        ));
-
-        sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(true));
-        assertThat(sut.getFoundConfig().getAbsolutePath(), is(homeConfig.getAbsolutePath()));
-        assertThat(sut.getFileList(), hasSize(2));
-    }</pre></div></td></tr></table><table align="center" border="0" class="bodyTable"><tr class="a"><th>File</th><th>Line</th></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>105</td></tr><tr class="a"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>129</td></tr><tr class="b"><td colspan='2'><div><pre>        final File prefix = tempFolder.newFolder();
-
-        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFoundConfig(), is(nullValue()));
-        assertThat(sut.getFileList(), hasSize(2));
-        assertThat(sut.getFileList(), contains(
-            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
-            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
-        ));
-
-        sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(true));
-        assertThat(sut.getFoundConfig().getAbsolutePath(), is(homeConfig.getAbsolutePath()));</pre></div></td></tr></table><table align="center" border="0" class="bodyTable"><tr class="a"><th>File</th><th>Line</th></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>82</td></tr><tr class="a"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>129</td></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>157</td></tr><tr class="a"><td colspan='2'><div><pre>        assertThat(new File(prefix, &quot;etc&quot;).mkdirs(), is(true));
-
-        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFoundConfig(), is(nullValue()));
-        assertThat(sut.getFileList(), hasSize(2));
-        assertThat(sut.getFileList(), contains(
-            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
-            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
-        ));
-        sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(false));</pre></div></td></tr></table><table align="center" border="0" class="bodyTable"><tr class="b"><th>File</th><th>Line</th></tr><tr class="a"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>82</td></tr><tr class="b"><td>org/lafayette/server/core/config/UnixStrategyTest.java</td><td>105</td></tr><tr class="a"><td colspan='2'><div><pre>        assertThat(new File(prefix, &quot;etc&quot;).mkdirs(), is(true));
-
-        final UnixStrategy sut = new UnixStrategy(home.getAbsolutePath(), prefix.getAbsolutePath());
-        assertThat(sut.hasFoundConfig(), is(false));
-        assertThat(sut.getFoundConfig(), is(nullValue()));
-        assertThat(sut.getFileList(), hasSize(2));
-        assertThat(sut.getFileList(), contains(
-            UnixStrategy.createHomeConfigFileName(home.getAbsolutePath()),
-            UnixStrategy.createSystemConfigFileName(prefix.getAbsolutePath())
-        ));
-        sut.findConfig();
-        assertThat(sut.hasFoundConfig(), is(false));</pre></div></td></tr></table></div>
+        <div class="section"><h2>CPD Results<a name="CPD_Results"></a></h2><p>The following document contains the results of PMD's  <a class="externalLink" href="http://pmd.sourceforge.net/cpd.html">CPD</a> 5.0.2.</p></div><div class="section"><h2>Duplications<a name="Duplications"></a></h2><p>CPD found no problems in your source code.</p></div>
       </div>
     </div>
     <div class="clear">
