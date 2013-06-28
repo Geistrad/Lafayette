@@ -15,6 +15,8 @@ package org.lafayette.server.domain.db;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 /**
@@ -62,6 +64,11 @@ public class NullDataSource implements DataSource {
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
         return false;
+    }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return java.util.logging.Logger.getAnonymousLogger();
     }
 
 }
