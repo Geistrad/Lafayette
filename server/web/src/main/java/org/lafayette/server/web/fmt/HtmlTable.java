@@ -92,7 +92,11 @@ public class HtmlTable<T> implements Table<T> {
             final Map<String, Object> properties = BeanUtils.describe(object);
             properties.remove("class");
             return properties;
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException ex) {
+        } catch (IllegalAccessException ex) {
+            return Collections.emptyMap();
+        } catch (InvocationTargetException ex) {
+            return Collections.emptyMap();
+        } catch (NoSuchMethodException ex) {
             return Collections.emptyMap();
         }
     }
