@@ -12,11 +12,9 @@
 package org.lafayette.server.web.fmt;
 
 import com.google.common.collect.Lists;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * Formats a collection of data objects into a HTML table.
@@ -26,7 +24,7 @@ import org.apache.commons.beanutils.BeanUtils;
  * @param <T> type of formatted object
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class HtmlTable<T> implements Table<T> {
+public class HtmlTable<T> extends BaseTable<T> {
     /**
      * Opening row tag.
      */
@@ -96,24 +94,6 @@ public class HtmlTable<T> implements Table<T> {
         lines.addAll(formatData(data, names));
         lines.add(TAG_TABLE_CLOSE);
         return prettyPrint(lines);
-    }
-
-    private Map<String, Object> findProperties(final T object) {
-        try {
-            final Map<String, Object> properties = BeanUtils.describe(object);
-            properties.remove("class");
-            return properties;
-        } catch (IllegalAccessException ex) {
-            return Collections.emptyMap();
-        } catch (InvocationTargetException ex) {
-            return Collections.emptyMap();
-        } catch (NoSuchMethodException ex) {
-            return Collections.emptyMap();
-        }
-    }
-
-    Collection<String> findNames(final T object) {
-        return Lists.newArrayList(findProperties(object).keySet());
     }
 
     Collection<String> formatHead(final Collection<String> names) {

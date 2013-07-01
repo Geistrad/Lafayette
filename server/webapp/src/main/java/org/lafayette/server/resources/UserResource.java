@@ -31,6 +31,7 @@ import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.web.fmt.HtmlDocument;
 import org.lafayette.server.web.fmt.HtmlTable;
+import org.lafayette.server.web.fmt.TextTable;
 
 /**
  * Serves the user resource.
@@ -72,22 +73,7 @@ public class UserResource extends BaseResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String usersAsText() {
-        final StringBuilder buffer = new StringBuilder();
-        final UserFinder finder = finders().forUsers();
-        buffer.append(StringUtils.rightPad("id", PAD_ID))
-                .append(StringUtils.rightPad("loginName", PAD_LOGIN_NAME))
-                .append(StringUtils.rightPad("hashedUserData", PAD_HASHED_USER_DATA))
-                .append("salt")
-                .append(Constants.NL);
-
-        for (final User user : finder.findAll(LIMIT, 0)) {
-            buffer.append(StringUtils.rightPad(String.valueOf(user.getId()), PAD_ID))
-                    .append(StringUtils.rightPad(user.getLoginName(), PAD_LOGIN_NAME))
-                    .append(StringUtils.rightPad(user.getHashedUserData(), PAD_HASHED_USER_DATA))
-                    .append(Constants.NL);
-        }
-
-        return buffer.toString();
+        return new TextTable<User>().format(finders().forUsers().findAll(LIMIT, 0));
     }
 
     /**
@@ -100,7 +86,7 @@ public class UserResource extends BaseResource {
     public String usersAsHtml() {
         final HtmlDocument doc = new HtmlDocument();
         doc.setTitle("All users");
-        doc.setBody(new HtmlTable(2).format(finders().forUsers().findAll(LIMIT, 0)));
+        doc.setBody(new HtmlTable<User>(2).format(finders().forUsers().findAll(LIMIT, 0)));
         return doc.format();
     }
 

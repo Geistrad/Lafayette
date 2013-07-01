@@ -169,7 +169,7 @@ public class HtmlTableTest {
                 + "</table>\n")));
     }
 
-    public final class Data {
+    public static final class Data {
 
         private String foo;
         private String bar;
