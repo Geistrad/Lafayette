@@ -15,6 +15,16 @@ package org.lafayette.server.web.fmt;
 import java.util.Collection;
 
 /**
+ * Formats a collection of data objects into a Markdown table.
+ *
+ * Readable bean properties are used to generate the cells.
+ *
+ * <pre>
+ * |Left align|Right align|Center align|
+ * |:---------|:----------|:----------|
+ * |This|This|This|
+ * |column|column|column|
+ * </pre>
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */

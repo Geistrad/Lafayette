@@ -29,6 +29,8 @@ import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
+import org.lafayette.server.web.fmt.HtmlDocument;
+import org.lafayette.server.web.fmt.HtmlTable;
 
 /**
  * Serves the user resource.
@@ -86,6 +88,20 @@ public class UserResource extends BaseResource {
         }
 
         return buffer.toString();
+    }
+
+    /**
+     * Get all users as HTML.
+     *
+     * @return HTML string
+     */
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public String usersAsHtml() {
+        final HtmlDocument doc = new HtmlDocument();
+        doc.setTitle("All users");
+        doc.setBody(new HtmlTable(2).format(finders().forUsers().findAll(LIMIT, 0)));
+        return doc.format();
     }
 
     /**

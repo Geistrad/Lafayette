@@ -23,7 +23,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * Readable bean properties are used to generate the cells.
  *
- * @param T type of formatted object
+ * @param <T> type of formatted object
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class HtmlTable<T> implements Table<T> {
@@ -71,6 +71,17 @@ public class HtmlTable<T> implements Table<T> {
      * Closing table body tag.
      */
     private static final String TAG_TBODY_CLOSE = "</tbody>";
+
+    private final int baseIndentation;
+
+    public HtmlTable() {
+        this(0);
+    }
+
+    public HtmlTable(final int baseIndentation) {
+        super();
+        this.baseIndentation = baseIndentation;
+    }
 
     @Override
     public String format(final Collection<T> data) {
@@ -165,6 +176,10 @@ public class HtmlTable<T> implements Table<T> {
         int indent = 0;
 
         for (final String line : lines) {
+            if (baseIndentation > 0) {
+                buffer.append(indention(baseIndentation));
+            }
+
             if (TAG_TABLE_CLOSE.equals(line) || TAG_THEAD_CLOSE.equals(line)
                 || TAG_TBODY_CLOSE.equals(line) || TAG_TR_CLOSE.equals(line)) {
                 --indent;

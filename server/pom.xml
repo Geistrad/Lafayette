@@ -13,10 +13,10 @@
     <url>http://weltraumschaf.github.com/Lafayette/</url>
 
     <modules>
-        <module>model</module>
-        <module>webapp</module>
         <module>core</module>
+        <module>model</module>
         <module>web</module>
+        <module>webapp</module>
     </modules>
 
     <developers>
