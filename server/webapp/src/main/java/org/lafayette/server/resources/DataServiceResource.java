@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import org.lafayette.server.web.service.data.DataStore;
 
 /**
  *
@@ -25,21 +26,23 @@ import javax.ws.rs.PathParam;
 @Path("/service/data")
 public class DataServiceResource {
 
+    private final DataStore<Object> dataStore = new DataStore<Object>();
+
     @GET
     @Path("/{user}/{id}")
     public Object getData(@PathParam("user") final String user, @PathParam("user") final String id) {
-        return null;
+        return dataStore.get(user, id);
     }
 
     @PUT
     @Path("/{user}/{id}")
     public Object saveData(@PathParam("user") final String user, @PathParam("user") final String id) {
-        return null;
+        return dataStore.set(user, id, new Object());
     }
 
     @DELETE
     @Path("/{user}/{id}")
     public Object deleteData(@PathParam("user") final String user, @PathParam("user") final String id) {
-        return null;
+        return dataStore.remove(user, id);
     }
 }
