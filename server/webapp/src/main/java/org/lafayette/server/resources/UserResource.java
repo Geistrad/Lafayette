@@ -21,12 +21,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
-import org.lafayette.server.http.Constants;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.web.fmt.HtmlDocument;
@@ -41,18 +39,6 @@ import org.lafayette.server.web.fmt.TextTable;
 @Path("/user")
 public class UserResource extends BaseResource {
 
-    /**
-     * Number of white spaces to pad id.
-     */
-    private static final int PAD_ID = 5;
-    /**
-     * Number of white spaces to pad login tableMame.
-     */
-    private static final int PAD_LOGIN_NAME = 16;
-    /**
-     * Number of white spaces to pad hashed user data.
-     */
-    private static final int PAD_HASHED_USER_DATA = 34;
     /**
      * Limit for all user query.
      */
