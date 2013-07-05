@@ -644,7 +644,7 @@
                                 </reportSet>
                             </reportSets>
                         </plugin>
-
+                        <!--
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
                             <artifactId>cobertura-maven-plugin</artifactId>
@@ -658,7 +658,7 @@
                                 </instrumentation>
                             </configuration>
                         </plugin>
-
+                        -->
                         <!--                        <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-pmd-plugin</artifactId>
