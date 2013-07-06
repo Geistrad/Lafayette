@@ -21,6 +21,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.web.service.data.DataStore;
@@ -50,8 +51,14 @@ public class DataServiceResource {
     @GET
     @Path("/{user}/{id}")
     @Produces(MediaType.APPLICATION_XML)
-    public Object getDataAsXml(@PathParam("user") final String user, @PathParam("id") final String id) {
-        return DATA.get(user, id);
+    public Object getDataAsXml(@PathParam("user") final String user, @PathParam("id") final String id) throws JSONException {
+        final JSONObject datum = DATA.get(user, id);
+
+        if (null == datum) {
+            return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();
+        }
+
+        return Response.status(Status.OK).type(MediaType.APPLICATION_XML).entity(Converter.xml(datum)).build();
     }
 
     @GET
@@ -64,8 +71,8 @@ public class DataServiceResource {
     @PUT
     @Path("/{user}/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject jsonEntity) {
-        return DATA.set(user, id, jsonEntity);
+    public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) {
+        return DATA.set(user, id, json);
     }
 
     @DELETE
