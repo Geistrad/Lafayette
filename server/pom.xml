@@ -280,9 +280,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.6.3.201306030806</version>
                 </plugin>
 
                 <plugin>
@@ -524,22 +524,10 @@
                 </configuration>
             </plugin>
             <!-- Duplicate to site report necessary so that Netbeans shows coverage menu. :( -->
-            <!--            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                    </formats>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>org/lafayette/server/NullInjector.class</exclude>
-                            <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
-                            <exclude>org/lafayette/server/ServerModule.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                </configuration>
-            </plugin>-->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -646,21 +634,13 @@
                         </plugin>
 
                         <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>cobertura-maven-plugin</artifactId>
-                            <configuration>
-                                <formats>
-                                    <format>html</format>
-                                    <format>xml</format>
-                                </formats>
-                                <instrumentation>
-                                    <excludes>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+<!--                                    <excludes>
                                         <exclude>org/lafayette/server/NullInjector.class</exclude>
                                         <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
                                         <exclude>org/lafayette/server/ServerModule.class</exclude>
-                                    </excludes>
-                                </instrumentation>
-                            </configuration>
+                                    </excludes>-->
                         </plugin>
 
                         <!--                        <plugin>
