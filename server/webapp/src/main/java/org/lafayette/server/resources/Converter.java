@@ -11,10 +11,13 @@
  */
 package org.lafayette.server.resources;
 
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.msgpack.MessagePack;
 
 /**
  *
@@ -24,6 +27,7 @@ public class Converter {
 
     private static final Converter INSTACE = new Converter();
     private final Json2Xml json2xml = new Json2Xml();
+    private final Json2MessagePack json2macp = new Json2MessagePack();
 
     public String toXml(final JSONObject json) throws JSONException {
         return json2xml.convert(json);
@@ -31,6 +35,14 @@ public class Converter {
 
     public static String xml(final JSONObject json) throws JSONException {
         return INSTACE.toXml(json);
+    }
+
+    public byte[] toMessagePack(final JSONObject json) throws IOException {
+        return json2macp.convert(json);
+    }
+
+    public static byte[] mpack(final JSONObject json) throws IOException {
+        return INSTACE.toMessagePack(json);
     }
 
     private static final class Json2Xml {
@@ -137,6 +149,20 @@ public class Converter {
                             .append(value)
                             .append(closeTag(key))
                             .append(NL);
+        }
+    }
+
+    private static final class Json2MessagePack {
+        private final MessagePack mpack = new MessagePack();
+
+        public Json2MessagePack() {
+            super();
+            mpack.register(JSONObject.class);
+            mpack.register(JSONArray.class);
+        }
+
+        public byte[] convert(final JSONObject json) throws IOException {
+            return mpack.<Map>write(new JsonObject(json).values());
         }
     }
 }

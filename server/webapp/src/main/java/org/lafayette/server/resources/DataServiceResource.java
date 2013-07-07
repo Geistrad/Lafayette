@@ -12,6 +12,7 @@
 
 package org.lafayette.server.resources;
 
+import java.io.IOException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -71,8 +72,14 @@ public class DataServiceResource {
     @PUT
     @Path("/{user}/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) {
-        return DATA.set(user, id, json);
+    public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) throws IOException {
+        final JSONObject datum = DATA.get(user, id);
+
+        if (null == datum) {
+            return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();
+        }
+
+        return Response.status(Status.OK).type(MediaType.APPLICATION_XML).entity(Converter.mpack(datum)).build();
     }
 
     @DELETE
