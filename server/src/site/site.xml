@@ -39,7 +39,7 @@
     <body>
         <breadcrumbs>
             <item name="Weltraumschaf" href="http://www.weltraumschaf.de"/>
-            <item name="Continious Integration" href="http://www.weltraumschaf.de:8080/job/Lafayette-Server/"/>
+            <item name="Continious Integration" href="http://ci.weltraumschaf.de/job/Lafayette-Server/"/>
         </breadcrumbs>
         <menu name="${project.name}">
             <item name="Home" href="index.html"/>
