@@ -43,6 +43,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 /**
  * A default implementation of {@link Connection} which does nothing for testing.
@@ -284,6 +285,31 @@ public final class NullConnection implements Connection {
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
         return false;
+    }
+
+    @Override
+    public void setSchema(String schema) throws SQLException {
+
+    }
+
+    @Override
+    public String getSchema() throws SQLException {
+        return "";
+    }
+
+    @Override
+    public void abort(Executor executor) throws SQLException {
+
+    }
+
+    @Override
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+
+    }
+
+    @Override
+    public int getNetworkTimeout() throws SQLException {
+        return 0;
     }
 
     //CHECKSTYLE:OFF
@@ -1230,6 +1256,26 @@ public final class NullConnection implements Connection {
         @Override
         public void setNClob(String parameterName, Reader reader) throws SQLException {
         }
+
+        @Override
+        public <T> T getObject(int parameterIndex, Class<T> type) throws SQLException {
+            return null;
+        }
+
+        @Override
+        public <T> T getObject(String parameterName, Class<T> type) throws SQLException {
+            return null;
+        }
+
+        @Override
+        public void closeOnCompletion() throws SQLException {
+
+        }
+
+        @Override
+        public boolean isCloseOnCompletion() throws SQLException {
+            return false;
+        }
     }
 
     //CHECKSTYLE:OFF
@@ -2099,6 +2145,16 @@ public final class NullConnection implements Connection {
         @Override
         public boolean isWrapperFor(Class<?> iface) throws SQLException {
             return false;
+        }
+
+        @Override
+        public <T> T getObject(int columnIndex, Class<T> type) throws SQLException {
+            return null;
+        }
+
+        @Override
+        public <T> T getObject(String columnLabel, Class<T> type) throws SQLException {
+            return null;
         }
     }
 }
