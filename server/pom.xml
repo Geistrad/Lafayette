@@ -5,12 +5,19 @@
 
     <groupId>org.lafayette</groupId>
     <artifactId>server</artifactId>
-    <version>0.1.1</version>
-    <packaging>war</packaging>
+    <version>0.1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <name>Lafayette Server</name>
     <description>Lafayette Server Application</description>
     <url>http://weltraumschaf.github.com/Lafayette/</url>
+
+    <modules>
+        <module>core</module>
+        <module>model</module>
+        <module>web</module>
+        <module>webapp</module>
+    </modules>
 
     <developers>
         <developer>
@@ -61,14 +68,18 @@
     </ciManagement>
 
     <properties>
+        <site.basedir>${project.basedir}</site.basedir>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.build.version.source>1.6</project.build.version.source>
-        <project.build.version.target>1.6</project.build.version.target>
+        <project.build.version.source>1.7</project.build.version.source>
+        <project.build.version.target>1.7</project.build.version.target>
+        <maven.pmd.rulesetfiles>${project.basedir}/src/main/config/pmd.xml</maven.pmd.rulesetfiles>
+        <maven.pmd.cpd-excludes>${project.basedir}/src/main/config/exclude-cpd.properties</maven.pmd.cpd-excludes>
+        <maven.pmd.pmd-excludes>${project.basedir}/src/main/config/exclude-pmd.properties</maven.pmd.pmd-excludes>
+        <maven.findbugs.excludefilterfile>${project.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
+        <maven.findbugs.includefilterfile>${project.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
         <maven.version>3.0.3</maven.version>
-        <dependnecy.jersey.version>1.17.1</dependnecy.jersey.version>
-        <dependnecy.jackson.version>1.9.12</dependnecy.jackson.version>
     </properties>
 
     <dependencies>
@@ -78,11 +89,6 @@
             <version>0.3.1</version>
         </dependency>
         <dependency>
-            <groupId>findbugs</groupId>
-            <artifactId>annotations</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>14.0.1</version>
@@ -90,11 +96,6 @@
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-servlet</artifactId>
             <version>3.0</version>
         </dependency>
         <dependency>
@@ -118,9 +119,9 @@
             <version>1.8</version>
         </dependency>
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.2</version>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.msgpack</groupId>
@@ -128,56 +129,9 @@
             <version>0.6.7</version>
         </dependency>
         <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.19</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <!-- Jersey dependencies (https://jersey.java.net/nonav/documentation/latest/user-guide.html) -->
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>${dependnecy.jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-json</artifactId>
-            <version>${dependnecy.jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-servlet</artifactId>
-            <version>${dependnecy.jersey.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>${dependnecy.jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${dependnecy.jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
-            <version>${dependnecy.jackson.version}</version>
-        </dependency>
-        <!-- JSP tag libraries. -->
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <groupId>net.sourceforge.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <!-- Test dependencies. -->
         <dependency>
@@ -210,13 +164,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- HSQLDB JDBC Connector for tests. -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.2.9</version>
-            <scope>test</scope>
-        </dependency>
         <!-- Dependnecies provided by JEE Web Container. -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -239,11 +186,11 @@
     </dependencies>
 
     <build>
-        <defaultGoal>package</defaultGoal>
+        <defaultGoal>install</defaultGoal>
 
         <resources>
             <resource>
-                <directory>${basedir}/src/main/resources</directory>
+                <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
@@ -252,12 +199,12 @@
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-gitexe</artifactId>
-                <version>1.7</version>
+                <version>1.8.1</version>
             </extension>
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-manager-plexus</artifactId>
-                <version>1.7</version>
+                <version>1.8.1</version>
             </extension>
             <extension>
                 <groupId>org.kathrynhuxtable.maven.wagon</groupId>
@@ -268,6 +215,16 @@
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>com.kryshchuk.maven.plugins</groupId>
+                    <artifactId>umlet-maven-plugin</artifactId>
+                    <version>1.1.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
@@ -295,13 +252,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.9</version>
+                    <version>2.9.1</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.0</version>
+                    <version>2.1</version>
                 </plugin>
 
                 <plugin>
@@ -323,9 +280,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.6.3.201306030806</version>
                 </plugin>
 
                 <plugin>
@@ -391,7 +348,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.14.1</version>
+                    <version>2.15</version>
                 </plugin>
 
                 <plugin>
@@ -412,15 +369,6 @@
                     <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
                     <targetJdk>${project.build.targetJdk}</targetJdk>
-                    <!-- http://pmd.sourceforge.net/rules/index.html -->
-                    <rulesets>
-                        <ruleset>/rulesets/basic.xml</ruleset>
-                        <ruleset>/rulesets/unusedcode.xml</ruleset>
-                        <ruleset>/rulesets/imports.xml</ruleset>
-                        <ruleset>/rulesets/clone.xml</ruleset>
-                        <ruleset>/rulesets/coupling.xml</ruleset>
-                        <ruleset>/rulesets/design.xml</ruleset>
-                    </rulesets>
                 </configuration>
                 <executions>
                     <execution>
@@ -429,7 +377,7 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
-                            <excludeFromFailureFile>${basedir}/src/main/conf/exclude-pmd.properties</excludeFromFailureFile>
+                            <excludeFromFailureFile>${maven.pmd.pmd-excludes}</excludeFromFailureFile>
                             <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
@@ -439,7 +387,7 @@
                             <goal>cpd-check</goal>
                         </goals>
                         <configuration>
-                            <excludeFromFailureFile>${basedir}/src/main/conf/exclude-cpd.properties</excludeFromFailureFile>
+                            <excludeFromFailureFile>${maven.pmd.cpd-excludes}</excludeFromFailureFile>
                             <failOnViolation>false</failOnViolation>
                         </configuration>
                     </execution>
@@ -449,7 +397,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
-                    <configLocation>${basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
+                    <configLocation>${project.basedir}/src/main/config/checkstyle-ruleset.xml</configLocation>
                     <logViolationsToConsole>true</logViolationsToConsole>
                     <includeTestSourceDirectory>false</includeTestSourceDirectory>
                 </configuration>
@@ -462,8 +410,8 @@
                     <threshold>Default</threshold>
                     <xmlOutput>true</xmlOutput>
                     <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
-                    <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
+                    <excludeFilterFile>${maven.findbugs.excludefilterfile}</excludeFilterFile>
+                    <includeFilterFile>${maven.findbugs.includefilterfile}</includeFilterFile>
                     <!-- Optional directory to put findbugs xdoc xml report -->
                     <xmlOutputDirectory>target/site</xmlOutputDirectory>
                     <xmlOutput>true</xmlOutput>
@@ -485,13 +433,6 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>true</failOnMissingWebXml>
                 </configuration>
             </plugin>
             <plugin>
@@ -519,12 +460,46 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>com.kryshchuk.maven.plugins</groupId>
+                <artifactId>umlet-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>convert-uml</id>
+                        <goals>
+                            <goal>convert</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <webappDirectory>${basedir}/src/main/webapp</webappDirectory>
+                    <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                 </configuration>
+                <!--                <executions>
+                    <execution>
+                        http://stackoverflow.com/questions/5976123/maven-site-for-multi-module
+                        <id>copy-sitedescriptor</id>
+                        fetch site.xml before creating site documentation
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/src/site/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${site.basedir}/src/site/</directory>
+                                    <includes>
+                                        <include>**/site.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -550,20 +525,8 @@
             </plugin>
             <!-- Duplicate to site report necessary so that Netbeans shows coverage menu. :( -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                    </formats>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>org/lafayette/server/NullInjector.class</exclude>
-                            <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
-                            <exclude>org/lafayette/server/ServerModule.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                </configuration>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
 
             <plugin>
@@ -671,17 +634,13 @@
                         </plugin>
 
                         <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>cobertura-maven-plugin</artifactId>
-                            <configuration>
-                                <formats>
-                                    <format>html</format>
-                                    <format>xml</format>
-                                </formats>
-                                <instrumentation>
-                                    <excludes />
-                                </instrumentation>
-                            </configuration>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+<!--                                    <excludes>
+                                        <exclude>org/lafayette/server/NullInjector.class</exclude>
+                                        <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
+                                        <exclude>org/lafayette/server/ServerModule.class</exclude>
+                                    </excludes>-->
                         </plugin>
 
                         <!--                        <plugin>
@@ -709,7 +668,7 @@
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
                             <configuration>
-                                <configLocation>${basedir}/src/main/conf/checkstyle-ruleset.xml</configLocation>
+                                <configLocation>${project.basedir}/src/main/config/checkstyle-ruleset.xml</configLocation>
                                 <logViolationsToConsole>true</logViolationsToConsole>
                                 <includeTestSourceDirectory>false</includeTestSourceDirectory>
                             </configuration>
@@ -723,9 +682,9 @@
                                 <threshold>Default</threshold>
                                 <xmlOutput>true</xmlOutput>
                                 <findbugsXmlOutput>true</findbugsXmlOutput>
-                                <excludeFilterFile>${basedir}/src/main/conf/findbugs-exclude.xml</excludeFilterFile>
-                                <includeFilterFile>${basedir}/src/main/conf/findbugs-include.xml</includeFilterFile>
-                                Optional directory to put findbugs xdoc xml report
+                                <excludeFilterFile>${maven.findbugs.excludefilterfile}</excludeFilterFile>
+                                <includeFilterFile>${maven.findbugs.includefilterfile}</includeFilterFile>
+                                <!-- Optional directory to put findbugs xdoc xml report -->
                                 <xmlOutputDirectory>target/site</xmlOutputDirectory>
                                 <xmlOutput>true</xmlOutput>
                                 <threshold>Low</threshold>
