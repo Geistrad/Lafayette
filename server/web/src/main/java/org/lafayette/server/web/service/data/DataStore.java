@@ -16,11 +16,20 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
+ * In memory store to store user data.
  *
+ * The internal data structures are thread safe.
+ * 
+ * @param <T> type of stored user data
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 public class DataStore<T> {
 
+    /**
+     * Maps the user data to the user name.
+     *
+     * Is a concurrent map.
+     */
     private final Map<String, UserStore<T>> data = Maps.newConcurrentMap();
 
     public T get(final String user, final String id) {

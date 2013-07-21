@@ -13,6 +13,7 @@
 package org.lafayette.server.resources;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,6 +26,8 @@ import javax.ws.rs.core.Response.Status;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.http.MediaType;
+import org.lafayette.server.http.UriList;
+import org.lafayette.server.web.service.data.DataService;
 import org.lafayette.server.web.service.data.DataStore;
 
 /**
@@ -32,7 +35,7 @@ import org.lafayette.server.web.service.data.DataStore;
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
 @Path("/service/data")
-public class DataServiceResource {
+public class DataServiceResource extends BaseResource {
 
     private static final DataStore<JSONObject> DATA = new DataStore<JSONObject>();
 
@@ -40,7 +43,7 @@ public class DataServiceResource {
     @Path("/{user}/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getDataAsJson(@PathParam("user") final String user, @PathParam("id") final String id) {
-        final JSONObject datum = DATA.get(user, id);
+        JSONObject datum = getData(user, id);
 
         if (null == datum) {
             return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_JSON).build();
@@ -53,7 +56,7 @@ public class DataServiceResource {
     @Path("/{user}/{id}")
     @Produces(MediaType.APPLICATION_XML)
     public Object getDataAsXml(@PathParam("user") final String user, @PathParam("id") final String id) throws JSONException {
-        final JSONObject datum = DATA.get(user, id);
+        JSONObject datum = getData(user, id);
 
         if (null == datum) {
             return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();
@@ -66,14 +69,14 @@ public class DataServiceResource {
     @Path("/{user}/{id}")
     @Produces(MediaType.APPLICATION_X_MSGPACK)
     public Object getDataAsMessagePack(@PathParam("user") final String user, @PathParam("id") final String id) {
-        return DATA.get(user, id);
+        return getData(user, id);
     }
 
     @PUT
     @Path("/{user}/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) throws IOException {
-        final JSONObject datum = DATA.get(user, id);
+        final JSONObject datum = DATA.set(user, id, json);
 
         if (null == datum) {
             return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();
@@ -84,7 +87,19 @@ public class DataServiceResource {
 
     @DELETE
     @Path("/{user}/{id}")
-    public Object deleteData(@PathParam("user") final String user, @PathParam("id") final String id) {
-        return DATA.remove(user, id);
+    public void deleteData(@PathParam("user") final String user, @PathParam("id") final String id) {
+        final DataService service = serviceProvider().getDataService();
+        service.deleteData(user, id);
+    }
+
+    @Override
+    protected void addUrisToIndexList(UriList list) throws URISyntaxException {
+
+    }
+
+    private JSONObject getData(final String user, final String id) {
+        final DataService service = serviceProvider().getDataService();
+        final JSONObject datum = service.getData(user, id);
+        return datum;
     }
 }

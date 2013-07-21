@@ -34,6 +34,7 @@ import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.core.log.Log;
 import org.lafayette.server.core.log.Logger;
+import org.lafayette.server.web.service.ServiceProvider;
 import org.msgpack.MessagePack;
 
 /**
@@ -165,6 +166,8 @@ abstract class BaseResource implements AbstractResourceModelListener {
     /**
      * Get domain object finders.
      *
+     * TODO Remove resource should use services.
+     *
      * @return never {@code null} and same instance
      */
     protected synchronized Finders finders() {
@@ -173,6 +176,10 @@ abstract class BaseResource implements AbstractResourceModelListener {
         }
 
         return finders;
+    }
+
+    protected ServiceProvider serviceProvider() {
+        return registry().getServiceProvider();
     }
 
     /**
@@ -267,4 +274,5 @@ abstract class BaseResource implements AbstractResourceModelListener {
         log.info("Respond with URI list for %s", servlet.getRealPath(""));
         return indexUriList.toString();
     }
+
 }

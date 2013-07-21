@@ -21,6 +21,7 @@ import org.lafayette.server.domain.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
 import org.lafayette.server.web.InitialServletParameters;
+import org.lafayette.server.web.service.ServiceProvider;
 
 /**
  * Registers shared core resources.
@@ -70,6 +71,7 @@ public final class Registry {
      * Holds initial servlet parameters.
      */
     private InitialServletParameters initParameters = new InitialServletParameters();
+    private ServiceProvider serviceProvider = new ServiceProvider();
 
     /**
      * Dedicated constructor.
@@ -211,6 +213,14 @@ public final class Registry {
     public void setInitParameters(InitialServletParameters initParameters) {
         Validate.notNull(initParameters, "Init parameters must not be null!");
         this.initParameters = initParameters;
+    }
+
+    public void getServiceProvider(final ServiceProvider sp) {
+        Validate.notNull(sp, "Service provider must not be null!");
+        this.serviceProvider = sp;
+    }
+    public ServiceProvider getServiceProvider() {
+        return this.serviceProvider;
     }
 
 }
