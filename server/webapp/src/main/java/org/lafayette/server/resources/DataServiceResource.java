@@ -23,6 +23,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.http.MediaType;
@@ -75,12 +77,15 @@ public class DataServiceResource extends BaseResource {
     public Object putData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) throws IOException {
         final DataService service = getDataService();
         final JSONObject datum = service.putData(user, id, json);
+        final Response.ResponseBuilder response = Response.status(Status.CREATED);
+        final UriBuilder uri = uriInfo().getBaseUriBuilder();
+        response.type(MediaType.APPLICATION_XML).header("Location", uri.build(user, id).toString());
 
-        if (null == datum) {
-            return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();
+        if (null != datum) {
+            response.entity(Converter.mpack(datum));
         }
 
-        return Response.status(Status.OK).type(MediaType.APPLICATION_XML).entity(Converter.mpack(datum)).build();
+        return response.build();
     }
 
     @DELETE
