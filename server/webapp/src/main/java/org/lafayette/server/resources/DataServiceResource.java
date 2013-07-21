@@ -88,7 +88,7 @@ public class DataServiceResource extends BaseResource {
     @DELETE
     @Path("/{user}/{id}")
     public void deleteData(@PathParam("user") final String user, @PathParam("id") final String id) {
-        final DataService service = serviceProvider().getDataService();
+        final DataService service = getDataService();
         service.deleteData(user, id);
     }
 
@@ -98,8 +98,12 @@ public class DataServiceResource extends BaseResource {
     }
 
     private JSONObject getData(final String user, final String id) {
-        final DataService service = serviceProvider().getDataService();
+        final DataService service = getDataService();
         final JSONObject datum = service.getData(user, id);
         return datum;
+    }
+
+    private DataService getDataService() {
+        return services().getApiServices().getDataService();
     }
 }

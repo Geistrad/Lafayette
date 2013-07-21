@@ -19,7 +19,7 @@ import org.lafayette.server.web.service.data.DataService;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class ServiceProvider {
+public final class ApiServiceProvider {
 
     private final DataService dataService = new DataService();
 

@@ -112,7 +112,7 @@ public class RegisrationUI extends UI {
      */
     @Override
     protected void init(final VaadinRequest request) {
-        registration = new RegistrationService(new Finders(registry().getMappers()));
+        registration = registry().getServices().getBusinessServices().getRegistrationService();
         initLayout();
         initCreateAccountButton();
     }

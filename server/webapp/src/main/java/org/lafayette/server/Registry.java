@@ -16,12 +16,12 @@ import de.weltraumschaf.commons.Version;
 import java.security.NoSuchAlgorithmException;
 import javax.sql.DataSource;
 import org.apache.commons.lang3.Validate;
+import org.lafayette.server.domain.Finders;
 import org.lafayette.server.domain.db.NullDataSource;
 import org.lafayette.server.domain.mapper.Mappers;
 import org.lafayette.server.nonce.Nonce;
 import org.lafayette.server.nonce.NonceFactory;
 import org.lafayette.server.web.InitialServletParameters;
-import org.lafayette.server.web.service.ServiceProvider;
 
 /**
  * Registers shared core resources.
@@ -71,7 +71,7 @@ public final class Registry {
      * Holds initial servlet parameters.
      */
     private InitialServletParameters initParameters = new InitialServletParameters();
-    private ServiceProvider serviceProvider = new ServiceProvider();
+    private Services services = new Services(new Finders(mappers));
 
     /**
      * Dedicated constructor.
@@ -215,12 +215,12 @@ public final class Registry {
         this.initParameters = initParameters;
     }
 
-    public void getServiceProvider(final ServiceProvider sp) {
-        Validate.notNull(sp, "Service provider must not be null!");
-        this.serviceProvider = sp;
+    public void getServices(final Services s) {
+        Validate.notNull(s, "Service provider must not be null!");
+        this.services = s;
     }
-    public ServiceProvider getServiceProvider() {
-        return this.serviceProvider;
+    public Services getServices() {
+        return this.services;
     }
 
 }

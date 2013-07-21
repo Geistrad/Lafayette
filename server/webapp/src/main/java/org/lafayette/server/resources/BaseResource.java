@@ -28,13 +28,12 @@ import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
+import org.lafayette.server.Services;
 import org.lafayette.server.domain.DomainObject;
-import org.lafayette.server.domain.Finders;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.core.log.Log;
 import org.lafayette.server.core.log.Logger;
-import org.lafayette.server.web.service.ServiceProvider;
 import org.msgpack.MessagePack;
 
 /**
@@ -74,12 +73,6 @@ abstract class BaseResource implements AbstractResourceModelListener {
      * Security context injected by Jersey.
      */
     @Context private SecurityContext security;
-    /**
-     * Finder factory.
-     *
-     * Lazy computed.
-     */
-    private Finders finders;
 
     /**
      * Dedicated constructor.
@@ -163,23 +156,8 @@ abstract class BaseResource implements AbstractResourceModelListener {
         return security;
     }
 
-    /**
-     * Get domain object finders.
-     *
-     * TODO Remove resource should use services.
-     *
-     * @return never {@code null} and same instance
-     */
-    protected synchronized Finders finders() {
-        if (null == finders) {
-            finders = new Finders(registry().getMappers());
-        }
-
-        return finders;
-    }
-
-    protected ServiceProvider serviceProvider() {
-        return registry().getServiceProvider();
+    protected Services services() {
+        return registry().getServices();
     }
 
     /**

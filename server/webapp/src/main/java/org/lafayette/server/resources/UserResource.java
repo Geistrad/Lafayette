@@ -13,6 +13,7 @@ package org.lafayette.server.resources;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -23,6 +24,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
+import org.lafayette.server.business.UserService;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.MediaType;
@@ -51,6 +53,10 @@ public class UserResource extends BaseResource {
         indexUriList.add(ub.build());
     }
 
+    private Collection<User> findAllUsers(final int limit, final int offset) {
+        final UserService service = services().getBusinessServices().getUserService();
+        return service.getAllUsers(limit, 0);
+    }
     /**
      * Get all users as plain text.
      *
@@ -59,7 +65,7 @@ public class UserResource extends BaseResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String usersAsText() {
-        return new TextTable<User>().format(finders().forUsers().findAll(LIMIT, 0));
+        return new TextTable<User>().format(findAllUsers(LIMIT, 0));
     }
 
     /**
@@ -72,7 +78,7 @@ public class UserResource extends BaseResource {
     public String usersAsHtml() {
         final HtmlDocument doc = new HtmlDocument();
         doc.setTitle("All users");
-        doc.setBody(new HtmlTable<User>(2).format(finders().forUsers().findAll(LIMIT, 0)));
+        doc.setBody(new HtmlTable<User>(2).format(findAllUsers(LIMIT, 0)));
         return doc.format();
     }
 
@@ -198,7 +204,6 @@ public class UserResource extends BaseResource {
      * @return may be {@code null}
      */
     private User findUserById(final int id) {
-        final UserFinder finder = finders().forUsers();
-        return finder.find(id);
+        return services().getBusinessServices().getUserService().findById(id);
     }
 }
