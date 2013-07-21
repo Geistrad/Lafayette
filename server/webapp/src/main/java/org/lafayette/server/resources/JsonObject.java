@@ -22,7 +22,7 @@ import org.codehaus.jettison.json.JSONObject;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class JsonObject {
+class JsonObject {
 
     private final JSONObject delegate;
 

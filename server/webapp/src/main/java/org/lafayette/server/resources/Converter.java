@@ -23,7 +23,7 @@ import org.msgpack.MessagePack;
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class Converter {
+class Converter {
 
     private static final Converter INSTACE = new Converter();
     private final Json2Xml json2xml = new Json2Xml();
