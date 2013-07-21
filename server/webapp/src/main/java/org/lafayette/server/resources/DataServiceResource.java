@@ -28,7 +28,6 @@ import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.web.service.data.DataService;
-import org.lafayette.server.web.service.data.DataStore;
 
 /**
  *
@@ -36,8 +35,6 @@ import org.lafayette.server.web.service.data.DataStore;
  */
 @Path("/service/data")
 public class DataServiceResource extends BaseResource {
-
-    private static final DataStore<JSONObject> DATA = new DataStore<JSONObject>();
 
     @GET
     @Path("/{user}/{id}")
@@ -75,8 +72,9 @@ public class DataServiceResource extends BaseResource {
     @PUT
     @Path("/{user}/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object saveData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) throws IOException {
-        final JSONObject datum = DATA.set(user, id, json);
+    public Object putData(@PathParam("user") final String user, @PathParam("id") final String id, final JSONObject json) throws IOException {
+        final DataService service = getDataService();
+        final JSONObject datum = service.putData(user, id, json);
 
         if (null == datum) {
             return Response.status(Status.NOT_FOUND).type(MediaType.APPLICATION_XML).build();

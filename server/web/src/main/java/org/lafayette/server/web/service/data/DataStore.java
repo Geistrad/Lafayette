@@ -19,11 +19,11 @@ import java.util.Map;
  * In memory store to store user data.
  *
  * The internal data structures are thread safe.
- * 
+ *
  * @param <T> type of stored user data
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public class DataStore<T> {
+class DataStore<T> {
 
     /**
      * Maps the user data to the user name.

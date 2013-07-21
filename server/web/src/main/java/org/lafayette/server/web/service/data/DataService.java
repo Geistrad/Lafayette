@@ -37,8 +37,8 @@ public class DataService implements DescribableService {
     }
 
     @ServiceApi
-    public void putData(final String userName, final String id, final JSONObject data) {
-        store.set(userName, id, data);
+    public JSONObject putData(final String userName, final String id, final JSONObject data) {
+        return store.set(userName, id, data);
     }
 
     @ServiceApi
