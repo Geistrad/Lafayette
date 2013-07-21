@@ -97,13 +97,6 @@ public class ConverterTest {
         return b & 0xFF;
     }
 
-    private static final void write(final byte[] bytes) throws FileNotFoundException, IOException {
-        final String filename = "/Users/sxs/tmp/mpack";
-        final FileOutputStream fos = new FileOutputStream(filename);
-        fos.write(bytes);
-        fos.close();
-    }
-
     @Test
     public void fromJsonToMessagePack_simple() throws JSONException, IOException {
         final JSONObject json = new JSONObject();
@@ -123,7 +116,7 @@ public class ConverterTest {
     }
 
     @Test
-    public void fromJsonToMessagePackl_complex() throws JSONException, IOException {
+    public void fromJsonToMessagePack_complex() throws JSONException, IOException {
         final JSONObject json = new JSONObject();
         json.put("foo", "bar");
         json.put("number1", 42);
@@ -148,6 +141,5 @@ public class ConverterTest {
             (byte) 0x93, (byte) 0xa3, (byte) 0x66, (byte) 0x6f, (byte) 0x6f, (byte) 0xa3, (byte) 0x62, (byte) 0x61,
             (byte) 0x72, (byte) 0xa3, (byte) 0x62, (byte) 0x61, (byte) 0x7a,
         })));
-        write(Converter.mpack(json));
     }
 }
