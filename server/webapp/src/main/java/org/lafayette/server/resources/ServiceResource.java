@@ -34,8 +34,8 @@ import org.pegdown.PegDownProcessor;
 @Path("/service")
 public class ServiceResource extends BaseResource {
 
-    private static final String MARKDOWN_INDEX = "org/lafayette/server/resources/service.index.md";
-    private static final String HTML_INDEX = "org/lafayette/server/resources/service.index.html";
+    private static final String MARKDOWN_INDEX = "/org/lafayette/server/resources/service.index.md";
+    private static final String HTML_INDEX = "/org/lafayette/server/resources/service.index.html";
 
     @Override
     protected void addUrisToIndexList(final UriList indexUriList) throws URISyntaxException {
