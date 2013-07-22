@@ -5,7 +5,7 @@
         <%@include file="WEB-INF/jspf/error/head.jspf" %>
     </head>
     <body>
-        <%@include file="WEB-INF/jspf/error/container_end.jspf" %>
+        <%@include file="WEB-INF/jspf/error/container_begin.jspf" %>
 
             <h1>Internal Server Error <span>:(</span></h1>
 
