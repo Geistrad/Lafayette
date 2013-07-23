@@ -1,3 +1,5 @@
-server/.classpath
-server/.project
-server/.settings/
+# Eclipse foo
+.classpath
+.project
+.settings/
+.checkstyle
