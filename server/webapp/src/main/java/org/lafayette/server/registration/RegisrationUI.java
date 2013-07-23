@@ -29,7 +29,6 @@ import com.vaadin.ui.VerticalLayout;
 import org.lafayette.server.Registry;
 import org.lafayette.server.ServerContextListener;
 import org.lafayette.server.business.ServiceExcpetion;
-import org.lafayette.server.domain.Finders;
 
 /**
  * UI class is the starting point for your app.

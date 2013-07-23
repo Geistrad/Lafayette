@@ -21,7 +21,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.pegdown.PegDownProcessor;

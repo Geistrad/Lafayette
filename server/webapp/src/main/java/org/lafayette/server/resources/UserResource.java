@@ -26,7 +26,6 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.lafayette.server.business.UserService;
 import org.lafayette.server.domain.User;
-import org.lafayette.server.domain.UserFinder;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
 import org.lafayette.server.web.fmt.HtmlDocument;

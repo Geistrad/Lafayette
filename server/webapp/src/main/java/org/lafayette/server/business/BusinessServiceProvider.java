@@ -12,7 +12,6 @@
 
 package org.lafayette.server.business;
 
-import com.vaadin.data.Validatable;
 import org.jsoup.helper.Validate;
 import org.lafayette.server.domain.Finders;
 
