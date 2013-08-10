@@ -12,10 +12,11 @@
     <url>http://weltraumschaf.github.com/Lafayette/</url>
 
     <modules>
-        <module>core</module>
-        <module>model</module>
-        <module>web</module>
-        <module>webapp</module>
+        <!-- TODO name module same as artifactId -->
+        <module>core</module><!-- TODO Rename to lafayette-core -->
+        <module>model</module><!-- TODO Rename to lafayette-model -->
+        <module>web</module><!-- TODO Rename to lafayette-web-components -->
+        <module>webapp</module><!-- TODO Rename to lafayette-web-apps, split in lafayette-web-admin and lafayette-web-service -->
     </modules>
 
     <developers>
@@ -86,7 +87,7 @@
         <dependency>
             <groupId>de.weltraumschaf</groupId>
             <artifactId>commons</artifactId>
-            <version>0.3.1</version>
+            <version>0.3.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -218,7 +219,7 @@
                 <plugin>
                     <groupId>com.kryshchuk.maven.plugins</groupId>
                     <artifactId>umlet-maven-plugin</artifactId>
-                    <version>1.1.5</version>
+                    <version>1.1.6</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -324,7 +325,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>2.3</version>
+                    <version>2.4</version>
                 </plugin>
 
                 <plugin>
@@ -355,6 +356,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.3</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
