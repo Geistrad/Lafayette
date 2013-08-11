@@ -49,6 +49,11 @@
         <param-value>Lafayette restricted area.</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/log4j.properties</param-value>
+    </context-param>
+
     <listener>
         <display-name>application</display-name>
         <listener-class>org.lafayette.server.ServerContextListener</listener-class>
