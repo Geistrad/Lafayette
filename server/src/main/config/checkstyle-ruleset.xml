@@ -19,9 +19,8 @@
 <!-- http://checkstyle.sf.net (or in your downloaded distribution). -->
 <module name="Checker">
     <module name="SuppressionFilter">
-        <property name="file" value="checkstyle-suppressions.xml" />
+        <property name="file" value="${basedir}/checkstyle-suppressions.xml" />
     </module>
-    
     <module name="SuppressionCommentFilter" />
     <property name="severity" value="error" />
     <module name="FileLength">
