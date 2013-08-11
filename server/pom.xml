@@ -13,10 +13,10 @@
 
     <modules>
         <!-- TODO name module same as artifactId -->
-        <module>core</module><!-- TODO Rename to lafayette-core -->
-        <module>model</module><!-- TODO Rename to lafayette-model -->
-        <module>web</module><!-- TODO Rename to lafayette-web-components -->
-        <module>webapp</module><!-- TODO Rename to lafayette-web-apps, split in lafayette-web-admin and lafayette-web-service -->
+        <module>server-core</module>
+        <module>server-model</module>
+        <module>server-web</module>
+        <module>server-webapp</module>
     </modules>
 
     <developers>
