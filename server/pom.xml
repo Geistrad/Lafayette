@@ -12,7 +12,6 @@
     <url>http://weltraumschaf.github.com/Lafayette/</url>
 
     <modules>
-        <!-- TODO name module same as artifactId -->
         <module>server-core</module>
         <module>server-model</module>
         <module>server-web</module>
@@ -53,13 +52,14 @@
         <connection>scm:git:git://github.com/Weltraumschaf/Lafayette.git</connection>
         <developerConnection>scm:git:git@github.com:Weltraumschaf/Lafayette.git</developerConnection>
         <url>https://github.com/Weltraumschaf/Lafayette.git</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <site>
             <id>github-project-site</id>
-            <url>gitsite:git@github.com/Weltraumschaf/Lafayette.git</url>
+            <!--<url>gitsite:git@github.com/Weltraumschaf/Lafayette.git</url>-->
+            <url>file:///Users/sxs/src/Lafayette/server/target/staged-site</url>
         </site>
     </distributionManagement>
 
@@ -643,11 +643,11 @@
                         <plugin>
                             <groupId>org.jacoco</groupId>
                             <artifactId>jacoco-maven-plugin</artifactId>
-<!--                                    <excludes>
-                                        <exclude>org/lafayette/server/NullInjector.class</exclude>
-                                        <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
-                                        <exclude>org/lafayette/server/ServerModule.class</exclude>
-                                    </excludes>-->
+                            <!--                                    <excludes>
+                                <exclude>org/lafayette/server/NullInjector.class</exclude>
+                                <exclude>org/lafayette/server/db/NullConnection*.class</exclude>
+                                <exclude>org/lafayette/server/ServerModule.class</exclude>
+                            </excludes>-->
                         </plugin>
 
                         <!--                        <plugin>

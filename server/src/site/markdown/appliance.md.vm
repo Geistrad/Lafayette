@@ -76,5 +76,7 @@ Add in `/etc/defaults/tomcat`
     -XX:MaxPermSize=${MAX_PERM_SIZE} \
     -Xms${HEAP_SPACE_START} -Xmx${HEAP_SPACE_MAX}"
 
+<small>This web site was generated for ${project.groupId}:${project.artifactId}:${project.version}.</small>
+
 [1]: https://www.virtualbox.org/wiki/Downloads
 [2]: https://mifosforge.jira.com/wiki/display/MIFOSX/Install+Tomcat+7+on+Ubuntu+11.10+for+Mifos+X

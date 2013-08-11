@@ -12,5 +12,7 @@ are some JSPs and static web resources.
 
 <img alt="Big picture" src="images/big_picture.png"/>
 
+<small>This web site was generated for ${project.groupId}:${project.artifactId}:${project.version}.</small>
+
 [1]: http://tomcat.apache.org/download-70.cgi
 [2]: https://jersey.java.net/
