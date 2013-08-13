@@ -69,7 +69,6 @@
     </ciManagement>
 
     <properties>
-        <site.basedir>${project.basedir}</site.basedir>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -485,28 +484,6 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory>
                 </configuration>
-                <!--                <executions>
-                    <execution>
-                        http://stackoverflow.com/questions/5976123/maven-site-for-multi-module
-                        <id>copy-sitedescriptor</id>
-                        fetch site.xml before creating site documentation
-                        <phase>pre-site</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/src/site/</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${site.basedir}/src/site/</directory>
-                                    <includes>
-                                        <include>**/site.xml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
