@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/" cookies="false" />
+<Context antiJARLocking="true" path="/api" cookies="false">
+    <Resource name="jdbc/mysql" auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost/lafayette"
+              username="lafayette"
+              password="ooleiTh1"
+              maxActive="10"
+              maxIdle="5"
+              maxWait="-1"
+              removeAbandoned="true"
+              removeAbandonedTimeout="60"
+              logAbandoned="true"
+    />
+</Context>

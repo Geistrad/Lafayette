@@ -13,7 +13,7 @@
     <version>0.1.3-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Lafayette Server Web Home</name>
+    <name>Lafayette Server REST API</name>
     <description>TBD</description>
     <url>http://weltraumschaf.github.com/Lafayette/</url>
 
