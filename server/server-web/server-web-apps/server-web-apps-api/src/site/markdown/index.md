@@ -1,3 +1,3 @@
-# Webapp Component
+# REST API Webapp
 
 TBD

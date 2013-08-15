@@ -1,3 +1,3 @@
-# Webapp Component
+# Registration Webapp
 
 TBD

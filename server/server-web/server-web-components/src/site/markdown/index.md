@@ -1,3 +1,3 @@
-# Web Component
+# Web Component Module
 
 TBD
