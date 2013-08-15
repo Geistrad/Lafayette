@@ -20,7 +20,6 @@
     <modules>
         <module>server-web-components</module>
         <module>server-web-apps</module>
-        <module>server-webapp-old</module>
     </modules>
 
     <properties>
@@ -30,9 +29,9 @@
         <maven.findbugs.excludefilterfile>${project.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
         <maven.findbugs.includefilterfile>${project.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
     </properties>
-    
+
     <dependencies/>
-    
+
     <build>
         <plugins>
             <plugin>
