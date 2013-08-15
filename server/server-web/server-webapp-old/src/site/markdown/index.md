@@ -1,3 +1,0 @@
-# Webapp Component
-
-TBD
