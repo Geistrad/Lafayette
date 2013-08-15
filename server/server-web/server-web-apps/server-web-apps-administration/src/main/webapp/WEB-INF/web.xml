@@ -47,7 +47,7 @@
 
     <listener>
         <display-name>application</display-name>
-        <listener-class>org.lafayette.server.ServerContextListener</listener-class>
+        <listener-class>org.lafayette.server.web.ServerContextListener</listener-class>
     </listener>
 
     <!--    <context-param>
@@ -61,7 +61,7 @@
         <init-param>
             <description>Lafayette Administration</description>
             <param-name>UI</param-name>
-            <param-value>org.lafayette.server.registration.RegisrationUI</param-value>
+            <param-value>org.lafayette.server.webapp.registration.RegisrationUI</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

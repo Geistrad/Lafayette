@@ -52,7 +52,7 @@
 
     <listener>
         <display-name>application</display-name>
-        <listener-class>org.lafayette.server.ServerContextListener</listener-class>
+        <listener-class>org.lafayette.server.web.ServerContextListener</listener-class>
     </listener>
 
     <!-- Guice setup -->
@@ -73,7 +73,7 @@
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>org.lafayette.server.resources</param-value>
+            <param-value>org.lafayette.server.webapp.api.resources</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -81,7 +81,7 @@
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.spi.container.ResourceFilters</param-name>
-            <param-value>org.lafayette.server.filter.AuthenticationResourceFilters</param-value>
+            <param-value>org.lafayette.server.webapp.api.filter.AuthenticationResourceFilters</param-value>
         </init-param>
     </servlet>
 

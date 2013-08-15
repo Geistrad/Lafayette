@@ -29,7 +29,6 @@ import org.lafayette.server.core.EnvVars;
 import org.lafayette.server.domain.db.NullDataSource;
 import org.lafayette.server.core.log.Logger;
 import org.lafayette.server.domain.mapper.Mappers;
-import org.lafayette.server.web.InitialServletParameters;
 
 /**
  * Implements a servlet context listener.
