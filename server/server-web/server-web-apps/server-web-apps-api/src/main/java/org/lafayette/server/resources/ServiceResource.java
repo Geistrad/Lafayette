@@ -23,7 +23,7 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.FileUtils;
 import org.lafayette.server.http.MediaType;
 import org.lafayette.server.http.UriList;
-import org.pegdown.PegDownProcessor;
+//import org.pegdown.PegDownProcessor;
 
 /**
  * Serves the service resource.
@@ -57,13 +57,13 @@ public class ServiceResource extends BaseResource {
     @Produces(MediaType.TEXT_HTML)
     public Response indexAsHtml() throws URISyntaxException, IOException {
         // TODO Use Freemarker
-        final PegDownProcessor processor = new PegDownProcessor();
+//        final PegDownProcessor processor = new PegDownProcessor();
         final String markdown = readFile(MARKDOWN_INDEX);
-        final String content = processor.markdownToHtml(markdown);
+//        final String content = processor.markdownToHtml(markdown);
         final String html = readFile(HTML_INDEX);
         return Response.status(Response.Status.OK)
                 .type(MediaType.TEXT_HTML)
-                .entity(html.replaceAll("--CONTENT--", content))
+                .entity(html.replaceAll("--CONTENT--", markdown)) // FIXME: Fix MD -> HTML conversion.
                 .build();
     }
 

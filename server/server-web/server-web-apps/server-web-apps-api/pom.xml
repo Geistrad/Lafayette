@@ -30,20 +30,15 @@
     <dependencies>
         <dependency>
             <groupId>org.lafayette</groupId>
-            <artifactId>server-domain-model</artifactId>
-            <version>0.1.3-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.lafayette</groupId>
             <artifactId>server-web-components</artifactId>
             <version>0.1.3-SNAPSHOT</version>
         </dependency>
         <!-- https://github.com/sirthias/pegdown -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.pegdown</groupId>
             <artifactId>pegdown</artifactId>
             <version>1.4.0</version>
-        </dependency>
+        </dependency>-->
         <!-- Jersey dependencies (https://jersey.java.net/nonav/documentation/latest/user-guide.html) -->
         <dependency>
             <groupId>com.sun.jersey</groupId>

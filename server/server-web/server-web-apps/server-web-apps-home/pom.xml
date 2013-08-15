@@ -25,19 +25,7 @@
         <maven.findbugs.includefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
     </properties>
 
-    <dependencies>
-        <!-- JSP tag libraries. -->
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-    </dependencies>
+    <dependencies/>
 
     <build>
         <plugins>
