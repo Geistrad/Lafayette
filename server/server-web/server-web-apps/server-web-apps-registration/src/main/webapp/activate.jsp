@@ -7,7 +7,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <title>Lafayette Server</title>
+        <title>Lafayette Server Registration</title>
         <meta name="description" content="">
 
         <%@ include file="WEB-INF/jspf/head.jspf" %>
@@ -15,13 +15,7 @@
     <body>
         <%@ include file="WEB-INF/jspf/legacy_browser.jspf" %>
 
-        <h1>Lafayette Server</h1>
-
-        <ul>
-            <li><a href="registration/">Sign Up</a></li>
-            <li><a href="administration/">Administration</a></li>
-            <li><a href="api/">REST API</a></li>
-        </ul>
+        <h1>Lafayette Server Registration</h1>
 
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
     </body>
