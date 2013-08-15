@@ -12,10 +12,9 @@
     <url>http://weltraumschaf.github.com/Lafayette/</url>
 
     <modules>
-        <module>server-core</module>
-        <module>server-model</module>
+        <module>server-core-components</module>
+        <module>server-domain-model</module>
         <module>server-web</module>
-        <module>server-webapp</module>
     </modules>
 
     <developers>

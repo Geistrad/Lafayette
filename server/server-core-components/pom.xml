@@ -8,7 +8,7 @@
         <version>0.1.3-SNAPSHOT</version>
     </parent>
 
-    <artifactId>server-core</artifactId>
+    <artifactId>server-core-components</artifactId>
     <packaging>jar</packaging>
 
     <name>Lafayette Server Core</name>

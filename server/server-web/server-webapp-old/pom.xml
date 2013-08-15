@@ -12,7 +12,7 @@
     <packaging>war</packaging>
 
     <name>Lafayette Server Web Application</name>
-    <description>Lafayette Server Web Application</description>
+    <description>Lafayette Server Web Application OLD</description>
 
     <properties>
         <maven.pmd.rulesetfiles>${project.parent.basedir}/src/main/config/pmd.xml</maven.pmd.rulesetfiles>
