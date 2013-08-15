@@ -23,9 +23,43 @@
         <maven.pmd.pmd-excludes>${project.parent.parent.parent.basedir}/src/main/config/exclude-pmd.properties</maven.pmd.pmd-excludes>
         <maven.findbugs.excludefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
         <maven.findbugs.includefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
+        <dependnecy.vaadin.version>7.0.0</dependnecy.vaadin.version>
+        <maven.vaadin.version>${dependnecy.vaadin.version}</maven.vaadin.version>
     </properties>
 
-    <dependencies/>
+    <dependencies>
+        <dependency>
+            <groupId>org.lafayette</groupId>
+            <artifactId>server-domain-model</artifactId>
+            <version>0.1.3-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.lafayette</groupId>
+            <artifactId>server-web-components</artifactId>
+            <version>0.1.3-SNAPSHOT</version>
+        </dependency>
+        <!-- Vaadin -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

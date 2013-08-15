@@ -7,7 +7,7 @@
         <artifactId>server-web</artifactId>
         <version>0.1.3-SNAPSHOT</version>
     </parent>
-    
+
     <groupId>org.lafayette</groupId>
     <artifactId>server-web-apps</artifactId>
     <version>0.1.3-SNAPSHOT</version>
@@ -31,9 +31,29 @@
         <maven.findbugs.excludefilterfile>${project.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
         <maven.findbugs.includefilterfile>${project.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
     </properties>
-    
-    <dependencies/>
-    
+
+    <dependencies>
+        <!-- Dependnecies provided by JEE Web Container. -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
