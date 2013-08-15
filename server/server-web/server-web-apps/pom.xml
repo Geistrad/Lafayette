@@ -21,6 +21,7 @@
         <module>server-web-apps-administration</module>
         <module>server-web-apps-home</module>
         <module>server-web-apps-registration</module>
+        <module>server-web-apps-api</module>
     </modules>
 
     <properties>

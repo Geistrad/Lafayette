@@ -36,6 +36,7 @@ Group ID: `org.lafayette.server`
         +- server-web
             +- server-web-components (Lafayette Server Web Components)
             +- server-web-apps (Lafayette Server Web Applications)
+                +- server-web-apps-api (Lafayette Server REST API)
                 +- server-web-apps-home (Lafayette Server Web Home)
                 +- server-web-apps-registration (Lafayette Server Web Registration)
                 +- server-web-apps-administration (Lafayette Server Web Admiistration
