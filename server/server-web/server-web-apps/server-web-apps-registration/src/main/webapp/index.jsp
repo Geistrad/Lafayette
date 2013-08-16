@@ -21,21 +21,21 @@
             <h1>Sign Up</h1>
 
             <div id="form">
-                <form method="post" >
+                <form method="post" action="javascript:;">
                     <ul>
                         <li class="email">
                             <label>Email: </label><br/>
-                            <input type="text" name="email" id="email" />
+                            <input type="text" name="email" id="email" value="" />
                             <span class="error"></span>
                         </li>
                         <li class="username">
                             <label>Username: </label><br/>
-                            <input type="text" name="username" id="username" />
+                            <input type="text" name="username" id="username" value="" />
                             <span class="error"></span>
                         </li>
                         <li class="password">
                             <label>Password: </label><br/>
-                            <input type="password" name="password" id="password" />
+                            <input type="password" name="password" id="password" value="" />
                             <span class="error"></span>
                         </li>
                         <li class="submit">
