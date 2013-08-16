@@ -9,14 +9,15 @@
     <head>
         <title>Lafayette Server Registration</title>
         <meta name="description" content="">
-
         <%@ include file="WEB-INF/jspf/head.jspf" %>
     </head>
     <body>
         <%@ include file="WEB-INF/jspf/legacy_browser.jspf" %>
 
         <div id="container">
-            <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
+            <a href="../">
+                <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
+            </a>
 
             <h1>Sign Up</h1>
 

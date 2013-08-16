@@ -9,7 +9,6 @@
     <head>
         <title>Lafayette Server</title>
         <meta name="description" content="">
-
         <%@ include file="WEB-INF/jspf/head.jspf" %>
     </head>
     <body>
