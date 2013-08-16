@@ -18,10 +18,31 @@
         <div id="container">
             <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
 
-            <h1>Lafayette Sign Up</h1>
+            <h1>Sign Up</h1>
 
-            <div id="content">
-
+            <div id="form">
+                <form method="post" >
+                    <ul>
+                        <li class="email">
+                            <label>Email: </label><br/>
+                            <input type="text" name="email" id="email" />
+                            <span class="error"></span>
+                        </li>
+                        <li class="username">
+                            <label>Username: </label><br/>
+                            <input type="text" name="username" id="username" />
+                            <span class="error"></span>
+                        </li>
+                        <li class="password">
+                            <label>Password: </label><br/>
+                            <input type="password" name="password" id="password" />
+                            <span class="error"></span>
+                        </li>
+                        <li class="submit">
+                            <input type="submit" value=" Register " id='submit'/>
+                        </li>
+                    </ul>
+                </form>
             </div>
         </div>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>

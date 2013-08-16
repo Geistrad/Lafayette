@@ -18,7 +18,7 @@
         <div id="container">
             <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
 
-            <h1>Lafayette Server Verification</h1>
+            <h1>Account Verification</h1>
 
             <div id="content">
 
