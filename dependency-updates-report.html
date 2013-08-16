@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130816" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Lafayette Server Application - Registration WebApp - Dependency Updates Report</title>
+    <title>Lafayette Server Application - REST API Webapp - Dependency Updates Report</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -82,13 +82,20 @@
           <i class="icon-chevron-right"></i>
         Project Information</a>
                   </li>
-                                                                                                                                                      
+                                                                                                                                                                                                                                                
       <li>
     
                           <a href="project-reports.html" title="Project Reports">
           <i class="icon-chevron-down"></i>
         Project Reports</a>
                     <ul class="nav nav-list">
+                      
+      <li>
+    
+                          <a href="apidocs/index.html" title="JavaDocs">
+          <i class="none"></i>
+        JavaDocs</a>
+            </li>
                       
       <li class="active">
     
@@ -122,6 +129,34 @@
           <i class="none"></i>
         Change Log</a>
             </li>
+                      
+      <li>
+    
+                          <a href="findbugs.html" title="FindBugs Report">
+          <i class="none"></i>
+        FindBugs Report</a>
+            </li>
+                      
+      <li>
+    
+                          <a href="javancss.html" title="JavaNCSS Report">
+          <i class="none"></i>
+        JavaNCSS Report</a>
+            </li>
+                      
+      <li>
+    
+                          <a href="jdepend-report.html" title="JDepend">
+          <i class="none"></i>
+        JDepend</a>
+            </li>
+                      
+      <li>
+    
+                          <a href="taglist.html" title="Tag List">
+          <i class="none"></i>
+        Tag List</a>
+            </li>
               </ul>
         </li>
             </ul>
@@ -151,7 +186,7 @@
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of dependencies using the latest version available</td>
-<td>14</td></tr>
+<td>18</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is smaller than an incremental version update</td>
@@ -159,7 +194,7 @@
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is an incremental version update</td>
-<td>0</td></tr>
+<td>3</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is a minor version update</td>
@@ -212,6 +247,42 @@
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>com.sun.jersey</td>
+<td>jersey-json</td>
+<td>1.17.1</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>com.sun.jersey</td>
+<td>jersey-server</td>
+<td>1.17.1</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>com.sun.jersey</td>
+<td>jersey-servlet</td>
+<td>1.17.1</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>commons-codec</td>
 <td>commons-codec</td>
 <td>1.8</td>
@@ -222,7 +293,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>commons-io</td>
 <td>commons-io</td>
@@ -234,7 +305,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>commons-validator</td>
 <td>commons-validator</td>
@@ -246,7 +317,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>de.weltraumschaf</td>
 <td>commons</td>
@@ -258,7 +329,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td>javax</td>
 <td>javaee-web-api</td>
@@ -270,7 +341,7 @@
 <td></td>
 <td></td>
 <td><b>7.0</b></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>javax.servlet</td>
 <td>jstl</td>
@@ -282,7 +353,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td>javax.servlet.jsp</td>
 <td>jsp-api</td>
@@ -294,7 +365,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>joda-time</td>
 <td>joda-time</td>
@@ -306,7 +377,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>junit</td>
 <td>junit</td>
@@ -318,7 +389,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>net.sourceforge.findbugs</td>
 <td>annotations</td>
@@ -330,7 +401,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>org.apache.commons</td>
 <td>commons-lang3</td>
@@ -340,6 +411,42 @@
 <td>jar</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>org.codehaus.jackson</td>
+<td>jackson-core-asl</td>
+<td>1.9.12</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td><b>1.9.13</b></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>org.codehaus.jackson</td>
+<td>jackson-jaxrs</td>
+<td>1.9.12</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td><b>1.9.13</b></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>org.codehaus.jackson</td>
+<td>jackson-mapper-asl</td>
+<td>1.9.12</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td><b>1.9.13</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -356,6 +463,18 @@
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>org.lafayette</td>
+<td>server-web-components</td>
+<td>0.2.0</td>
+<td>compile</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>org.mockito</td>
 <td>mockito-core</td>
 <td>1.9.5</td>
@@ -366,7 +485,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>org.msgpack</td>
 <td>msgpack</td>
@@ -378,7 +497,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>taglibs</td>
 <td>standard</td>
@@ -390,7 +509,7 @@
 <td></td>
 <td></td>
 <td></td></tr>
-<tr class="b">
+<tr class="a">
 <th>Status</th>
 <th>Group Id</th>
 <th>Artifact Id</th>
@@ -408,25 +527,25 @@
 <div class="section">
 <h3>com.google.guava:guava<a name="com.google.guava:guava"></a></h3>
 <table border="0" class="table table-striped">
-<tr class="a">
+<tr class="b">
 <th width="80%">Status</th>
 <td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
-<tr class="b">
+<tr class="a">
 <th width="80%">Group Id</th>
 <td>com.google.guava</td></tr>
-<tr class="a">
+<tr class="b">
 <th width="80%">Artifact Id</th>
 <td>guava</td></tr>
-<tr class="b">
+<tr class="a">
 <th width="80%">Current Version</th>
 <td>14.0.1</td></tr>
-<tr class="a">
+<tr class="b">
 <th width="80%">Scope</th>
 <td>compile</td></tr>
-<tr class="b">
+<tr class="a">
 <th width="80%">Classifier</th>
 <td></td></tr>
-<tr class="a">
+<tr class="b">
 <th width="80%">Type</th>
 <td>jar</td></tr></table></div>
 <div class="section">
@@ -456,6 +575,78 @@
 <tr class="b">
 <th width="80%">Newer versions</th>
 <td><b>4.0-beta</b>&#160;<i>Next Minor</i></td></tr></table></div>
+<div class="section">
+<h3>com.sun.jersey:jersey-json<a name="com.sun.jersey:jersey-json"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>com.sun.jersey</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jersey-json</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.17.1</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr></table></div>
+<div class="section">
+<h3>com.sun.jersey:jersey-server<a name="com.sun.jersey:jersey-server"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>com.sun.jersey</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jersey-server</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.17.1</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr></table></div>
+<div class="section">
+<h3>com.sun.jersey:jersey-servlet<a name="com.sun.jersey:jersey-servlet"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>com.sun.jersey</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jersey-servlet</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.17.1</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr></table></div>
 <div class="section">
 <h3>commons-codec:commons-codec<a name="commons-codec:commons-codec"></a></h3>
 <table border="0" class="table table-striped">
@@ -727,6 +918,87 @@
 <th width="80%">Type</th>
 <td>jar</td></tr></table></div>
 <div class="section">
+<h3>org.codehaus.jackson:jackson-core-asl<a name="org.codehaus.jackson:jackson-core-asl"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>org.codehaus.jackson</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jackson-core-asl</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.9.12</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr>
+<tr class="b">
+<th width="80%">Newer versions</th>
+<td><b>1.9.13</b>&#160;<i>Next Incremental</i></td></tr></table></div>
+<div class="section">
+<h3>org.codehaus.jackson:jackson-jaxrs<a name="org.codehaus.jackson:jackson-jaxrs"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>org.codehaus.jackson</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jackson-jaxrs</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.9.12</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr>
+<tr class="b">
+<th width="80%">Newer versions</th>
+<td><b>1.9.13</b>&#160;<i>Next Incremental</i></td></tr></table></div>
+<div class="section">
+<h3>org.codehaus.jackson:jackson-mapper-asl<a name="org.codehaus.jackson:jackson-mapper-asl"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>org.codehaus.jackson</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>jackson-mapper-asl</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.9.12</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr>
+<tr class="b">
+<th width="80%">Newer versions</th>
+<td><b>1.9.13</b>&#160;<i>Next Incremental</i></td></tr></table></div>
+<div class="section">
 <h3>org.hamcrest:hamcrest-library<a name="org.hamcrest:hamcrest-library"></a></h3>
 <table border="0" class="table table-striped">
 <tr class="a">
@@ -744,6 +1016,30 @@
 <tr class="a">
 <th width="80%">Scope</th>
 <td>test</td></tr>
+<tr class="b">
+<th width="80%">Classifier</th>
+<td></td></tr>
+<tr class="a">
+<th width="80%">Type</th>
+<td>jar</td></tr></table></div>
+<div class="section">
+<h3>org.lafayette:server-web-components<a name="org.lafayette:server-web-components"></a></h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Group Id</th>
+<td>org.lafayette</td></tr>
+<tr class="a">
+<th width="80%">Artifact Id</th>
+<td>server-web-components</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>0.2.0</td></tr>
+<tr class="a">
+<th width="80%">Scope</th>
+<td>compile</td></tr>
 <tr class="b">
 <th width="80%">Classifier</th>
 <td></td></tr>

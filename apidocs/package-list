@@ -1,1 +1,2 @@
-org.lafayette.server.webapp.registration
+org.lafayette.server.webapp.api.filter
+org.lafayette.server.webapp.api.resources
