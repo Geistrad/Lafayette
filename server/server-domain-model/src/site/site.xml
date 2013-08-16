@@ -4,7 +4,7 @@
          name="Lafayette Server Application - Domain Model Module">
 
     <body>
-        <menu name="Home" ref="parent"/>
-        <menu name="Reports" ref="reports"/>
+        <menu ref="parent"/>
+        <menu ref="reports"/>
     </body>
 </project>

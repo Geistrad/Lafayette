@@ -4,7 +4,8 @@
          name="Lafayette Server Application - Web Applications Module">
 
     <body>
-        <menu name="Web Modules" ref="parent"/>
-        <menu name="Reports" ref="reports"/>
+        <menu ref="parent"/>
+        <menu ref="modules"/>
+        <menu ref="reports"/>
     </body>
 </project>

@@ -37,14 +37,11 @@
             <item name="Continious Integration" href="http://ci.weltraumschaf.de/job/Lafayette-Server/"/>
         </links>
 
-        <menu name="${project.name}">
-            <item name="Home" href="index.html"/>
-        </menu>
         <menu name="Documentation">
             <item name="Appliance" href="appliance.html"/>
             <item name="Architecture" href="architecture.html"/>
         </menu>
         <menu ref="modules"/>
-        <menu name="Reports" ref="reports"/>
+        <menu ref="reports"/>
     </body>
 </project>
