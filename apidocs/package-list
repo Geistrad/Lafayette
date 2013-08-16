@@ -1,8 +1,1 @@
-org.lafayette.server.web
-org.lafayette.server.web.fmt
-org.lafayette.server.web.http
-org.lafayette.server.web.http.digest
-org.lafayette.server.web.nonce
-org.lafayette.server.web.resource
-org.lafayette.server.web.service
-org.lafayette.server.web.service.data
+org.lafayette.server.webapp.registration
