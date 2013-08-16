@@ -15,3 +15,8 @@ body {
 #container {
     text-align: center;
 }
+
+#content {
+    width: 800px;
+    text-align: left;
+}

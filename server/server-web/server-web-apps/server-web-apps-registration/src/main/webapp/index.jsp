@@ -15,8 +15,15 @@
     <body>
         <%@ include file="WEB-INF/jspf/legacy_browser.jspf" %>
 
-        <h1>Lafayette Server Activate</h1>
+        <div id="container">
+            <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
 
+            <h1>Lafayette Sign Up</h1>
+
+            <div id="content">
+
+            </div>
+        </div>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
     </body>
 </html>
