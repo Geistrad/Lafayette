@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.lafayette</groupId>
         <artifactId>server-web</artifactId>
-        <version>0.2.0</version>
+        <version>0.2.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.lafayette</groupId>
     <artifactId>server-web-apps</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Lafayette Server Web Applications</name>
