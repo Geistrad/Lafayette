@@ -15,14 +15,16 @@
     <body>
         <%@ include file="WEB-INF/jspf/legacy_browser.jspf" %>
 
-        <h1>Lafayette Server</h1>
+        <div id="container">
+            <img src="img/logo.png" title="Lafayette Server" alt="Lafayette Server"/>
 
-        <ul>
-            <li><a href="registration/">Sign Up</a></li>
-            <li><a href="administration/">Administration</a></li>
-            <li><a href="api/">REST API</a></li>
-        </ul>
+            <p>
+                <a href="registration/">Sign Up</a> |
+                <a href="api/">REST API</a> |
+                <a href="administration/">Administration</a>
+            </p>
 
+        </div>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
     </body>
 </html>
