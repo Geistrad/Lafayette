@@ -58,6 +58,9 @@ Deploy
 
 ## Todo
 
+- Fix space problem on production server
+- Fix REST users etc
+- remove appliance
 - https://vaadin.com/wiki/-/wiki/Main/Creating%20Secure%20Vaadin%20Applications%20using%20JEE6#section-Creating+Secure+Vaadin+Applications+using+JEE6-SecuringTheWebLayer
 - Database mappers: Validate input (string length, id range etc.)
 
