@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.lafayette</groupId>
+        <artifactId>server-web</artifactId>
+        <version>0.2.1</version>
+    </parent>
+
+    <groupId>org.lafayette</groupId>
+    <artifactId>server-web-apps</artifactId>
+    <version>0.2.1</version>
+    <packaging>pom</packaging>
+
+    <name>Lafayette Server Web Applications</name>
+    <description>Lafayette Server Application</description>
+    <url>http://weltraumschaf.github.com/Lafayette/</url>
+
+    <modules>
+        <module>server-web-apps-administration</module>
+        <module>server-web-apps-home</module>
+        <module>server-web-apps-registration</module>
+        <module>server-web-apps-api</module>
+    </modules>
+
+    <properties>
+        <maven.pmd.rulesetfiles>${project.parent.basedir}/src/main/config/pmd.xml</maven.pmd.rulesetfiles>
+        <maven.pmd.cpd-excludes>${project.parent.basedir}/src/main/config/exclude-cpd.properties</maven.pmd.cpd-excludes>
+        <maven.pmd.pmd-excludes>${project.parent.basedir}/src/main/config/exclude-pmd.properties</maven.pmd.pmd-excludes>
+        <maven.findbugs.excludefilterfile>${project.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
+        <maven.findbugs.includefilterfile>${project.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
+        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+    </properties>
+
+    <dependencies>
+        <!-- Dependnecies provided by JEE Web Container. -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSP tag libraries. -->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

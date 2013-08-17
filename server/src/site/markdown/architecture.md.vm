@@ -1,0 +1,55 @@
+# Architecture
+
+The Lafayette Server is a JEE web application tested on [Apache Tomcat 7][1]. The web application
+itself is based on the [Jersey][2] sevlet container for seving the REST API. Additionally there
+are some JSPs and static web resources.
+
+# Vision
+
+There will be:
+
+- Web Front Ends
+    - a home site (mostly static)
+    - one for registration
+    - one for administration
+- REST Service
+    - service discovery (to find a service)
+    - services
+        - data
+        - file
+- Domain Model
+    - Data Mapper to SQL [internal]
+    - Business Model (Entities: User, Role) [exported]
+    - Business Service (uses data mapper) [exported]
+- Web Components
+    - Thins related to HTTP.
+- Core Components
+    - Things shared by all parts of the server.
+
+## Maven Modules And Packages
+
+Group ID: `org.lafayette.server`
+
+    server (Lafayette Server) [parent]
+        +- server-core-components (Lafayette Server Core Components)
+        +- server-domain-model (Lafayette Server Domain Model)
+        +- server-web
+            +- server-web-components (Lafayette Server Web Components)
+            +- server-web-apps (Lafayette Server Web Applications)
+                +- server-web-apps-api (Lafayette Server REST API)
+                +- server-web-apps-home (Lafayette Server Web Home)
+                +- server-web-apps-registration (Lafayette Server Web Registration)
+                +- server-web-apps-administration (Lafayette Server Web Admiistration
+
+## Components
+
+<img alt="Big picture" src="images/components.png"/>
+
+## Big Picture Web Application
+
+<img alt="Big picture" src="images/big_picture.png"/>
+
+<small>This web site was generated for ${project.groupId}:${project.artifactId}:${project.version}.</small>
+
+[1]: http://tomcat.apache.org/download-70.cgi
+[2]: https://jersey.java.net/

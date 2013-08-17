@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.lafayette</groupId>
+        <artifactId>server-web-apps</artifactId>
+        <version>0.2.1</version>
+    </parent>
+
+    <groupId>org.lafayette</groupId>
+    <artifactId>server-web-apps-administration</artifactId>
+    <version>0.2.1</version>
+    <packaging>war</packaging>
+
+    <name>Lafayette Server Web Administration</name>
+    <description>TBD</description>
+    <url>http://weltraumschaf.github.com/Lafayette/</url>
+
+    <properties>
+        <maven.pmd.rulesetfiles>${project.parent.parent.parent.basedir}/src/main/config/pmd.xml</maven.pmd.rulesetfiles>
+        <maven.pmd.cpd-excludes>${project.parent.parent.parent.basedir}/src/main/config/exclude-cpd.properties</maven.pmd.cpd-excludes>
+        <maven.pmd.pmd-excludes>${project.parent.parent.parent.basedir}/src/main/config/exclude-pmd.properties</maven.pmd.pmd-excludes>
+        <maven.findbugs.excludefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
+        <maven.findbugs.includefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
+        <dependnecy.vaadin.version>7.1.0</dependnecy.vaadin.version>
+        <maven.vaadin.version>${dependnecy.vaadin.version}</maven.vaadin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.lafayette</groupId>
+            <artifactId>server-web-components</artifactId>
+            <version>0.2.1</version>
+        </dependency>
+        <!-- Vaadin -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+            <version>${dependnecy.vaadin.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

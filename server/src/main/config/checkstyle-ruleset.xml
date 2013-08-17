@@ -19,13 +19,21 @@
 <!-- http://checkstyle.sf.net (or in your downloaded distribution). -->
 <module name="Checker">
     <module name="SuppressionFilter">
-        <property name="file" value="checkstyle-suppressions.xml" />
+        <property name="file" value="${basedir}/checkstyle-suppressions.xml" />
     </module>
+    
     <module name="SuppressionCommentFilter" />
+    
     <property name="severity" value="error" />
+    
     <module name="FileLength">
         <property name="max" value="1500" />
     </module>
+    
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+    
     <module name="JavadocPackage" />
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
@@ -125,17 +133,12 @@
         <module name="NeedBraces" />
 
         <!-- Checks for common coding problems               -->
-        <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="DoubleCheckedLocking">
-            <property name="severity" value="warning" />
-        </module>
         <module name="ArrayTrailingComma" />
         <module name="CovariantEquals" />
         <module name="EmptyStatement" />
         <module name="EqualsAvoidNull" />
         <!-- Effective Java Item 8 - Always override hashCode when you override equals -->
         <module name="EqualsHashCode" />
-        <module name="FinalLocalVariable" />
 
         <module name="HiddenField">
             <property name="severity" value="warning" />
@@ -238,10 +241,6 @@
         <module name="JavadocMethod" />
         <module name="JavadocVariable" />
         <module name="JavadocStyle" />
-    </module>
-
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
     </module>
 
 </module>

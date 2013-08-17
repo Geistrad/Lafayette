@@ -21,11 +21,6 @@
             <topBarEnabled>false</topBarEnabled>
             <sideBarEnabled>true</sideBarEnabled>
             <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
-            <gitHub>
-                <projectId>Weltraumschaf/Lafayette</projectId>
-                <ribbonOrientation>right</ribbonOrientation>
-                <ribbonColor>black</ribbonColor>
-            </gitHub>
         </fluidoSkin>
     </custom>
 
@@ -37,17 +32,16 @@
     </bannerLeft>
 
     <body>
-        <breadcrumbs>
+        <links>
             <item name="Weltraumschaf" href="http://www.weltraumschaf.de"/>
             <item name="Continious Integration" href="http://ci.weltraumschaf.de/job/Lafayette-Server/"/>
-        </breadcrumbs>
-        <menu name="${project.name}">
-            <item name="Home" href="index.html"/>
-        </menu>
+        </links>
+
         <menu name="Documentation">
             <item name="Appliance" href="appliance.html"/>
             <item name="Architecture" href="architecture.html"/>
         </menu>
-        <menu name="Reports" ref="reports"/>
+        <menu ref="modules"/>
+        <menu ref="reports"/>
     </body>
 </project>
