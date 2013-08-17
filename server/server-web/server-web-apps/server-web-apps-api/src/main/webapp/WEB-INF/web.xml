@@ -56,20 +56,20 @@
     </listener>
 
     <!-- Guice setup -->
-    <!--<filter>-->
+    <filter>
         <!-- http://code.google.com/p/google-guice/wiki/Servlets -->
-<!--        <filter-name>guiceFilter</filter-name>
-        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
-    </filter>-->
-
-<!--    <filter-mapping>
         <filter-name>guiceFilter</filter-name>
-        <url-pattern>/api/*</url-pattern>
-    </filter-mapping>-->
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- REST API w/ Jersey -->
     <servlet>
-        <servlet-name>api</servlet-name>
+        <servlet-name>restApi</servlet-name>
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
@@ -86,7 +86,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>api</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <servlet-name>restApi</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>
