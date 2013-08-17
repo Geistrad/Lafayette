@@ -23,6 +23,10 @@
                 <a href="administration/">Administration</a>
             </p>
 
+            <p><small>
+                Version: ${applicationScope['registry'].version} &ndash;
+                Stage: ${applicationScope['registry'].stage}
+            </small></p>
         </div>
         <%@ include file="WEB-INF/jspf/footer_scripts.jspf" %>
     </body>

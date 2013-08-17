@@ -27,7 +27,7 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.web.Registry;
-import org.lafayette.server.web.ServerContextListener;
+import org.lafayette.server.web.servlet.ExtendedContextListener;
 import org.lafayette.server.web.Services;
 import org.lafayette.server.domain.DomainObject;
 import org.lafayette.server.web.http.MediaType;
@@ -117,7 +117,7 @@ abstract class BaseResource implements AbstractResourceModelListener {
      * @return never {@code null}
      */
     protected Registry registry() {
-        return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);
+        return (Registry) servlet.getAttribute(ExtendedContextListener.ATTRIBUTE_NAME_REGISRTY);
     }
 
     /**

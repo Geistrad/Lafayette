@@ -37,6 +37,11 @@
         <location>/http_error_500.jsp</location>
     </error-page>
 
+    <listener>
+        <display-name>baseContectListener</display-name>
+        <listener-class>org.lafayette.server.web.servlet.BaseContextListener</listener-class>
+    </listener>
+
     <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>/WEB-INF/log4j.properties</param-value>

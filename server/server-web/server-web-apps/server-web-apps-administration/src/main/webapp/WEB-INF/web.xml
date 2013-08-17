@@ -46,8 +46,8 @@
     </context-param>
 
     <listener>
-        <display-name>application</display-name>
-        <listener-class>org.lafayette.server.web.ServerContextListener</listener-class>
+        <display-name>extendedContectListener</display-name>
+        <listener-class>org.lafayette.server.web.servlet.ExtendedContextListener</listener-class>
     </listener>
 
     <!--    <context-param>

@@ -26,7 +26,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import org.lafayette.server.web.Registry;
-import org.lafayette.server.web.ServerContextListener;
+import org.lafayette.server.web.servlet.ExtendedContextListener;
 import org.lafayette.server.domain.service.RegistrationService;
 import org.lafayette.server.domain.service.ServiceExcpetion;
 
@@ -99,7 +99,7 @@ public class RegisrationUI extends UI {
      * @return never {@code null}
      */
     protected Registry registry() {
-        return (Registry) VaadinServlet.getCurrent().getServletContext().getAttribute(ServerContextListener.REGISRTY);
+        return (Registry) VaadinServlet.getCurrent().getServletContext().getAttribute(ExtendedContextListener.ATTRIBUTE_NAME_REGISRTY);
     }
 
     /**

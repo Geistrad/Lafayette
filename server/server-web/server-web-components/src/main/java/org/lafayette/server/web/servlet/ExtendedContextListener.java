@@ -9,15 +9,12 @@
  *
  * Copyright (C) 2012 "Sven Strittmatter" <weltraumschaf(at)googlemail(dot)com>
  */
-package org.lafayette.server.web;
+package org.lafayette.server.web.servlet;
 
-import org.lafayette.server.core.Stage;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import org.lafayette.server.core.log.Log;
-import de.weltraumschaf.commons.Version;
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -25,45 +22,41 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
-import org.lafayette.server.core.EnvVars;
 import org.lafayette.server.domain.db.NullDataSource;
 import org.lafayette.server.core.log.Logger;
 import org.lafayette.server.domain.mapper.Mappers;
+import org.lafayette.server.web.InitialServletParameters;
+import org.lafayette.server.web.Registry;
+import org.lafayette.server.web.ServerModule;
 
 /**
  * Implements a servlet context listener.
  *
  * @author Sven Strittmatter <weltraumschaf@googlemail.com>
  */
-public final class ServerContextListener extends GuiceServletContextListener implements ServletContextListener {
+public final class ExtendedContextListener extends GuiceServletContextListener implements ServletContextListener {
 
     /**
      * Key for a {@link Registry registry object} servlet context attribute.
      */
-    public static final String REGISRTY = "registry";
-    /**
-     * PAth to version file.
-     */
-    private static final String VERSION_FILE = "/org/lafayette/server/version.properties";
+    public static final String ATTRIBUTE_NAME_REGISRTY = BaseContextListener.ATTRIBUTE_NAME_REGISRTY;
+
     /**
      * Logging facility.
      */
-    private static final Logger LOG = Log.getLogger(ServerContextListener.class);
+    private static final Logger LOG = Log.getLogger(ExtendedContextListener.class);
     /**
      * JNDI name for main data base data source.
      */
     private static final String JNDI_NAME_DATA_SOURCE = "java:/comp/env/jdbc/mysql";
-    /**
-     * Registry shared over the whole web application.
-     */
-    private final Registry reg = new Registry();
+    private final BaseContextListener base = new BaseContextListener();
 
     /**
      * Dedicated constructor.
      *
      * @throws NoSuchAlgorithmException if registry can't initialize {@link Registry#nongeGenerator}
      */
-    public ServerContextListener() throws NoSuchAlgorithmException {
+    public ExtendedContextListener() throws NoSuchAlgorithmException {
         super();
     }
 
@@ -72,51 +65,24 @@ public final class ServerContextListener extends GuiceServletContextListener imp
         // http://code.google.com/p/google-guice/wiki/ServletModule
         LOG.debug("Create Guice injector.");
         final Injector injector = Guice.createInjector(new ServerModule());
-        reg.setDependnecyInjector(injector);
+        base.getRegistry().setDependnecyInjector(injector);
         return injector;
     }
 
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
-        LOG.debug("Context initialized. Execute listener...");
-        loadVersion();
-        loadStage();
+        base.contextInitialized(sce);
+        LOG.debug("Context initialized. Execute extended listener...");
         final DataSource dataSource = createDataSource();
         createMappersFactory(dataSource);
         final ServletContext servletContext = sce.getServletContext();
-        reg.setInitParameters(new InitialServletParameters(servletContext));
-        servletContext.setAttribute(REGISRTY, reg);
+        base.getRegistry().setInitParameters(new InitialServletParameters(servletContext));
     }
 
     @Override
     public void contextDestroyed(final ServletContextEvent sce) {
-        LOG.debug("Context destroyed. Execute listener...");
-    }
-
-    /**
-     * Add version information to the {@link Registry registry}.
-     */
-    private void loadVersion() {
-        try {
-            LOG.info("Load version from file %s.", VERSION_FILE);
-            final Version version = new Version(VERSION_FILE);
-            version.load();
-            LOG.info("Loaded version %s.", version.getVersion());
-            reg.setVersion(version);
-        } catch (IOException ex) {
-            LOG.fatal("Error loading version: %s", ex.toString());
-        }
-    }
-
-    /**
-     * Add stage information to the {@link Registry registry}.
-     */
-    private void loadStage() {
-        final String envStage = EnvVars.STAGE.getFromSystem();
-        LOG.debug("Use $STAGE=%s as stage.", envStage);
-        final Stage stage = new Stage(envStage);
-        LOG.info("Loaded stage %s.", stage.toString());
-        reg.setStage(stage);
+        base.contextDestroyed(sce);
+        LOG.debug("Context destroyed. Execute extended listener...");
     }
 
     /**
@@ -125,7 +91,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
      * @param dataSource open database connection
      */
     private void createMappersFactory(final DataSource dataSource) {
-        reg.setMappers(new Mappers(dataSource));
+        base.getRegistry().setMappers(new Mappers(dataSource));
     }
 
     /**
@@ -142,7 +108,7 @@ public final class ServerContextListener extends GuiceServletContextListener imp
             if (null == dataSource) {
                 LOG.error("Can't lookup data source via JNDI!");
             } else {
-                reg.setDataSource(dataSource);
+                base.getRegistry().setDataSource(dataSource);
                 return dataSource;
             }
         } catch (NamingException ex) {

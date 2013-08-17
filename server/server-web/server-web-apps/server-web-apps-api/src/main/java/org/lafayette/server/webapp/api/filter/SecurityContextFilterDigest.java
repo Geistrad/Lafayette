@@ -28,7 +28,7 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 import org.apache.commons.lang3.Validate;
 import org.lafayette.server.web.Registry;
-import org.lafayette.server.web.ServerContextListener;
+import org.lafayette.server.web.servlet.ExtendedContextListener;
 import org.lafayette.server.domain.Role;
 import org.lafayette.server.domain.User;
 import org.lafayette.server.web.http.ForbiddenException;
@@ -84,7 +84,7 @@ class SecurityContextFilterDigest implements SecuirityContextFilter {
      * @return always same instance
      */
     Registry registry() {
-        return (Registry) servlet.getAttribute(ServerContextListener.REGISRTY);
+        return (Registry) servlet.getAttribute(ExtendedContextListener.ATTRIBUTE_NAME_REGISRTY);
     }
 
     @Override
