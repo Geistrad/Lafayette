@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.lafayette</groupId>
         <artifactId>server-web-apps</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.2-SNAPSHOT</version>
     </parent>
 
     <groupId>org.lafayette</groupId>
     <artifactId>server-web-apps-api</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Lafayette Server REST API</name>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.lafayette</groupId>
             <artifactId>server-web-components</artifactId>
-            <version>0.2.1</version>
+            <version>0.2.2-SNAPSHOT</version>
         </dependency>
         <!-- https://github.com/sirthias/pegdown -->
 <!--        <dependency>

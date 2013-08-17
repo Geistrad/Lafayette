@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.lafayette</groupId>
         <artifactId>server-web</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>server-web-components</artifactId>
@@ -27,12 +27,12 @@
         <dependency>
             <groupId>org.lafayette</groupId>
             <artifactId>server-domain-model</artifactId>
-            <version>0.2.1</version>
+            <version>0.2.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.lafayette</groupId>
             <artifactId>server-core-components</artifactId>
-            <version>0.2.1</version>
+            <version>0.2.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
