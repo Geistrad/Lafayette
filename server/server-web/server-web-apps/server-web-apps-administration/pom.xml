@@ -23,7 +23,7 @@
         <maven.pmd.pmd-excludes>${project.parent.parent.parent.basedir}/src/main/config/exclude-pmd.properties</maven.pmd.pmd-excludes>
         <maven.findbugs.excludefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-exclude.xml</maven.findbugs.excludefilterfile>
         <maven.findbugs.includefilterfile>${project.parent.parent.parent.basedir}/src/main/config/findbugs-include.xml</maven.findbugs.includefilterfile>
-        <dependnecy.vaadin.version>7.0.0</dependnecy.vaadin.version>
+        <dependnecy.vaadin.version>7.1.0</dependnecy.vaadin.version>
         <maven.vaadin.version>${dependnecy.vaadin.version}</maven.vaadin.version>
     </properties>
 
