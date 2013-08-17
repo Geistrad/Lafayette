@@ -30,11 +30,11 @@
     <dependencies>
         <dependency>
             <groupId>org.lafayette</groupId>
-            <artifactId>server-web-components</artifactId>
+            <artifactId>server-domain-model</artifactId>
             <version>0.2.2-SNAPSHOT</version>
         </dependency>
         <!-- https://github.com/sirthias/pegdown -->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.pegdown</groupId>
             <artifactId>pegdown</artifactId>
             <version>1.4.0</version>

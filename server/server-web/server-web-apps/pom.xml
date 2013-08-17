@@ -34,6 +34,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.lafayette</groupId>
+            <artifactId>server-web-components</artifactId>
+            <version>0.2.2-SNAPSHOT</version>
+        </dependency>
         <!-- Dependnecies provided by JEE Web Container. -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
