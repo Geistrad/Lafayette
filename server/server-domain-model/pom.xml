@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.lafayette</groupId>
         <artifactId>server</artifactId>
-        <version>0.2.1-SNAPSHOT</version>
+        <version>0.2.1</version>
     </parent>
 
     <artifactId>server-domain-model</artifactId>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.lafayette</groupId>
             <artifactId>server-core-components</artifactId>
-            <version>0.2.1-SNAPSHOT</version>
+            <version>0.2.1</version>
         </dependency>
         <!-- HSQLDB JDBC Connector for tests. -->
         <dependency>
